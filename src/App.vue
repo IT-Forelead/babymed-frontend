@@ -10,11 +10,9 @@ const layout = computed(
 </script>
 
 <template>
-  <div>
-    <component :is="layout">
-      <router-view />
-    </component>
-  </div>
+  <component :is="layout">
+    <router-view />
+  </component>
 </template>
 
 <style scoped></style>
