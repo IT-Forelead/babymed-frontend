@@ -1,10 +1,16 @@
-<script lang="js" setup>
+<script setup>
 import HomeIcon from '../assets/icons/HomeIcon.vue'
 import SettingIcon from '../assets/icons/SettingIcon.vue'
 import SignOutIcon from '../assets/icons/SignOutIcon.vue'
-import { useSidebarStore } from '../store/sidebar.store';
-import { computed } from '@vue/runtime-core';
+import { useSidebarStore } from '../store/sidebar.store'
+import { computed } from '@vue/runtime-core'
+import ChevronRightIcon from '../assets/icons/ChevronRightIcon.vue'
+import UserIcon from '../assets/icons/UserIcon.vue'
+import UsersIcon from '../assets/icons/UsersIcon.vue'
+import AppointmentIcon from '../assets/icons/AppointmentIcon.vue'
+import ReportIcon from '../assets/icons/ReportIcon.vue'
 const isOpen = computed(() => useSidebarStore().isOpenSidebar)
+const isOpenSubMenu = computed(() => useSidebarStore().isOpenSubMenu)
 </script>
 
 <template>
@@ -13,12 +19,67 @@ const isOpen = computed(() => useSidebarStore().isOpenSidebar)
       <div class="bg-gray-700 w-14 h-14 flex items-center justify-center p-2 rounded-full">
         <img src="/vite.svg" alt="" />
       </div>
-      <p v-if="isOpen" class="text-xl font-bold">Baby med</p>
+      <p v-if="isOpen" class="text-xl font-bold capitalize">Baby med</p>
     </div>
-    <div class="mt-5 h-[475px] overflow-auto p-5">
-      <router-link to="/" class="flex items-center space-x-2 hover:bg-slate-600 p-2 py-3 rounded-lg cursor-pointer" v-for="i in 10" :key="i">
-        <HomeIcon class="w-7 h-7" />
-        <p>Dashboard</p>
+    <div class="mt-5 h-[475px] overflow-auto py-5 px-3 text-gray-400 space-y-3">
+      <router-link to="/" @click="useSidebarStore().toggleSidebarSubMenu()" class="flex items-center justify-between hover:bg-gray-800 hover:text-gray-100 p-3 rounded-lg cursor-pointer">
+        <div class="flex items-center space-x-2">
+          <HomeIcon class="w-7 h-7" />
+          <p>Dashboard</p>
+        </div>
+        <div>
+          <ChevronRightIcon class="w-5 h-5 transition-all duration-300" :class="{ 'rotate-90': isOpenSubMenu }" />
+        </div>
+      </router-link>
+      <div :class="{ hidden: !isOpenSubMenu }" class="transition-all duration-300">
+        <router-link to="/" class="flex items-center justify-between hover:text-gray-100 p-3 rounded-lg cursor-pointer">
+          <div class="flex items-center space-x-2 pl-6">
+            <p>-</p>
+            <p>Hospital Dashboard</p>
+          </div>
+        </router-link>
+        <router-link to="/" class="flex items-center justify-between hover:text-gray-100 p-3 rounded-lg cursor-pointer">
+          <div class="flex items-center space-x-2 pl-6">
+            <p>-</p>
+            <p>Patient Dashboard</p>
+          </div>
+        </router-link>
+        <router-link to="/" class="flex items-center justify-between hover:text-gray-100 p-3 rounded-lg cursor-pointer">
+          <div class="flex items-center space-x-2 pl-6">
+            <p>-</p>
+            <p>Doctor Dashboard</p>
+          </div>
+        </router-link>
+      </div>
+      <router-link to="/" class="flex items-center justify-between hover:bg-gray-800 hover:text-gray-100 p-3 rounded-lg cursor-pointer">
+        <div class="flex items-center space-x-2">
+          <AppointmentIcon class="w-7 h-7" />
+          <p>Appointments</p>
+        </div>
+      </router-link>
+      <router-link to="/" class="flex items-center justify-between hover:bg-gray-800 hover:text-gray-100 p-3 rounded-lg cursor-pointer">
+        <div class="flex items-center space-x-2">
+          <UsersIcon class="w-7 h-7" />
+          <p>Patients</p>
+        </div>
+        <div>
+          <ChevronRightIcon class="w-5 h-5 transition-all duration-300" />
+        </div>
+      </router-link>
+      <router-link to="/" class="flex items-center justify-between hover:bg-gray-800 hover:text-gray-100 p-3 rounded-lg cursor-pointer">
+        <div class="flex items-center space-x-2">
+          <UserIcon class="w-7 h-7"/>
+          <p>Doctor</p>
+        </div>
+        <div>
+          <ChevronRightIcon class="w-5 h-5 transition-all duration-300" />
+        </div>
+      </router-link>
+      <router-link to="/" class="flex items-center justify-between hover:bg-gray-800 hover:text-gray-100 p-3 rounded-lg cursor-pointer">
+        <div class="flex items-center space-x-2">
+          <ReportIcon class="w-7 h-7" />
+          <p>Reports</p>
+        </div>
       </router-link>
     </div>
     <div class="absolute bottom-10 w-full flex justify-center items-center flex-col space-y-2">
@@ -30,10 +91,10 @@ const isOpen = computed(() => useSidebarStore().isOpenSidebar)
         <p class="text-gray-600">example@gmail.com</p>
       </div>
       <div class="flex items-center justify-center space-x-5">
-        <div class="border border-gray-600 rounded-lg p-2 cursor-pointer hover:shadow">
+        <div class="border border-gray-600 rounded-lg p-2 cursor-pointer hover:bg-gray-800">
           <SettingIcon class="text-gray-600 h-6 w-6 fill-current" />
         </div>
-        <div class="border border-gray-600 rounded-lg p-2 cursor-pointer hover:shadow">
+        <div class="border border-gray-600 rounded-lg p-2 cursor-pointer hover:bg-gray-800">
           <SignOutIcon class="text-gray-600 h-6 w-6 fill-current" />
         </div>
       </div>

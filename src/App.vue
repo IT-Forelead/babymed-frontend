@@ -1,4 +1,4 @@
-<script lang="js" setup>
+<script setup>
 import { useRouter } from 'vue-router'
 import { computed } from 'vue'
 

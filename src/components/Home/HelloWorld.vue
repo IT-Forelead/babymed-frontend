@@ -1,4 +1,4 @@
-<script lang="js" setup></script>
+<script setup></script>
 
 <template>
   <p>

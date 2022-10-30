@@ -1,4 +1,4 @@
-<script lang="js" setup>
+<script setup>
 import SearchIcon from '../assets/icons/SearchIcon.vue'
 import BellIcon from '../assets/icons/BellIcon.vue'
 </script>

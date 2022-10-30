@@ -1,4 +1,4 @@
-<script lang="js" setup>
+<script setup>
 import HelloWorld from '../components/Home/HelloWorld.vue'
 </script>
 <template>
