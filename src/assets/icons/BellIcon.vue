@@ -4,6 +4,6 @@
 
 <script>
 export default {
-  name: 'SystemUiconsBell'
+  name: 'SystemUiconsBell',
 }
 </script>

@@ -4,6 +4,6 @@
 
 <script>
 export default {
-  name: 'BxsChevronRight'
+  name: 'BxsChevronRight',
 }
 </script>
