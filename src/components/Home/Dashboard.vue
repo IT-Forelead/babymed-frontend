@@ -109,22 +109,24 @@ import ReportItem from './ReportItem.vue'
         <option value="1">Test</option>
       </select>
     </div>
-    <table class="min-w-max w-full table-auto">
-      <thead>
-        <tr class="text-gray-600 capitalize text-lg leading-normal">
-          <th class="py-3 px-6 text-center">No</th>
-          <th class="py-3 px-6 text-left">Client</th>
-          <th class="py-3 px-6 text-left">Phone</th>
-          <th class="py-3 px-6 text-center">Checking date</th>
-          <th class="py-3 px-6 text-center">Status</th>
-          <th class="py-3 px-6 text-center">Checking type</th>
-          <th class="py-3 px-6 text-center">Actions</th>
-        </tr>
-      </thead>
-      <tbody class="text-gray-600 text-sm font-light">
-        <ReportItem />
-      </tbody>
-    </table>
+    <div class="h-96 overflow-auto">
+      <table class="min-w-max w-full table-auto">
+        <thead class="sticky z-10 top-0 bg-white shadow">
+          <tr class="text-gray-600 capitalize text-lg leading-normal">
+            <th class="py-3 px-6 text-center">No</th>
+            <th class="py-3 px-6 text-left">Client</th>
+            <th class="py-3 px-6 text-left">Phone</th>
+            <th class="py-3 px-6 text-center">Checking date</th>
+            <th class="py-3 px-6 text-center">Status</th>
+            <th class="py-3 px-6 text-center">Checking type</th>
+            <th class="py-3 px-6 text-center">Actions</th>
+          </tr>
+        </thead>
+        <tbody class="text-gray-600 text-sm font-light">
+          <ReportItem />
+        </tbody>
+      </table>
+    </div>
   </div>
 </template>
 

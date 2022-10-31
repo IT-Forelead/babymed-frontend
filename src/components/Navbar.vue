@@ -20,7 +20,7 @@ import BellIcon from '../assets/icons/BellIcon.vue'
         <BellIcon class="text-gray-600 h-7 w-7 fill-current" />
       </div>
       <div class="bg-black text-white rounded-xl p-3.5 px-7 cursor-pointer hover:bg-black/75">
-        <p class="text-base">+ Add Record</p>
+        <p class="text-base">+ Add Patient</p>
       </div>
     </div>
   </div>
