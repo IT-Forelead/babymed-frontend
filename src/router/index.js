@@ -8,6 +8,12 @@ const routes = [
     meta: { layout: 'login' },
   },
   {
+    path: '/login',
+    name: 'LoginTwo',
+    component: () => import('../pages/LoginTwo.vue'),
+    meta: { layout: 'login' },
+  },
+  {
     path: '/dashboard',
     name: 'Index',
     component: () => import('../pages/Home.vue'),
