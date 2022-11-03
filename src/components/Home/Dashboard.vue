@@ -1,5 +1,6 @@
 <script setup>
 import PaymentIcon from '../../assets/icons/PaymentIcon.vue'
+import Registration from './Registration.vue';
 import ReportItem from './ReportItem.vue'
 </script>
 
@@ -128,6 +129,8 @@ import ReportItem from './ReportItem.vue'
       </table>
     </div>
   </div>
+  <!-- Registration Modal (Payment & Patient) -->
+  <Registration/>
 </template>
 
 <style scoped></style>
