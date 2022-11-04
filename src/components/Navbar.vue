@@ -1,6 +1,7 @@
 <script setup>
 import SearchIcon from '../assets/icons/SearchIcon.vue'
 import BellIcon from '../assets/icons/BellIcon.vue'
+import { useModalStore } from '../store/modal.store'
 </script>
 
 <template>
@@ -19,8 +20,8 @@ import BellIcon from '../assets/icons/BellIcon.vue'
       <div class="bg-white rounded-xl p-3 cursor-pointer hover:shadow">
         <BellIcon class="text-gray-600 h-7 w-7 fill-current" />
       </div>
-      <div class="bg-black text-white rounded-xl p-3.5 px-7 cursor-pointer hover:bg-black/75">
-        <p class="text-base">+ Add Patient</p>
+      <div @click="useModalStore().openModal()" class="bg-black text-white rounded-xl p-3.5 px-7 cursor-pointer hover:bg-black/75">
+        <p class="text-base">+ Add Record</p>
       </div>
     </div>
   </div>
