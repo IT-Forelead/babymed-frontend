@@ -4,13 +4,22 @@ import SettingIcon from '../assets/icons/SettingIcon.vue'
 import SignOutIcon from '../assets/icons/SignOutIcon.vue'
 import { useSidebarStore } from '../store/sidebar.store'
 import { computed } from '@vue/runtime-core'
+import { useRouter } from 'vue-router'
 import ChevronRightIcon from '../assets/icons/ChevronRightIcon.vue'
 import UserIcon from '../assets/icons/UserIcon.vue'
 import UsersIcon from '../assets/icons/UsersIcon.vue'
 import AppointmentIcon from '../assets/icons/AppointmentIcon.vue'
 import ReportIcon from '../assets/icons/ReportIcon.vue'
+import AuthService from '../services/auth.service'
+
+const router = useRouter()
 const isOpen = computed(() => useSidebarStore().isOpenSidebar)
 const isOpenSubMenu = computed(() => useSidebarStore().isOpenSubMenu)
+
+const logout = () => {
+  AuthService.logout()
+  router.push('/login')
+}
 </script>
 
 <template>
@@ -90,11 +99,11 @@ const isOpenSubMenu = computed(() => useSidebarStore().isOpenSubMenu)
         <p class="text-lg font-bold text-gray-400">Babymed Admin</p>
         <p class="text-gray-600">example@gmail.com</p>
       </div>
-      <div :class="{'flex-col space-x-0 space-y-3': !isOpen}" class="flex items-center justify-center space-x-5">
+      <div :class="{ 'flex-col space-x-0 space-y-3': !isOpen }" class="flex items-center justify-center space-x-5">
         <div class="border border-gray-600 rounded-lg p-2 cursor-pointer hover:bg-gray-800">
           <SettingIcon class="text-gray-600 h-6 w-6 fill-current" />
         </div>
-        <div class="border border-gray-600 rounded-lg p-2 cursor-pointer hover:bg-gray-800">
+        <div @click="logout()" class="border border-gray-600 rounded-lg p-2 cursor-pointer hover:bg-gray-800">
           <SignOutIcon class="text-gray-600 h-6 w-6 fill-current" />
         </div>
       </div>
