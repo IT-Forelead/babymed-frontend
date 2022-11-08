@@ -1,16 +1,36 @@
 <script setup>
-import { ref } from '@vue/reactivity'
+import { ref, reactive } from '@vue/reactivity'
 import { useRouter } from 'vue-router'
+import { useAuthStore } from '../store/auth.store'
 import EyeIcon from '../assets/icons/EyeIcon.vue'
 import EyeSlashIcon from '../assets/icons/EyeSlashIcon.vue'
+import AuthService from '../services/auth.service'
+
 const isLoading = ref(false)
 const hidePassword = ref(true)
 const router = useRouter()
+const loginFormData = reactive({
+  phone: '',
+  password: '',
+})
 const togglePassword = () => (hidePassword.value = !hidePassword.value)
 
 const login = () => {
   isLoading.value = true
-  router.push('/dashboard')
+  AuthService.login({
+    phone: loginFormData.phone,
+    password: loginFormData.password,
+  }).then((res) => {
+    if (res) {
+      router.push('/dashboard')
+      useAuthStore().setToken(res)
+      isLoading.value = false
+    } else {
+      setTimeout(() => {
+        isLoading.value = false
+      }, 3000)
+    }
+  })
 }
 </script>
 
@@ -23,7 +43,7 @@ const login = () => {
         <div class="flex flex-col space-y-6">
           <label for="phone">
             <p class="font-medium text-gray-500 pb-2">Mobile phone</p>
-            <input id="phone" v-mask="'+998(##) ###-##-##'" type="text" class="w-full py-2 border border-gray-300 rounded focus:outline-none focus:border-slate-500 hover:shadow" placeholder="+998(00) 000-00-00" />
+            <input id="phone" v-mask="'+998(##) ###-##-##'" v-model="loginFormData.phone" type="text" class="w-full py-2 border border-gray-300 rounded focus:outline-none focus:border-slate-500 hover:shadow" placeholder="+998(00) 000-00-00" />
           </label>
           <div>
             <div class="flex flex-row items-center justify-between mb-2">
@@ -32,7 +52,7 @@ const login = () => {
             </div>
             <label for="password">
               <div class="relative">
-                <input id="password" :type="hidePassword ? 'password' : 'text'" class="w-full py-2 border border-gray-300 rounded px-3 focus:outline-none focus:border-slate-500 hover:shadow" placeholder="Enter your password" />
+                <input id="password" :type="hidePassword ? 'password' : 'text'" v-model="loginFormData.password" class="w-full py-2 border border-gray-300 rounded px-3 focus:outline-none focus:border-slate-500 hover:shadow" placeholder="Enter your password" />
                 <EyeIcon v-if="hidePassword" @click="togglePassword()" class="text-gray-500 absolute z-10 top-1/2 -translate-y-1/2 right-3 w-5 h-5 cursor-pointer" />
                 <EyeSlashIcon v-else @click="togglePassword()" class="text-gray-500 absolute z-10 top-1/2 -translate-y-1/2 right-3 w-5 h-5 cursor-pointer" />
               </div>
