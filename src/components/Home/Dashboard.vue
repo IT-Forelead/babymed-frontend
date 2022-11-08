@@ -2,8 +2,6 @@
 import PaymentIcon from '../../assets/icons/PaymentIcon.vue'
 import Registration from './Registration.vue'
 import ReportItem from './ReportItem.vue'
-import TestComp from '../TestComp.vue'
-// import axios from 'axios'
 </script>
 
 <template>
@@ -133,15 +131,6 @@ import TestComp from '../TestComp.vue'
   </div>
   <!-- Registration Modal (Payment & Patient) -->
   <Registration />
-  <TestComp />
-  <InfiniteLoading @infinite="loadData" />
-  <table>
-    <tr v-for="(album, index) of albums" :key="index">
-      <td>{{ album.userId }}</td>
-      <td>{{ album.id }}</td>
-      <td>{{ album.title }}</td>
-    </tr>
-  </table>
 </template>
 
 
