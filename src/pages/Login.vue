@@ -30,7 +30,7 @@ import EyeSleshIcon from '../assets/icons/EyeSleshIcon.vue'
         <span class="block text-[#abaeb9] text-base mt-4">-Benjamin Franklin</span>
       </div>
       <div class="border-[20px] border-solid border-[#ccc] w-screen mt-12 h-screen rounded-[40px] absolute">
-        <img src="dashboard.png" class="rounded-3xl w-4/5" />
+        <img src="/dashboard.png" class="rounded-3xl w-4/5" />
       </div>
     </div>
   </div>
