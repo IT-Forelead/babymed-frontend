@@ -2,8 +2,6 @@
 import PaymentIcon from '../../assets/icons/PaymentIcon.vue'
 import Registration from './Registration.vue'
 import ReportItem from './ReportItem.vue'
-import TestComp from '../TestComp.vue'
-// import axios from 'axios'
 </script>
 
 <template>
