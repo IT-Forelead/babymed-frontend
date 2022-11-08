@@ -31,3 +31,15 @@ const router = createRouter({
 })
 
 export default router
+
+
+router.beforeEach((to, from, next) => {
+  const publicPages = ['/']
+  const authNotRequired = !publicPages.includes(to.path)
+  const notLoggedIn = sessionStorage.getItem('token')
+  if ((authNotRequired && notLoggedIn) || publicPages.includes(`/${to.path.split('/')[1]}`)) {
+    next()
+  } else {
+    next('/')
+  }
+})
