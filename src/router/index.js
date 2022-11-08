@@ -8,33 +8,21 @@ const routes = [
     meta: { layout: 'login' },
   },
   {
-    path: '/login',
-    name: 'LoginTwo',
-    component: () => import('../pages/LoginTwo.vue'),
-    meta: { layout: 'login' },
-  },
-  {
     path: '/dashboard',
     name: 'Index',
     component: () => import('../pages/Home.vue'),
     meta: { layout: 'dashboard' },
   },
   {
-    path: '/test',
-    name: 'Test',
-    component: () => import('../pages/Test.vue'),
-    meta: { layout: 'dashboard' },
+    path: '/notfound',
+    name: 'Not-Found',
+    component: () => import('../components/NotFound.vue'),
   },
-  // {
-  //   path: '/notfound',
-  //   name: 'Not-Found',
-  //   component: () => import('../components/NotFound.vue'),
-  // },
-  // {
-  //   path: '/:pathMach(.*)*',
-  //   name: 'NotFound',
-  //   component: () => import('../components/NotFound.vue'),
-  // },
+  {
+    path: '/:pathMach(.*)*',
+    name: 'NotFound',
+    component: () => import('../components/NotFound.vue'),
+  },
 ]
 
 const router = createRouter({

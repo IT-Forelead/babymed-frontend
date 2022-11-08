@@ -18,7 +18,7 @@ const isOpenSubMenu = computed(() => useSidebarStore().isOpenSubMenu)
 
 const logout = () => {
   AuthService.logout()
-  router.push('/login')
+  router.push('/')
 }
 </script>
 
@@ -26,7 +26,7 @@ const logout = () => {
   <div class="relative text-white">
     <div :class="isOpen ? 'p-5' : 'py-3 p-2'" class="flex items-center space-x-3 transition-all duration-300">
       <div class="bg-gray-700 w-14 h-14 flex items-center justify-center p-2 rounded-full">
-        <img src="/vite.svg" alt="" />
+        <img src="/logo.png" alt="" />
       </div>
       <p v-if="isOpen" class="text-xl font-bold capitalize">Baby med</p>
     </div>
@@ -93,7 +93,7 @@ const logout = () => {
     </div>
     <div class="absolute bottom-10 w-full flex justify-center items-center flex-col space-y-2">
       <div v-if="isOpen" class="w-24 h-24 flex items-center justify-center p-2 rounded-full">
-        <img src="/vite.svg" alt="hero" class="w-full" />
+        <img src="/logo.png" alt="hero" class="w-full" />
       </div>
       <div v-if="isOpen">
         <p class="text-lg font-bold text-gray-400">Babymed Admin</p>

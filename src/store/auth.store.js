@@ -5,6 +5,8 @@ export const useAuthStore = defineStore('auth', {
     token: '',
   }),
   actions: {
-    //Logic
+    setToken(jwt) {
+      this.token = jwt
+    }
   },
 })

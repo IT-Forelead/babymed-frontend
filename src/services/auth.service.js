@@ -1,18 +1,25 @@
 import axios from 'axios'
+import notify from 'izitoast'
+import 'izitoast/dist/css/iziToast.min.css'
 
-const API_URL = import.meta.env.VITE_MY_ENV_VARIABLE;
-
+const API_URL = import.meta.env.VITE_BASE_URL
 class AuthService {
   async login(user) {
-    const response = await axios
+    await axios
       .post(API_URL + '/auth/login', {
-        phone: user.phone,
+        phone: user.phone.replace(/([() -])/g, ''),
         password: user.password,
       })
-    if (response.data) {
-      sessionStorage.setItem('token', JSON.stringify(response.data))
-    }
-    return response.data
+      .then((res) => {
+        sessionStorage.setItem('token', res?.data?.value)
+      })
+      .catch((err) => {
+        console.log(err?.message)
+        notify.warning({
+          message: 'Login yoki parol noto`g`ri. Iltimos qaytadan urinib ko`ring!',
+        })
+      })
+      return sessionStorage.getItem('token')
   }
   logout() {
     sessionStorage.clear()
