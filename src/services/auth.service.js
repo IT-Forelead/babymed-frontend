@@ -16,7 +16,7 @@ class AuthService {
       .catch((err) => {
         console.log(err?.message)
         notify.warning({
-          message: 'Login yoki parol noto`g`ri. Iltimos qaytadan urinib ko`ring!',
+          message: 'Phone Number or Password incorrect. Please try again!',
         })
       })
       return sessionStorage.getItem('token')

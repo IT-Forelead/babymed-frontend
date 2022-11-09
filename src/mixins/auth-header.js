@@ -1,7 +1,7 @@
 export default function authHeader() {
-  let user = JSON.parse(sessionStorage.getItem('token'))
-  if (user && user.value) {
-    return { Authorization: 'Bearer ' + user.value }
+  let token = sessionStorage.getItem('token')
+  if (token) {
+    return { Authorization: 'Bearer ' + token }
   } else {
     return {}
   }
