@@ -3,6 +3,8 @@ import { reactive, ref } from '@vue/reactivity'
 import { toRefs, watch } from 'vue'
 import AddressService from '../../../services/address.service'
 import PatientService from '../../../services/patient.service'
+import notify from 'izitoast'
+import 'izitoast/dist/css/iziToast.min.css'
 
 const props = defineProps({
   regions: { type: Array, required: true },
@@ -50,21 +52,57 @@ const clearForm = () => {
 }
 
 const submitPatientData = () => {
-  PatientService.createPatient({
-    firstname: patientForm.firstname,
-    lastname: patientForm.lastname,
-    regionId: patientForm.regionId,
-    townId: patientForm.townId,
-    address: patientForm.address,
-    birthday: patientForm.birthday,
-    phone: patientForm.phone.replace(/([() -])/g, ''),
-  })
-    .then((res) => {
-      clearForm()
+  if (!patientForm.firstname) {
+    notify.warning({
+      message: 'Please enter patient firstname!',
     })
-    .catch((err) => {
-      console.log('ERR', err)
+  } else if (!patientForm.lastname) {
+    notify.warning({
+      message: 'Please enter patient lastname!',
     })
+  } else if (!patientForm.birthday) {
+    notify.warning({
+      message: 'Please enter patient birthday!',
+    })
+  } else if (!patientForm.phone) {
+    notify.warning({
+      message: 'Please enter patient phone!',
+    })
+  } else if (!patientForm.regionId) {
+    notify.warning({
+      message: 'Please select region!',
+    })
+  } else if (!patientForm.townId) {
+    notify.warning({
+      message: 'Please select town!',
+    })
+  } else if (!patientForm.address) {
+    notify.warning({
+      message: 'Please enter patient address!',
+    })
+  } else {
+    PatientService.createPatient({
+      firstname: patientForm.firstname,
+      lastname: patientForm.lastname,
+      regionId: patientForm.regionId,
+      townId: patientForm.townId,
+      address: patientForm.address,
+      birthday: patientForm.birthday,
+      phone: patientForm.phone.replace(/([() -])/g, ''),
+    })
+      .then(() => {
+        clearForm()
+        notify.success({
+          message: 'Successfully created patient!',
+        })
+      })
+      .catch((err) => {
+        notify.error({
+          message: 'Error while creating patient!',
+        })
+        console.log('ERR', err?.message)
+      })
+  }
 }
 </script>
 <template>

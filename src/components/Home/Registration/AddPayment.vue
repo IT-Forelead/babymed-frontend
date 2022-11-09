@@ -58,7 +58,7 @@ const submitPaymentData = (sp_id) => {
         clearSelectedPatientData()
       })
       .catch((err) => {
-        notify.success({
+        notify.error({
           message: 'Error while creating payment!',
         })
         console.log(err?.message)
