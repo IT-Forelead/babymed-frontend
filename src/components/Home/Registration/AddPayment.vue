@@ -1,12 +1,15 @@
 <script setup>
-import { ref } from '@vue/reactivity'
+import { computed, ref } from '@vue/reactivity'
 import UserBoldIcon from '../../../assets/icons/UserBoldIcon.vue'
 import DropItem from './DropItem.vue'
 import { useDropStore } from '../../../store/drop.store'
-import { watch } from 'vue'
+import { usePatientStore } from '../../../store/patient.store'
+import { watch, onMounted } from 'vue'
 import TimesIcon from '../../../assets/icons/TimesIcon.vue'
 import { onClickOutside } from '@vueuse/core'
 import ChevronRightIcon from '../../../assets/icons/ChevronRightIcon.vue'
+import PaymentService from '../../../services/payment.service'
+import PatientService from '../../../services/patient.service'
 
 const selectedPatient = ref('')
 const dropdown = ref(null)
@@ -30,6 +33,26 @@ const clearSelectedPatientData = () => {
 onClickOutside(dropdown, () => {
   useDropStore().closeDropDown()
 })
+
+const submitPaymentData = () => {
+  PaymentService.createPayment({
+    customerId: selectedPatient.value,
+    price: sum.value,
+  })
+}
+
+const patients = computed(() => {
+  return usePatientStore().patients
+})
+onMounted(() => {
+  PatientService.getPatients({})
+    .then((res) => {
+      usePatientStore().setPatients(res?.data)
+    })
+    .catch((err) => {
+      console.log('ERR', err)
+    })
+})
 </script>
 <template>
   <div class="select-none">
@@ -43,7 +66,7 @@ onClickOutside(dropdown, () => {
       <ChevronRightIcon @click="useDropStore().openDropDown()" v-if="!selectedPatient" class="absolute right-2.5 z-10 rotate-90 cursor-pointer text-gray-600" />
       <TimesIcon @click="clearSelectedPatientData()" v-if="selectedPatient" class="absolute right-2.5 z-10 cursor-pointer bg-gray-500 hover:bg-gray-600 text-white rounded-full p-1" />
       <div v-if="useDropStore().isOpenDropDown" class="absolute p-3 z-10 top-12 w-full bg-gray-100 rounded-lg divide-y">
-        <DropItem />
+        <DropItem :patients="patients" />
       </div>
     </label>
     <h1 class="text-lg">Payment Amount</h1>
@@ -51,6 +74,6 @@ onClickOutside(dropdown, () => {
       <money3 v-model="sum" v-bind="moneyConf" class="border-none text-right text-gray-500 bg-gray-100 rounded-lg w-full text-lg"> </money3>
     </label>
     <hr class="my-3" />
-    <div class="rounded-lg bg-blue-600 p-3 text-white text-center cursor-pointer hover:bg-blue-800">Save Payment</div>
+    <div @click="submitPaymentData()" class="rounded-lg bg-blue-600 p-3 text-white text-center cursor-pointer hover:bg-blue-800">Save Payment</div>
   </div>
 </template>
