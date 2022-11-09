@@ -1,5 +1,4 @@
 <script setup>
-import { reactive } from '@vue/reactivity'
 import { toRefs } from 'vue'
 import { useDropStore } from '../../../store/drop.store'
 const props = defineProps({
@@ -14,7 +13,7 @@ const paritentClicked = (data) => {
 }
 </script>
 <template>
-  <div class="hover:bg-gray-200 cursor-pointer p-2 rounded-lg capitalize" v-for="(patient, idx) in patients" :key="idx" @click="paritentClicked(patient?.customer?.id)">
+  <div class="hover:bg-gray-200 cursor-pointer p-2 rounded-lg capitalize" v-for="(patient, idx) in patients" :key="idx" @click="paritentClicked(patient)">
     {{ patient?.customer?.firstname + ' ' + patient?.customer?.lastname }}
   </div>
 </template>

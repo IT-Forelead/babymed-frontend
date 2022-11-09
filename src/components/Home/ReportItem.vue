@@ -14,7 +14,7 @@ const { patients } = toRefs(props)
 </script>
 <template>
   <tr class="border-y border-gray-200 hover:bg-gray-100 text-lg font-medium" v-for="(patient, idx) in patients" :key="idx">
-    <td class="text-center">{{ idx }}</td>
+    <td class="text-center">{{ idx + 1 }}</td>
     <td class="py-3 px-6 text-left">
       <div class="flex items-center">
         <div class="mr-2">

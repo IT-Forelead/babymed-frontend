@@ -52,7 +52,7 @@ const loadPayments = async ($state) => {
             <th class="py-3 px-6 text-left">Created date</th>
             <th class="py-3 px-6 text-left">Patient Name</th>
             <th class="py-3 px-6 text-center">Amount</th>
-            <!-- <th class="py-3 px-6 text-center">Actions</th> -->
+            <th class="py-3 px-6 text-center">Actions</th>
           </tr>
         </thead>
         <tbody class="text-gray-600 text-sm font-light">

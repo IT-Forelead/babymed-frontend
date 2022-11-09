@@ -32,15 +32,15 @@ const logout = () => {
       <p v-if="isOpen" class="text-xl font-bold capitalize">Baby med</p>
     </div>
     <div class="mt-5 h-[475px] overflow-auto py-5 px-2 text-gray-400 space-y-3">
-      <div @click="useSidebarStore().toggleSidebarSubMenu()" class="flex items-center justify-between hover:bg-gray-800 hover:text-gray-100 p-3 rounded-lg cursor-pointer">
+      <router-link to="/dashboard" @click="useSidebarStore().toggleSidebarSubMenu()" class="flex items-center justify-between hover:bg-gray-800 hover:text-gray-100 p-3 rounded-lg cursor-pointer" :class="{ 'bg-gray-800 text-gray-100': router?.currentRoute?.value?.path === '/dashboard' }">
         <div class="flex items-center space-x-2">
           <HomeIcon class="w-7 h-7" />
           <p v-if="isOpen">Dashboard</p>
         </div>
-        <div>
+        <!-- <div>
           <ChevronRightIcon class="w-5 h-5 transition-all duration-300" :class="{ 'rotate-90': isOpenSubMenu }" />
-        </div>
-      </div>
+        </div> -->
+      </router-link>
       <div :class="{ hidden: !isOpenSubMenu }" class="transition-all duration-300">
         <!-- <router-link to="/dashboard" class="flex items-center justify-between hover:text-gray-100 p-3 rounded-lg cursor-pointer">
           <div :class="isOpen ? 'pl-6' : 'pl-1'" class="flex items-center space-x-2">
@@ -48,12 +48,12 @@ const logout = () => {
             <p v-text="isOpen ? 'Hospital Dashboard' : 'HD'"></p>
           </div>
         </router-link> -->
-        <router-link to="/dashboard" class="flex items-center justify-between hover:text-gray-100 p-3 rounded-lg cursor-pointer">
+        <!-- <router-link to="/dashboard" class="flex items-center justify-between hover:text-gray-100 p-3 rounded-lg cursor-pointer">
           <div :class="isOpen ? 'pl-6' : 'pl-1'" class="flex items-center space-x-2">
             <p>-</p>
             <p v-text="isOpen ? 'Patient Dashboard' : 'PD'"></p>
           </div>
-        </router-link>
+        </router-link> -->
         <!-- <router-link to="/dashboard" class="flex items-center justify-between hover:text-gray-100 p-3 rounded-lg cursor-pointer">
           <div :class="isOpen ? 'pl-6' : 'pl-1'" class="flex items-center space-x-2">
             <p>-</p>
@@ -61,7 +61,7 @@ const logout = () => {
           </div>
         </router-link> -->
       </div>
-      <router-link to="/payment" class="flex items-center justify-between hover:bg-gray-800 hover:text-gray-100 p-3 rounded-lg cursor-pointer">
+      <router-link to="/payment" class="flex items-center justify-between hover:bg-gray-800 hover:text-gray-100 p-3 rounded-lg cursor-pointer" :class="{ 'bg-gray-800 text-gray-100': router?.currentRoute?.value?.path === '/payment' }">
         <div class="flex items-center space-x-2">
           <PaymentIcon class="w-7 h-7" />
           <p v-if="isOpen">Payment</p>
@@ -72,18 +72,18 @@ const logout = () => {
           <UsersIcon class="w-7 h-7" />
           <p v-if="isOpen">Patients</p>
         </div>
-        <div>
+        <!-- <div>
           <ChevronRightIcon class="w-5 h-5 transition-all duration-300" />
-        </div>
+        </div> -->
       </router-link>
       <router-link to="/dashboard" class="flex items-center justify-between hover:bg-gray-800 hover:text-gray-100 p-3 rounded-lg cursor-pointer">
         <div class="flex items-center space-x-2">
           <UserIcon class="w-7 h-7" />
           <p v-if="isOpen">Doctor</p>
         </div>
-        <div>
+        <!-- <div>
           <ChevronRightIcon class="w-5 h-5 transition-all duration-300" />
-        </div>
+        </div> -->
       </router-link>
       <router-link to="/dashboard" class="flex items-center justify-between hover:bg-gray-800 hover:text-gray-100 p-3 rounded-lg cursor-pointer">
         <div class="flex items-center space-x-2">
@@ -97,7 +97,7 @@ const logout = () => {
         <img src="/logo.png" alt="hero" class="w-full" />
       </div>
       <div v-if="isOpen">
-        <p class="text-lg font-bold text-gray-400">Babymed Admin</p>
+        <p class="text-lg font-bold text-gray-400">Baby Med Admin</p>
         <p class="text-gray-600">example@gmail.com</p>
       </div>
       <div :class="{ 'flex-col space-x-0 space-y-3': !isOpen }" class="flex items-center justify-center space-x-5">
