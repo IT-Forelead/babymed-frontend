@@ -7,7 +7,7 @@ import { ref } from '@vue/reactivity'
 
 const API_URL = import.meta.env.VITE_BASE_URL
 
-const total = ref(50)
+const total = ref(1)
 const patients = ref([])
 const target = ref('.patients-wrapper')
 const distance = ref(200)
@@ -24,9 +24,9 @@ const loadPatients = async ($state) => {
         headers: authHeader(),
       })
       const json = await response.json()
-      console.log(json);
+      total.value = json?.total
       setTimeout(() => {
-        patients.value.push(...json)
+        patients.value.push(...json?.data)
         $state.loaded()
       }, 500)
     } catch (error) {

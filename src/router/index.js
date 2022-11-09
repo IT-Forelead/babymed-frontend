@@ -14,6 +14,12 @@ const routes = [
     meta: { layout: 'dashboard' },
   },
   {
+    path: '/payment',
+    name: 'Payment',
+    component: () => import('../pages/Payments.vue'),
+    meta: { layout: 'dashboard' },
+  },
+  {
     path: '/notfound',
     name: 'Not-Found',
     component: () => import('../components/NotFound.vue'),

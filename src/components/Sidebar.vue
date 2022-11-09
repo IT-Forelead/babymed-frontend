@@ -8,9 +8,10 @@ import { useRouter } from 'vue-router'
 import ChevronRightIcon from '../assets/icons/ChevronRightIcon.vue'
 import UserIcon from '../assets/icons/UserIcon.vue'
 import UsersIcon from '../assets/icons/UsersIcon.vue'
-import AppointmentIcon from '../assets/icons/AppointmentIcon.vue'
+// import AppointmentIcon from '../assets/icons/AppointmentIcon.vue'
 import ReportIcon from '../assets/icons/ReportIcon.vue'
 import AuthService from '../services/auth.service'
+import PaymentIcon from '../assets/icons/PaymentIcon.vue'
 
 const router = useRouter()
 const isOpen = computed(() => useSidebarStore().isOpenSidebar)
@@ -31,7 +32,7 @@ const logout = () => {
       <p v-if="isOpen" class="text-xl font-bold capitalize">Baby med</p>
     </div>
     <div class="mt-5 h-[475px] overflow-auto py-5 px-2 text-gray-400 space-y-3">
-      <router-link to="/dashboard" @click="useSidebarStore().toggleSidebarSubMenu()" class="flex items-center justify-between hover:bg-gray-800 hover:text-gray-100 p-3 rounded-lg cursor-pointer">
+      <div @click="useSidebarStore().toggleSidebarSubMenu()" class="flex items-center justify-between hover:bg-gray-800 hover:text-gray-100 p-3 rounded-lg cursor-pointer">
         <div class="flex items-center space-x-2">
           <HomeIcon class="w-7 h-7" />
           <p v-if="isOpen">Dashboard</p>
@@ -39,31 +40,31 @@ const logout = () => {
         <div>
           <ChevronRightIcon class="w-5 h-5 transition-all duration-300" :class="{ 'rotate-90': isOpenSubMenu }" />
         </div>
-      </router-link>
+      </div>
       <div :class="{ hidden: !isOpenSubMenu }" class="transition-all duration-300">
-        <router-link to="/dashboard" class="flex items-center justify-between hover:text-gray-100 p-3 rounded-lg cursor-pointer">
+        <!-- <router-link to="/dashboard" class="flex items-center justify-between hover:text-gray-100 p-3 rounded-lg cursor-pointer">
           <div :class="isOpen ? 'pl-6' : 'pl-1'" class="flex items-center space-x-2">
             <p>-</p>
             <p v-text="isOpen ? 'Hospital Dashboard' : 'HD'"></p>
           </div>
-        </router-link>
+        </router-link> -->
         <router-link to="/dashboard" class="flex items-center justify-between hover:text-gray-100 p-3 rounded-lg cursor-pointer">
           <div :class="isOpen ? 'pl-6' : 'pl-1'" class="flex items-center space-x-2">
             <p>-</p>
             <p v-text="isOpen ? 'Patient Dashboard' : 'PD'"></p>
           </div>
         </router-link>
-        <router-link to="/dashboard" class="flex items-center justify-between hover:text-gray-100 p-3 rounded-lg cursor-pointer">
+        <!-- <router-link to="/dashboard" class="flex items-center justify-between hover:text-gray-100 p-3 rounded-lg cursor-pointer">
           <div :class="isOpen ? 'pl-6' : 'pl-1'" class="flex items-center space-x-2">
             <p>-</p>
             <p v-text="isOpen ? 'Doctor Dashboard' : 'DD'"></p>
           </div>
-        </router-link>
+        </router-link> -->
       </div>
-      <router-link to="/dashboard" class="flex items-center justify-between hover:bg-gray-800 hover:text-gray-100 p-3 rounded-lg cursor-pointer">
+      <router-link to="/payment" class="flex items-center justify-between hover:bg-gray-800 hover:text-gray-100 p-3 rounded-lg cursor-pointer">
         <div class="flex items-center space-x-2">
-          <AppointmentIcon class="w-7 h-7" />
-          <p v-if="isOpen">Appointments</p>
+          <PaymentIcon class="w-7 h-7" />
+          <p v-if="isOpen">Payment</p>
         </div>
       </router-link>
       <router-link to="/dashboard" class="flex items-center justify-between hover:bg-gray-800 hover:text-gray-100 p-3 rounded-lg cursor-pointer">
