@@ -5,6 +5,7 @@ import AddressService from '../../../services/address.service'
 import PatientService from '../../../services/patient.service'
 import notify from 'izitoast'
 import 'izitoast/dist/css/iziToast.min.css'
+import { usePatientStore } from '../../../store/patient.store'
 
 const props = defineProps({
   regions: { type: Array, required: true },
@@ -95,6 +96,18 @@ const submitPatientData = () => {
         notify.success({
           message: 'Successfully created patient!',
         })
+        PatientService.getPatients({})
+          .then((res) => {
+            usePatientStore().clearStore()
+            setTimeout(() => {
+              usePatientStore().setPatients(res?.data)
+            }, 500)
+          })
+          .catch(() => {
+            notify.error({
+              message: 'Error while getting patients!',
+            })
+          })
       })
       .catch((err) => {
         notify.error({

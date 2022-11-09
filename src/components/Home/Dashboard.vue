@@ -3,12 +3,15 @@ import StatisticsSection from './Statistics/StatisticsSection.vue'
 import Registration from './Registration.vue'
 import ReportItem from './ReportItem.vue'
 import authHeader from '../../mixins/auth-header'
-import { ref } from '@vue/reactivity'
+import { computed, ref } from '@vue/reactivity'
+import { usePatientStore } from '../../store/patient.store'
 
 const API_URL = import.meta.env.VITE_BASE_URL
 
 const total = ref(1)
-const patients = ref([])
+const patients = computed(() => {
+  return usePatientStore().patients
+})
 const target = ref('.patients-wrapper')
 const distance = ref(200)
 
@@ -26,7 +29,8 @@ const loadPatients = async ($state) => {
       const json = await response.json()
       total.value = json?.total
       setTimeout(() => {
-        patients.value.push(...json?.data)
+        // patients.value.push(...json?.data)
+        usePatientStore().setPatients(json?.data)
         $state.loaded()
       }, 500)
     } catch (error) {

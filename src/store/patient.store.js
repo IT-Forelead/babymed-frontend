@@ -6,7 +6,10 @@ export const usePatientStore = defineStore('patient', {
   }),
   actions: {
     setPatients(data) {
-      this.patients = data
+      this.patients.push(...data)
+    },
+    clearStore() {
+      this.patients = []
     },
   },
 })
