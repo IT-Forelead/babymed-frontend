@@ -1,0 +1,23 @@
+version: "3.9"
+services:
+  babymed-frontend:
+    restart: always
+    image: babymed-frontend:latest
+    hostname: babymed-frontend
+    ports:
+      - "3000:80"
+    networks:
+      - external-net
+    logging:
+      driver: fluentd
+      options:
+        fluentd-address: fluentd:24224
+        fluentd-async-connect: "true"
+        fluentd-retry-wait: 1s
+        fluentd-max-retries: 30
+        tag: fluent
+
+networks:
+  external-net:
+    external:
+      name: external-net
