@@ -10,6 +10,8 @@ import { onClickOutside } from '@vueuse/core'
 import ChevronRightIcon from '../../../assets/icons/ChevronRightIcon.vue'
 import PaymentService from '../../../services/payment.service'
 import PatientService from '../../../services/patient.service'
+import notify from 'izitoast'
+import 'izitoast/dist/css/iziToast.min.css'
 
 const selectedPatient = ref('')
 const dropdown = ref(null)
@@ -36,17 +38,32 @@ onClickOutside(dropdown, () => {
 })
 
 const submitPaymentData = (sp_id) => {
-  PaymentService.createPayment({
-    customerId: sp_id,
-    price: sum.value,
-  })
-    .then(() => {
-      console.log('asdasdasd')
-      clearSelectedPatientData()
+  if (!sp_id) {
+    notify.warning({
+      message: 'Please select patient!',
     })
-    .catch((err) => {
-      console.log('ERR', err)
+  } else if (sum.value == 0) {
+    notify.warning({
+      message: 'Please payment amount!',
     })
+  } else {
+    PaymentService.createPayment({
+      customerId: sp_id,
+      price: sum.value,
+    })
+      .then(() => {
+        notify.success({
+          message: 'Payment successfully created!',
+        })
+        clearSelectedPatientData()
+      })
+      .catch((err) => {
+        notify.success({
+          message: 'Error while creating payment!',
+        })
+        console.log(err?.message)
+      })
+  }
 }
 
 const patients = computed(() => {
