@@ -1,17 +1,21 @@
 <script setup>
 import PaymentItem from '../components/Payments/PaymentItem.vue'
 import authHeader from '../mixins/auth-header'
-import { ref } from '@vue/reactivity'
+import { computed, ref } from '@vue/reactivity'
+import { usePaymentStore } from '../store/payment.store'
+import { onMounted } from 'vue'
 
 const API_URL = import.meta.env.VITE_BASE_URL
 
 const total = ref(1)
-const payments = ref([])
+const payments = computed(() => {
+  return usePaymentStore().payments
+})
 const target = ref('.payments-wrapper')
 const distance = ref(200)
 
 let page = 0
-const perPageData = 60
+const perPageData = 30
 const loadPayments = async ($state) => {
   page++
   let additional = total.value % perPageData == 0 ? 0 : 1
@@ -25,7 +29,8 @@ const loadPayments = async ($state) => {
       const json = await response.json()
       total.value = json?.total
       setTimeout(() => {
-        payments.value.push(...json?.data)
+        // payments.value.push(...json?.data)
+        usePaymentStore().setPayments(json?.data)
         $state.loaded()
       }, 500)
     } catch (error) {
@@ -33,6 +38,10 @@ const loadPayments = async ($state) => {
     }
   } else $state.loaded()
 }
+
+onMounted(() => {
+  usePaymentStore().clearStore()
+})
 </script>
 <template>
   <div class="bg-white rounded-lg w-full p-5">

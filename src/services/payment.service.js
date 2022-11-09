@@ -5,6 +5,12 @@ class PaymentService {
   async createPayment(data) {
     return AxiosService.post('/payment', data, { headers: authHeader() })
   }
+  async deletePayment(p_id) {
+    return AxiosService.get(`/payment/delete/${p_id}`, { headers: authHeader() })
+  }
+  async getPayments(filter) {
+    return AxiosService.get('/payment/report', filter, { headers: authHeader() })
+  }
 }
 
 export default new PaymentService()

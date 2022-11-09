@@ -67,30 +67,30 @@ const logout = () => {
           <p v-if="isOpen">Payment</p>
         </div>
       </router-link>
-      <router-link to="/dashboard" class="flex items-center justify-between hover:bg-gray-800 hover:text-gray-100 p-3 rounded-lg cursor-pointer">
+      <!-- <router-link to="/dashboard" class="flex items-center justify-between hover:bg-gray-800 hover:text-gray-100 p-3 rounded-lg cursor-pointer">
         <div class="flex items-center space-x-2">
           <UsersIcon class="w-7 h-7" />
           <p v-if="isOpen">Patients</p>
         </div>
-        <!-- <div>
+        <div>
           <ChevronRightIcon class="w-5 h-5 transition-all duration-300" />
-        </div> -->
-      </router-link>
-      <router-link to="/dashboard" class="flex items-center justify-between hover:bg-gray-800 hover:text-gray-100 p-3 rounded-lg cursor-pointer">
+        </div>
+      </router-link> -->
+      <!-- <router-link to="/dashboard" class="flex items-center justify-between hover:bg-gray-800 hover:text-gray-100 p-3 rounded-lg cursor-pointer">
         <div class="flex items-center space-x-2">
           <UserIcon class="w-7 h-7" />
           <p v-if="isOpen">Doctor</p>
         </div>
-        <!-- <div>
+        <div>
           <ChevronRightIcon class="w-5 h-5 transition-all duration-300" />
-        </div> -->
-      </router-link>
-      <router-link to="/dashboard" class="flex items-center justify-between hover:bg-gray-800 hover:text-gray-100 p-3 rounded-lg cursor-pointer">
+        </div>
+      </router-link> -->
+      <!-- <router-link to="/dashboard" class="flex items-center justify-between hover:bg-gray-800 hover:text-gray-100 p-3 rounded-lg cursor-pointer">
         <div class="flex items-center space-x-2">
           <ReportIcon class="w-7 h-7" />
           <p v-if="isOpen">Reports</p>
         </div>
-      </router-link>
+      </router-link> -->
     </div>
     <div class="absolute bottom-10 w-full flex justify-center items-center flex-col space-y-2">
       <div v-if="isOpen" class="w-24 h-24 flex items-center justify-center p-2 rounded-full">

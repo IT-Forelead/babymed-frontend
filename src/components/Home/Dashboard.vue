@@ -5,6 +5,7 @@ import ReportItem from './ReportItem.vue'
 import authHeader from '../../mixins/auth-header'
 import { computed, ref } from '@vue/reactivity'
 import { usePatientStore } from '../../store/patient.store'
+import { onMounted } from 'vue'
 
 const API_URL = import.meta.env.VITE_BASE_URL
 
@@ -38,6 +39,10 @@ const loadPatients = async ($state) => {
     }
   } else $state.loaded()
 }
+
+onMounted(() => {
+  usePatientStore().clearStore()
+})
 </script>
 
 <template>

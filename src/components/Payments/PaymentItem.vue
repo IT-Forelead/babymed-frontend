@@ -6,12 +6,31 @@ import 'v3-infinite-loading/lib/style.css'
 import { toRefs } from 'vue'
 import moment from 'moment'
 import useMoneyFormatter from '../../mixins/currencyFormatter'
+import PaymentService from '../../services/payment.service'
+import notify from 'izitoast'
+import 'izitoast/dist/css/iziToast.min.css'
+import { usePaymentStore } from '../../store/payment.store'
 
 const props = defineProps({
   payments: { type: Array, required: true },
 })
 
 const { payments } = toRefs(props)
+
+const deletePayment = (p_id) => {
+  PaymentService.deletePayment(p_id)
+    .then(() => {
+      notify.success({
+        message: 'Successfully deleted payment!',
+      })
+      usePaymentStore().deleteFilter(p_id)
+    })
+    .catch(() => {
+      notify.error({
+        message: 'Error while deleting payment!',
+      })
+    })
+}
 </script>
 <template>
   <tr class="border-y border-gray-200 hover:bg-gray-100 text-lg font-medium" v-for="(payment, idx) in payments" :key="idx">
@@ -31,7 +50,7 @@ const { payments } = toRefs(props)
     <td class="py-3 px-6 text-center">
       <div class="flex item-center justify-center">
         <div class="w-4 mr-2 transform text-red-500 hover:text-red-600 hover:scale-110 cursor-pointer">
-          <TrashIcon class="w-6 h-6" />
+          <TrashIcon @click="deletePayment(payment?.payment?.id)" class="w-6 h-6" />
         </div>
       </div>
     </td>

@@ -7,7 +7,9 @@ import { useModalStore } from '../store/modal.store'
 <template>
   <div class="bg-neutral-900 px-5 py-3 flex justify-between items-center">
     <div class="space-y-2">
-      <h1 class="text-3xl font-semibold">Patient Dashboard</h1>
+      <h1 class="text-3xl font-semibold">
+        CRM Dashboard
+      </h1>
       <p class="text-gray-500">Welcome Babymed</p>
     </div>
     <div class="flex items-center justify-center space-x-5">
