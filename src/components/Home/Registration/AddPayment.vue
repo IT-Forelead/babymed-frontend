@@ -12,6 +12,7 @@ import PaymentService from '../../../services/payment.service'
 import PatientService from '../../../services/patient.service'
 import notify from 'izitoast'
 import 'izitoast/dist/css/iziToast.min.css'
+import { usePaymentStore } from '../../../store/payment.store'
 
 const selectedPatient = ref('')
 const dropdown = ref(null)
@@ -56,6 +57,16 @@ const submitPaymentData = (sp_id) => {
           message: 'Payment successfully created!',
         })
         clearSelectedPatientData()
+        PaymentService.getPayments({})
+          .then((res) => {
+            usePaymentStore().clearStore()
+            setTimeout(() => {
+              usePaymentStore().setPayments(res?.data)
+            }, 500)
+          })
+          .catch((err) => {
+            console.log('ERR', err)
+          })
       })
       .catch((err) => {
         notify.error({
@@ -73,7 +84,10 @@ const patients = computed(() => {
 onMounted(() => {
   PatientService.getPatients({})
     .then((res) => {
-      usePatientStore().setPatients(res?.data)
+      usePatientStore().clearStore()
+      setTimeout(() => {
+        usePatientStore().setPatients(res?.data)
+      }, 500)
     })
     .catch((err) => {
       console.log('ERR', err)
@@ -91,7 +105,7 @@ onMounted(() => {
       <div @click="useDropStore().openDropDown()" v-else class="border-none bg-gray-100 py-2 w-full text-lg rounded-r-lg cursor-pointer text-gray-500 pl-2">Select patient</div>
       <ChevronRightIcon @click="useDropStore().openDropDown()" v-if="!selectedPatient" class="absolute right-2.5 z-10 rotate-90 cursor-pointer text-gray-600" />
       <TimesIcon @click="clearSelectedPatientData()" v-if="selectedPatient" class="absolute right-2.5 z-10 cursor-pointer bg-gray-500 hover:bg-gray-600 text-white rounded-full p-1" />
-      <div v-if="useDropStore().isOpenDropDown" class="absolute p-3 z-10 top-12 w-full bg-gray-100 rounded-lg divide-y">
+      <div v-if="useDropStore().isOpenDropDown" class="absolute p-3 z-10 top-12 max-h-56 overflow-auto w-full bg-gray-100 rounded-lg divide-y">
         <DropItem :patients="patients" />
       </div>
     </label>

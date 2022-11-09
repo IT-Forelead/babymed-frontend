@@ -76,8 +76,6 @@ onMounted(() => {
       <div v-if="patients.length === 0" class="w-full text-center text-red-500">Database is empty!</div>
     </div>
   </div>
-  <!-- Registration Modal (Payment & Patient) -->
-  <Registration />
 </template>
 <style scoped>
 .patients-table-h {

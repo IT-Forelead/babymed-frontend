@@ -9,7 +9,7 @@ class PaymentService {
     return AxiosService.get(`/payment/delete/${p_id}`, { headers: authHeader() })
   }
   async getPayments(filter) {
-    return AxiosService.get('/payment/report', filter, { headers: authHeader() })
+    return AxiosService.post('/payment/report', filter, { headers: authHeader() })
   }
 }
 

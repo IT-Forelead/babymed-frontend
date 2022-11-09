@@ -2,14 +2,13 @@
 import SearchIcon from '../assets/icons/SearchIcon.vue'
 import BellIcon from '../assets/icons/BellIcon.vue'
 import { useModalStore } from '../store/modal.store'
+import Registration from './Home/Registration.vue'
 </script>
 
 <template>
   <div class="bg-neutral-900 px-5 py-3 flex justify-between items-center">
     <div class="space-y-2">
-      <h1 class="text-3xl font-semibold">
-        CRM Dashboard
-      </h1>
+      <h1 class="text-3xl font-semibold">CRM Dashboard</h1>
       <p class="text-gray-500">Welcome Babymed</p>
     </div>
     <div class="flex items-center justify-center space-x-5">
@@ -26,6 +25,8 @@ import { useModalStore } from '../store/modal.store'
         <p class="text-base">+ Add Record</p>
       </div>
     </div>
+    <!-- Registration Modal (Payment & Patient) -->
+    <Registration />
   </div>
 </template>
 
