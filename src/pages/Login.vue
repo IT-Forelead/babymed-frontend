@@ -101,7 +101,7 @@ onMounted(() => {
         <p class="font-medium text-base text-gray-500">- Benjamin Franklin</p>
       </div>
       <div class="absolute bottom-0 right-0 w-full left-36 bg-slate-300/40 p-5 h-[620px] rounded-tl-[42px]">
-        <img src="/dashboard.png" class="rounded-tl-3xl" alt="#" />
+        <div class="bg-[url('/dashboard.png')] w-full h-[620px] rounded-tl-3xl"></div>
       </div>
     </div>
   </div>

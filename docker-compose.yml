@@ -16,7 +16,6 @@ services:
         fluentd-retry-wait: 1s
         fluentd-max-retries: 30
         tag: fluent
-
 networks:
   external-net:
     external:
