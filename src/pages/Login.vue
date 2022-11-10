@@ -49,12 +49,12 @@ onMounted(() => {
 
 <template>
   <div class="flex w-full h-screen overflow-hidden">
-    <div class="relative w-full md:basis-1/3 max-h-screen p-4 md:p-8">
+    <div class="relative w-full xl:basis-1/3 max-h-screen p-4 md:p-8">
       <div class="flex items-center justify-between">
         <img src="/logo.png" class="p-2 border border-gray-300 rounded-lg w-14" alt="Logo" />
         <div>
           <select v-model="lang" @change="changeLang" class="border border-gray-300 rounded-lg cursor-pointer">
-            <option value="en" selected>Enlish</option>
+            <option value="en" selected>English</option>
             <option value="uz">O'zbek</option>
             <option value="kr">Ўзбек</option>
             <option value="ru">Русский</option>
@@ -94,13 +94,13 @@ onMounted(() => {
         </div>
       </div>
     </div>
-    <div class="hidden md:block md:basis-2/3 max-h-screen bg-slate-200/80 pl-36 pt-44 relative">
+    <div class="hidden xl:block md:basis-2/3 max-h-screen bg-slate-200/80 pl-36 pt-44 relative">
       <div class="space-y-3">
         <h1 class="font-bold text-2xl text-gray-900">"Lost time is never found again."</h1>
         <p class="font-medium text-base text-gray-500">- Benjamin Franklin</p>
       </div>
-      <div class="absolute bottom-0 right-0 w-full left-36 bg-slate-300/40 p-5 h-[620px] rounded-tl-[42px]">
-        <img src="/dashboard.png" class="rounded-tl-3xl" alt="#" />
+      <div class="absolute bottom-0 right-0 w-full left-36 bg-slate-300/40 p-5 h-[520px] 2xl:h-[620px] rounded-tl-[42px]">
+        <div class="bg-[url('/dashboard.png')] w-full h-[620px] rounded-tl-3xl"></div>
       </div>
     </div>
   </div>
