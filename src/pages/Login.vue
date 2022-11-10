@@ -5,6 +5,9 @@ import { useAuthStore } from '../store/auth.store'
 import EyeIcon from '../assets/icons/EyeIcon.vue'
 import EyeSlashIcon from '../assets/icons/EyeSlashIcon.vue'
 import AuthService from '../services/auth.service'
+import { onMounted } from 'vue'
+
+import i18n from '../i18n.js'
 
 const isLoading = ref(false)
 const hidePassword = ref(true)
@@ -32,17 +35,38 @@ const login = () => {
     }
   })
 }
+
+const lang = ref('')
+
+const changeLang = () => {
+  localStorage.setItem('lang', lang.value)
+  i18n.global.locale.value = lang.value
+}
+
+onMounted(() => {
+  lang.value = localStorage.getItem('lang') || 'en'
+})
 </script>
 
 <template>
   <div class="flex w-full h-screen overflow-hidden">
     <div class="relative basis-1/3 max-h-screen p-8">
-      <img src="/logo.png" class="p-2 border border-gray-300 rounded-lg w-14" alt="@" />
+      <div class="flex items-center justify-between">
+        <img src="/logo.png" class="p-2 border border-gray-300 rounded-lg w-14" alt="@" />
+        <div>
+          <select v-model="lang" @change="changeLang">
+            <option value="en" selected>Enlish</option>
+            <option value="uz">O'zbek</option>
+            <option value="ru">Русский</option>
+            <option value="kr">Ўзбек</option>
+          </select>
+        </div>
+      </div>
       <div class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-2/3 px-4">
-        <h1 class="text-2xl font-bold mb-5">Login</h1>
+        <h1 class="text-2xl font-bold mb-5">{{ $t('login') }}</h1>
         <div class="flex flex-col space-y-6">
           <label for="phone">
-            <p class="font-medium text-gray-500 pb-2">Mobile phone</p>
+            <p class="font-medium text-gray-500 pb-2">{{ $t('mobilePhone') }}</p>
             <input id="phone" v-mask="'+998(##) ###-##-##'" v-model="loginFormData.phone" type="text" class="w-full py-2 border border-gray-300 rounded focus:outline-none focus:border-slate-500 hover:shadow" placeholder="+998(00) 000-00-00" />
           </label>
           <div>

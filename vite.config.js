@@ -6,11 +6,16 @@ export default defineConfig({
     port: 3000,
   },
   test: {
-    // enable jest-like global test APIs
     globals: true,
-    // simulate DOM with happy-dom
-    // (requires installing happy-dom as a peer dependency)
     environment: 'happy-dom',
+  },
+  resolve: {
+    alias: [
+      {
+        find: 'vue-i18n',
+        replacement: 'vue-i18n/dist/vue-i18n.cjs.js',
+      },
+    ],
   },
   plugins: [vue()],
   build: { target: 'es2020' },
