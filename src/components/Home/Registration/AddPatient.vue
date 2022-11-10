@@ -121,45 +121,45 @@ const submitPatientData = () => {
 <template>
   <div class="grid gap-5 grid-cols-2">
     <div>
-      <label for="firstname"
-        >FirstName
-        <input v-model="patientForm.firstname" class="border-none text-gray-500 bg-gray-100 rounded-lg w-full text-lg mb-5" type="text" id="firstname" placeholder="Enter your firstname" />
+      <label for="firstname">
+        {{ $t('firstname') }}
+        <input v-model="patientForm.firstname" class="border-none text-gray-500 bg-gray-100 rounded-lg w-full text-lg mb-5" type="text" id="firstname" :placeholder="$t('enterFirstname')" />
       </label>
-      <label for="lastname"
-        >Lastname
-        <input v-model="patientForm.lastname" class="border-none text-gray-500 bg-gray-100 rounded-lg w-full text-lg mb-5" type="text" id="lastname" placeholder="Enter your lastname" />
+      <label for="lastname">
+        {{ $t('lastname') }}
+        <input v-model="patientForm.lastname" class="border-none text-gray-500 bg-gray-100 rounded-lg w-full text-lg mb-5" type="text" id="lastname" :placeholder="$t('enterLastname')" />
       </label>
-      <label for="birthday"
-        >Birthday
-        <input v-model="patientForm.birthday" class="border-none text-gray-500 bg-gray-100 rounded-lg w-full text-lg mb-5" type="date" id="birthday" placeholder="Enter your birthday" />
+      <label for="birthday">
+        {{ $t('birthday') }}
+        <input v-model="patientForm.birthday" class="border-none text-gray-500 bg-gray-100 rounded-lg w-full text-lg mb-5" type="date" id="birthday" :placeholder="$t('enterBirtday')" />
       </label>
-      <label for="phone"
-        >Phone
+      <label for="phone">
+        {{ $t('phone') }}
         <input v-model="patientForm.phone" class="border-none text-gray-500 bg-gray-100 rounded-lg w-full text-lg mb-5" type="text" v-mask="'+998(##) ###-##-##'" placeholder="+998(00) 000-00-00" />
       </label>
     </div>
     <div>
-      <p>Region</p>
+      <p>{{ $t('region') }}</p>
       <select v-model="patientForm.regionId" class="border-none text-gray-500 bg-gray-100 rounded-lg w-full text-lg mb-5">
-        <option value="" selected>Select region</option>
+        <option value="" selected>{{ $t('selectRegion') }}</option>
         <option v-for="(region, idx) in regions" :key="idx" :value="region?.id">{{ region?.name }}</option>
       </select>
       <div v-if="patientForm.regionId !== ''">
-        <p>Town</p>
+        <p>{{ $t('town') }}</p>
         <select v-model="patientForm.townId" class="border-none text-gray-500 bg-gray-100 rounded-lg w-full text-lg mb-5">
-          <option value="" selected>Select town</option>
+          <option value="" selected>{{ $t('selectTown') }}</option>
           <option v-for="(city, idx) in cities" :key="idx" :value="city?.id">{{ city?.name }}</option>
         </select>
       </div>
-      <label v-if="patientForm.regionId !== ''" for="address"
-        >Address
-        <input v-model="patientForm.address" id="address" class="border-none text-gray-500 bg-gray-100 rounded-lg w-full text-lg mb-5" type="text" placeholder="Enter your address" />
+      <label v-if="patientForm.townId !== ''" for="address">
+        {{ $t('address') }}
+        <input v-model="patientForm.address" id="address" class="border-none text-gray-500 bg-gray-100 rounded-lg w-full text-lg mb-5" type="text" :placeholder="$t('enterAddress')" />
       </label>
     </div>
   </div>
   <div class="grid grid-cols-2 gap-5">
-    <button @click="clearForm()" class="p-2.5 w-full rounded-lg text-white bg-gray-600 cursor-pointer hover:bg-gray-800">Reset</button>
-    <button @click="submitPatientData()" class="p-2.5 w-full rounded-lg text-white bg-blue-600 cursor-pointer hover:bg-blue-800">Save</button>
+    <button @click="clearForm()" class="p-2.5 w-full rounded-lg text-white bg-gray-600 cursor-pointer hover:bg-gray-800">{{ $t('reset') }}</button>
+    <button @click="submitPatientData()" class="p-2.5 w-full rounded-lg text-white bg-blue-600 cursor-pointer hover:bg-blue-800">{{ $t('save') }}</button>
   </div>
 </template>
 

@@ -9,11 +9,11 @@ import Registration from './Home/Registration.vue'
   <div class="bg-neutral-900 px-5 py-3 flex justify-between items-center">
     <div class="space-y-2">
       <h1 class="text-3xl font-semibold">CRM Dashboard</h1>
-      <p class="text-gray-500">Welcome Babymed</p>
+      <p class="text-gray-500">{{ $t('welcome') }}</p>
     </div>
     <div class="flex items-center justify-center space-x-5">
       <div class="relative text-gray-600">
-        <input id="search" class="border-none bg-white h-10 pl-11 py-6 rounded-xl text focus:outline-none" type="search" name="search" placeholder="Search" />
+        <input id="search" class="border-none bg-white h-10 pl-11 py-6 rounded-xl text focus:outline-none" type="search" name="search" :placeholder="$t('search')" />
         <label for="search" class="cursor-pointer absolute left-3 top-3 mr-4">
           <SearchIcon class="text-gray-600 h-6 w-6 fill-current" />
         </label>
@@ -22,7 +22,7 @@ import Registration from './Home/Registration.vue'
         <BellIcon class="text-gray-600 h-7 w-7 fill-current" />
       </div>
       <div @click="useModalStore().openModal()" class="bg-black text-white rounded-xl p-3.5 px-7 cursor-pointer hover:bg-black/75">
-        <p class="text-base">+ Add Record</p>
+        <p class="text-base">{{ $t('addRecord') }}</p>
       </div>
     </div>
     <!-- Registration Modal (Payment & Patient) -->

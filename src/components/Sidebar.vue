@@ -64,7 +64,7 @@ const logout = () => {
       <router-link to="/payment" class="flex items-center justify-between hover:bg-gray-800 hover:text-gray-100 p-3 rounded-lg cursor-pointer" :class="{ 'bg-gray-800 text-gray-100': router?.currentRoute?.value?.path === '/payment' }">
         <div class="flex items-center space-x-2">
           <PaymentIcon class="w-7 h-7" />
-          <p v-if="isOpen">Payment</p>
+          <p v-if="isOpen">{{ $t('payment') }}</p>
         </div>
       </router-link>
       <!-- <router-link to="/dashboard" class="flex items-center justify-between hover:bg-gray-800 hover:text-gray-100 p-3 rounded-lg cursor-pointer">
@@ -101,6 +101,9 @@ const logout = () => {
         <p class="text-gray-600">example@gmail.com</p>
       </div>
       <div :class="{ 'flex-col space-x-0 space-y-3': !isOpen }" class="flex items-center justify-center space-x-5">
+        <div class="border border-gray-600 rounded-lg p-2 cursor-pointer hover:bg-gray-800">
+          <div class="text-gray-600 h-6 w-6">UZ</div>
+        </div>
         <div class="border border-gray-600 rounded-lg p-2 cursor-pointer hover:bg-gray-800">
           <SettingIcon class="text-gray-600 h-6 w-6 fill-current" />
         </div>
