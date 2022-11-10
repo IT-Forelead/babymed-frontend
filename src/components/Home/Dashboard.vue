@@ -46,7 +46,7 @@ onMounted(() => {
 </script>
 
 <template>
-  <StatisticsSection />
+  <!-- <StatisticsSection /> -->
   <div class="bg-white rounded-lg w-full p-5">
     <div class="flex items-center justify-between">
       <p class="text-3xl font-bold">Patients Report</p>
