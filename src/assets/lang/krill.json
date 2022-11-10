@@ -1,4 +1,8 @@
 {
   "login": "Кириш",
-  "mobilePhone": "Телефон рақам"
+  "mobilePhone": "Телефон рақам",
+  "password": "Парол",
+  "enterPassword": "Паролингизни киритинг",
+  "forgotPassword": "Паролни унутдингизми?",
+  "loading": "Юкланмоқда"
 }

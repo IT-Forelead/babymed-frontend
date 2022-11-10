@@ -57,8 +57,8 @@ onMounted(() => {
           <select v-model="lang" @change="changeLang" class="border border-gray-300 rounded-lg cursor-pointer">
             <option value="en" selected>Enlish</option>
             <option value="uz">O'zbek</option>
-            <option value="ru">Русский</option>
             <option value="kr">Ўзбек</option>
+            <option value="ru">Русский</option>
           </select>
         </div>
       </div>
@@ -71,12 +71,12 @@ onMounted(() => {
           </label>
           <div>
             <div class="flex flex-row items-center justify-between mb-2">
-              <p class="font-medium text-gray-500">Password</p>
-              <div class="font-medium text-indigo-600 cursor-pointer hover:text-indigo-900">Forgot Password?</div>
+              <p class="font-medium text-gray-500">{{ $t('password') }}</p>
+              <div class="font-medium text-indigo-600 cursor-pointer hover:text-indigo-900">{{ $t('forgotPassword') }}</div>
             </div>
             <label for="password">
               <div class="relative">
-                <input id="password" :type="hidePassword ? 'password' : 'text'" v-model="loginFormData.password" class="w-full py-2 border border-gray-300 rounded px-3 focus:outline-none focus:border-slate-500 hover:shadow" placeholder="Enter your password" />
+                <input id="password" :type="hidePassword ? 'password' : 'text'" v-model="loginFormData.password" class="w-full py-2 border border-gray-300 rounded px-3 focus:outline-none focus:border-slate-500 hover:shadow" :placeholder="$t('enterPassword')" />
                 <EyeIcon v-if="hidePassword" @click="togglePassword()" class="text-gray-500 absolute z-10 top-1/2 -translate-y-1/2 right-3 w-5 h-5 cursor-pointer" />
                 <EyeSlashIcon v-else @click="togglePassword()" class="text-gray-500 absolute z-10 top-1/2 -translate-y-1/2 right-3 w-5 h-5 cursor-pointer" />
               </div>
@@ -90,7 +90,7 @@ onMounted(() => {
                 fill="currentFill"
               />
             </svg>
-            <span>{{ isLoading ? 'Loading' : 'Login' }}</span>
+            <span>{{ isLoading ? $t('loading') : $t('login') }}</span>
           </div>
         </div>
       </div>
