@@ -55,7 +55,7 @@ onMounted(() => {
         <img src="/logo.png" class="p-2 border border-gray-300 rounded-lg w-14" alt="Logo" />
         <div>
           <select v-model="lang" @change="changeLang" class="border border-gray-300 rounded-lg cursor-pointer">
-            <option value="en" selected>Enlish</option>
+            <option value="en" selected>English</option>
             <option value="uz">O'zbek</option>
             <option value="kr">Ўзбек</option>
             <option value="ru">Русский</option>
