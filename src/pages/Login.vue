@@ -52,9 +52,9 @@ onMounted(() => {
   <div class="flex w-full h-screen overflow-hidden">
     <div class="relative w-full md:basis-1/3 max-h-screen p-4 md:p-8">
       <div class="flex items-center justify-between">
-        <img src="/logo.png" class="p-2 border border-gray-300 rounded-lg w-14" alt="@" />
+        <img src="/logo.png" class="p-2 border border-gray-300 rounded-lg w-14" alt="Logo" />
         <div>
-          <select v-model="lang" @change="changeLang">
+          <select v-model="lang" @change="changeLang" class="border border-gray-300 rounded-lg cursor-pointer">
             <option value="en" selected>Enlish</option>
             <option value="uz">O'zbek</option>
             <option value="ru">Русский</option>
