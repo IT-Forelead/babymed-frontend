@@ -1,4 +1,8 @@
 {
   "login": "Войти",
-  "mobilePhone": "Мобильный телефон"
+  "mobilePhone": "Мобильный телефон",
+  "password": "Пароль",
+  "enterPassword": "Введите свой пароль",
+  "forgotPassword": "Забыл пароль?",
+  "loading": "Загрузка"
 }

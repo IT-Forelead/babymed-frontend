@@ -1,4 +1,8 @@
 {
   "login": "Login",
-  "mobilePhone": "Mobile phone"
+  "mobilePhone": "Mobile phone",
+  "password": "Password",
+  "enterPassword": "Enter your password",
+  "forgotPassword": "Forgot password?",
+  "loading": "Loading"
 }

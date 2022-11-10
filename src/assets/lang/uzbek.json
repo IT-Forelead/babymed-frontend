@@ -1,4 +1,8 @@
 {
   "login": "Kirish",
-  "mobilePhone": "Telefon raqam"
+  "mobilePhone": "Telefon raqam",
+  "password": "Parol",
+  "enterPassword": "Parolingizni kiriting",
+  "forgotPassword": "Parolni unutdingizmi?",
+  "loading": "Yuklanmoqda"
 }
