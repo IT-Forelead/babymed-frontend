@@ -50,7 +50,7 @@ onMounted(() => {
 
 <template>
   <div class="flex w-full h-screen overflow-hidden">
-    <div class="relative w-full md:basis-1/3 max-h-screen p-4 md:p-8">
+    <div class="relative w-full xl:basis-1/3 max-h-screen p-4 md:p-8">
       <div class="flex items-center justify-between">
         <img src="/logo.png" class="p-2 border border-gray-300 rounded-lg w-14" alt="Logo" />
         <div>
@@ -95,7 +95,7 @@ onMounted(() => {
         </div>
       </div>
     </div>
-    <div class="hidden md:block md:basis-2/3 max-h-screen bg-slate-200/80 pl-36 pt-44 relative">
+    <div class="hidden xl:block md:basis-2/3 max-h-screen bg-slate-200/80 pl-36 pt-44 relative">
       <div class="space-y-3">
         <h1 class="font-bold text-2xl text-gray-900">"Lost time is never found again."</h1>
         <p class="font-medium text-base text-gray-500">- Benjamin Franklin</p>
