@@ -1,6 +1,8 @@
 {
   "login": "Kirish",
   "mobilePhone": "Telefon raqam",
+  "quote": "Yo'qotilgan vaqt boshqa topilmaydi.",
+  "author": "Benjamin Franklin",
   "password": "Parol",
   "enterYourPassword": "Parolingizni kiriting",
   "forgotPassword": "Parolni unutdingizmi?",

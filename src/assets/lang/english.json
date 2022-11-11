@@ -1,6 +1,8 @@
 {
   "login": "Login",
   "mobilePhone": "Mobile phone",
+  "quote": "Lost time is never found again.",
+  "author": "Benjamin Franklin",
   "password": "Password",
   "enterYourPassword": "Enter your password",
   "forgotPassword": "Forgot password?",
