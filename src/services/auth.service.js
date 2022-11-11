@@ -12,7 +12,6 @@ class AuthService {
       })
       .then((res) => {
         sessionStorage.setItem('token', res?.data?.value)
-        console.log(decodeJwt(res?.data?.value));
       })
     return sessionStorage.getItem('token')
   }

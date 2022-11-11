@@ -10,6 +10,7 @@ import notify from 'izitoast'
 import 'izitoast/dist/css/iziToast.min.css'
 import i18n from '../i18n.js'
 import { useI18n } from 'vue-i18n'
+import decodeJwt from '../mixins/utils'
 
 const { t } = useI18n()
 const isLoading = ref(false)
@@ -26,22 +27,24 @@ const login = () => {
   AuthService.login({
     phone: loginFormData.phone,
     password: loginFormData.password,
-  }).then((res) => {
-    if (res) {
-      router.push('/dashboard')
-      useAuthStore().setToken(res)
-      isLoading.value = false
-    } else {
-      setTimeout(() => {
+  })
+    .then((res) => {
+      if (res) {
+        router.push('/dashboard')
+        useAuthStore().setToken(res)
+        useAuthStore().setUser(decodeJwt(res))
         isLoading.value = false
-      }, 3000)
-    }
-  })
-  .catch((err) => {
-    notify.warning({
-      message: t('phoneOrPasswordIncorrect'),
+      } else {
+        setTimeout(() => {
+          isLoading.value = false
+        }, 3000)
+      }
     })
-  })
+    .catch((err) => {
+      notify.warning({
+        message: t('phoneOrPasswordIncorrect'),
+      })
+    })
 }
 
 const lang = ref('')
@@ -105,8 +108,8 @@ onMounted(() => {
     </div>
     <div class="hidden xl:block md:basis-2/3 max-h-screen bg-slate-200/80 pl-36 pt-44 relative">
       <div class="space-y-3">
-        <h1 class="font-bold text-2xl text-gray-900">"{{$t('quote')}}"</h1>
-        <p class="font-medium text-base text-gray-500">- {{$t('author')}}</p>
+        <h1 class="font-bold text-2xl text-gray-900">"{{ $t('quote') }}"</h1>
+        <p class="font-medium text-base text-gray-500">- {{ $t('author') }}</p>
       </div>
       <div class="absolute bottom-0 right-0 w-full left-36 bg-slate-300/40 p-5 h-[520px] 2xl:h-[620px] rounded-tl-[42px]">
         <div class="bg-[url('/dashboard.png')] w-full h-[620px] rounded-tl-3xl"></div>

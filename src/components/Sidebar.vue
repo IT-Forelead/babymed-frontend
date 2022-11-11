@@ -3,6 +3,7 @@ import HomeIcon from '../assets/icons/HomeIcon.vue'
 import SettingIcon from '../assets/icons/SettingIcon.vue'
 import SignOutIcon from '../assets/icons/SignOutIcon.vue'
 import { useSidebarStore } from '../store/sidebar.store'
+import { useAuthStore } from '../store/auth.store'
 import { computed, onMounted } from '@vue/runtime-core'
 import { ref } from '@vue/reactivity'
 import { useRouter } from 'vue-router'
@@ -14,6 +15,7 @@ import ReportIcon from '../assets/icons/ReportIcon.vue'
 import AuthService from '../services/auth.service'
 import PaymentIcon from '../assets/icons/PaymentIcon.vue'
 import i18n from '../i18n.js'
+import decodeJwt from '../mixins/utils'
 
 const router = useRouter()
 const isOpen = computed(() => useSidebarStore().isOpenSidebar)
@@ -39,6 +41,7 @@ const changeLang = (lang) => {
 
 onMounted(() => {
   currentLang.value = localStorage.getItem('lang') || 'en'
+  useAuthStore().setUser(decodeJwt(sessionStorage.getItem('token')))
 })
 </script>
 
@@ -116,8 +119,8 @@ onMounted(() => {
         <img src="/logo.png" alt="hero" class="w-full" />
       </div>
       <div v-if="isOpen">
-        <p class="text-lg font-bold text-gray-400">Baby Med Admin</p>
-        <p class="text-gray-600">example@gmail.com</p>
+        <p class="text-lg font-bold text-gray-400 text-center">{{ useAuthStore().user?.firstname + ' ' + useAuthStore().user?.lastname }}</p>
+        <p class="text-gray-600 text-center">{{ useAuthStore().user?.phone }}</p>
       </div>
       <div :class="{ 'flex-col space-x-0 space-y-3': !isOpen }" class="flex items-center justify-center space-x-5">
         <div @click="toggleLangDrop()" class="relative border border-gray-600 rounded-lg p-2 cursor-pointer hover:bg-gray-800">
