@@ -1,5 +1,6 @@
 import axios from 'axios'
 import authHeader from '../mixins/auth-header'
+import decodeJwt from '../mixins/utils'
 
 const API_URL = import.meta.env.VITE_BASE_URL
 class AuthService {
@@ -11,6 +12,7 @@ class AuthService {
       })
       .then((res) => {
         sessionStorage.setItem('token', res?.data?.value)
+        console.log(decodeJwt(res?.data?.value));
       })
     return sessionStorage.getItem('token')
   }
@@ -19,7 +21,6 @@ class AuthService {
       .get(API_URL + '/auth/logout', { headers: authHeader() })
       .then(() => {
         sessionStorage.clear()
-        localStorage.clear()
       })
     sessionStorage.clear()
     localStorage.clear()
