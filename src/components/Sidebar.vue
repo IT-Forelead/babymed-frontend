@@ -3,7 +3,8 @@ import HomeIcon from '../assets/icons/HomeIcon.vue'
 import SettingIcon from '../assets/icons/SettingIcon.vue'
 import SignOutIcon from '../assets/icons/SignOutIcon.vue'
 import { useSidebarStore } from '../store/sidebar.store'
-import { computed } from '@vue/runtime-core'
+import { computed, onMounted } from '@vue/runtime-core'
+import { ref } from '@vue/reactivity'
 import { useRouter } from 'vue-router'
 import ChevronRightIcon from '../assets/icons/ChevronRightIcon.vue'
 import UserIcon from '../assets/icons/UserIcon.vue'
@@ -12,6 +13,7 @@ import UsersIcon from '../assets/icons/UsersIcon.vue'
 import ReportIcon from '../assets/icons/ReportIcon.vue'
 import AuthService from '../services/auth.service'
 import PaymentIcon from '../assets/icons/PaymentIcon.vue'
+import i18n from '../i18n.js'
 
 const router = useRouter()
 const isOpen = computed(() => useSidebarStore().isOpenSidebar)
@@ -21,6 +23,23 @@ const logout = () => {
   AuthService.logout()
   router.push('/')
 }
+const isLangShow = ref(false)
+
+const toggleLangDrop = () => {
+  isLangShow.value = !isLangShow.value
+}
+
+const currentLang = ref('')
+
+const changeLang = (lang) => {
+  currentLang.value = lang
+  localStorage.setItem('lang', lang)
+  i18n.global.locale.value = lang
+}
+
+onMounted(() => {
+  currentLang.value = localStorage.getItem('lang') || 'en'
+})
 </script>
 
 <template>
@@ -101,8 +120,25 @@ const logout = () => {
         <p class="text-gray-600">example@gmail.com</p>
       </div>
       <div :class="{ 'flex-col space-x-0 space-y-3': !isOpen }" class="flex items-center justify-center space-x-5">
-        <div class="border border-gray-600 rounded-lg p-2 cursor-pointer hover:bg-gray-800">
-          <div class="text-gray-600 h-6 w-6">UZ</div>
+        <div @click="toggleLangDrop()" class="relative border border-gray-600 rounded-lg p-2 cursor-pointer hover:bg-gray-800">
+          <div v-if="isLangShow" class="absolute bottom-12 bg-gray-700 rounded-lg p-1 left-0 w-24">
+            <div @click="changeLang('en')" class="flex items-center space-x-2 hover:bg-slate-600 p-1 rounded">
+              <p>English</p>
+            </div>
+            <hr />
+            <div @click="changeLang('uz')" class="flex items-center space-x-2 hover:bg-slate-600 p-1 rounded">
+              <p>O'zbek</p>
+            </div>
+            <hr />
+            <div @click="changeLang('kr')" class="flex items-center space-x-2 hover:bg-slate-600 p-1 rounded">
+              <p>Ўзбек</p>
+            </div>
+            <hr />
+            <div @click="changeLang('ru')" class="flex items-center space-x-2 hover:bg-slate-600 p-1 rounded">
+              <p>Русский</p>
+            </div>
+          </div>
+          <div class="text-gray-600 h-6 w-6 uppercase">{{ currentLang }}</div>
         </div>
         <div class="border border-gray-600 rounded-lg p-2 cursor-pointer hover:bg-gray-800">
           <SettingIcon class="text-gray-600 h-6 w-6 fill-current" />
