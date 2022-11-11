@@ -6,6 +6,9 @@ import PatientService from '../../../services/patient.service'
 import notify from 'izitoast'
 import 'izitoast/dist/css/iziToast.min.css'
 import { usePatientStore } from '../../../store/patient.store'
+import { useI18n } from 'vue-i18n'
+
+const { t } = useI18n()
 
 const props = defineProps({
   regions: { type: Array, required: true },
@@ -33,9 +36,6 @@ watch(
         .then((res) => {
           cities.value = res
         })
-        .catch((err) => {
-          console.log('ERR: ', err)
-        })
     }
   },
   { deep: true }
@@ -55,31 +55,31 @@ const clearForm = () => {
 const submitPatientData = () => {
   if (!patientForm.firstname) {
     notify.warning({
-      message: 'Please enter patient firstname!',
+      message: t('plsEnterPatientFirstname'),
     })
   } else if (!patientForm.lastname) {
     notify.warning({
-      message: 'Please enter patient lastname!',
+      message: t('plsEnterPatientLastname'),
     })
   } else if (!patientForm.birthday) {
     notify.warning({
-      message: 'Please enter patient birthday!',
+      message: t('plsEnterPatientBirthday'),
     })
   } else if (!patientForm.phone) {
     notify.warning({
-      message: 'Please enter patient phone!',
+      message: t('plsEnterPatientPhone'),
     })
   } else if (!patientForm.regionId) {
     notify.warning({
-      message: 'Please select region!',
+      message: t('plsSelectRegion'),
     })
   } else if (!patientForm.townId) {
     notify.warning({
-      message: 'Please select town!',
+      message: t('plsSelectTown'),
     })
   } else if (!patientForm.address) {
     notify.warning({
-      message: 'Please enter patient address!',
+      message: t('plsEnterPatientAddress'),
     })
   } else {
     PatientService.createPatient({
@@ -94,7 +94,7 @@ const submitPatientData = () => {
       .then(() => {
         clearForm()
         notify.success({
-          message: 'Successfully created patient!',
+          message: t('patientCreated'),
         })
         PatientService.getPatients({})
           .then((res) => {
@@ -105,13 +105,13 @@ const submitPatientData = () => {
           })
           .catch(() => {
             notify.error({
-              message: 'Error while getting patients!',
+              message: t('errorGettingPatients'),
             })
           })
       })
       .catch((err) => {
         notify.error({
-          message: 'Error while creating patient!',
+          message: t('errorCreatingPatient'),
         })
         console.log('ERR', err?.message)
       })

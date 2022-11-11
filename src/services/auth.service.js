@@ -1,6 +1,4 @@
 import axios from 'axios'
-import notify from 'izitoast'
-import 'izitoast/dist/css/iziToast.min.css'
 import authHeader from '../mixins/auth-header'
 
 const API_URL = import.meta.env.VITE_BASE_URL
@@ -14,25 +12,14 @@ class AuthService {
       .then((res) => {
         sessionStorage.setItem('token', res?.data?.value)
       })
-      .catch((err) => {
-        console.log(err?.message)
-        notify.warning({
-          message: 'Phone Number or Password incorrect. Please try again!',
-        })
-      })
     return sessionStorage.getItem('token')
   }
   async logout() {
     await axios
       .get(API_URL + '/auth/logout', { headers: authHeader() })
-      .then((res) => {
+      .then(() => {
         sessionStorage.clear()
         localStorage.clear()
-      })
-      .catch((err) => {
-        notify.warning({
-          message: 'Error while logging out!',
-        })
       })
     sessionStorage.clear()
     localStorage.clear()

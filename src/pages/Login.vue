@@ -6,8 +6,12 @@ import EyeIcon from '../assets/icons/EyeIcon.vue'
 import EyeSlashIcon from '../assets/icons/EyeSlashIcon.vue'
 import AuthService from '../services/auth.service'
 import { onMounted } from 'vue'
+import notify from 'izitoast'
+import 'izitoast/dist/css/iziToast.min.css'
 import i18n from '../i18n.js'
+import { useI18n } from 'vue-i18n'
 
+const { t } = useI18n()
 const isLoading = ref(false)
 const hidePassword = ref(true)
 const router = useRouter()
@@ -32,6 +36,11 @@ const login = () => {
         isLoading.value = false
       }, 3000)
     }
+  })
+  .catch((err) => {
+    notify.warning({
+      message: t('phoneOrPasswordIncorrect'),
+    })
   })
 }
 

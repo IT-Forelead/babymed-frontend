@@ -13,7 +13,9 @@ import PatientService from '../../../services/patient.service'
 import notify from 'izitoast'
 import 'izitoast/dist/css/iziToast.min.css'
 import { usePaymentStore } from '../../../store/payment.store'
+import { useI18n } from 'vue-i18n'
 
+const { t } = useI18n()
 const selectedPatient = ref('')
 const dropdown = ref(null)
 const sum = ref(0)
@@ -41,11 +43,11 @@ onClickOutside(dropdown, () => {
 const submitPaymentData = (sp_id) => {
   if (!sp_id) {
     notify.warning({
-      message: 'Please select patient!',
+      message: t('plsSelectPatient'),
     })
   } else if (sum.value == 0) {
     notify.warning({
-      message: 'Please payment amount!',
+      message: t('plsEnterPaymentAmount'),
     })
   } else {
     PaymentService.createPayment({
@@ -54,7 +56,7 @@ const submitPaymentData = (sp_id) => {
     })
       .then(() => {
         notify.success({
-          message: 'Payment successfully created!',
+          message: t('paymentCreated'),
         })
         clearSelectedPatientData()
         PaymentService.getPayments({})
@@ -64,15 +66,11 @@ const submitPaymentData = (sp_id) => {
               usePaymentStore().setPayments(res?.data)
             }, 500)
           })
-          .catch((err) => {
-            console.log('ERR', err)
-          })
       })
-      .catch((err) => {
+      .catch(() => {
         notify.error({
-          message: 'Error while creating payment!',
+          message: t('errorCreatingPayment'),
         })
-        console.log(err?.message)
       })
   }
 }
