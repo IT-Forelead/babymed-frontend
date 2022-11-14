@@ -97,8 +97,4 @@ onMounted(() => {
     </div>
   </div>
 </template>
-<style scoped>
-.patients-table-h {
-  max-height: 75vh;
-}
-</style>
+<style scoped></style>

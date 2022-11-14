@@ -1,14 +1,27 @@
 <script setup>
 import SearchIcon from '../assets/icons/SearchIcon.vue'
 import BellIcon from '../assets/icons/BellIcon.vue'
-import { useModalStore } from '../store/modal.store'
 import Registration from './Home/Registration.vue'
+import { computed } from '@vue/reactivity';
+import { useRouter } from 'vue-router';
+
+const router = useRouter()
+
+const currentLabel = computed(() => {
+  if (router.currentRoute?.value?.path === '/visits') {
+    return 'Patients Visit Page'
+  } else if (router.currentRoute?.value?.path === '/patients') {
+    return 'Patients Page'
+  } else if (router.currentRoute?.value?.path === '/payment-visit') {
+    return 'Payments & Visits Page'
+  }
+})
 </script>
 
 <template>
   <div class="bg-neutral-900 px-5 py-3 flex justify-between items-center">
     <div class="space-y-2">
-      <h1 class="text-3xl font-semibold">CRM Dashboard</h1>
+      <h1 class="text-3xl font-semibold">{{ currentLabel }}</h1>
       <p class="text-gray-500">{{ $t('welcome') }}</p>
     </div>
     <div class="flex items-center justify-center space-x-5">
@@ -22,7 +35,7 @@ import Registration from './Home/Registration.vue'
         <BellIcon class="text-gray-600 h-7 w-7 fill-current" />
       </div>
       <router-link to="/payment-visit" class="bg-black text-white rounded-xl p-3.5 px-7 cursor-pointer hover:bg-black/75">
-        <p class="text-base"> + {{ $t('addRecord') }}</p>
+        <p class="text-base">+ {{ $t('addRecord') }}</p>
       </router-link>
     </div>
     <!-- Registration Modal (Payment & Patient) -->

@@ -80,13 +80,13 @@ onMounted(() => {
           </div>
         </router-link> -->
       </div>
-      <router-link to="/visits" class="flex items-center justify-between hover:bg-gray-800 hover:text-gray-100 p-3 rounded-lg cursor-pointer">
+      <router-link to="/visits" class="flex items-center justify-between hover:bg-gray-800 hover:text-gray-100 p-3 rounded-lg cursor-pointer" :class="{ 'bg-gray-800 text-gray-100': router?.currentRoute?.value?.path === '/visits' }">
         <div class="flex items-center space-x-2">
           <VisitsIcon class="w-7 h-7" />
           <p v-if="isOpen">Patients Visit</p>
         </div>
       </router-link>
-      <router-link to="/patients" class="flex items-center justify-between hover:bg-gray-800 hover:text-gray-100 p-3 rounded-lg cursor-pointer">
+      <router-link to="/patients" class="flex items-center justify-between hover:bg-gray-800 hover:text-gray-100 p-3 rounded-lg cursor-pointer" :class="{ 'bg-gray-800 text-gray-100': router?.currentRoute?.value?.path === '/patients' }">
         <div class="flex items-center space-x-2">
           <UserPlusIcon class="w-7 h-7" />
           <p v-if="isOpen">Patients</p>
