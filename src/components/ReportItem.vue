@@ -1,13 +1,14 @@
 <script setup>
-import EditIcon from '../../assets/icons/EditIcon.vue'
-import UserIcon from '../../assets/icons/UserIcon.vue'
-import PlusIcon from '../../assets/icons/PlusIcon.vue'
-import MoneyPlusIcon from '../../assets/icons/MoneyPlusIcon.vue'
+import EditIcon from '../assets/icons/EditIcon.vue'
+import UserIcon from '../assets/icons/UserIcon.vue'
+import PlusIcon from '../assets/icons/PlusIcon.vue'
+import MoneyPlusIcon from '../assets/icons/MoneyPlusIcon.vue'
 import InfiniteLoading from 'v3-infinite-loading'
 import 'v3-infinite-loading/lib/style.css'
 import { toRefs } from 'vue'
 import moment from 'moment'
 import { useRouter } from 'vue-router'
+import { useModalStore } from '../store/modal.store'
 
 const router = useRouter()
 
@@ -16,6 +17,10 @@ const props = defineProps({
 })
 
 const { patients } = toRefs(props)
+
+const open = () => {
+  useModalStore().openPaymentStatusChangerModal()
+}
 </script>
 <template>
   <tr class="border-y border-gray-200 hover:bg-gray-100 text-lg font-medium" v-for="(patient, idx) in patients" :key="idx">
@@ -40,13 +45,13 @@ const { patients } = toRefs(props)
     </td>
     <td class="py-3 px-6 text-center">
       <div class="flex item-center justify-center">
-        <div v-if="router.currentRoute?.value?.path === '/visits'" class="w-4 mr-2 transform text-blue-500 hover:text-purple-500 hover:scale-110 cursor-pointer">
+        <div v-if="router.currentRoute?.value?.path === '/visits'" @click="open()" class="w-4 mr-2 transform text-blue-500 hover:text-purple-500 hover:scale-110 cursor-pointer">
           <MoneyPlusIcon class="w-6 h-6" />
         </div>
-        <div v-if="router.currentRoute?.value?.path === '/patients'" class="w-4 mr-2 transform text-blue-500 hover:text-purple-500 hover:scale-110 cursor-pointer">
+        <div v-if="router.currentRoute?.value?.path === '/patients' || router.currentRoute?.value?.path === '/dashboard'" class="w-4 mr-2 transform text-blue-500 hover:text-purple-500 hover:scale-110 cursor-pointer">
           <EditIcon class="w-6 h-6" />
         </div>
-        <div v-if="router.currentRoute?.value?.path === '/patients'" class="w-4 mr-2 transform text-blue-500 hover:text-purple-500 hover:scale-110 cursor-pointer">
+        <div v-if="router.currentRoute?.value?.path === '/patients' || router.currentRoute?.value?.path === '/dashboard'" class="w-4 mr-2 transform text-blue-500 hover:text-purple-500 hover:scale-110 cursor-pointer">
           <PlusIcon class="w-6 h-6" />
         </div>
       </div>

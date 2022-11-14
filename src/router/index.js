@@ -7,12 +7,12 @@ const routes = [
     component: () => import('../pages/Login.vue'),
     meta: { layout: 'login' },
   },
-  // {
-  //   path: '/dashboard',
-  //   name: 'Index',
-  //   component: () => import('../pages/Home.vue'),
-  //   meta: { layout: 'dashboard' },
-  // },
+  {
+    path: '/dashboard',
+    name: 'Index',
+    component: () => import('../pages/Home.vue'),
+    meta: { layout: 'dashboard' },
+  },
   {
     path: '/visits',
     name: 'visits',

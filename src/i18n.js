@@ -9,7 +9,7 @@ export default createI18n({
   globalInjection: true,
   allowComposition: true,
   globals: true,
-  locale: localStorage.getItem('lang') || 'en',
+  locale: localStorage.getItem('lang') || 'uz',
   messages: {
     en: en,
     ru: ru,

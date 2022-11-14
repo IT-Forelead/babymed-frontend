@@ -1,5 +1,5 @@
 <script setup>
-import ReportItem from '../components/Home/ReportItem.vue'
+import ReportItem from '../components/ReportItem.vue'
 import authHeader from '../mixins/auth-header'
 import { computed, ref } from '@vue/reactivity'
 import { usePatientStore } from '../store/patient.store'
@@ -56,8 +56,8 @@ onMounted(() => {
     </div>
     <div class="grid grid-cols-3 gap-3 divide-x">
       <div>
-        <div @click="useModalStore().openModal()" class="bg-black mt-3 float-right text-white rounded-xl p-2.5 cursor-pointer hover:bg-black/75">
-          <p class="text-base">+ {{ $t('addRecord') }}</p>
+        <div @click="useModalStore().openModal()" class="bg-black mt-3 float-right text-white rounded-xl p-2.5 px-4 cursor-pointer hover:bg-black/75">
+          <p class="text-base">+ {{ $t('addPatient') }}</p>
         </div>
         <div class="clear-both"></div>
         <div class="space-y-5">
@@ -75,7 +75,7 @@ onMounted(() => {
           </div> -->
         </div>
       </div>
-      <div class="max-h-[78vh] overflow-auto mt-3 patients-wrapper col-span-2">
+      <div class="max-h-[77vh] overflow-auto mt-3 patients-wrapper col-span-2">
         <table class="min-w-max w-full table-auto">
           <thead class="sticky z-10 top-0 bg-white shadow">
             <tr class="text-gray-600 capitalize text-lg leading-normal">

@@ -1,7 +1,7 @@
 <script setup>
 import StatisticsSection from './Statistics/StatisticsSection.vue'
 import Registration from './Registration.vue'
-import ReportItem from './ReportItem.vue'
+import ReportItem from '../ReportItem.vue'
 import authHeader from '../../mixins/auth-header'
 import { computed, ref } from '@vue/reactivity'
 import { usePatientStore } from '../../store/patient.store'
@@ -56,7 +56,7 @@ onMounted(() => {
         <option value="2">Sort 2</option>
       </select>
     </div>
-    <div class="h-96 overflow-auto mt-3 patients-wrapper">
+    <div class="h-80 overflow-auto mt-3 patients-wrapper">
       <table class="min-w-max w-full table-auto">
         <thead class="sticky z-10 top-0 bg-white shadow">
           <tr class="text-gray-600 capitalize text-lg leading-normal">

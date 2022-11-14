@@ -4,6 +4,7 @@ import BellIcon from '../assets/icons/BellIcon.vue'
 import Registration from './Home/Registration.vue'
 import { computed } from '@vue/reactivity';
 import { useRouter } from 'vue-router';
+import ChangePaymentStatus from './Payments/ChangePaymentStatus.vue';
 
 const router = useRouter()
 
@@ -14,6 +15,8 @@ const currentLabel = computed(() => {
     return 'Patients Page'
   } else if (router.currentRoute?.value?.path === '/payment-visit') {
     return 'Payments & Visits Page'
+  } else if (router.currentRoute?.value?.path === '/dashboard') {
+    return 'Main Page'
   }
 })
 </script>
@@ -40,6 +43,8 @@ const currentLabel = computed(() => {
     </div>
     <!-- Registration Modal (Payment & Patient) -->
     <Registration />
+    <!-- Payment Status Changer Modal -->
+    <ChangePaymentStatus/>
   </div>
 </template>
 
