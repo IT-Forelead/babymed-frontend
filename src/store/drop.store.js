@@ -2,18 +2,40 @@ import { defineStore } from 'pinia'
 
 export const useDropStore = defineStore('drop', {
   state: () => ({
-    selectPatient: '',
-    isOpenDropDown: false
+    selectPatientOption: '',
+    selectDoctorOption: '',
+    selectServiceOption: '',
+    isOpenPatientDropDown: false,
+    isOpenDoctorDropDown: false,
+    isOpenServiceDropDown: false,
   }),
   actions: {
-    setSelectPatient(data) {
-      this.selectPatient = data
+    setSelectPatientOption(data) {
+      this.selectPatientOption = data
     },
-    openDropDown() {
-      this.isOpenDropDown = true
+    setSelectDoctorOption(data) {
+      this.selectDoctorOption = data
     },
-    closeDropDown() {
-      this.isOpenDropDown = false
-    }
+    setSelectServiceOption(data) {
+      this.selectServiceOption = data
+    },
+    openPatientDropDown() {
+      this.isOpenPatientDropDown = true
+    },
+    closePatientDropDown() {
+      this.isOpenPatientDropDown = false
+    },
+    openDoctorDropDown() {
+      this.isOpenDoctorDropDown = true
+    },
+    closeDoctorDropDown() {
+      this.isOpenDoctorDropDown = false
+    },
+    openServiceDropDown() {
+      this.isOpenServiceDropDown = true
+    },
+    closeServiceDropDown() {
+      this.isOpenServiceDropDown = false
+    },
   },
 })

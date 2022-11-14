@@ -7,15 +7,12 @@ import { useAuthStore } from '../store/auth.store'
 import { computed, onMounted } from '@vue/runtime-core'
 import { ref } from '@vue/reactivity'
 import { useRouter } from 'vue-router'
-import ChevronRightIcon from '../assets/icons/ChevronRightIcon.vue'
-import UserIcon from '../assets/icons/UserIcon.vue'
-import UsersIcon from '../assets/icons/UsersIcon.vue'
-// import AppointmentIcon from '../assets/icons/AppointmentIcon.vue'
-import ReportIcon from '../assets/icons/ReportIcon.vue'
+import VisitsIcon from '../assets/icons/VisitsIcon.vue'
 import AuthService from '../services/auth.service'
 import PaymentIcon from '../assets/icons/PaymentIcon.vue'
 import i18n from '../i18n.js'
 import decodeJwt from '../mixins/utils'
+import UserPlusIcon from '../assets/icons/UserPlusIcon.vue'
 
 const router = useRouter()
 const isOpen = computed(() => useSidebarStore().isOpenSidebar)
@@ -54,15 +51,15 @@ onMounted(() => {
       <p v-if="isOpen" class="text-xl font-bold capitalize">Baby med</p>
     </div>
     <div class="mt-5 h-[475px] overflow-auto py-5 px-2 text-gray-400 space-y-3">
-      <router-link to="/dashboard" @click="useSidebarStore().toggleSidebarSubMenu()" class="flex items-center justify-between hover:bg-gray-800 hover:text-gray-100 p-3 rounded-lg cursor-pointer" :class="{ 'bg-gray-800 text-gray-100': router?.currentRoute?.value?.path === '/dashboard' }">
+      <!-- <router-link to="/dashboard" @click="useSidebarStore().toggleSidebarSubMenu()" class="flex items-center justify-between hover:bg-gray-800 hover:text-gray-100 p-3 rounded-lg cursor-pointer" :class="{ 'bg-gray-800 text-gray-100': router?.currentRoute?.value?.path === '/dashboard' }">
         <div class="flex items-center space-x-2">
           <HomeIcon class="w-7 h-7" />
           <p v-if="isOpen">Dashboard</p>
         </div>
-        <!-- <div>
+        <div>
           <ChevronRightIcon class="w-5 h-5 transition-all duration-300" :class="{ 'rotate-90': isOpenSubMenu }" />
-        </div> -->
-      </router-link>
+        </div>
+      </router-link> -->
       <div :class="{ hidden: !isOpenSubMenu }" class="transition-all duration-300">
         <!-- <router-link to="/dashboard" class="flex items-center justify-between hover:text-gray-100 p-3 rounded-lg cursor-pointer">
           <div :class="isOpen ? 'pl-6' : 'pl-1'" class="flex items-center space-x-2">
@@ -83,12 +80,24 @@ onMounted(() => {
           </div>
         </router-link> -->
       </div>
-      <router-link to="/payment" class="flex items-center justify-between hover:bg-gray-800 hover:text-gray-100 p-3 rounded-lg cursor-pointer" :class="{ 'bg-gray-800 text-gray-100': router?.currentRoute?.value?.path === '/payment' }">
+      <router-link to="/visits" class="flex items-center justify-between hover:bg-gray-800 hover:text-gray-100 p-3 rounded-lg cursor-pointer">
+        <div class="flex items-center space-x-2">
+          <VisitsIcon class="w-7 h-7" />
+          <p v-if="isOpen">Patients Visit</p>
+        </div>
+      </router-link>
+      <router-link to="/patients" class="flex items-center justify-between hover:bg-gray-800 hover:text-gray-100 p-3 rounded-lg cursor-pointer">
+        <div class="flex items-center space-x-2">
+          <UserPlusIcon class="w-7 h-7" />
+          <p v-if="isOpen">Patients</p>
+        </div>
+      </router-link>
+      <!-- <router-link to="/payment" class="flex items-center justify-between hover:bg-gray-800 hover:text-gray-100 p-3 rounded-lg cursor-pointer" :class="{ 'bg-gray-800 text-gray-100': router?.currentRoute?.value?.path === '/payment' }">
         <div class="flex items-center space-x-2">
           <PaymentIcon class="w-7 h-7" />
           <p v-if="isOpen">{{ $t('payment') }}</p>
         </div>
-      </router-link>
+      </router-link> -->
       <!-- <router-link to="/dashboard" class="flex items-center justify-between hover:bg-gray-800 hover:text-gray-100 p-3 rounded-lg cursor-pointer">
         <div class="flex items-center space-x-2">
           <UsersIcon class="w-7 h-7" />

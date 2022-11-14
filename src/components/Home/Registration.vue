@@ -30,7 +30,7 @@ const regions = computed(() => {
         <div class="flex justify-between items-start p-4 rounded-t border-b dark:border-gray-600">
           <div class="flex items-center justify-center space-x-3">
             <div @click="useTabStore().openFirstTab()" :class="useTabStore().isOpenFirstTab ? 'bg-lime-300' : 'bg-gray-200 text-gray-600 cursor-pointer hover:shadow hover:scale-105'" class="flex items-center justify-center p-2 rounded-lg px-6 transition-all duration-300">{{ $t('addPatient') }}</div>
-            <div @click="useTabStore().openSecondTab()" :class="useTabStore().isOpenSecondTab ? 'bg-lime-300' : 'bg-gray-200 text-gray-600 cursor-pointer hover:shadow hover:scale-105'" class="flex items-center justify-center p-2 rounded-lg px-6 transition-all duration-300">{{ $t('addPayment') }}</div>
+            <!-- <div @click="useTabStore().openSecondTab()" :class="useTabStore().isOpenSecondTab ? 'bg-lime-300' : 'bg-gray-200 text-gray-600 cursor-pointer hover:shadow hover:scale-105'" class="flex items-center justify-center p-2 rounded-lg px-6 transition-all duration-300">{{ $t('addPayment') }}</div> -->
           </div>
           <button @click="useModalStore().closeModal()" class="text-gray-600 bg-gray-100 hover:bg-gray-800 hover:text-gray-300 transition-all duration-300 rounded-full text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white">
             <TimesIcon />
@@ -40,9 +40,9 @@ const regions = computed(() => {
           <div v-if="useTabStore().isOpenFirstTab">
             <AddPatient :regions="regions" />
           </div>
-          <div v-if="useTabStore().isOpenSecondTab">
+          <!-- <div v-if="useTabStore().isOpenSecondTab">
             <AddPayment />
-          </div>
+          </div> -->
         </div>
       </div>
     </div>

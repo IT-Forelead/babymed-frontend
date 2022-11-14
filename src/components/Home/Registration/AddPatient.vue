@@ -131,7 +131,7 @@ const submitPatientData = () => {
       </label>
       <label for="birthday">
         {{ $t('birthday') }}
-        <input v-model="patientForm.birthday" class="border-none text-gray-500 bg-gray-100 rounded-lg w-full text-lg mb-5" type="date" id="birthday" :placeholder="$t('enterBirtday')" />
+        <input v-model="patientForm.birthday" class="border-none text-gray-500 bg-gray-100 rounded-lg w-full text-lg mb-5" type="date" id="birthday" :placeholder="$t('birthday')" />
       </label>
       <label for="phone">
         {{ $t('phone') }}

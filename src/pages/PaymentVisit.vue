@@ -5,7 +5,7 @@ import { computed, ref } from '@vue/reactivity'
 import { usePatientStore } from '../store/patient.store'
 import { onMounted } from 'vue'
 import { useModalStore } from '../store/modal.store'
-import SelectOption from '../components/SelectOption.vue'
+import SelectOption from '../components/SelectOptionPatient.vue'
 
 const API_URL = import.meta.env.VITE_BASE_URL
 
@@ -56,23 +56,23 @@ onMounted(() => {
     </div>
     <div class="grid grid-cols-3 gap-3 divide-x">
       <div>
-        <div @click="useModalStore().openModal()" class="bg-black float-right text-white rounded-xl p-2.5 cursor-pointer hover:bg-black/75">
+        <div @click="useModalStore().openModal()" class="bg-black mt-3 float-right text-white rounded-xl p-2.5 cursor-pointer hover:bg-black/75">
           <p class="text-base">+ {{ $t('addRecord') }}</p>
         </div>
         <div class="clear-both"></div>
         <div class="space-y-5">
           <div>
             <p>Select Patients</p>
-            <SelectOption :options="patients" :where-to-use="'patients'" />
+            <SelectOption :options="patients" />
           </div>
-          <div>
+          <!-- <div>
             <p>Select Doctors</p>
             <SelectOption :options="patients" :where-to-use="'doctors'" />
-          </div>
-          <div>
+          </div> -->
+          <!-- <div>
             <p>Select Sevice</p>
             <SelectOption :options="patients" :where-to-use="'services'" />
-          </div>
+          </div> -->
         </div>
       </div>
       <div class="max-h-[78vh] overflow-auto mt-3 patients-wrapper col-span-2">
