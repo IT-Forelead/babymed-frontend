@@ -17,6 +17,8 @@ const currentLabel = computed(() => {
     return 'Payments & Visits Page'
   } else if (router.currentRoute?.value?.path === '/dashboard') {
     return 'Main Page'
+  } else if (router.currentRoute?.value?.path === '/services') {
+    return 'Services Page'
   }
 })
 </script>

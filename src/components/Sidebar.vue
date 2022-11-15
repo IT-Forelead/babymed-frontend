@@ -14,6 +14,7 @@ import i18n from '../i18n.js'
 import decodeJwt from '../mixins/utils'
 import UsersIcon from '../assets/icons/UsersIcon.vue'
 import { useI18n } from 'vue-i18n'
+import ServicesIcon from '../assets/icons/ServicesIcon.vue'
 
 const { t } = useI18n()
 
@@ -95,6 +96,12 @@ onMounted(() => {
         <div class="flex items-center space-x-2">
           <UsersIcon class="w-7 h-7" />
           <p v-if="isOpen">Patients</p>
+        </div>
+      </router-link>
+      <router-link to="/services" class="flex items-center justify-between hover:bg-gray-800 hover:text-gray-100 p-3 rounded-lg cursor-pointer" :class="{ 'bg-gray-800 text-gray-100': router?.currentRoute?.value?.path === '/services' }">
+        <div class="flex items-center space-x-2">
+          <ServicesIcon class="w-7 h-7" />
+          <p v-if="isOpen">Services</p>
         </div>
       </router-link>
       <!-- <router-link to="/payment" class="flex items-center justify-between hover:bg-gray-800 hover:text-gray-100 p-3 rounded-lg cursor-pointer" :class="{ 'bg-gray-800 text-gray-100': router?.currentRoute?.value?.path === '/payment' }">

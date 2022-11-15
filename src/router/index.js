@@ -20,6 +20,12 @@ const routes = [
     meta: { layout: 'dashboard' },
   },
   {
+    path: '/services',
+    name: 'services',
+    component: () => import('../pages/Services.vue'),
+    meta: { layout: 'dashboard' },
+  },
+  {
     path: '/patients',
     name: 'Patients',
     component: () => import('../pages/Patients.vue'),
