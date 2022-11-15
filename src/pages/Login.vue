@@ -52,10 +52,12 @@ const lang = ref('')
 const changeLang = () => {
   localStorage.setItem('lang', lang.value)
   i18n.global.locale.value = lang.value
+  document.getElementsByTagName('title')[0].innerHTML = t('title')
 }
 
 onMounted(() => {
   lang.value = localStorage.getItem('lang') || 'uz'
+  document.getElementsByTagName('title')[0].innerHTML = t('title')
 })
 </script>
 

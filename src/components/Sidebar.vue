@@ -12,8 +12,10 @@ import AuthService from '../services/auth.service'
 // import PaymentIcon from '../assets/icons/PaymentIcon.vue'
 import i18n from '../i18n.js'
 import decodeJwt from '../mixins/utils'
-import UserPlusIcon from '../assets/icons/UserPlusIcon.vue'
 import UsersIcon from '../assets/icons/UsersIcon.vue'
+import { useI18n } from 'vue-i18n'
+
+const { t } = useI18n()
 
 const router = useRouter()
 const isOpen = computed(() => useSidebarStore().isOpenSidebar)
@@ -35,10 +37,12 @@ const changeLang = (lang) => {
   currentLang.value = lang
   localStorage.setItem('lang', lang)
   i18n.global.locale.value = lang
+  document.getElementsByTagName('title')[0].innerHTML = t('title')
 }
 
 onMounted(() => {
   currentLang.value = localStorage.getItem('lang') || 'uz'
+  document.getElementsByTagName('title')[0].innerHTML = t('title')
   useAuthStore().setUser(decodeJwt(sessionStorage.getItem('token')))
 })
 </script>

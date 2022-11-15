@@ -24,8 +24,8 @@ const open = () => {
 </script>
 <template>
   <tr class="border-y border-gray-200 hover:bg-gray-100 text-lg font-medium" v-for="(patient, idx) in patients" :key="idx">
-    <td class="text-center">{{ idx + 1 }}</td>
-    <td class="py-3 px-6 text-left">
+    <td v-motion-pop class="text-center">{{ idx + 1 }}</td>
+    <td v-motion-pop class="py-3 px-6 text-left">
       <div class="flex items-center">
         <div class="mr-2">
           <UserIcon class="w-10 h-10 rounded-full border p-2" />
@@ -33,17 +33,17 @@ const open = () => {
         <span class="text-lg font-medium capitalize">{{ patient?.customer?.firstname + ' ' + patient?.customer?.lastname }}</span>
       </div>
     </td>
-    <td class="py-3 px-6 text-left">{{ patient?.customer?.phone }}</td>
-    <td class="py-3 px-6 text-center">{{ moment(patient?.customer?.createdAt).format('MM/DD/YYYY h:mm:ss') }}</td>
-    <td class="py-3 px-6 text-center text-sm">
+    <td v-motion-pop class="py-3 px-6 text-left">{{ patient?.customer?.phone }}</td>
+    <td v-motion-pop class="py-3 px-6 text-center">{{ moment(patient?.customer?.createdAt).format('MM/DD/YYYY h:mm:ss') }}</td>
+    <td v-motion-pop class="py-3 px-6 text-center text-sm">
       {{ patient?.region?.name }} <br />
       {{ patient?.town?.name }} <br />
       {{ patient?.customer?.address }}
     </td>
-    <td class="py-3 px-6 text-center">
+    <td v-motion-pop class="py-3 px-6 text-center">
       {{ moment(patient?.customer?.birthday).format('MM/DD/YYYY') }}
     </td>
-    <td class="py-3 px-6 text-center">
+    <td v-motion-pop class="py-3 px-6 text-center">
       <div class="flex item-center justify-center">
         <div v-if="router.currentRoute?.value?.path === '/visits'" @click="open()" class="w-4 mr-2 transform text-blue-500 hover:text-purple-500 hover:scale-110 cursor-pointer">
           <MoneyPlusIcon class="w-6 h-6" />
@@ -58,7 +58,7 @@ const open = () => {
     </td>
   </tr>
   <tr class="text-gray-700 text-md dark:text-gray-300 dark:bg-gray-800">
-    <td colspan="10">
+    <td v-motion-pop colspan="10">
       <div class="flex items-center justify-center w-full p-2">
         <InfiniteLoading v-bind="$attrs" />
       </div>
