@@ -1,0 +1,39 @@
+<script setup>
+import MoneyPlusIcon from '../../assets/icons/MoneyPlusIcon.vue'
+import InfiniteLoading from 'v3-infinite-loading'
+import 'v3-infinite-loading/lib/style.css'
+import { toRefs } from 'vue'
+import TrashIcon from '../../assets/icons/TrashIcon.vue';
+import EditIcon from '../../assets/icons/EditIcon.vue';
+
+const props = defineProps({
+  services: { type: Array, required: true },
+})
+
+const { services } = toRefs(props)
+</script>
+<template>
+  <tr class="border-y border-gray-200 hover:bg-gray-100 text-lg font-medium" v-for="(service, idx) in services" :key="idx">
+    <td v-motion-pop class="text-center">{{ idx + 1 }}</td>
+    <td v-motion-pop class="py-3 px-6 text-left">
+      {{ service?.customer?.firstname }}
+    </td>
+    <td v-motion-pop class="py-3 px-6 text-center">
+      <div class="flex item-center justify-center">
+        <div class="w-4 mr-3 transform text-blue-500 hover:text-purple-500 hover:scale-110 cursor-pointer">
+          <EditIcon class="w-6 h-6" />
+        </div>
+        <div class="w-4 mr-3 transform text-red-500 hover:text-red-600 hover:scale-110 cursor-pointer">
+          <TrashIcon class="w-6 h-6" />
+        </div>
+      </div>
+    </td>
+  </tr>
+  <tr class="text-gray-700 text-md dark:text-gray-300 dark:bg-gray-800">
+    <td v-motion-pop colspan="10">
+      <div class="flex items-center justify-center w-full p-2">
+        <InfiniteLoading v-bind="$attrs" />
+      </div>
+    </td>
+  </tr>
+</template>
