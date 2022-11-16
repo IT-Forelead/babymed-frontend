@@ -3,10 +3,10 @@ import AxiosService from './axios.service'
 
 class PatientService {
   async createPatient(data) {
-    return AxiosService.post('/customer', data, { headers: authHeader() })
+    return AxiosService.post('/patient', data, { headers: authHeader() })
   }
   async getPatients(filter) {
-    return AxiosService.post('/customer/report', filter, { headers: authHeader() })
+    return AxiosService.post('/patient/report', filter, { headers: authHeader() })
   }
 }
 

@@ -3,10 +3,10 @@ import AxiosService from './axios.service.js'
 
 class AddressService {
   async getAllRegions() {
-    return AxiosService.get('/customer/regions', { headers: authHeader() })
+    return AxiosService.get('/patient/regions', { headers: authHeader() })
   }
   async getAllCities(region_id) {
-    return AxiosService.get(`/customer/towns/${region_id}`, { headers: authHeader() })
+    return AxiosService.get(`/patient/towns/${region_id}`, { headers: authHeader() })
   }
 }
 

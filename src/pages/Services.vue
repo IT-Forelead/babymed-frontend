@@ -1,47 +1,19 @@
 <script setup>
-import ReportItem from '../components/ReportItem.vue'
-import authHeader from '../mixins/auth-header'
-import { computed, ref } from '@vue/reactivity'
-import { usePatientStore } from '../store/patient.store'
+import { computed } from '@vue/reactivity'
+import { useServicesStore } from '../store/services.store'
 import { onMounted } from 'vue'
-import { useModalStore } from '../store/modal.store'
-import SelectOption from '../components/SelectOptionPatient.vue'
 import ServiceItem from '../components/Service/ServiceItem.vue'
+import ServicesService from '../services/services.service'
 
-const API_URL = import.meta.env.VITE_BASE_URL
-
-const total = ref(1)
-const patients = computed(() => {
-  return usePatientStore().patients
+const services = computed(() => {
+  return useServicesStore().services
 })
-const target = ref('.patients-wrapper')
-const distance = ref(200)
-
-let page = 0
-const loadPatients = async ($state) => {
-  page++
-  let additional = total.value % 30 == 0 ? 0 : 1
-  if (total.value !== 0 && total.value / 30 + additional >= page) {
-    try {
-      const response = await fetch(`${API_URL}/customer/report?page=${page}`, {
-        method: 'POST',
-        body: JSON.stringify({}),
-        headers: authHeader(),
-      })
-      const json = await response.json()
-      total.value = json?.total
-      setTimeout(() => {
-        usePatientStore().setPatients(json?.data)
-        $state.loaded()
-      }, 500)
-    } catch (error) {
-      $state.error()
-    }
-  } else $state.loaded()
-}
 
 onMounted(() => {
-  usePatientStore().clearStore()
+  ServicesService.getAllServices().then((res) => {
+    console.log(res);
+    useServicesStore().setServices(res)
+  })
 })
 </script>
 
@@ -65,7 +37,7 @@ onMounted(() => {
           <input class="border-none text-gray-500 bg-gray-100 rounded-lg w-full text-lg mb-5 p-3" type="button" value="Save Service" />
         </div>
       </div>
-      <div class="max-h-[77vh] overflow-auto mt-3 patients-wrapper col-span-2 bg-white rounded-lg">
+      <div class="max-h-[77vh] overflow-auto mt-3 col-span-2 bg-white rounded-lg">
         <table class="min-w-max w-full table-auto">
           <thead class="sticky z-10 top-0 bg-white shadow">
             <tr class="text-gray-600 capitalize text-lg leading-normal">
@@ -75,10 +47,10 @@ onMounted(() => {
             </tr>
           </thead>
           <tbody class="text-gray-600 text-sm font-light">
-            <ServiceItem :services="patients" :distance="distance" :target="target" @infinite="loadPatients" />
+            <ServiceItem :services="services" />
           </tbody>
         </table>
-        <div v-if="patients.length === 0" class="w-full text-center text-red-500">{{ $t('empty') }}</div>
+        <div v-if="services.length === 0" class="w-full text-center text-red-500">{{ $t('empty') }}</div>
       </div>
     </div>
   </div>

@@ -20,7 +20,7 @@ const loadPatients = async ($state) => {
   let additional = total.value % 30 == 0 ? 0 : 1
   if (total.value !== 0 && total.value / 30 + additional >= page) {
     try {
-      const response = await fetch(`${API_URL}/customer/report?page=${page}`, {
+      const response = await fetch(`${API_URL}/patient/report?page=${page}`, {
         method: 'POST',
         body: JSON.stringify({}),
         headers: authHeader(),
