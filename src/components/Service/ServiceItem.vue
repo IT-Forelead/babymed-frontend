@@ -1,22 +1,26 @@
 <script setup>
-import MoneyPlusIcon from '../../assets/icons/MoneyPlusIcon.vue'
-import InfiniteLoading from 'v3-infinite-loading'
 import 'v3-infinite-loading/lib/style.css'
 import { toRefs } from 'vue'
 import TrashIcon from '../../assets/icons/TrashIcon.vue';
 import EditIcon from '../../assets/icons/EditIcon.vue';
+import useMoneyFormatter from '../../mixins/currencyFormatter.js'
 
 const props = defineProps({
   services: { type: Array, required: true },
 })
 
 const { services } = toRefs(props)
+
+
 </script>
 <template>
   <tr class="border-y border-gray-200 hover:bg-gray-100 text-lg font-medium" v-for="(service, idx) in services" :key="idx">
     <td v-motion-pop class="text-center">{{ idx + 1 }}</td>
+    <td v-motion-pop class="py-3 px-6 text-left uppercase">
+      {{ service?.name }}
+    </td>
     <td v-motion-pop class="py-3 px-6 text-left">
-      {{ service?.customer?.firstname }}
+      {{ useMoneyFormatter(service?.cost) }}
     </td>
     <td v-motion-pop class="py-3 px-6 text-center">
       <div class="flex item-center justify-center">

@@ -34,16 +34,15 @@ const login = () => {
         useAuthStore().setToken(res)
         useAuthStore().setUser(decodeJwt(res))
         isLoading.value = false
-      } else {
-        setTimeout(() => {
-          isLoading.value = false
-        }, 3000)
       }
     })
     .catch((err) => {
       notify.warning({
         message: t('phoneOrPasswordIncorrect'),
       })
+      setTimeout(() => {
+        isLoading.value = false
+      }, 3000)
     })
 }
 
