@@ -20,6 +20,8 @@ const currentLabel = computed(() => {
     return 'Main Page'
   } else if (router.currentRoute?.value?.path === '/services') {
     return 'Services Page'
+  } else if (router.currentRoute?.value?.path === '/users') {
+    return 'Users Management'
   }
 })
 </script>

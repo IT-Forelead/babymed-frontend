@@ -8,6 +8,7 @@ import { computed, onMounted } from '@vue/runtime-core'
 import { ref } from '@vue/reactivity'
 import { useRouter } from 'vue-router'
 import VisitsIcon from '../assets/icons/VisitsIcon.vue'
+import UserPlusIcon from '../assets/icons/UserPlusIcon.vue'
 import AuthService from '../services/auth.service'
 // import PaymentIcon from '../assets/icons/PaymentIcon.vue'
 import i18n from '../i18n.js'
@@ -86,22 +87,28 @@ onMounted(() => {
           </div>
         </router-link> -->
       </div>
-      <router-link to="/visits" class="flex items-center justify-between hover:bg-gray-800 hover:text-gray-100 p-3 rounded-lg cursor-pointer" :class="{ 'bg-gray-800 text-gray-100': router?.currentRoute?.value?.path === '/visits' }">
+      <router-link to="/visits" class="flex items-center justify-between hover:bg-gray-800 hover:text-gray-100 p-3 rounded-lg cursor-pointer" :class="useSidebarStore().isOpenSidebar && router?.currentRoute?.value?.path === '/visits' ? 'justify-between bg-gray-800 text-gray-100' : !useSidebarStore().isOpenSidebar && router?.currentRoute?.value?.path === '/visits' ? 'bg-gray-800 text-gray-100 justify-center' : ''">
         <div class="flex items-center space-x-2">
           <VisitsIcon class="w-7 h-7" />
           <p v-if="isOpen">Patients Visit</p>
         </div>
       </router-link>
-      <router-link to="/patients" class="flex items-center justify-between hover:bg-gray-800 hover:text-gray-100 p-3 rounded-lg cursor-pointer" :class="{ 'bg-gray-800 text-gray-100': router?.currentRoute?.value?.path === '/patients' }">
+      <router-link to="/patients" class="flex items-center justify-between hover:bg-gray-800 hover:text-gray-100 p-3 rounded-lg cursor-pointer" :class="useSidebarStore().isOpenSidebar && router?.currentRoute?.value?.path === '/patients' ? 'justify-between bg-gray-800 text-gray-100' : !useSidebarStore().isOpenSidebar && router?.currentRoute?.value?.path === '/patients' ? 'bg-gray-800 text-gray-100 justify-center' : ''">
         <div class="flex items-center space-x-2">
           <UsersIcon class="w-7 h-7" />
           <p v-if="isOpen">Patients</p>
         </div>
       </router-link>
-      <router-link to="/services" class="flex items-center justify-between hover:bg-gray-800 hover:text-gray-100 p-3 rounded-lg cursor-pointer" :class="{ 'bg-gray-800 text-gray-100': router?.currentRoute?.value?.path === '/services' }">
+      <router-link to="/services" class="flex items-center justify-between hover:bg-gray-800 hover:text-gray-100 p-3 rounded-lg cursor-pointer" :class="useSidebarStore().isOpenSidebar && router?.currentRoute?.value?.path === '/services' ? 'justify-between bg-gray-800 text-gray-100' : !useSidebarStore().isOpenSidebar && router?.currentRoute?.value?.path === '/services' ? 'bg-gray-800 text-gray-100 justify-center' : ''">
         <div class="flex items-center space-x-2">
           <ServicesIcon class="w-7 h-7" />
           <p v-if="isOpen">Services</p>
+        </div>
+      </router-link>
+      <router-link to="/users" class="flex items-center justify-between hover:bg-gray-800 hover:text-gray-100 p-3 rounded-lg cursor-pointer" :class="useSidebarStore().isOpenSidebar && router?.currentRoute?.value?.path === '/users' ? 'justify-between bg-gray-800 text-gray-100' : !useSidebarStore().isOpenSidebar && router?.currentRoute?.value?.path === '/users' ? 'bg-gray-800 text-gray-100 justify-center' : ''">
+        <div class="flex items-center space-x-2">
+          <UserPlusIcon class="w-7 h-7" />
+          <p v-if="isOpen">Users</p>
         </div>
       </router-link>
       <!-- <router-link to="/payment" class="flex items-center justify-between hover:bg-gray-800 hover:text-gray-100 p-3 rounded-lg cursor-pointer" :class="{ 'bg-gray-800 text-gray-100': router?.currentRoute?.value?.path === '/payment' }">
