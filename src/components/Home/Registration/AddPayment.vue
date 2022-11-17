@@ -35,7 +35,7 @@ const submitPaymentData = (sp_id) => {
     })
   } else {
     PaymentService.createPayment({
-      customerId: sp_id,
+      patientId: sp_id,
       price: sum.value,
     })
       .then(() => {
@@ -85,6 +85,6 @@ onMounted(() => {
       <money3 v-model="sum" v-bind="moneyConf" class="border-none text-right text-gray-500 bg-gray-100 rounded-lg w-full text-lg"> </money3>
     </label>
     <hr class="my-3" />
-    <div @click="submitPaymentData(selectedPatient?.customer?.id)" class="rounded-lg bg-blue-600 p-3 text-white text-center cursor-pointer hover:bg-blue-800">{{ $t('savePayment') }}</div>
+    <div @click="submitPaymentData(selectedPatient?.patient?.id)" class="rounded-lg bg-blue-600 p-3 text-white text-center cursor-pointer hover:bg-blue-800">{{ $t('savePayment') }}</div>
   </div>
 </template>

@@ -57,7 +57,7 @@ onMounted(() => {
       <p v-if="isOpen" class="text-xl font-bold capitalize">Baby med</p>
     </div>
     <div class="mt-5 h-[475px] overflow-auto py-5 px-2 text-gray-400 space-y-3">
-      <router-link to="/dashboard" @click="useSidebarStore().toggleSidebarSubMenu()" class="flex items-center justify-between hover:bg-gray-800 hover:text-gray-100 p-3 rounded-lg cursor-pointer" :class="{ 'bg-gray-800 text-gray-100': router?.currentRoute?.value?.path === '/dashboard' }">
+      <router-link to="/dashboard" @click="useSidebarStore().toggleSidebarSubMenu()" :class="useSidebarStore().isOpenSidebar && router?.currentRoute?.value?.path === '/dashboard' ? 'justify-between bg-gray-800 text-gray-100' : !useSidebarStore().isOpenSidebar && router?.currentRoute?.value?.path === '/dashboard' ? 'bg-gray-800 text-gray-100 justify-center' : ''" class="flex items-center hover:bg-gray-800 hover:text-gray-100 p-3 rounded-lg cursor-pointer">
         <div class="flex items-center space-x-2">
           <HomeIcon class="w-7 h-7" />
           <p v-if="isOpen">Main Page</p>
