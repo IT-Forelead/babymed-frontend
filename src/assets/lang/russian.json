@@ -54,5 +54,21 @@
   "plsEnterPatientAddress": "Пожалуйста, введите адрес пациента!",
   "patientCreated": "Пациент успешно создан!",
   "errorGettingPatients": "Ошибка при получении пациентов!",
-  "errorCreatingPatient": "Ошибка при создании пациента!"
+  "errorCreatingPatient": "Ошибка при создании пациента!",
+  "changePaymentStatus":"Изменить статус платежа",
+  "clickToChangePaymentStatus":"Пожалуйста, нажмите на статус платежа, чтобы изменить его!",
+  "notPaid":"Не оплачено",
+  "fullyPaid":"Полностью оплачено",
+  "cancel": "Отмена",
+  "notFound": "Страница не найдена",
+  "sorry": "Извините",
+  "returnToHomePage": "Вернуться на главную страницу",
+  "select": "Выбрать",
+  "mainPage":"Главная Страница",
+  "patientsVisit":"Посещения пациентов",
+  "patients":"Пациенты",
+  "services":"Услуги",
+  "selectPatients":"Выбор пациента",
+  "servicesManagement":"Управление услугами",
+  "serviceName":"Наименование услуги"
 }

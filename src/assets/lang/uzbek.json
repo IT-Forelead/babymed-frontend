@@ -54,5 +54,21 @@
   "plsEnterPatientAddress": "Iltimos, bemor manzilini kiriting!",
   "patientCreated": "Bemor muvaffaqiyatli yaratildi!",
   "errorGettingPatients": "Bemorlarni qabul qilishda xatolik yuz berdi!",
-  "errorCreatingPatient": "Bemorni yaratishda xatolik yuz berdi!"
+  "errorCreatingPatient": "Bemorni yaratishda xatolik yuz berdi!",
+  "changePaymentStatus":"To'lov holatini o'zgartirish",
+  "clickToChangePaymentStatus":"Iltimos, to'lov holatini o'zgartirish uchun tugmani bosing!",
+  "notPaid":"To'lanmagan",
+  "fullyPaid":"To'liq to'langan",
+  "cancel": "Bekor qilish",
+  "notFound": "Sahifa topilmadi",
+  "sorry": "Uzur",
+  "returnToHomePage": "Bosh sahifaga qaytish",
+  "select": "Tanlash",
+  "mainPage":"Bosh sahifa",
+  "patientsVisit":"Bemor tashriflari",
+  "patients":"Bemorlar",
+  "services":"Xizmatlar",
+  "selectPatients":"Bemor tanlash",
+  "servicesManagement":"Xizmatlarni boshqarish",
+  "serviceName":"Xizmat nomi"
 }

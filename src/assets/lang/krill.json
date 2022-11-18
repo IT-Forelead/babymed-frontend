@@ -54,5 +54,21 @@
   "plsEnterPatientAddress": "Илтимос, бемор манзилини киритинг!",
   "patientCreated": "Бемор муваффақиятли яратилди!",
   "errorGettingPatients": "Беморларни қабул қилишда хатолик юз берди!",
-  "errorCreatingPatient": "Беморни яратишда хатолик юз берди!"
+  "errorCreatingPatient": "Беморни яратишда хатолик юз берди!",
+  "changePaymentStatus":"Тўлов ҳолатини ўзгартириш",
+  "clickToChangePaymentStatus":"Илтимос, тўлов ҳолатини ўзгартириш учун тугмани босинг!",
+  "notPaid":"Тўланмаган",
+  "fullyPaid":"Тўлиқ тўланган",
+  "cancel": "Бекор қилиш",
+  "notFound": "Саҳифа топилмади",
+  "sorry": "Узур",
+  "returnToHomePage": "Бош саҳифага қайтиш",
+  "select": "Танлаш",
+  "mainPage":"Бош саҳифа",
+  "patientsVisit":"Бемор ташрифлари",
+  "patients":"Беморлар",
+  "services":"Хизматлар",
+  "selectPatients":"Бемор танлаш",
+  "servicesManagement":"Хизматларни бошқариш",
+  "serviceName":"Хизмат номи"
 }

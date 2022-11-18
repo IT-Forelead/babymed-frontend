@@ -62,7 +62,7 @@ onMounted(() => {
         <div class="clear-both"></div>
         <div class="space-y-5">
           <div>
-            <p>Select Patients</p>
+            <p>{{$t('selectPatients')}}</p>
             <SelectOption :options="patients" />
           </div>
           <!-- <div>

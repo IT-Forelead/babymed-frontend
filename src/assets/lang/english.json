@@ -54,5 +54,21 @@
   "plsEnterPatientAddress": "Please enter patient address!",
   "patientCreated": "Patient successfully created!",
   "errorGettingPatients": "Error while getting patients!",
-  "errorCreatingPatient": "Error while creating patient!"
+  "errorCreatingPatient": "Error while creating patient!",
+  "changePaymentStatus":"Change Payment Status",
+  "clickToChangePaymentStatus":"Please click payment status to change it!",
+  "notPaid":"Not Paid",
+  "fullyPaid":"Fully paid",
+  "cancel": "Cancel",
+  "notFound": "Page Not Found",
+  "sorry": "Sorry",
+  "returnToHomePage": "Return to Home Page",
+  "select": "Select",
+  "mainPage":"Main Page",
+  "patientsVisit":"Patients Visit",
+  "patients":"Patients",
+  "services":"Services",
+  "selectPatients":"Select Patients",
+  "servicesManagement":"Services Management",
+  "serviceName":"Service Name"
 }
