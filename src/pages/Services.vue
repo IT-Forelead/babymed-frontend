@@ -41,11 +41,11 @@ const clearFields = () => {
 const submitServiceData = () => {
   if (!serviceData.name) {
     notify.warning({
-      message: 'Please enter service name!',
+      message: t('plsEnterServiceName'),
     })
   } else if (serviceData.cost == 0) {
     notify.warning({
-      message: 'Please enter service price!',
+      message: t('plsEnterServicePrice'),
     })
   } else {
     isLoading.value = true
@@ -76,7 +76,7 @@ const submitServiceData = () => {
 <template>
   <div class="w-full">
     <div class="flex items-center justify-between bg-white rounded-lg p-3">
-      <p class="text-3xl font-bold">{{$t('serviceManagment')}}</p>
+      <p class="text-3xl font-bold">{{ $t('serviceManagment') }}</p>
       <select class="border-none rounded-lg bg-gray-100 capitalize text-gray-400">
         <option value="" selected>{{ $t('sortBy') }}</option>
         <option value="1">Sort 1</option>
@@ -87,11 +87,11 @@ const submitServiceData = () => {
       <div class="bg-white rounded-lg mt-3 p-3">
         <div class="space-y-5">
           <label for="serviceName">
-            {{$t('serviceName')}}
+            {{ $t('serviceName') }}
             <input v-model="serviceData.name" class="text-gray-500 mb-3 border-none bg-gray-100 rounded-lg w-full text-lg" type="text" id="serviceName" placeholder="Enter service name" />
           </label>
           <label for="servicePrice">
-            Service price
+            {{ $t('servicePrice') }}
             <money3 v-model="serviceData.cost" v-bind="moneyConf" id="servicePrice" class="border-none text-right text-gray-500 bg-gray-100 rounded-lg w-full text-lg"> </money3>
           </label>
           <div @click="submitServiceData()" :class="isLoading ? 'bg-gray-600' : 'bg-gray-900 hover:bg-gray-800 cursor-pointer'" class="w-full py-3 text-white rounded-lg flex items-center justify-center">
@@ -102,7 +102,7 @@ const submitServiceData = () => {
                 fill="currentFill"
               />
             </svg>
-            <span>{{ isLoading ? 'Saving Service' : 'Save Service' }}</span>
+            <span>{{ isLoading ? t('creatingService') : t('createService') }}</span>
           </div>
         </div>
       </div>
@@ -111,8 +111,8 @@ const submitServiceData = () => {
           <thead class="sticky z-10 top-0 bg-white shadow">
             <tr class="text-gray-600 capitalize text-lg leading-normal">
               <th class="py-3 px-6 text-center">{{ $t('n') }}</th>
-              <th class="py-3 px-6 text-left">{{$t('ServiceName')}}</th>
-              <th class="py-3 px-6 text-left">Price</th>
+              <th class="py-3 px-6 text-left">{{ $t('serviceName') }}</th>
+              <th class="py-3 px-6 text-left">{{ $t('servicePrice') }}</th>
               <th class="py-3 px-6 text-center">{{ $t('actions') }}</th>
             </tr>
           </thead>
@@ -125,4 +125,5 @@ const submitServiceData = () => {
     </div>
   </div>
 </template>
+
 <style scoped></style>

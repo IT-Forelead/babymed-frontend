@@ -27,19 +27,19 @@ const clearForm = () => {
 const submitUserData = () => {
   if (!userForm.firstname) {
     notify.warning({
-      message: t('plsEnterPatientFirstname'),
+      message: t('plsEnterUserFirstname'),
     })
   } else if (!userForm.lastname) {
     notify.warning({
-      message: t('plsEnterPatientLastname'),
+      message: t('plsEnterUserLastname'),
     })
   } else if (!userForm.role) {
     notify.warning({
-      message: t('plsEnterPatientBirthday'),
+      message: t('plsSelectUserRole'),
     })
   } else if (!userForm.phone) {
     notify.warning({
-      message: t('plsEnterPatientPhone'),
+      message: t('plsEnterUserPhone'),
     })
   } else {
     isLoading.value = true
@@ -52,7 +52,7 @@ const submitUserData = () => {
       .then(() => {
         clearForm()
         notify.success({
-          message: t('patientCreated'),
+          message: t('userCreated'),
         })
         UserService.getUsers({})
           .then((res) => {
@@ -63,14 +63,14 @@ const submitUserData = () => {
           })
           .catch(() => {
             notify.error({
-              message: t('errorGettingPatients'),
+              message: t('errorGettingUsers'),
             })
           })
         isLoading.value = false
       })
       .catch((err) => {
         notify.error({
-          message: t('errorCreatingPatient'),
+          message: t('errorCreatingUser'),
         })
         setTimeout(() => {
           isLoading.value = false
@@ -91,9 +91,9 @@ const submitUserData = () => {
       <input v-model="userForm.lastname" class="text-gray-500 border-none mb-3 bg-gray-100 rounded-lg w-full text-lg" type="text" id="lastname" :placeholder="$t('enterLastname')" />
     </label>
     <label for="">
-      Role<br />
+      {{ $t('role') }}<br />
       <select v-model="userForm.role" class="rounded-lg w-full text-gray-500 border-none bg-gray-100 p-2.5 mb-3">
-        <option value="">Select Role</option>
+        <option value="">{{ $t('selectRole') }}</option>
         <option value="admin">Admin</option>
         <option value="doctor">Doctor</option>
       </select>
@@ -110,7 +110,7 @@ const submitUserData = () => {
           fill="currentFill"
         />
       </svg>
-      <span>{{ isLoading ? 'Creating User' : 'Create User' }}</span>
+      <span>{{ isLoading ? t('creatingUser') : t('createUser') }}</span>
     </div>
   </div>
 </template>
