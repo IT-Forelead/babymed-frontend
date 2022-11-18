@@ -5,6 +5,7 @@ import { useVisitStore } from '../store/visit.store'
 import VisitsReportItem from '../components/VisitsReportItem.vue'
 import AddVisit from '../components/AddVisit.vue'
 import { useModalStore } from '../store/modal.store'
+import { onMounted } from 'vue'
 
 const API_URL = import.meta.env.VITE_BASE_URL
 
@@ -15,15 +16,15 @@ const visits = computed(() => {
 })
 
 const target = ref('.patients-wrapper')
-const distance = ref(200)
+const distance = ref(10)
 
 let page = 0
 const loadPatients = async ($state) => {
   page++
-  let additional = total.value % 30 == 0 ? 0 : 1
-  if (total.value !== 0 && total.value / 30 + additional >= page) {
+  let additional = total.value % 12 == 0 ? 0 : 1
+  if (total.value !== 0 && total.value / 12 + additional >= page) {
     try {
-      const response = await fetch(`${API_URL}/visit/report?page=${page}`, {
+      const response = await fetch(`${API_URL}/visit/report?page=${page}&limit=12`, {
         method: 'POST',
         body: JSON.stringify({}),
         headers: authHeader(),
@@ -39,6 +40,9 @@ const loadPatients = async ($state) => {
     }
   } else $state.loaded()
 }
+onMounted(() => {
+  useVisitStore().clearStore()
+})
 </script>
 
 <template>

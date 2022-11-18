@@ -88,7 +88,7 @@ const submitVisitData = () => {
     })
       .then(() => {
         notify.success({
-          message: t('plsSelectService'),
+          message: 'Visit successfully created!',
         })
         VisitService.getVisits({}).then((res) => {
           useVisitStore().clearStore()
