@@ -2,9 +2,10 @@
 import SearchIcon from '../assets/icons/SearchIcon.vue'
 import BellIcon from '../assets/icons/BellIcon.vue'
 import Registration from './Home/Registration.vue'
-import { computed } from '@vue/reactivity';
-import { useRouter } from 'vue-router';
-import ChangePaymentStatus from './Payments/ChangePaymentStatus.vue';
+import { computed } from '@vue/reactivity'
+import { useRouter } from 'vue-router'
+import ChangePaymentStatus from './Payments/ChangePaymentStatus.vue'
+import DeleteAlert from './DeleteAlert.vue'
 
 const router = useRouter()
 
@@ -19,6 +20,8 @@ const currentLabel = computed(() => {
     return 'Main Page'
   } else if (router.currentRoute?.value?.path === '/services') {
     return 'Services Page'
+  } else if (router.currentRoute?.value?.path === '/users') {
+    return 'Users Management'
   }
 })
 </script>
@@ -46,7 +49,9 @@ const currentLabel = computed(() => {
     <!-- Registration Modal (Payment & Patient) -->
     <Registration />
     <!-- Payment Status Changer Modal -->
-    <ChangePaymentStatus/>
+    <ChangePaymentStatus />
+    <!-- Delete Alert -->
+    <DeleteAlert />
   </div>
 </template>
 

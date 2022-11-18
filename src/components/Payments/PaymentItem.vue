@@ -40,7 +40,7 @@ const deletePayment = (p_id) => {
         <div class="mr-2">
           <UserIcon class="w-10 h-10 rounded-full border p-2" />
         </div>
-        <span class="text-lg font-medium capitalize">{{ payment?.customer?.firstname + ' ' + payment?.customer?.lastname }}</span>
+        <span class="text-lg font-medium capitalize">{{ payment?.patient?.firstname + ' ' + payment?.patient?.lastname }}</span>
       </div>
     </td>
     <td class="py-3 px-6">{{ moment(payment?.payment?.createdAt).format('MM/DD/YYYY h:mm:ss') }}</td>

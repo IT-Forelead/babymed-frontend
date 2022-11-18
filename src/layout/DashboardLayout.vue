@@ -6,7 +6,7 @@ import { useSidebarStore } from '../store/sidebar.store'
 import { computed } from '@vue/runtime-core'
 import { useModalStore } from '../store/modal.store'
 const isOpen = computed(() => useSidebarStore().isOpenSidebar)
-const isShowCloseSidebarBtn = computed(() => useModalStore().isModalOpen || useModalStore().isOpenPaymentStatusChangerModal)
+const isShowCloseSidebarBtn = computed(() => useModalStore().isModalOpen || useModalStore().isOpenPaymentStatusChangerModal || useModalStore().isDeleteAlert)
 </script>
 <template>
   <div class="flex h-screen overflow-y-hidden bg-white relative">

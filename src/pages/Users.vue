@@ -28,9 +28,11 @@ onMounted(() => {
   getServices()
 })
 
-const serviceData = reactive({
-  name: '',
-  cost: 0,
+const userFormData = reactive({
+  firstname: '',
+  lastname: '',
+  role: '',
+  phone: '',
 })
 
 const clearFields = () => {
@@ -75,24 +77,36 @@ const submitServiceData = () => {
 
 <template>
   <div class="w-full">
-    <div class="flex items-center justify-between bg-white rounded-lg p-3">
-      <p class="text-3xl font-bold">{{$t('serviceManagment')}}</p>
+    <!-- <div class="flex items-center justify-between bg-white rounded-lg p-3">
+      <p class="text-3xl font-bold">Services Management</p>
       <select class="border-none rounded-lg bg-gray-100 capitalize text-gray-400">
         <option value="" selected>{{ $t('sortBy') }}</option>
         <option value="1">Sort 1</option>
         <option value="2">Sort 2</option>
       </select>
-    </div>
+    </div> -->
     <div class="grid grid-cols-3 gap-3">
       <div class="bg-white rounded-lg mt-3 p-3">
         <div class="space-y-5">
-          <label for="serviceName">
-            {{$t('serviceName')}}
-            <input v-model="serviceData.name" class="text-gray-500 mb-3 border-none bg-gray-100 rounded-lg w-full text-lg" type="text" id="serviceName" placeholder="Enter service name" />
+          <label for="firstname">
+            Firstname
+            <input v-model="userFormData.firstname" class="text-gray-500 mb-3 border-none bg-gray-100 rounded-lg w-full text-lg" type="text" id="firstname" placeholder="Enter firstname" />
           </label>
-          <label for="servicePrice">
-            Service price
-            <money3 v-model="serviceData.cost" v-bind="moneyConf" id="servicePrice" class="border-none text-right text-gray-500 bg-gray-100 rounded-lg w-full text-lg"> </money3>
+          <label for="lastname">
+            Lastname
+            <input v-model="userFormData.lastname" class="text-gray-500 border-none mb-3 bg-gray-100 rounded-lg w-full text-lg" type="text" id="lastname" placeholder="Enter lastname" />
+          </label>
+          <label for="">
+            Role <br>
+            <select v-model="userFormData.role" class="rounded-lg w-full text-gray-500 border-none bg-gray-100 p-2.5 mb-3">
+              <option value="">Select Role</option>
+              <option value="admin">Admin</option>
+              <option value="doctor">Doctor</option>
+            </select>
+          </label>
+          <label for="phone">
+            <p class="font-medium text-gray-500 pb-2">{{ $t('mobilePhone') }}</p>
+            <input id="phone" v-mask="'+998(##) ###-##-##'" v-model="userFormData.phone" type="text" class="text-gray-500 mb-3 border-none bg-gray-100 rounded-lg w-full text-lg" placeholder="+998(00) 000-00-00" />
           </label>
           <div @click="submitServiceData()" :class="isLoading ? 'bg-gray-600' : 'bg-gray-900 hover:bg-gray-800 cursor-pointer'" class="w-full py-3 text-white rounded-lg flex items-center justify-center">
             <svg v-if="isLoading" class="mr-2 w-5 h-5 text-gray-200 animate-spin dark:text-gray-600 fill-gray-600 dark:fill-gray-300" viewBox="0 0 100 101" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -102,7 +116,7 @@ const submitServiceData = () => {
                 fill="currentFill"
               />
             </svg>
-            <span>{{ isLoading ? 'Saving Service' : 'Save Service' }}</span>
+            <span>{{ isLoading ? 'Creating User' : 'Create User' }}</span>
           </div>
         </div>
       </div>
@@ -111,7 +125,7 @@ const submitServiceData = () => {
           <thead class="sticky z-10 top-0 bg-white shadow">
             <tr class="text-gray-600 capitalize text-lg leading-normal">
               <th class="py-3 px-6 text-center">{{ $t('n') }}</th>
-              <th class="py-3 px-6 text-left">{{$t('ServiceName')}}</th>
+              <th class="py-3 px-6 text-left">Service Name</th>
               <th class="py-3 px-6 text-left">Price</th>
               <th class="py-3 px-6 text-center">{{ $t('actions') }}</th>
             </tr>
