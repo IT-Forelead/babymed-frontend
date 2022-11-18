@@ -83,6 +83,7 @@
   "createUser":"Create user",
   "creatingUser":"Creating user",
   "serviceManagment":"Service Managment",
+  "enterServiceName":"Enter service name",
   "plsEnterServiceName":"Please enter service name!",
   "plsEnterServicePrice":"Please enter service price!",
   "serviceCreated":"Service successfully created!",
@@ -91,10 +92,12 @@
   "creatingService":"Creating service",
   "users":"Users",
   "addVisit":"Add visit",
+  "visitsReport":"Visits report",
   "doYouDelete":"Are you sure you want to delete this data?",
   "yesImSure":"Yes, I'm sure",
   "noCancel":"No, cancel",
   "closeModal":"Close modal",
   "selectDoctor":"Select doctor",
-  "selectService":"Select service"
+  "selectService":"Select service",
+  "userFullname":"User fullname"
 }

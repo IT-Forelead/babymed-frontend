@@ -45,7 +45,7 @@ onMounted(() => {
 <template>
   <div class="bg-white rounded-lg w-full p-5">
     <div class="flex items-center justify-between">
-      <p class="text-3xl font-bold">Visit Reports</p>
+      <p class="text-3xl font-bold">{{ $t('visitsReport') }}</p>
       <div class="flex items-center justify-center space-x-3">
         <select class="border-none rounded-lg bg-gray-100 capitalize text-gray-400">
           <option value="" selected>{{ $t('sortBy') }}</option>
@@ -53,7 +53,7 @@ onMounted(() => {
           <option value="2">Sort 2</option>
         </select>
         <div @click="useModalStore().openModal()" class="bg-black text-white rounded-xl p-2 px-4 cursor-pointer hover:bg-black/75">
-          <p class="text-base">+ Add Visit</p>
+          <p class="text-base">+ {{ $t('addVisit') }}</p>
         </div>
       </div>
     </div>

@@ -83,6 +83,7 @@
   "createUser":"Фойдаланувчи яратиш",
   "creatingUser":"Фойдаланувчи яратилмоқда",
   "serviceManagment":"Хизмат бошқаруви",
+  "enterServiceName":"Хизмат номини киритинг",
   "plsEnterServiceName":"Илтимос, хизмат номини киритинг!",
   "plsEnterServicePrice":"Илтимос, хизмат нархини киритинг!",
   "serviceCreated":"Хизмат муваффақиятли яратилди!",
@@ -91,10 +92,12 @@
   "creatingService":"Хизмат яратилмоқда",
   "users":"Фойдаланувчилар",
   "addVisit":"Ташриф қўшиш",
+  "visitsReport":"Ташрифлар ҳисоботи",
   "doYouDelete":"Ушбу маълумотларни ўчириб ташламоқчимисиз?",
   "yesImSure":"Ҳа, ишончим комил",
   "noCancel":"Йўқ, бекор қилинг",
   "closeModal":"Модални ёпиш",
   "selectDoctor":"Шифокорни танлаш",
-  "selectService":"Хизматни танлаш"
+  "selectService":"Хизматни танлаш",
+  "userFullname":"Фойдаланувчи исми"
 }

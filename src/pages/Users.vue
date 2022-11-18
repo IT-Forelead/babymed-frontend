@@ -78,14 +78,14 @@ const submitServiceData = () => {
 
 <template>
   <div class="w-full">
-    <!-- <div class="flex items-center justify-between bg-white rounded-lg p-3">
+    <div class="flex items-center justify-between bg-white rounded-lg p-3">
       <p class="text-3xl font-bold">Services Management</p>
       <select class="border-none rounded-lg bg-gray-100 capitalize text-gray-400">
         <option value="" selected>{{ $t('sortBy') }}</option>
         <option value="1">Sort 1</option>
         <option value="2">Sort 2</option>
       </select>
-    </div> -->
+    </div>
     <div class="grid grid-cols-3 gap-3">
       <AddUser />
       <div class="max-h-[77vh] overflow-auto mt-3 col-span-2 bg-white rounded-lg">
@@ -93,8 +93,9 @@ const submitServiceData = () => {
           <thead class="sticky z-10 top-0 bg-white shadow">
             <tr class="text-gray-600 capitalize text-lg leading-normal">
               <th class="py-3 px-6 text-center">{{ $t('n') }}</th>
-              <th class="py-3 px-6 text-left">Service Name</th>
-              <th class="py-3 px-6 text-left">Price</th>
+              <th class="py-3 px-6 text-left">{{ $t('userFullname') }}</th>
+              <th class="py-3 px-6 text-left">{{ $t('role') }}</th>
+              <th class="py-3 px-6 text-left">{{ $t('phone') }}</th>
               <th class="py-3 px-6 text-center">{{ $t('actions') }}</th>
             </tr>
           </thead>
@@ -107,4 +108,5 @@ const submitServiceData = () => {
     </div>
   </div>
 </template>
+
 <style scoped></style>

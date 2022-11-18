@@ -88,7 +88,7 @@ const submitServiceData = () => {
         <div class="space-y-5">
           <label for="serviceName">
             {{ $t('serviceName') }}
-            <input v-model="serviceData.name" class="text-gray-500 mb-3 border-none bg-gray-100 rounded-lg w-full text-lg" type="text" id="serviceName" placeholder="Enter service name" />
+            <input v-model="serviceData.name" class="text-gray-500 mb-3 border-none bg-gray-100 rounded-lg w-full text-lg" type="text" id="serviceName" :placeholder="$t('enterServiceName')" />
           </label>
           <label for="servicePrice">
             {{ $t('servicePrice') }}
@@ -102,7 +102,7 @@ const submitServiceData = () => {
                 fill="currentFill"
               />
             </svg>
-            <span>{{ isLoading ? t('creatingService') : t('createService') }}</span>
+            <span>{{ isLoading ? $t('creatingService') : $t('createService') }}</span>
           </div>
         </div>
       </div>

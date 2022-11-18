@@ -83,6 +83,7 @@
   "createUser":"Создать пользователя",
   "creatingUser":"Создание пользователя",
   "serviceManagment":"Управление услугами",
+  "enterServiceName":"Введите название службы",
   "plsEnterServiceName":"Пожалуйста, введите имя службы!",
   "plsEnterServicePrice":"Введите стоимость услуги!",
   "serviceCreated":"Сервис успешно создан!",
@@ -91,10 +92,12 @@
   "creatingService":"Создание сервиса",
   "users":"Пользователи",
   "addVisit":"Добавить визит",
+  "visitsReport":"Отчет о посещениях",
   "doYouDelete":"Вы уверены, что хотите удалить эти данные?",
   "yesImSure":"Да, я уверен",
   "noCancel":"Нет, отменить",
   "closeModal":"Закрыть модальное окно",
   "selectDoctor":"Выберите врача",
-  "selectService":"Выберите сервис"
+  "selectService":"Выберите сервис",
+  "userFullname":"Имя пользователя"
 }
