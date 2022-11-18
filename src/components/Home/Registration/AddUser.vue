@@ -57,9 +57,7 @@ const submitUserData = () => {
         UserService.getUsers({})
           .then((res) => {
             useUserStore().clearStore()
-            setTimeout(() => {
-              useUserStore().setUsers(res?.data)
-            }, 500)
+            useUserStore().setUsers(res?.data)
           })
           .catch(() => {
             notify.error({

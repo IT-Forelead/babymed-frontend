@@ -11,6 +11,9 @@ class UserService {
   async getAllDoctors(data) {
     return AxiosService.post('/user/report', data, { headers: authHeader() })
   }
+  async deleteUser(id) {
+    return AxiosService.get(`/user/delete/${id}`, { headers: authHeader() })
+  }
 }
 
 export default new UserService()
