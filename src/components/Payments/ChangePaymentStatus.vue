@@ -3,6 +3,12 @@ import { useModalStore } from '../../store/modal.store'
 import { useTabStore } from '../../store/tab.store'
 import TimesIcon from '../../assets/icons/TimesIcon.vue'
 import CheckIcon from '../../assets/icons/CheckIcon.vue'
+import { useVisitStore } from '../../store/visit.store'
+import { computed } from 'vue'
+
+const patient = computed(() => {
+  return useVisitStore().selectedPatient
+})
 </script>
 <template>
   <div v-if="useModalStore().isOpenPaymentStatusChangerModal" class="overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 backdrop-blur bg-gray-900/75 w-full max-h-screen md:inset-0 md:h-full">
@@ -17,14 +23,15 @@ import CheckIcon from '../../assets/icons/CheckIcon.vue'
           </button>
         </div>
         <div class="p-4 space-y-5">
+          <p>{{ patient }}</p>
           <p class="mb-3 text-center">{{ $t('clickToChangePaymentStatus') }}</p>
           <div class="flex items-center justify-center space-x-3">
-            <div @click="useTabStore().changeTab('not paid')" :class="useTabStore().isNotPaid ? 'border-green-500 text-green-500 border' : 'border-gray-200 border text-gray-600 cursor-pointer hover:shadow hover:scale-105'" class="flex items-center justify-center p-2 rounded-lg px-3 transition-all duration-300">
+            <div @click="useTabStore().changeTab('not_paid')" :class="useTabStore().isNotPaid ? 'border-green-500 text-green-500 border' : 'border-gray-200 border text-gray-600 cursor-pointer hover:shadow hover:scale-105'" class="flex items-center justify-center p-2 rounded-lg px-3 transition-all duration-300">
               <CheckIcon v-if="useTabStore().isNotPaid" class="w-6 h-6 mr-2" />
               <p>{{ $t('notPaid') }}</p>
             </div>
             <!-- <div @click="useTabStore().changeTab('partially paid')" :class="useTabStore().isPartiallyPaid ? 'bg-indigo-600 text-white' : 'bg-gray-200 text-gray-600 cursor-pointer hover:shadow hover:scale-105'" class="flex items-center justify-center p-2 rounded-lg px-6 transition-all duration-300">Partially paid</div> -->
-            <div @click="useTabStore().changeTab('fully paid')" :class="useTabStore().isFullyPaid ? 'border-green-500 text-green-500 border' : 'border-gray-200 border text-gray-600 cursor-pointer hover:shadow hover:scale-105'" class="flex items-center justify-center p-2 rounded-lg px-3 transition-all duration-300">
+            <div @click="useTabStore().changeTab('fully_paid')" :class="useTabStore().isFullyPaid ? 'border-green-500 text-green-500 border' : 'border-gray-200 border text-gray-600 cursor-pointer hover:shadow hover:scale-105'" class="flex items-center justify-center p-2 rounded-lg px-3 transition-all duration-300">
               <CheckIcon v-if="useTabStore().isFullyPaid" class="w-6 h-6 mr-2" />
               <p>{{ $t('fullyPaid') }}</p>
             </div>

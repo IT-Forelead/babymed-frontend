@@ -9,6 +9,7 @@ import { toRefs } from 'vue'
 import moment from 'moment'
 import { useRouter } from 'vue-router'
 import { useModalStore } from '../store/modal.store'
+import { useVisitStore } from '../store/visit.store'
 import useMoneyFormatter from '../mixins/currencyFormatter'
 
 const router = useRouter()
@@ -19,8 +20,9 @@ const props = defineProps({
 
 const { patients } = toRefs(props)
 
-const open = () => {
+const open = (patient) => {
   useModalStore().openPaymentStatusChangerModal()
+  useVisitStore().setSelectedPatient(patient)
 }
 
 const translatePaymentStatus = (status) => {
@@ -62,7 +64,7 @@ const translatePaymentStatus = (status) => {
     </td>
     <td v-motion-pop class="py-3 px-6 text-center">
       <div class="flex item-center justify-center">
-        <div @click="open()" class="w-4 mr-2 transform text-blue-500 hover:text-purple-500 hover:scale-110 cursor-pointer">
+        <div @click="open(patient)" class="w-4 mr-2 transform text-blue-500 hover:text-purple-500 hover:scale-110 cursor-pointer">
           <MoneyPlusIcon class="w-6 h-6" />
         </div>
         <!-- <div v-if="router.currentRoute?.value?.path === '/patients' || router.currentRoute?.value?.path === '/dashboard'" class="w-4 mr-2 transform text-blue-500 hover:text-purple-500 hover:scale-110 cursor-pointer">

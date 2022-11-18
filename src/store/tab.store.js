@@ -4,7 +4,6 @@ export const useTabStore = defineStore('tab', {
   state: () => ({
     isOpenFirstTab: true,
     isOpenSecondTab: false,
-    currentPaymentStatus: '',
     isNotPaid: false,
     isPartiallyPaid: false,
     isFullyPaid: false,
@@ -19,15 +18,14 @@ export const useTabStore = defineStore('tab', {
       this.isOpenSecondTab = true
     },
     changeTab(status) {
-      this.currentPaymentStatus = status
-      if (this.currentPaymentStatus.includes('not paid')) {
+      if (status.includes('not_paid')) {
         this.isNotPaid = true
         this.isPartiallyPaid = false
         this.isFullyPaid = false
-      } else if (this.currentPaymentStatus.includes('partially paid')) {
-        this.isPartiallyPaid = true
-        this.isNotPaid = false
-        this.isFullyPaid = false
+      // } else if (this.currentPaymentStatus.includes('partially paid')) {
+      //   this.isPartiallyPaid = true
+      //   this.isNotPaid = false
+      //   this.isFullyPaid = false
       } else {
         this.isFullyPaid = true
         this.isPartiallyPaid = false
