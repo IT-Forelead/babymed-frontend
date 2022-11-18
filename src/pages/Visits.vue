@@ -13,15 +13,15 @@ const visits = computed(() => {
   return useVisitStore().patients
 })
 const target = ref('.patients-wrapper')
-const distance = ref(200)
+const distance = ref(10)
 
 let page = 0
 const loadPatients = async ($state) => {
   page++
-  let additional = total.value % 30 == 0 ? 0 : 1
-  if (total.value !== 0 && total.value / 30 + additional >= page) {
+  let additional = total.value % 10 == 0 ? 0 : 1
+  if (total.value !== 0 && total.value / 10 + additional >= page) {
     try {
-      const response = await fetch(`${API_URL}/visit/report?page=${page}`, {
+      const response = await fetch(`${API_URL}/visit/report?page=${page}&limit=10`, {
         method: 'POST',
         body: JSON.stringify({}),
         headers: authHeader(),

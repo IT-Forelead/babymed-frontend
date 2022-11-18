@@ -3,7 +3,6 @@ import authHeader from '../mixins/auth-header'
 import { computed, ref } from '@vue/reactivity'
 import { useVisitStore } from '../store/visit.store'
 import VisitsReportItem from '../components/VisitsReportItem.vue'
-import 'izitoast/dist/css/iziToast.min.css'
 import AddVisit from '../components/AddVisit.vue'
 import { useModalStore } from '../store/modal.store'
 

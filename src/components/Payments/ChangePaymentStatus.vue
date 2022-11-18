@@ -6,10 +6,42 @@ import CheckIcon from '../../assets/icons/CheckIcon.vue'
 import { useVisitStore } from '../../store/visit.store'
 import { computed } from 'vue'
 import useMoneyFormatter from '../../mixins/currencyFormatter'
+import VisitService from '../../services/visit.service'
+import notify from 'izitoast'
+import 'izitoast/dist/css/iziToast.min.css'
 
 const patient = computed(() => {
   return useVisitStore().selectedPatient
 })
+
+const selectedStatus = computed(() => {
+  return useTabStore().currentStatus
+})
+
+const submitPaymentStatus = () => {
+  if (selectedStatus.value === patient.value?.patientVisit?.paymentStatus) {
+    notify.warning({
+      message: 'Nothing changed!',
+    })
+  } else {
+    VisitService.changePaymentStatus(patient.value?.patientVisit?.id)
+      .then(() => {
+        notify.success({
+          message: 'Payment status successfully changed!',
+        })
+        useModalStore().closePaymentStatusChangerModal()
+        VisitService.getVisits({}).then((res) => {
+          useVisitStore().clearStore()
+          useVisitStore().setPatients(res?.data)
+        })
+      })
+      .catch(() => {
+        notify.error({
+          message: 'Error while payment status changing!',
+        })
+      })
+  }
+}
 </script>
 <template>
   <div v-if="useModalStore().isOpenPaymentStatusChangerModal" class="overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 backdrop-blur bg-gray-900/75 w-full max-h-screen md:inset-0 md:h-full">
@@ -27,15 +59,15 @@ const patient = computed(() => {
           <ul class="space-y-1 border-b pb-4">
             <li class="flex justify-between items-center">
               <div class="text-base text-gray-500">Bemor:</div>
-              <div class="text-lg text-gray-700">{{ patient?.patient?.firstname + " " + patient?.patient?.lastname }}</div>
+              <div class="text-lg text-gray-700 capitalize">{{ patient?.patient?.firstname + ' ' + patient?.patient?.lastname }}</div>
             </li>
             <li class="flex justify-between items-center">
               <div class="text-base text-gray-500">Doctor:</div>
-              <div class="text-lg text-gray-700">{{ patient?.user?.firstname + " " + patient?.user?.lastname }}</div>
+              <div class="text-lg text-gray-700 capitalize">{{ patient?.user?.firstname + ' ' + patient?.user?.lastname }}</div>
             </li>
             <li class="flex justify-between items-center">
               <div class="text-base text-gray-500">Xizmat nomi:</div>
-              <div class="text-lg text-gray-700">{{ patient?.service?.name }}</div>
+              <div class="text-lg text-gray-700 capitalize">{{ patient?.service?.name }}</div>
             </li>
             <li class="flex justify-between items-center">
               <div class="text-base text-gray-500">Xizmat narxi:</div>
@@ -57,7 +89,7 @@ const patient = computed(() => {
           <hr />
           <div class="flex items-center justify-end space-x-3 mt-5 text-white">
             <div class="rounded-lg p-3 px-7 bg-gray-900 hover:bg-gray-700 cursor-pointer" @click="useModalStore().closePaymentStatusChangerModal()">{{ $t('cancel') }}</div>
-            <div class="rounded-lg p-3 px-7 bg-lime-400 hover:bg-lime-300 cursor-pointer text-black">{{ $t('save') }}</div>
+            <div @click="submitPaymentStatus()" class="rounded-lg p-3 px-7 bg-lime-400 hover:bg-lime-300 cursor-pointer text-black">{{ $t('save') }}</div>
           </div>
         </div>
       </div>
