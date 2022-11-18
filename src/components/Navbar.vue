@@ -14,7 +14,7 @@ const currentLabel = computed(() => {
     return 'Patients Visit Page'
   } else if (router.currentRoute?.value?.path === '/patients') {
     return 'Patients Page'
-  } else if (router.currentRoute?.value?.path === '/payment-visit') {
+  } else if (router.currentRoute?.value?.path === '/patient-visit') {
     return 'Payments & Visits Page'
   } else if (router.currentRoute?.value?.path === '/dashboard') {
     return 'Main Page'
@@ -42,7 +42,7 @@ const currentLabel = computed(() => {
       <div class="bg-white rounded-xl p-3 cursor-pointer hover:shadow">
         <BellIcon class="text-gray-600 h-7 w-7 fill-current" />
       </div>
-      <router-link to="/payment-visit" class="bg-gray-900 text-white rounded-xl p-3.5 px-7 cursor-pointer hover:bg-gray-800">
+      <router-link to="/patient-visit" class="bg-gray-900 text-white rounded-xl p-3.5 px-7 cursor-pointer hover:bg-gray-800">
         <p class="text-base">+ {{ $t('addRecord') }}</p>
       </router-link>
     </div>

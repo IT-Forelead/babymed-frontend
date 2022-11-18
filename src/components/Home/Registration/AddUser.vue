@@ -1,6 +1,5 @@
 <script setup>
 import { reactive, ref } from '@vue/reactivity'
-import { toRefs, watch } from 'vue'
 import UserService from '../../../services/user.service'
 import notify from 'izitoast'
 import 'izitoast/dist/css/iziToast.min.css'
@@ -15,6 +14,8 @@ const userForm = reactive({
   role: '',
   phone: '',
 })
+
+const isLoading = ref(false)
 
 const clearForm = () => {
   userForm.firstname = ''
@@ -41,6 +42,7 @@ const submitUserData = () => {
       message: t('plsEnterUserPhone'),
     })
   } else {
+    isLoading.value = true
     UserService.createUser({
       firstname: userForm.firstname,
       lastname: userForm.lastname,
@@ -64,12 +66,15 @@ const submitUserData = () => {
               message: t('errorGettingUsers'),
             })
           })
+        isLoading.value = false
       })
       .catch((err) => {
         notify.error({
           message: t('errorCreatingUser'),
         })
-        console.log('ERR', err?.message)
+        setTimeout(() => {
+          isLoading.value = false
+        }, 3000)
       })
   }
 }
