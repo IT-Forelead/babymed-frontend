@@ -4,15 +4,37 @@ import { computed, ref } from '@vue/reactivity'
 import { useVisitStore } from '../store/visit.store'
 import { onMounted } from 'vue'
 import { useModalStore } from '../store/modal.store'
-import SelectOption from '../components/SelectOptionPatient.vue'
+import { useUserStore } from '../store/user.store'
+import { usePatientStore } from '../store/patient.store'
+import UserService from '../services/user.service'
+import ServicesService from '../services/services.service'
+import PatientService from '../services/patient.service'
+import SelectOptionPatient from '../components/SelectOptionPatient.vue'
+import SelectOptionDoctor from '../components/SelectOptionDoctor.vue'
+import SelectOptionService from '../components/SelectOptionService.vue'
 import VisitsReportItem from '../components/VisitsReportItem.vue'
+import { useServicesStore } from '../store/services.store'
 
 const API_URL = import.meta.env.VITE_BASE_URL
 
 const total = ref(1)
-const patients = computed(() => {
+
+const visits = computed(() => {
   return useVisitStore().patients
 })
+
+const patients = computed(() => {
+  return usePatientStore().patients
+})
+
+const doctors = computed(() => {
+  return useUserStore().doctors
+})
+
+const services = computed(() => {
+  return useServicesStore().services
+})
+
 const target = ref('.patients-wrapper')
 const distance = ref(200)
 
@@ -41,6 +63,17 @@ const loadPatients = async ($state) => {
 
 onMounted(() => {
   useVisitStore().clearStore()
+  UserService.getAllDoctors({
+    role: 'doctor',
+  }).then((res) => {
+    useUserStore().setDoctors(res?.data)
+  })
+  ServicesService.getAllServices().then((res) => {
+    useServicesStore().setServices(res)
+  })
+  PatientService.getAllPatients({}).then((res) => {
+    usePatientStore().setPatients(res?.data)
+  })
 })
 </script>
 
@@ -57,24 +90,24 @@ onMounted(() => {
     <div class="grid grid-cols-3 gap-3 divide-x">
       <div>
         <div class="flex items-center justify-between">
-          <p class="text-3xl font-bold">Reports</p>
+          <p class="text-3xl font-bold">Add Visits</p>
           <div @click="useModalStore().openModal()" class="bg-black mt-3 text-white rounded-xl p-2.5 px-4 cursor-pointer hover:bg-black/75">
             <p class="text-base">+ {{ $t('addPatient') }}</p>
           </div>
         </div>
         <div class="space-y-5">
           <div>
-            <p>{{$t('selectPatients')}}</p>
-            <SelectOption :options="patients" />
+            <p>{{ $t('selectPatients') }}</p>
+            <SelectOptionPatient :options="patients" />
           </div>
-          <!-- <div>
+          <div>
             <p>Select Doctors</p>
-            <SelectOption :options="patients" :where-to-use="'doctors'" />
-          </div> -->
-          <!-- <div>
+            <SelectOptionDoctor :options="doctors" />
+          </div>
+          <div>
             <p>Select Sevice</p>
-            <SelectOption :options="patients" :where-to-use="'services'" />
-          </div> -->
+            <SelectOptionService :options="services" />
+          </div>
         </div>
       </div>
       <div class="max-h-[77vh] overflow-auto mt-3 patients-wrapper col-span-2">
@@ -91,7 +124,7 @@ onMounted(() => {
             </tr>
           </thead>
           <tbody class="text-gray-600 text-sm font-light">
-            <VisitsReportItem :patients="patients" :distance="distance" :target="target" @infinite="loadPatients" />
+            <VisitsReportItem :patients="visits" :distance="distance" :target="target" @infinite="loadPatients" />
           </tbody>
         </table>
         <div v-if="patients.length === 0" class="w-full text-center text-red-500">{{ $t('empty') }}</div>

@@ -8,6 +8,9 @@ class PatientService {
   async getPatients(filter) {
     return AxiosService.post('/patient/report', filter, { headers: authHeader() })
   }
+  async getAllPatients(data) {
+    return AxiosService.post('/patient/report?limit=1000', data, { headers: authHeader() })
+  }
 }
 
 export default new PatientService()
