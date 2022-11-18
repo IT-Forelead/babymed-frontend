@@ -99,5 +99,9 @@
   "closeModal":"Modalni yopish",
   "selectDoctor":"Shifokorni tanlash",
   "selectService":"Xizmatni tanlash",
-  "userFullname":"Foydalanuvchi ismi"
+  "userFullname":"Foydalanuvchi ismi",
+  "plsSelectDoctor":"Iltimos, shifokorni tanlang",
+  "plsSelectService":"Iltimos, Xizmatni tanlang",
+  "createdVisit":"Tashrif muvaffaqiyatli yaratildi!",
+  "errorCreatingVisit":"Tashrif yaratishda xatolik yuz berdi!"
 }

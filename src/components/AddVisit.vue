@@ -17,6 +17,9 @@ import notify from 'izitoast'
 import 'izitoast/dist/css/iziToast.min.css'
 import { useRouter } from 'vue-router'
 import { useModalStore } from '../store/modal.store'
+import { useI18n } from 'vue-i18n'
+
+const { t } = useI18n()
 
 const router = useRouter()
 
@@ -65,15 +68,15 @@ const selectedService = computed(() => {
 const submitVisitData = () => {
   if (!selectedPatient.value?.patient?.id) {
     notify.warning({
-      message: 'Please select patient!',
+      message: t('plsSelectPatient'),
     })
   } else if (!selectedDoctor.value?.id) {
     notify.warning({
-      message: 'Please select doctor!',
+      message: t('plsSelectDoctor'),
     })
   } else if (!selectedService.value?.id) {
     notify.warning({
-      message: 'Please select service!',
+      message: t('plsSelectService'),
     })
   } else {
     isLoading.value = true
@@ -84,7 +87,7 @@ const submitVisitData = () => {
     })
       .then(() => {
         notify.success({
-          message: 'Visit successfully created!',
+          message: t('plsSelectService'),
         })
         VisitService.getVisits({}).then((res) => {
           useVisitStore().clearStore()
@@ -96,7 +99,7 @@ const submitVisitData = () => {
       })
       .catch((err) => {
         notify.error({
-          message: 'Error while creating visit!',
+          message: t('errorCreatingVisit'),
         })
       })
   }
@@ -106,15 +109,15 @@ const submitVisitData = () => {
 <template>
   <div class="space-y-5">
     <div>
-      <p>{{ $t('selectPatients') }}</p>
+      <p>{{ $t('selectPatient') }}</p>
       <SelectOptionPatient :options="patients" />
     </div>
     <div>
-      <p>Select Doctors</p>
+      <p>{{ $t('selectDoctor') }}</p>
       <SelectOptionDoctor :options="doctors" />
     </div>
     <div>
-      <p>Select Sevice</p>
+      <p>{{ $t('selectService') }}</p>
       <SelectOptionService :options="services" />
     </div>
     <div @click="submitVisitData()" :class="isLoading ? 'bg-gray-600' : 'bg-gray-900 hover:bg-gray-800 cursor-pointer'" class="w-full py-3 text-white rounded-lg flex items-center justify-center">

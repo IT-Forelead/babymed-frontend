@@ -99,5 +99,9 @@
   "closeModal":"Close modal",
   "selectDoctor":"Select doctor",
   "selectService":"Select service",
-  "userFullname":"User fullname"
+  "userFullname":"User fullname",
+  "plsSelectDoctor":"Please select doctor",
+  "plsSelectService":"Please select service",
+  "createdVisit":"Visit successfully created!",
+  "errorCreatingVisit":"Error while creating visit!"
 }

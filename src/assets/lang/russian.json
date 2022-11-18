@@ -99,5 +99,9 @@
   "closeModal":"Закрыть модальное окно",
   "selectDoctor":"Выберите врача",
   "selectService":"Выберите сервис",
-  "userFullname":"Имя пользователя"
+  "userFullname":"Имя пользователя",
+  "plsSelectDoctor":"Выберите врача",
+  "plsSelectService":"Выберите сервис",
+  "createdVisit":"Посещение успешно создано!",
+  "errorCreatingVisit":"Ошибка при создании визита!"
 }

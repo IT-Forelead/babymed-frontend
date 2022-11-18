@@ -99,5 +99,9 @@
   "closeModal":"Модални ёпиш",
   "selectDoctor":"Шифокорни танлаш",
   "selectService":"Хизматни танлаш",
-  "userFullname":"Фойдаланувчи исми"
+  "userFullname":"Фойдаланувчи исми",
+  "plsSelectDoctor":"Илтимос, шифокорни танланг",
+  "plsSelectService":"Илтимос, Хизматни танланг",
+  "createdVisit":"Ташриф муваффақиятли яратилди!",
+  "errorCreatingVisit":"Ташриф яратишда хатолик юз берди!"
 }
