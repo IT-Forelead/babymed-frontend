@@ -90,25 +90,25 @@ onMounted(() => {
       <router-link to="/visits" class="flex items-center justify-between hover:bg-gray-800 hover:text-gray-100 p-3 rounded-lg cursor-pointer" :class="useSidebarStore().isOpenSidebar && router?.currentRoute?.value?.path === '/visits' ? 'justify-between bg-gray-800 text-gray-100' : !useSidebarStore().isOpenSidebar && router?.currentRoute?.value?.path === '/visits' ? 'bg-gray-800 text-gray-100 justify-center' : ''">
         <div class="flex items-center space-x-2">
           <VisitsIcon class="w-7 h-7" />
-          <p v-if="isOpen">{{$t('patientsVisit')}}</p>
+          <p v-if="isOpen">{{ $t('patientsVisit') }}</p>
         </div>
       </router-link>
       <router-link to="/patients" class="flex items-center justify-between hover:bg-gray-800 hover:text-gray-100 p-3 rounded-lg cursor-pointer" :class="useSidebarStore().isOpenSidebar && router?.currentRoute?.value?.path === '/patients' ? 'justify-between bg-gray-800 text-gray-100' : !useSidebarStore().isOpenSidebar && router?.currentRoute?.value?.path === '/patients' ? 'bg-gray-800 text-gray-100 justify-center' : ''">
         <div class="flex items-center space-x-2">
           <UsersIcon class="w-7 h-7" />
-          <p v-if="isOpen">{{$t('patients')}}</p>
+          <p v-if="isOpen">{{ $t('patients' )}}</p>
         </div>
       </router-link>
       <router-link to="/services" class="flex items-center justify-between hover:bg-gray-800 hover:text-gray-100 p-3 rounded-lg cursor-pointer" :class="useSidebarStore().isOpenSidebar && router?.currentRoute?.value?.path === '/services' ? 'justify-between bg-gray-800 text-gray-100' : !useSidebarStore().isOpenSidebar && router?.currentRoute?.value?.path === '/services' ? 'bg-gray-800 text-gray-100 justify-center' : ''">
         <div class="flex items-center space-x-2">
           <ServicesIcon class="w-7 h-7" />
-          <p v-if="isOpen">{{$t('services')}}</p>
+          <p v-if="isOpen">{{ $t('services') }}</p>
         </div>
       </router-link>
       <router-link to="/users" class="flex items-center justify-between hover:bg-gray-800 hover:text-gray-100 p-3 rounded-lg cursor-pointer" :class="useSidebarStore().isOpenSidebar && router?.currentRoute?.value?.path === '/users' ? 'justify-between bg-gray-800 text-gray-100' : !useSidebarStore().isOpenSidebar && router?.currentRoute?.value?.path === '/users' ? 'bg-gray-800 text-gray-100 justify-center' : ''">
         <div class="flex items-center space-x-2">
           <UserPlusIcon class="w-7 h-7" />
-          <p v-if="isOpen">Users</p>
+          <p v-if="isOpen">{{ $t('users') }}</p>
         </div>
       </router-link>
       <!-- <router-link to="/payment" class="flex items-center justify-between hover:bg-gray-800 hover:text-gray-100 p-3 rounded-lg cursor-pointer" :class="{ 'bg-gray-800 text-gray-100': router?.currentRoute?.value?.path === '/payment' }">
@@ -153,10 +153,6 @@ onMounted(() => {
       <div :class="{ 'flex-col space-x-0 space-y-3': !isOpen }" class="flex items-center justify-center space-x-5">
         <div @click="toggleLangDrop()" class="relative border border-gray-600 rounded-lg p-2 cursor-pointer hover:bg-gray-800">
           <div v-if="isLangShow" class="absolute bottom-12 bg-gray-700 rounded-lg p-1 left-0 w-24">
-            <div @click="changeLang('en')" class="flex items-center space-x-2 hover:bg-slate-600 p-1 rounded">
-              <p>English</p>
-            </div>
-            <hr />
             <div @click="changeLang('uz')" class="flex items-center space-x-2 hover:bg-slate-600 p-1 rounded">
               <p>O'zbek</p>
             </div>
@@ -167,6 +163,10 @@ onMounted(() => {
             <hr />
             <div @click="changeLang('ru')" class="flex items-center space-x-2 hover:bg-slate-600 p-1 rounded">
               <p>Русский</p>
+            </div>
+            <hr />
+            <div @click="changeLang('en')" class="flex items-center space-x-2 hover:bg-slate-600 p-1 rounded">
+              <p>English</p>
             </div>
           </div>
           <div class="text-gray-600 h-6 w-6 uppercase">{{ currentLang }}</div>

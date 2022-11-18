@@ -89,5 +89,11 @@
   "serviceCreated":"Сервис успешно создан!",
   "errorCreatingService":"Ошибка при создании службы!",
   "createService":"Создать услугу",
-  "creatingService":"Создание сервиса"
+  "creatingService":"Создание сервиса",
+  "users":"Пользователи",
+  "addVisit":"Добавить визит",
+  "doYouDelete":"Вы уверены, что хотите удалить эти данные?",
+  "yesImSure":"Да, я уверен",
+  "noCancel":"Нет, отменить",
+  "closeModal":"Закрыть модальное окно"
 }

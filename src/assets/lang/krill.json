@@ -89,5 +89,11 @@
   "serviceCreated":"Хизмат муваффақиятли яратилди!",
   "errorCreatingService": "Хизмат яратишда хатолик юз берди!",
   "createService":"Хизмат яратиш",
-  "creatingService":"Хизмат яратилмоқда"
+  "creatingService":"Хизмат яратилмоқда",
+  "users":"Фойдаланувчилар",
+  "addVisit":"Ташриф қўшиш",
+  "doYouDelete":"Ушбу маълумотларни ўчириб ташламоқчимисиз?",
+  "yesImSure":"Ҳа, ишончим комил",
+  "noCancel":"Йўқ, бекор қилинг",
+  "closeModal":"Модални ёпиш"
 }

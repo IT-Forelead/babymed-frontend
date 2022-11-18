@@ -89,5 +89,11 @@
   "serviceCreated":"Xizmat muvaffaqiyatli yaratildi!",
   "errorCreatingService": "Xizmat yaratishda xatolik yuz berdi!",
   "createService":"Xizmat yaratish",
-  "creatingService":"Xizmat yaratilmoqda"
+  "creatingService":"Xizmat yaratilmoqda",
+  "users":"Foydalanuvchilar",
+  "addVisit":"Tashrif qo'shish",
+  "doYouDelete":"Ushbu ma'lumotlarni o'chirib tashlamoqchimisiz?",
+  "yesImSure":"Ha, ishonchim komil",
+  "noCancel":"Yo'q, bekor qiling",
+  "closeModal":"Modalni yopish"
 }
