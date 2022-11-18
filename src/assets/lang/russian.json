@@ -68,7 +68,6 @@
   "patientsVisit":"Посещения пациентов",
   "patients":"Пациенты",
   "services":"Услуги",
-  "selectPatients":"Выбор пациента",
   "servicesManagement":"Управление услугами",
   "serviceName":"Наименование услуги",
   "servicePrice":"Цена услуги",
@@ -95,5 +94,7 @@
   "doYouDelete":"Вы уверены, что хотите удалить эти данные?",
   "yesImSure":"Да, я уверен",
   "noCancel":"Нет, отменить",
-  "closeModal":"Закрыть модальное окно"
+  "closeModal":"Закрыть модальное окно",
+  "selectDoctor":"Выберите врача",
+  "selectService":"Выберите сервис"
 }

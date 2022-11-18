@@ -68,7 +68,6 @@
   "patientsVisit":"Бемор ташрифлари",
   "patients":"Беморлар",
   "services":"Хизматлар",
-  "selectPatients":"Бемор танлаш",
   "servicesManagement":"Хизматларни бошқариш",
   "serviceName":"Хизмат номи",
   "servicePrice":"Хизмат нархи",
@@ -95,5 +94,7 @@
   "doYouDelete":"Ушбу маълумотларни ўчириб ташламоқчимисиз?",
   "yesImSure":"Ҳа, ишончим комил",
   "noCancel":"Йўқ, бекор қилинг",
-  "closeModal":"Модални ёпиш"
+  "closeModal":"Модални ёпиш",
+  "selectDoctor":"Шифокорни танлаш",
+  "selectService":"Хизматни танлаш"
 }

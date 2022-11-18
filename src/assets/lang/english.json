@@ -68,7 +68,6 @@
   "patientsVisit":"Patients Visit",
   "patients":"Patients",
   "services":"Services",
-  "selectPatients":"Select Patients",
   "servicesManagement":"Services Management",
   "serviceName":"Service Name",
   "servicePrice":"Service price",
@@ -95,5 +94,7 @@
   "doYouDelete":"Are you sure you want to delete this data?",
   "yesImSure":"Yes, I'm sure",
   "noCancel":"No, cancel",
-  "closeModal":"Close modal"
+  "closeModal":"Close modal",
+  "selectDoctor":"Select doctor",
+  "selectService":"Select service"
 }

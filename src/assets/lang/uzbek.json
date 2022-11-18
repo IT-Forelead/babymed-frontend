@@ -68,7 +68,6 @@
   "patientsVisit":"Bemor tashriflari",
   "patients":"Bemorlar",
   "services":"Xizmatlar",
-  "selectPatients":"Bemor tanlash",
   "servicesManagement":"Xizmatlarni boshqarish",
   "serviceName":"Xizmat nomi",
   "servicePrice":"Xizmat narxi",
@@ -95,5 +94,7 @@
   "doYouDelete":"Ushbu ma'lumotlarni o'chirib tashlamoqchimisiz?",
   "yesImSure":"Ha, ishonchim komil",
   "noCancel":"Yo'q, bekor qiling",
-  "closeModal":"Modalni yopish"
+  "closeModal":"Modalni yopish",
+  "selectDoctor":"Shifokorni tanlash",
+  "selectService":"Xizmatni tanlash"
 }

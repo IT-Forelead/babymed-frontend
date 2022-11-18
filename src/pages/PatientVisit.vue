@@ -150,15 +150,15 @@ const submitVisitData = () => {
         </div>
         <div class="space-y-5">
           <div>
-            <p>{{ $t('selectPatients') }}</p>
+            <p>{{ $t('selectPatient') }}</p>
             <SelectOptionPatient :options="patients" />
           </div>
           <div>
-            <p>Select Doctors</p>
+            <p>{{ $t('selectDoctor') }}</p>
             <SelectOptionDoctor :options="doctors" />
           </div>
           <div>
-            <p>Select Sevice</p>
+            <p>{{ $t('selectService') }}</p>
             <SelectOptionService :options="services" />
           </div>
           <div @click="submitVisitData()" :class="isLoading ? 'bg-gray-600' : 'bg-gray-900 hover:bg-gray-800 cursor-pointer'" class="w-full py-3 text-white rounded-lg flex items-center justify-center">
