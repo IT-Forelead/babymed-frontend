@@ -4,8 +4,9 @@ import BellIcon from '../assets/icons/BellIcon.vue'
 import Registration from './Home/Registration.vue'
 import { computed } from '@vue/reactivity'
 import { useRouter } from 'vue-router'
-import ChangePaymentStatus from './Payments/ChangePaymentStatus.vue'
 import DeleteAlert from './DeleteAlert.vue'
+import ChangePaymentStatus from './Payments/ChangePaymentStatus.vue'
+import AddVisitModal from './AddVisitModal.vue'
 
 const router = useRouter()
 
@@ -52,6 +53,8 @@ const currentLabel = computed(() => {
     <ChangePaymentStatus />
     <!-- Delete Alert -->
     <DeleteAlert />
+    <!-- Add Visit Modal -->
+    <AddVisitModal />
   </div>
 </template>
 

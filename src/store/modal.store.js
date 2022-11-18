@@ -6,6 +6,7 @@ export const useModalStore = defineStore('modal', {
     isOpenPaymentStatusChangerModal: false,
     isDeleteAlert: false,
     confirmDelete: false,
+    isOpenAddVisitModal: false
   }),
   actions: {
     openModal() {
@@ -25,6 +26,12 @@ export const useModalStore = defineStore('modal', {
     },
     closeDeleteAlert() {
       this.isDeleteAlert = false
+    },
+    openAddVisitModal() {
+      this.isOpenAddVisitModal = true
+    },
+    closeAddVisitModal() {
+      this.isOpenAddVisitModal = false
     },
     allowDelete() {
       this.confirmDelete = true
