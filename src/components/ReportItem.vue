@@ -9,6 +9,7 @@ import { toRefs } from 'vue'
 import moment from 'moment'
 import { useRouter } from 'vue-router'
 import { useModalStore } from '../store/modal.store'
+import { useDropStore } from '../store/drop.store'
 
 const router = useRouter()
 
@@ -18,8 +19,9 @@ const props = defineProps({
 
 const { patients } = toRefs(props)
 
-const open = () => {
-  useModalStore().openPaymentStatusChangerModal()
+const addVisitThisPatient = (patient) => {
+  useDropStore().setSelectPatientOption(patient)
+  useModalStore().openAddVisitModal()
 }
 </script>
 <template>
@@ -45,13 +47,10 @@ const open = () => {
     </td>
     <td v-motion-pop class="py-3 px-6 text-center">
       <div class="flex item-center justify-center">
-        <div v-if="router.currentRoute?.value?.path === '/visits'" @click="open()" class="w-4 mr-2 transform text-blue-500 hover:text-purple-500 hover:scale-110 cursor-pointer">
-          <MoneyPlusIcon class="w-6 h-6" />
-        </div>
         <!-- <div v-if="router.currentRoute?.value?.path === '/patients' || router.currentRoute?.value?.path === '/dashboard'" class="w-4 mr-2 transform text-blue-500 hover:text-purple-500 hover:scale-110 cursor-pointer">
           <EditIcon class="w-6 h-6" />
         </div> -->
-        <div v-if="router.currentRoute?.value?.path === '/patients' || router.currentRoute?.value?.path === '/dashboard'" class="w-4 mr-2 transform text-blue-500 hover:text-purple-500 hover:scale-110 cursor-pointer">
+        <div v-if="router.currentRoute?.value?.path === '/patients' || router.currentRoute?.value?.path === '/dashboard'" @click="addVisitThisPatient(patient)" class="w-4 mr-2 transform text-blue-500 hover:text-purple-500 hover:scale-110 cursor-pointer">
           <PlusIcon class="w-6 h-6" />
         </div>
       </div>

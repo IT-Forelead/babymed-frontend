@@ -1,9 +1,7 @@
 <script setup>
-import authHeader from '../mixins/auth-header'
 import { computed, ref } from '@vue/reactivity'
 import { useVisitStore } from '../store/visit.store'
 import { onMounted } from 'vue'
-import { useModalStore } from '../store/modal.store'
 import { useUserStore } from '../store/user.store'
 import { usePatientStore } from '../store/patient.store'
 import { useServicesStore } from '../store/services.store'
@@ -17,6 +15,10 @@ import SelectOptionPatient from './SelectOptionPatient.vue'
 import SelectOptionDoctor from './SelectOptionDoctor.vue'
 import notify from 'izitoast'
 import 'izitoast/dist/css/iziToast.min.css'
+import { useRouter } from 'vue-router'
+import { useModalStore } from '../store/modal.store'
+
+const router = useRouter()
 
 const isLoading = ref(false)
 
@@ -41,9 +43,11 @@ onMounted(() => {
   ServicesService.getAllServices().then((res) => {
     useServicesStore().setServices(res)
   })
-  PatientService.getAllPatients({}).then((res) => {
-    usePatientStore().setPatients(res?.data)
-  })
+  if (!(router.currentRoute?.value?.path === '/patients' || router.currentRoute?.value?.path === '/dashboard')) {
+    PatientService.getAllPatients({}).then((res) => {
+      usePatientStore().setPatients(res?.data)
+    })
+  }
 })
 
 const selectedPatient = computed(() => {
@@ -86,6 +90,7 @@ const submitVisitData = () => {
           useVisitStore().clearStore()
           useVisitStore().setPatients(res?.data)
         })
+        useModalStore().closeAddVisitModal()
         useDropStore().clearStore()
         isLoading.value = false
       })
