@@ -44,9 +44,9 @@ const routes = [
   //   meta: { layout: 'dashboard' },
   // },
   {
-    path: '/payment-visit',
-    name: 'PaymentVisit',
-    component: () => import('../pages/PaymentVisit.vue'),
+    path: '/patient-visit',
+    name: 'PatientVisit',
+    component: () => import('../pages/PatientVisit.vue'),
     meta: { layout: 'dashboard' },
   },
   {

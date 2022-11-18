@@ -37,5 +37,13 @@ export const useDropStore = defineStore('drop', {
     closeServiceDropDown() {
       this.isOpenServiceDropDown = false
     },
+    clearStore() {
+      this.selectDoctorOption = ''
+      this.selectPatientOption = ''
+      this.selectServiceOption = ''
+      this.isOpenDoctorDropDown = false
+      this.isOpenPatientDropDown = false
+      this.isOpenServiceDropDown = false
+    }
   },
 })

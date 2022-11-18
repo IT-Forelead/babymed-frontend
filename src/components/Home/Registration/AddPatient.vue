@@ -113,7 +113,6 @@ const submitPatientData = () => {
         notify.error({
           message: t('errorCreatingPatient'),
         })
-        console.log('ERR', err?.message)
       })
   }
 }
