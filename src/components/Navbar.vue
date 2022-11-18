@@ -42,7 +42,7 @@ const currentLabel = computed(() => {
       <div class="bg-white rounded-xl p-3 cursor-pointer hover:shadow">
         <BellIcon class="text-gray-600 h-7 w-7 fill-current" />
       </div>
-      <router-link to="/payment-visit" class="bg-black text-white rounded-xl p-3.5 px-7 cursor-pointer hover:bg-black/75">
+      <router-link to="/payment-visit" class="bg-gray-900 text-white rounded-xl p-3.5 px-7 cursor-pointer hover:bg-gray-800">
         <p class="text-base">+ {{ $t('addRecord') }}</p>
       </router-link>
     </div>
