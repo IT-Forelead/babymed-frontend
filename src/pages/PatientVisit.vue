@@ -5,6 +5,7 @@ import { useVisitStore } from '../store/visit.store'
 import VisitsReportItem from '../components/VisitsReportItem.vue'
 import 'izitoast/dist/css/iziToast.min.css'
 import AddVisit from '../components/AddVisit.vue'
+import { useModalStore } from '../store/modal.store'
 
 const API_URL = import.meta.env.VITE_BASE_URL
 
@@ -83,4 +84,5 @@ const loadPatients = async ($state) => {
     </div>
   </div>
 </template>
+
 <style scoped></style>
