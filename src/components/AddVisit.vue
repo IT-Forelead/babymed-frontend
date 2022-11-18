@@ -48,6 +48,7 @@ onMounted(() => {
   })
   if (!(router.currentRoute?.value?.path === '/patients' || router.currentRoute?.value?.path === '/dashboard')) {
     PatientService.getAllPatients({}).then((res) => {
+      usePatientStore().clearStore()
       usePatientStore().setPatients(res?.data)
     })
   }
