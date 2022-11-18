@@ -9,6 +9,7 @@ import { toRefs } from 'vue'
 import moment from 'moment'
 import { useRouter } from 'vue-router'
 import { useModalStore } from '../store/modal.store'
+import useMoneyFormatter from '../mixins/currencyFormatter'
 
 const router = useRouter()
 
@@ -21,39 +22,52 @@ const { patients } = toRefs(props)
 const open = () => {
   useModalStore().openPaymentStatusChangerModal()
 }
+
+const translatePaymentStatus = (status) => {
+  if (status === 'not_paid') {
+    return 'Not Paid'
+  } else {
+    return 'Fully Paid'
+  }
+} 
 </script>
 <template>
-  <tr class="border-y border-gray-200 hover:bg-gray-100 text-lg font-medium" v-for="(patient, idx) in patients" :key="idx">
+  <tr class="border-y border-gray-200 hover:bg-gray-100 text-base font-medium" v-for="(patient, idx) in patients" :key="idx">
     <td v-motion-pop class="text-center">{{ idx + 1 }}</td>
     <td v-motion-pop class="py-3 px-6 text-left">
       <div class="flex items-center">
-        <div class="mr-2">
+        <div class="mr-2" v-if="router.currentRoute?.value?.path === '/visits'">
           <UserIcon class="w-10 h-10 rounded-full border p-2" />
         </div>
-        <span class="text-lg font-medium capitalize">{{ patient?.patient?.firstname + ' ' + patient?.patient?.lastname }}</span>
+        <span class="text-base font-medium capitalize">
+          {{ patient?.patient?.firstname }} <br>
+          {{ patient?.patient?.lastname }}
+        </span>
       </div>
     </td>
-    <td v-motion-pop class="py-3 px-6 text-left">{{ patient?.patient?.phone }}</td>
-    <td v-motion-pop class="py-3 px-6 text-center">{{ moment(patient?.patient?.createdAt).format('MM/DD/YYYY h:mm:ss') }}</td>
-    <td v-motion-pop class="py-3 px-6 text-center text-sm">
-      {{ patient?.region?.name }} <br />
-      {{ patient?.town?.name }} <br />
-      {{ patient?.patient?.address }}
-    </td>
+    <td v-motion-pop class="py-3 px-6 text-left" v-if="router.currentRoute?.value?.path === '/visits'">{{ patient?.patient?.phone }}</td>
+    <td v-motion-pop class="py-3 px-6 text-center">{{ moment(patient?.patientVisit?.createdAt).format('MM/DD/YYYY h:mm:ss') }}</td>
     <td v-motion-pop class="py-3 px-6 text-center">
-      {{ moment(patient?.patient?.birthday).format('MM/DD/YYYY') }}
+      <span class="p-1.5 px-3 text-sm rounded-full text-white" :class="patient?.patientVisit?.paymentStatus === 'not_paid' ? 'bg-red-500' : 'bg-green-400'">
+        {{ translatePaymentStatus(patient?.patientVisit?.paymentStatus) }}
+      </span>
+    </td>
+    <td v-motion-pop class="py-3 px-6 text-center capitalize">
+      {{ patient?.service?.name }} <br />
+     <span class="text-sm font-bold italic">{{ useMoneyFormatter(patient?.service?.cost) }}</span>
+    </td>
+    <td v-motion-pop class="py-3 px-6 text-center capitalize">
+      {{ patient?.user?.firstname }} <br/> 
+      {{ patient?.user?.lastname}}
     </td>
     <td v-motion-pop class="py-3 px-6 text-center">
       <div class="flex item-center justify-center">
-        <div v-if="router.currentRoute?.value?.path === '/visits'" @click="open()" class="w-4 mr-2 transform text-blue-500 hover:text-purple-500 hover:scale-110 cursor-pointer">
+        <div @click="open()" class="w-4 mr-2 transform text-blue-500 hover:text-purple-500 hover:scale-110 cursor-pointer">
           <MoneyPlusIcon class="w-6 h-6" />
         </div>
         <!-- <div v-if="router.currentRoute?.value?.path === '/patients' || router.currentRoute?.value?.path === '/dashboard'" class="w-4 mr-2 transform text-blue-500 hover:text-purple-500 hover:scale-110 cursor-pointer">
           <EditIcon class="w-6 h-6" />
         </div> -->
-        <div v-if="router.currentRoute?.value?.path === '/patients' || router.currentRoute?.value?.path === '/dashboard'" class="w-4 mr-2 transform text-blue-500 hover:text-purple-500 hover:scale-110 cursor-pointer">
-          <PlusIcon class="w-6 h-6" />
-        </div>
       </div>
     </td>
   </tr>

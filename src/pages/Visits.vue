@@ -2,13 +2,14 @@
 import authHeader from '../mixins/auth-header'
 import { computed, ref } from '@vue/reactivity'
 import { useVisitStore } from '../store/visit.store'
+import { useModalStore } from '../store/modal.store'
 import { onMounted } from 'vue'
 import VisitsReportItem from '../components/VisitsReportItem.vue'
 
 const API_URL = import.meta.env.VITE_BASE_URL
 
 const total = ref(1)
-const patients = computed(() => {
+const visits = computed(() => {
   return useVisitStore().patients
 })
 const target = ref('.patients-wrapper')
@@ -52,7 +53,7 @@ onMounted(() => {
           <option value="1">Sort 1</option>
           <option value="2">Sort 2</option>
         </select>
-        <div @click="useModalStore().openModal()" class="bg-black text-white rounded-xl p-2 px-4 cursor-pointer hover:bg-black/75">
+        <div @click="useModalStore().openAddVisitModal()" class="bg-black text-white rounded-xl p-2 px-4 cursor-pointer hover:bg-black/75">
           <p class="text-base">+ Add Visit</p>
         </div>
       </div>
@@ -65,16 +66,17 @@ onMounted(() => {
             <th class="py-3 px-6 text-left">{{ $t('patientName') }}</th>
             <th class="py-3 px-6 text-left">{{ $t('phone') }}</th>
             <th class="py-3 px-6 text-center">{{ $t('createdAt') }}</th>
-            <th class="py-3 px-6 text-center">{{ $t('address') }}</th>
-            <th class="py-3 px-6 text-center">{{ $t('birthday') }}</th>
+            <th class="py-3 px-6 text-center">Payment Status</th>
+            <th class="py-3 px-6 text-center">Service</th>
+            <th class="py-3 px-6 text-center">Doctor</th>
             <th class="py-3 px-6 text-center">{{ $t('actions') }}</th>
           </tr>
         </thead>
         <tbody class="text-gray-600 text-sm font-light">
-          <VisitsReportItem :patients="patients" :distance="distance" :target="target" @infinite="loadPatients" />
+          <VisitsReportItem :patients="visits" :distance="distance" :target="target" @infinite="loadPatients" />
         </tbody>
       </table>
-      <div v-if="patients.length === 0" class="w-full text-center text-red-500">{{ $t('empty') }}</div>
+      <div v-if="visits.length === 0" class="w-full text-center text-red-500">{{ $t('empty') }}</div>
     </div>
   </div>
 </template>
