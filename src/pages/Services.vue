@@ -41,11 +41,11 @@ const clearFields = () => {
 const submitServiceData = () => {
   if (!serviceData.name) {
     notify.warning({
-      message: 'Please enter service name!',
+      message: t('plsEnterServiceName'),
     })
   } else if (serviceData.cost == 0) {
     notify.warning({
-      message: 'Please enter service price!',
+      message: t('plsEnterServicePrice'),
     })
   } else {
     isLoading.value = true
@@ -111,8 +111,8 @@ const submitServiceData = () => {
           <thead class="sticky z-10 top-0 bg-white shadow">
             <tr class="text-gray-600 capitalize text-lg leading-normal">
               <th class="py-3 px-6 text-center">{{ $t('n') }}</th>
-              <th class="py-3 px-6 text-left">{{$t('ServiceName')}}</th>
-              <th class="py-3 px-6 text-left">Price</th>
+              <th class="py-3 px-6 text-left">{{ $t('serviceName') }}</th>
+              <th class="py-3 px-6 text-left">{{ $t('servicePrice') }}</th>
               <th class="py-3 px-6 text-center">{{ $t('actions') }}</th>
             </tr>
           </thead>
@@ -125,4 +125,5 @@ const submitServiceData = () => {
     </div>
   </div>
 </template>
+
 <style scoped></style>
