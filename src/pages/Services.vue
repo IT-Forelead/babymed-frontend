@@ -6,6 +6,9 @@ import ServiceItem from '../components/Service/ServiceItem.vue'
 import ServicesService from '../services/services.service'
 import notify from 'izitoast'
 import 'izitoast/dist/css/iziToast.min.css'
+import { useI18n } from 'vue-i18n'
+
+const { t } = useI18n()
 
 const moneyConf = {
   thousands: ' ',

@@ -5,6 +5,7 @@ import TimesIcon from '../../assets/icons/TimesIcon.vue'
 import CheckIcon from '../../assets/icons/CheckIcon.vue'
 import { useVisitStore } from '../../store/visit.store'
 import { computed } from 'vue'
+import useMoneyFormatter from '../../mixins/currencyFormatter'
 
 const patient = computed(() => {
   return useVisitStore().selectedPatient
@@ -23,7 +24,24 @@ const patient = computed(() => {
           </button>
         </div>
         <div class="p-4 space-y-5">
-          <p>{{ patient }}</p>
+          <ul class="space-y-1 border-b pb-4">
+            <li class="flex justify-between items-center">
+              <div class="text-base text-gray-500">Bemor:</div>
+              <div class="text-lg text-gray-700">{{ patient?.patient?.firstname + " " + patient?.patient?.lastname }}</div>
+            </li>
+            <li class="flex justify-between items-center">
+              <div class="text-base text-gray-500">Doctor:</div>
+              <div class="text-lg text-gray-700">{{ patient?.user?.firstname + " " + patient?.user?.lastname }}</div>
+            </li>
+            <li class="flex justify-between items-center">
+              <div class="text-base text-gray-500">Xizmat nomi:</div>
+              <div class="text-lg text-gray-700">{{ patient?.service?.name }}</div>
+            </li>
+            <li class="flex justify-between items-center">
+              <div class="text-base text-gray-500">Xizmat narxi:</div>
+              <div class="text-lg text-gray-700">{{ useMoneyFormatter(patient?.service?.cost) }}</div>
+            </li>
+          </ul>
           <p class="mb-3 text-center">{{ $t('clickToChangePaymentStatus') }}</p>
           <div class="flex items-center justify-center space-x-3">
             <div @click="useTabStore().changeTab('not_paid')" :class="useTabStore().isNotPaid ? 'border-green-500 text-green-500 border' : 'border-gray-200 border text-gray-600 cursor-pointer hover:shadow hover:scale-105'" class="flex items-center justify-center p-2 rounded-lg px-3 transition-all duration-300">
