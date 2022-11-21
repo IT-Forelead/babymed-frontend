@@ -135,8 +135,8 @@ watch(
         </div>
       </div>
       <div v-else class="max-h-[82vh] overflow-auto patients-wrapper bg-white rounded-lg col-span-2">
-        <div class="flex items-center justify-between p-3">
-          <p class="text-3xl font-bold">Visits Report</p>
+        <div class="flex items-center justify-between p-3 w-full">
+          <p class="text-3xl font-bold">{{$t('visitsReport')}}</p>
           <div class="flex items-center justify-center space-x-3">
             <select class="border-none rounded-lg bg-gray-100 capitalize text-gray-400">
               <option value="" selected>{{ $t('sortBy') }}</option>
