@@ -120,5 +120,6 @@
   "visitsManagment":"Visits Managment",
   "patientsManagment":"Patients Managment",
   "usersReport":"Users report",
-  "servicesReport":"Services report"
+  "servicesReport":"Services report",
+  "total":"Total"
 }
