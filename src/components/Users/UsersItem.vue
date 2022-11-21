@@ -65,7 +65,7 @@ watch(
         <!-- <div class="w-4 mr-3 transform text-blue-500 hover:text-purple-500 hover:scale-110 cursor-pointer">
           <EditIcon class="w-6 h-6" />
         </div> -->
-        <div @click="deleteUser(user?.id)" class="w-4 mr-3 transform text-red-500 hover:text-red-600 hover:scale-110 cursor-pointer">
+        <div v-if="!user?.role?.includes('super')" @click="deleteUser(user?.id)" class="w-4 mr-3 transform text-red-500 hover:text-red-600 hover:scale-110 cursor-pointer">
           <TrashIcon class="w-6 h-6" />
         </div>
       </div>
