@@ -3,8 +3,8 @@
 echo '--------------------------------------------------------------------'
 echo 'Stoppping & Removing Frontend container...'
 echo '--------------------------------------------------------------------'
-docker container stop app_frontend_1
-docker container rm app_frontend_1
+docker container stop babymed-frontend
+docker container rm babymed-frontend
 echo '--------------------------------------------------------------------'
 echo 'Removing Frontend image...'
 echo '--------------------------------------------------------------------'
