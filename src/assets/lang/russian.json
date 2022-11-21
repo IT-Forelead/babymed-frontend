@@ -120,5 +120,6 @@
   "visitsManagment":"Управление посещениями",
   "patientsManagment":"Управление пациентами",
   "usersReport":"Сообщения пользователей",
-  "servicesReport":"Отчет об услугах"
+  "servicesReport":"Отчет об услугах",
+  "total":"Всего"
 }
