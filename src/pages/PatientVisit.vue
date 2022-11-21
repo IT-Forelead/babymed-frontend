@@ -5,7 +5,8 @@ import { useVisitStore } from '../store/visit.store'
 import VisitsReportItem from '../components/VisitsReportItem.vue'
 import AddVisit from '../components/AddVisit.vue'
 import { useModalStore } from '../store/modal.store'
-import { onMounted } from 'vue'
+import { onMounted, watch } from 'vue'
+import { useDropStore } from '../store/drop.store'
 
 const API_URL = import.meta.env.VITE_BASE_URL
 
@@ -24,9 +25,12 @@ const loadPatients = async ($state) => {
   let additional = total.value % 12 == 0 ? 0 : 1
   if (total.value !== 0 && total.value / 12 + additional >= page) {
     try {
-      const response = await fetch(`${API_URL}/visit/report?page=${page}&limit=12`, {
+      const response = await fetch(`${API_URL}/visit/report`, {
         method: 'POST',
-        body: JSON.stringify({}),
+        body: JSON.stringify({
+          page: page,
+          limit: 12,
+        }),
         headers: authHeader(),
       })
       const json = await response.json()
@@ -43,10 +47,35 @@ const loadPatients = async ($state) => {
 onMounted(() => {
   useVisitStore().clearStore()
 })
+
+const selectedPatient = ref({})
+
+watch(
+  () => useDropStore().selectPatientOption,
+  (data) => {
+    selectedPatient.value = data
+  }
+)
+const selectedDoctor = ref({})
+
+watch(
+  () => useDropStore().selectDoctorOption,
+  (data) => {
+    selectedDoctor.value = data
+  }
+)
+const selectedService = ref({})
+
+watch(
+  () => useDropStore().selectServiceOption,
+  (data) => {
+    selectedService.value = data
+  }
+)
 </script>
 
 <template>
-  <div class="bg-white rounded-lg w-full p-3">
+  <div class="w-full p-3">
     <!-- <div class="flex items-center justify-between">
       <p class="text-3xl font-bold">{{ $t('patientsReport') }}</p>
       <select class="border-none rounded-lg bg-gray-100 capitalize text-gray-400">
@@ -55,8 +84,8 @@ onMounted(() => {
         <option value="2">Sort 2</option>
       </select>
     </div> -->
-    <div class="grid grid-cols-3 gap-3 divide-x">
-      <div>
+    <div class="grid grid-cols-3 gap-3">
+      <div class="bg-white rounded-lg p-3">
         <div class="flex items-center justify-between">
           <p class="text-3xl font-bold">{{ $t('createVisit') }}</p>
           <div @click="useModalStore().openModal()" class="bg-black mt-3 text-white rounded-xl p-2.5 px-4 cursor-pointer hover:bg-black/75">
@@ -65,7 +94,18 @@ onMounted(() => {
         </div>
         <AddVisit />
       </div>
-      <div class="max-h-[82vh] overflow-auto mt-3 patients-wrapper col-span-2">
+      <div v-if="Object.keys(selectedDoctor).length !== 0 || Object.keys(selectedPatient).length !== 0 || Object.keys(selectedService).length !== 0" class="bg-white rounded-lg p-3 col-span-2">{{ selectedPatient }} {{ selectedDoctor }} {{ selectedService }}</div>
+      <div v-else class="max-h-[82vh] overflow-auto patients-wrapper bg-white rounded-lg col-span-2">
+        <div class="flex items-center justify-between p-3">
+          <p class="text-3xl font-bold">Visits Report</p>
+          <div class="flex items-center justify-center space-x-3">
+            <select class="border-none rounded-lg bg-gray-100 capitalize text-gray-400">
+              <option value="" selected>{{ $t('sortBy') }}</option>
+              <option value="1">Sort 1</option>
+              <option value="2">Sort 2</option>
+            </select>
+          </div>
+        </div>
         <table class="min-w-max w-full table-auto">
           <thead class="sticky z-10 top-0 bg-white shadow">
             <tr class="text-gray-600 capitalize text-lg leading-normal">

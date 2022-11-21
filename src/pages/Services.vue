@@ -78,16 +78,17 @@ const submitServiceData = () => {
 
 <template>
   <div class="w-full">
-    <div class="flex items-center justify-between bg-white rounded-lg p-3">
+    <!-- <div class="flex items-center justify-between bg-white rounded-lg p-3">
       <p class="text-3xl font-bold">{{ $t('servicesManagment') }}</p>
       <select class="border-none rounded-lg bg-gray-100 capitalize text-gray-400">
         <option value="" selected>{{ $t('sortBy') }}</option>
         <option value="1">Sort 1</option>
         <option value="2">Sort 2</option>
       </select>
-    </div>
+    </div> -->
     <div class="grid grid-cols-3 gap-3">
       <div class="bg-white rounded-lg mt-3 p-3">
+        <p class="text-3xl font-bold mb-3">{{ $t('createService') }}</p>
         <div class="space-y-5">
           <label for="serviceName">
             {{ $t('serviceName') }}
@@ -110,6 +111,16 @@ const submitServiceData = () => {
         </div>
       </div>
       <div class="max-h-[77vh] overflow-auto mt-3 col-span-2 bg-white rounded-lg">
+        <div class="flex items-center justify-between p-3">
+          <p class="text-3xl font-bold">Services Report</p>
+          <div class="flex items-center justify-center space-x-3">
+            <select class="border-none rounded-lg bg-gray-100 capitalize text-gray-400">
+              <option value="" selected>{{ $t('sortBy') }}</option>
+              <option value="1">Sort 1</option>
+              <option value="2">Sort 2</option>
+            </select>
+          </div>
+        </div>
         <table class="min-w-max w-full table-auto">
           <thead class="sticky z-10 top-0 bg-white shadow">
             <tr class="text-gray-600 capitalize text-lg leading-normal">
