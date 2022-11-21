@@ -21,9 +21,12 @@ const loadPayments = async ($state) => {
   let additional = total.value % perPageData == 0 ? 0 : 1
   if (total.value !== 0 && total.value / perPageData + additional >= page) {
     try {
-      const response = await fetch(`${API_URL}/payment/report?page=${page}&limit=${perPageData}`, {
+      const response = await fetch(`${API_URL}/payment/report`, {
         method: 'POST',
-        body: JSON.stringify({}),
+        body: JSON.stringify({
+          page: page,
+          limit: perPageData,
+        }),
         headers: authHeader(),
       })
       const json = await response.json()
