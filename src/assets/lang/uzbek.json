@@ -118,5 +118,7 @@
   "paymentStatus":"To'lov holati",
   "usersManagment":"Foydalanuvchilar boshqaruvi",
   "visitsManagment":"Tashriflar boshqaruvi",
-  "patientsManagment":"Bemorlar boshqaruvi"
+  "patientsManagment":"Bemorlar boshqaruvi",
+  "usersReport":"Foydalanuvchilar hisoboti",
+  "servicesReport":"Xizmatlar hisoboti"
 }

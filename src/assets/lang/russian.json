@@ -118,5 +118,7 @@
   "paymentStatus":"Статус платежа",
   "usersManagment":"Управление пользователями",
   "visitsManagment":"Управление посещениями",
-  "patientsManagment":"Управление пациентами"
+  "patientsManagment":"Управление пациентами",
+  "usersReport":"Сообщения пользователей",
+  "servicesReport":"Отчет об услугах"
 }

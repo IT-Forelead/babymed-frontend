@@ -118,5 +118,7 @@
   "paymentStatus":"Payment status",
   "usersManagment":"Users Managment",
   "visitsManagment":"Visits Managment",
-  "patientsManagment":"Patients Managment"
+  "patientsManagment":"Patients Managment",
+  "usersReport":"Users report",
+  "servicesReport":"Services report"
 }

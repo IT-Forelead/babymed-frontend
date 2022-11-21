@@ -36,7 +36,7 @@ onMounted(() => {
       <AddUser />
       <div class="max-h-[77vh] overflow-auto mt-3 col-span-2 bg-white rounded-lg">
         <div class="flex items-center justify-between p-3">
-          <p class="text-3xl font-bold">Users Report</p>
+          <p class="text-3xl font-bold">{{ $t('usersReport') }}</p>
           <div class="flex items-center justify-center space-x-3">
             <select class="border-none rounded-lg bg-gray-100 capitalize text-gray-400">
               <option value="" selected>{{ $t('sortBy') }}</option>

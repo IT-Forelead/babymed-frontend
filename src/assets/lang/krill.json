@@ -118,5 +118,7 @@
   "paymentStatus":"Тўлов ҳолати",
   "usersManagment":"Фойдаланувчилар бошқаруви",
   "visitsManagment":"Ташрифлар бошқаруви",
-  "patientsManagment":"Беморлар бошқаруви"
+  "patientsManagment":"Беморлар бошқаруви",
+  "usersReport":"Фойдаланувчилар ҳисоботи",
+  "servicesReport":"Хизматлар ҳисоботи"
 }
