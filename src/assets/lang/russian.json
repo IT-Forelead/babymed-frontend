@@ -114,7 +114,7 @@
   "errorDeletingUser":"Ошибка при удалении пользователя!",
   "deletedService":"Сервис успешно удален!",
   "errorDeletingService":"Ошибка при удалении сервиса!",
-  "service":"Сервис",
+  "service":"Услуг",
   "paymentStatus":"Статус платежа",
   "usersManagment":"Управление пользователями",
   "visitsManagment":"Управление посещениями",
