@@ -58,7 +58,7 @@ onMounted(() => {
     <div class="grid grid-cols-3 gap-3 divide-x">
       <div>
         <div class="flex items-center justify-between">
-          <p class="text-3xl font-bold">Add Visits</p>
+          <p class="text-3xl font-bold">{{ $t('createVisit') }}</p>
           <div @click="useModalStore().openModal()" class="bg-black mt-3 text-white rounded-xl p-2.5 px-4 cursor-pointer hover:bg-black/75">
             <p class="text-base">+ {{ $t('addPatient') }}</p>
           </div>
@@ -72,9 +72,9 @@ onMounted(() => {
               <th class="py-3 px-6 text-center">{{ $t('n') }}</th>
               <th class="py-3 px-6 text-left">{{ $t('patientName') }}</th>
               <th class="py-3 px-6 text-center">{{ $t('createdAt') }}</th>
-              <th class="py-3 px-6 text-center">Payment Status</th>
-              <th class="py-3 px-6 text-center">Service</th>
-              <th class="py-3 px-6 text-center">Doctor</th>
+              <th class="py-3 px-6 text-center">{{ $t('paymentStatus') }}</th>
+              <th class="py-3 px-6 text-center">{{ $t('service') }}</th>
+              <th class="py-3 px-6 text-center">{{ $t('doctor') }}</th>
               <th class="py-3 px-6 text-center">{{ $t('actions') }}</th>
             </tr>
           </thead>

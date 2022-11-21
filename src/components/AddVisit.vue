@@ -88,7 +88,7 @@ const submitVisitData = () => {
     })
       .then(() => {
         notify.success({
-          message: 'Visit successfully created!',
+          message: t('createdVisit'),
         })
         VisitService.getVisits({}).then((res) => {
           useVisitStore().clearStore()
@@ -129,7 +129,7 @@ const submitVisitData = () => {
           fill="currentFill"
         />
       </svg>
-      <span>{{ isLoading ? 'Saving Visit' : 'Save Visit' }}</span>
+      <span>{{ isLoading ? $t('creatingVisit') : $t('createVisit') }}</span>
     </div>
   </div>
 </template>

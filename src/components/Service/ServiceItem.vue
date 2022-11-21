@@ -9,6 +9,9 @@ import notify from 'izitoast'
 import 'izitoast/dist/css/iziToast.min.css'
 import { useServicesStore } from '../../store/services.store'
 import { useModalStore } from '../../store/modal.store'
+import { useI18n } from 'vue-i18n'
+
+const { t } = useI18n()
 
 const props = defineProps({
   services: { type: Array, required: true },
@@ -29,7 +32,7 @@ watch(
       ServicesService.deleteService(selectedServiceId.value)
         .then(() => {
           notify.success({
-            message: 'Service successfully deleted!',
+            message: t('deletedService'),
           })
           ServicesService.getAllServices().then((res) => {
             useServicesStore().setServices(res)
@@ -38,13 +41,14 @@ watch(
         })
         .catch(() => {
           notify.warning({
-            message: 'Error while deleting service!',
+            message: t('errorDeletingService'),
           })
         })
     }
   }
 )
 </script>
+
 <template>
   <tr class="border-y border-gray-200 hover:bg-gray-100 text-lg font-medium" v-for="(service, idx) in services" :key="idx">
     <td v-motion-pop class="text-center">{{ idx + 1 }}</td>

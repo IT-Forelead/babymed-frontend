@@ -66,9 +66,9 @@ onMounted(() => {
             <th class="py-3 px-6 text-left">{{ $t('patientName') }}</th>
             <th class="py-3 px-6 text-left">{{ $t('phone') }}</th>
             <th class="py-3 px-6 text-center">{{ $t('createdAt') }}</th>
-            <th class="py-3 px-6 text-center">Payment Status</th>
-            <th class="py-3 px-6 text-center">Service</th>
-            <th class="py-3 px-6 text-center">Doctor</th>
+            <th class="py-3 px-6 text-center">{{ $t('paymentStatus') }}</th>
+            <th class="py-3 px-6 text-center">{{ $t('service') }}</th>
+            <th class="py-3 px-6 text-center">{{ $t('doctor') }}</th>
             <th class="py-3 px-6 text-center">{{ $t('actions') }}</th>
           </tr>
         </thead>
@@ -80,6 +80,7 @@ onMounted(() => {
     </div>
   </div>
 </template>
+
 <style scoped>
 .patients-table-h {
   max-height: 75vh;

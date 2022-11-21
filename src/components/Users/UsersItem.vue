@@ -7,6 +7,9 @@ import notify from 'izitoast'
 import 'izitoast/dist/css/iziToast.min.css'
 import { useModalStore } from '../../store/modal.store'
 import { useUserStore } from '../../store/user.store'
+import { useI18n } from 'vue-i18n'
+
+const { t } = useI18n()
 
 const props = defineProps({
   users: { type: Array, required: true },
@@ -27,7 +30,7 @@ watch(
       UserService.deleteUser(selectedUserId.value)
         .then(() => {
           notify.success({
-            message: 'User successfully deleted!',
+            message: t('deletedUser'),
           })
           UserService.getUsers({}).then((res) => {
             useUserStore().clearStore()
@@ -37,13 +40,14 @@ watch(
         })
         .catch(() => {
           notify.warning({
-            message: 'Error while deleting user!',
+            message: t('errorDeletingUser'),
           })
         })
     }
   }
 )
 </script>
+
 <template>
   <tr class="border-y border-gray-200 hover:bg-gray-100 text-lg font-medium" v-for="(user, idx) in users" :key="idx">
     <td v-motion-pop class="text-center">{{ idx + 1 }}</td>

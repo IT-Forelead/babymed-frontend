@@ -12,6 +12,9 @@ import { useModalStore } from '../store/modal.store'
 import { useVisitStore } from '../store/visit.store'
 import { useTabStore } from '../store/tab.store'
 import useMoneyFormatter from '../mixins/currencyFormatter'
+import { useI18n } from 'vue-i18n'
+
+const { t } = useI18n()
 
 const router = useRouter()
 
@@ -29,12 +32,13 @@ const open = (patient) => {
 
 const translatePaymentStatus = (status) => {
   if (status === 'not_paid') {
-    return 'Not Paid'
+    return t('notPaid')
   } else {
-    return 'Fully Paid'
+    return t('fullyPaid')
   }
 } 
 </script>
+
 <template>
   <tr class="border-y border-gray-200 hover:bg-gray-100 text-base font-medium" v-for="(patient, idx) in patients" :key="idx">
     <td v-motion-pop class="text-center">{{ idx + 1 }}</td>

@@ -1,3 +1,6 @@
+<script setup>
+</script>
+
 <template>
   <div class="flex items-center justify-center h-screen">
     <div class="px-4 lg:py-12">
@@ -14,7 +17,6 @@
     </div>
   </div>
 </template>
-<script setup>
-</script>
+
 <style scoped>
 </style>

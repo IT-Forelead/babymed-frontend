@@ -7,22 +7,25 @@ import { useRouter } from 'vue-router'
 import DeleteAlert from './DeleteAlert.vue'
 import ChangePaymentStatus from './Payments/ChangePaymentStatus.vue'
 import AddVisitModal from './AddVisitModal.vue'
+import { useI18n } from 'vue-i18n'
+
+const { t } = useI18n()
 
 const router = useRouter()
 
 const currentLabel = computed(() => {
   if (router.currentRoute?.value?.path === '/visits') {
-    return 'Patients Visit Page'
+    return t('visitsManagment')
   } else if (router.currentRoute?.value?.path === '/patients') {
-    return 'Patients Page'
+    return t('patientsManagment')
   } else if (router.currentRoute?.value?.path === '/patient-visit') {
-    return 'Payments & Visits Page'
+    return t('visitsManagment')
   } else if (router.currentRoute?.value?.path === '/dashboard') {
-    return 'Main Page'
+    return t('mainPage')
   } else if (router.currentRoute?.value?.path === '/services') {
-    return 'Services Page'
+    return t('servicesManagment')
   } else if (router.currentRoute?.value?.path === '/users') {
-    return 'Users Management'
+    return t('usersManagment')
   }
 })
 </script>

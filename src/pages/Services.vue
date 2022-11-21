@@ -58,7 +58,7 @@ const submitServiceData = () => {
     })
       .then(() => {
         notify.success({
-          message: 'Service successfully created!',
+          message: t('serviceCreated'),
         })
         getServices()
         clearFields()
@@ -66,7 +66,7 @@ const submitServiceData = () => {
       })
       .catch(() => {
         notify.warning({
-          message: 'Error while creating service!',
+          message: t('errorCreatingService'),
         })
         setTimeout(() => {
           isLoading.value = false
@@ -79,7 +79,7 @@ const submitServiceData = () => {
 <template>
   <div class="w-full">
     <div class="flex items-center justify-between bg-white rounded-lg p-3">
-      <p class="text-3xl font-bold">{{ $t('serviceManagment') }}</p>
+      <p class="text-3xl font-bold">{{ $t('servicesManagment') }}</p>
       <select class="border-none rounded-lg bg-gray-100 capitalize text-gray-400">
         <option value="" selected>{{ $t('sortBy') }}</option>
         <option value="1">Sort 1</option>

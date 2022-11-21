@@ -21,13 +21,13 @@ const selectedStatus = computed(() => {
 const submitPaymentStatus = () => {
   if (selectedStatus.value === patient.value?.patientVisit?.paymentStatus) {
     notify.warning({
-      message: 'Nothing changed!',
+      message: t('nothingChanged'),
     })
   } else {
     VisitService.changePaymentStatus(patient.value?.patientVisit?.id)
       .then(() => {
         notify.success({
-          message: 'Payment status successfully changed!',
+          message: t('paymentStatusChanged'),
         })
         useModalStore().closePaymentStatusChangerModal()
         VisitService.getVisits({}).then((res) => {
@@ -37,12 +37,13 @@ const submitPaymentStatus = () => {
       })
       .catch(() => {
         notify.error({
-          message: 'Error while payment status changing!',
+          message: t('errorUpdatingPaymentStatus'),
         })
       })
   }
 }
 </script>
+
 <template>
   <div v-if="useModalStore().isOpenPaymentStatusChangerModal" class="overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 backdrop-blur bg-gray-900/75 w-full max-h-screen md:inset-0 md:h-full">
     <div class="relative max-w-xl p-4 w-full h-full md:h-auto left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
@@ -58,19 +59,19 @@ const submitPaymentStatus = () => {
         <div class="p-4 space-y-5">
           <ul class="space-y-1 border-b pb-4">
             <li class="flex justify-between items-center">
-              <div class="text-base text-gray-500">Bemor:</div>
+              <div class="text-base text-gray-500">{{ $t('patient') }}:</div>
               <div class="text-lg text-gray-700 capitalize">{{ patient?.patient?.firstname + ' ' + patient?.patient?.lastname }}</div>
             </li>
             <li class="flex justify-between items-center">
-              <div class="text-base text-gray-500">Doctor:</div>
+              <div class="text-base text-gray-500">{{ $t('doctor') }}:</div>
               <div class="text-lg text-gray-700 capitalize">{{ patient?.user?.firstname + ' ' + patient?.user?.lastname }}</div>
             </li>
             <li class="flex justify-between items-center">
-              <div class="text-base text-gray-500">Xizmat nomi:</div>
+              <div class="text-base text-gray-500">{{ $t('serviceName') }}:</div>
               <div class="text-lg text-gray-700 capitalize">{{ patient?.service?.name }}</div>
             </li>
             <li class="flex justify-between items-center">
-              <div class="text-base text-gray-500">Xizmat narxi:</div>
+              <div class="text-base text-gray-500">{{ $t('servicePrice') }}:</div>
               <div class="text-lg text-gray-700">{{ useMoneyFormatter(patient?.service?.cost) }}</div>
             </li>
           </ul>
