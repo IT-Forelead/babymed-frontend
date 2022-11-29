@@ -77,10 +77,10 @@ const submitPatientData = () => {
     notify.warning({
       message: t('plsSelectTown'),
     })
-  } else if (!patientForm.address) {
-    notify.warning({
-      message: t('plsEnterPatientAddress'),
-    })
+  // } else if (!patientForm.address) {
+  //   notify.warning({
+  //     message: t('plsEnterPatientAddress'),
+  //   })
   } else {
     PatientService.createPatient({
       firstname: patientForm.firstname,

@@ -11,7 +11,8 @@ const { t } = useI18n()
 const userForm = reactive({
   firstname: '',
   lastname: '',
-  role: '',
+  roleId: '',
+  subRoleId: '',
   phone: '',
 })
 
@@ -20,7 +21,8 @@ const isLoading = ref(false)
 const clearForm = () => {
   userForm.firstname = ''
   userForm.lastname = ''
-  userForm.role = ''
+  userForm.roleId = ''
+  userForm.subRoleId = ''
   userForm.phone = ''
 }
 
@@ -33,7 +35,7 @@ const submitUserData = () => {
     notify.warning({
       message: t('plsEnterUserLastname'),
     })
-  } else if (!userForm.role) {
+  } else if (!userForm.roleId) {
     notify.warning({
       message: t('plsSelectUserRole'),
     })
@@ -91,10 +93,17 @@ const submitUserData = () => {
     </label>
     <label for="">
       {{ $t('role') }}<br />
-      <select v-model="userForm.role" class="rounded-lg w-full text-gray-500 border-none bg-gray-100 p-2.5 mb-3">
+      <select v-model="userForm.roleId" class="rounded-lg w-full text-gray-500 border-none bg-gray-100 p-2.5 mb-3">
         <option value="">{{ $t('selectRole') }}</option>
         <option value="admin">Admin</option>
         <option value="doctor">Doctor</option>
+      </select>
+    </label>
+    <!-- Show only doctor select -->
+    <label for="">
+      Sub role<br />
+      <select v-model="userForm.subRoleId" class="rounded-lg w-full text-gray-500 border-none bg-gray-100 p-2.5 mb-3">
+        <option value="">Select sub role</option>
       </select>
     </label>
     <label for="phone">
