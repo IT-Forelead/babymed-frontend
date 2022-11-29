@@ -1,12 +1,11 @@
 <script setup>
 import { ref } from '@vue/reactivity'
-import UserBoldIcon from '../assets/icons/UserBoldIcon.vue'
-import { useDropStore } from '../store/drop.store'
-import { watch } from 'vue'
-import TimesIcon from '../assets/icons/TimesIcon.vue'
+import { watch, toRefs } from 'vue'
 import { onClickOutside } from '@vueuse/core'
+import { useDropStore } from '../store/drop.store'
+import UserBoldIcon from '../assets/icons/UserBoldIcon.vue'
+import TimesIcon from '../assets/icons/TimesIcon.vue'
 import ChevronRightIcon from '../assets/icons/ChevronRightIcon.vue'
-import { toRefs } from 'vue'
 
 const props = defineProps({
   options: { type: Array, required: true },

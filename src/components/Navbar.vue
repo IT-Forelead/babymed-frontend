@@ -1,7 +1,7 @@
 <script setup>
 import SearchIcon from '../assets/icons/SearchIcon.vue'
 import BellIcon from '../assets/icons/BellIcon.vue'
-import Registration from './Home/Registration.vue'
+import Registration from './Registration.vue'
 import { computed } from '@vue/reactivity'
 import { useRouter } from 'vue-router'
 import DeleteAlert from './DeleteAlert.vue'

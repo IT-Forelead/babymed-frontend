@@ -1,9 +1,9 @@
 <script setup>
 import { reactive, ref } from '@vue/reactivity'
-import UserService from '../../../services/user.service'
+import UserService from '../../services/user.service'
+import { useUserStore } from '../../store/user.store'
 import notify from 'izitoast'
 import 'izitoast/dist/css/iziToast.min.css'
-import { useUserStore } from '../../../store/user.store'
 import { useI18n } from 'vue-i18n'
 
 const { t } = useI18n()

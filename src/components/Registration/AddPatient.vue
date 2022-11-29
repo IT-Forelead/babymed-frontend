@@ -1,11 +1,11 @@
 <script setup>
 import { reactive, ref } from '@vue/reactivity'
 import { toRefs, watch } from 'vue'
-import AddressService from '../../../services/address.service'
-import PatientService from '../../../services/patient.service'
+import AddressService from '../../services/address.service'
+import PatientService from '../../services/patient.service'
+import { usePatientStore } from '../../store/patient.store'
 import notify from 'izitoast'
 import 'izitoast/dist/css/iziToast.min.css'
-import { usePatientStore } from '../../../store/patient.store'
 import { useI18n } from 'vue-i18n'
 
 const { t } = useI18n()

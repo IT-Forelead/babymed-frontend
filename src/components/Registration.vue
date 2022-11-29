@@ -1,12 +1,12 @@
 <script setup>
-import { useModalStore } from '../../store/modal.store'
-import { useTabStore } from '../../store/tab.store'
-import { useAddressStore } from '../../store/address.store'
-import TimesIcon from '../../assets/icons/TimesIcon.vue'
+import { useModalStore } from '../store/modal.store'
+import { useTabStore } from '../store/tab.store'
+import { useAddressStore } from '../store/address.store'
+import TimesIcon from '../assets/icons/TimesIcon.vue'
 import AddPatient from './Registration/AddPatient.vue'
 import AddPayment from './Registration/AddPayment.vue'
 import { onMounted } from 'vue'
-import AddressService from '../..//services/address.service'
+import AddressService from '../services/address.service'
 import { computed } from '@vue/reactivity'
 
 onMounted(() => {

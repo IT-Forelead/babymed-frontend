@@ -1,15 +1,15 @@
 <script setup>
 import { computed, ref } from '@vue/reactivity'
-import { useDropStore } from '../../../store/drop.store'
-import { usePatientStore } from '../../../store/patient.store'
 import { onMounted } from 'vue'
-import PaymentService from '../../../services/payment.service'
-import PatientService from '../../../services/patient.service'
+import { useDropStore } from '../../store/drop.store'
+import { usePatientStore } from '../../store/patient.store'
+import PaymentService from '../../services/payment.service'
+import PatientService from '../../services/patient.service'
+import { usePaymentStore } from '../../store/payment.store'
 import notify from 'izitoast'
 import 'izitoast/dist/css/iziToast.min.css'
-import { usePaymentStore } from '../../../store/payment.store'
 import { useI18n } from 'vue-i18n'
-import SelectOption from '../../SelectOptionPatient.vue'
+import SelectOption from '../SelectOptionPatient.vue'
 
 const { t } = useI18n()
 const sum = ref(0)
