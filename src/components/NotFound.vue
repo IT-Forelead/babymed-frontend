@@ -10,7 +10,7 @@
           <p class="mb-2 text-2xl font-bold text-center text-gray-800 dark:text-gray-300 md:text-3xl">
             <span class="text-red-500">{{$t('sorry')}}!</span> {{$t('notFound')}}
           </p>
-          <router-link to="/"
+          <router-link to="/dashboard"
             class="px-6 py-2 mt-6 text-sm font-semibold text-blue-800 transition bg-blue-100 rounded hover:text-white hover:bg-indigo-500">{{$t('returnToHomePage')}}</router-link>
         </div>
       </div>

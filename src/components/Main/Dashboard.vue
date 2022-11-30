@@ -1,6 +1,6 @@
 <script setup>
 import StatisticsSection from './Statistics/StatisticsSection.vue'
-import Registration from './Registration.vue'
+import Registration from '../Registration.vue'
 import ReportItem from '../ReportItem.vue'
 import authHeader from '../../mixins/auth-header'
 import { computed, ref } from '@vue/reactivity'
