@@ -1,7 +1,7 @@
 <script setup>
 import { computed } from '@vue/reactivity'
 import { onMounted } from 'vue'
-import AddUser from '../components/Home/Registration/AddUser.vue'
+import AddUser from '../components/Registration/AddUser.vue'
 import 'izitoast/dist/css/iziToast.min.css'
 import UserService from '../services/user.service'
 import { useUserStore } from '../store/user.store'
@@ -51,6 +51,7 @@ onMounted(() => {
               <th class="py-3 px-6 text-center">{{ $t('n') }}</th>
               <th class="py-3 px-6 text-left">{{ $t('userFullname') }}</th>
               <th class="py-3 px-6 text-left">{{ $t('role') }}</th>
+              <th class="py-3 px-6 text-left">Sub role</th>
               <th class="py-3 px-6 text-left">{{ $t('phone') }}</th>
               <th class="py-3 px-6 text-center">{{ $t('actions') }}</th>
             </tr>

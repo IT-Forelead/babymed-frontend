@@ -1,17 +1,21 @@
 <script setup>
 import { reactive, ref } from '@vue/reactivity'
+import { watch, computed } from 'vue'
 import UserService from '../../services/user.service'
 import { useUserStore } from '../../store/user.store'
 import notify from 'izitoast'
 import 'izitoast/dist/css/iziToast.min.css'
 import { useI18n } from 'vue-i18n'
+import { cleanObjectEmptyFields } from '../../mixins/utils.js'
 
 const { t } = useI18n()
+
+const showSubRoles = ref(false)
 
 const userForm = reactive({
   firstname: '',
   lastname: '',
-  roleId: '',
+  role: '',
   subRoleId: '',
   phone: '',
 })
@@ -21,7 +25,7 @@ const isLoading = ref(false)
 const clearForm = () => {
   userForm.firstname = ''
   userForm.lastname = ''
-  userForm.roleId = ''
+  userForm.role = ''
   userForm.subRoleId = ''
   userForm.phone = ''
 }
@@ -35,9 +39,13 @@ const submitUserData = () => {
     notify.warning({
       message: t('plsEnterUserLastname'),
     })
-  } else if (!userForm.roleId) {
+  } else if (!userForm.role) {
     notify.warning({
       message: t('plsSelectUserRole'),
+    })
+  } else if (userForm.role.includes('doctor') && !userForm.subRoleId) {
+    notify.warning({
+      message: 'Please select sub role!',
     })
   } else if (!userForm.phone) {
     notify.warning({
@@ -45,12 +53,15 @@ const submitUserData = () => {
     })
   } else {
     isLoading.value = true
-    UserService.createUser({
-      firstname: userForm.firstname,
-      lastname: userForm.lastname,
-      role: userForm.role,
-      phone: userForm.phone.replace(/([() -])/g, ''),
-    })
+    UserService.createUser(
+      cleanObjectEmptyFields({
+        firstname: userForm.firstname,
+        lastname: userForm.lastname,
+        role: userForm.role,
+        subRoleId: userForm.subRoleId,
+        phone: userForm.phone.replace(/([() -])/g, ''),
+      })
+    )
       .then(() => {
         clearForm()
         notify.success({
@@ -78,6 +89,24 @@ const submitUserData = () => {
       })
   }
 }
+
+const subRoles = computed(() => {
+  return useUserStore().subRoles
+})
+
+watch(
+  () => userForm.role,
+  (role) => {
+    if (role.includes('doctor')) {
+      if (subRoles.value.length === 0) {
+        UserService.getSubRoles().then((res) => {
+          useUserStore().setSubRoles(res)
+        })
+      }
+      showSubRoles.value = true
+    }
+  }
+)
 </script>
 
 <template>
@@ -93,17 +122,18 @@ const submitUserData = () => {
     </label>
     <label for="">
       {{ $t('role') }}<br />
-      <select v-model="userForm.roleId" class="rounded-lg w-full text-gray-500 border-none bg-gray-100 p-2.5 mb-3">
+      <select v-model="userForm.role" class="rounded-lg w-full text-gray-500 border-none bg-gray-100 p-2.5 mb-3">
         <option value="">{{ $t('selectRole') }}</option>
         <option value="admin">Admin</option>
         <option value="doctor">Doctor</option>
       </select>
     </label>
     <!-- Show only doctor select -->
-    <label for="">
+    <label for="" v-if="showSubRoles">
       Sub role<br />
       <select v-model="userForm.subRoleId" class="rounded-lg w-full text-gray-500 border-none bg-gray-100 p-2.5 mb-3">
         <option value="">Select sub role</option>
+        <option v-for="(sr, idx) in subRoles" :key="idx" :value="sr?.id">{{ sr?.name }}</option>
       </select>
     </label>
     <label for="phone">

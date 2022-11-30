@@ -8,6 +8,9 @@ class UserService {
   async getUsers(filter) {
     return AxiosService.post('/user/report', filter, { headers: authHeader() })
   }
+  async getSubRoles() {
+    return AxiosService.get('/user/sub-roles', { headers: authHeader() })
+  }
   async getAllDoctors(data) {
     return AxiosService.post('/user/report', data, { headers: authHeader() })
   }

@@ -58,6 +58,9 @@ watch(
       {{ user?.role }}
     </td>
     <td v-motion-pop class="py-3 px-6 text-left uppercase">
+      {{ user?.subRoleId ? user?.subRoleId : '-' }}
+    </td>
+    <td v-motion-pop class="py-3 px-6 text-left uppercase">
       {{ user?.phone }}
     </td>
     <td v-motion-pop class="py-3 px-6 text-center">
