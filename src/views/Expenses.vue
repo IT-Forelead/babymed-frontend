@@ -10,6 +10,8 @@ import FilterIcon from '../assets/icons/FilterIcon.vue'
 import AddressService from '../services/address.service'
 import { useAddressStore } from '../store/address.store'
 import { onClickOutside } from '@vueuse/core'
+import MoneyBagIconm from '../assets/icons/MoneyBagIcon.vue'
+import MoneyExchangeIcon from '../assets/icons/MoneyExchangeIcon.vue'
 
 const API_URL = import.meta.env.VITE_BASE_URL
 
@@ -86,26 +88,15 @@ const submitFilterData = () => {
 <template>
   <div class="bg-white rounded-lg w-full p-5">
     <div class="flex items-center justify-between">
-      <p class="text-3xl font-bold">{{ $t('patientsReport') }}</p>
+      <div class="flex items-center space-x-3">
+        <div class="bg-lime-400 rounded-lg p-1.5 px-3 flex items-center"><MoneyBagIconm class="w-6 h-6 mr-1" /> Expense reports</div>
+        <div>|</div>
+        <div class="bg-gray-200 hover:bg-gray-400 cursor-pointer rounded-lg p-1.5 px-3 flex items-center"><MoneyExchangeIcon class="w-5 h-5 mr-1" /> Add expenses</div>
+      </div>
       <div class="flex items-center space-x-3">
         <div class="relative" ref="dropdown">
           <div @click="useModalStore().toggleFilterBy()" class="border-none select-none text-gray-500 bg-gray-100 rounded-lg w-full p-2 px-5 flex items-center hover:bg-gray-200 cursor-pointer"><FilterIcon class="w-5 h-5 text-gray-400" /> Filter By</div>
           <div v-if="useModalStore().isOpenFilterBy" class="absolute bg-white shadow rounded-xl p-3 z-20 top-12 -left-20 space-y-3">
-            <label for="firstname">
-              {{ $t('firstname') }}
-              <input class="border-none text-gray-500 bg-gray-100 rounded-lg w-full" type="text" id="firstname" :placeholder="$t('enterFirstname')" />
-            </label>
-            <label for="lastname">
-              {{ $t('lastname') }}
-              <input class="border-none text-gray-500 bg-gray-100 rounded-lg w-full" type="text" id="lastname" :placeholder="$t('enterLastname')" />
-            </label>
-            <label for="">
-              <p>{{ $t('region') }}</p>
-              <select class="border-none text-gray-500 bg-gray-100 rounded-lg w-full">
-                <option value="" selected>{{ $t('selectRegion') }}</option>
-                <option v-for="(region, idx) in regions" :key="idx" :value="region?.id">{{ region?.name }}</option>
-              </select>
-            </label>
             <div class="flex items-center space-x-1">
               <label for="">
                 From
