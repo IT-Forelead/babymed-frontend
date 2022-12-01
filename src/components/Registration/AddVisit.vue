@@ -18,6 +18,7 @@ import 'izitoast/dist/css/iziToast.min.css'
 import { useRouter } from 'vue-router'
 import { useModalStore } from '../../store/modal.store'
 import { useI18n } from 'vue-i18n'
+import { cleanObjectEmptyFields } from '../../mixins/utils'
 
 const { t } = useI18n()
 
@@ -29,20 +30,20 @@ const patients = computed(() => {
   return usePatientStore().patients
 })
 
-const doctors = computed(() => {
-  return useUserStore().doctors
-})
+// const doctors = computed(() => {
+//   return useUserStore().doctors
+// })
 
 const services = computed(() => {
   return useServicesStore().services
 })
 
 onMounted(() => {
-  UserService.getAllDoctors({
-    role: 'doctor',
-  }).then((res) => {
-    useUserStore().setDoctors(res?.data)
-  })
+  // UserService.getAllDoctors({
+  //   role: 'doctor',
+  // }).then((res) => {
+  //   useUserStore().setDoctors(res?.data)
+  // })
   ServicesService.getAllServices().then((res) => {
     useServicesStore().setServices(res)
   })
@@ -58,9 +59,9 @@ const selectedPatient = computed(() => {
   return useDropStore().selectPatientOption
 })
 
-const selectedDoctor = computed(() => {
-  return useDropStore().selectDoctorOption
-})
+// const selectedDoctor = computed(() => {
+//   return useDropStore().selectDoctorOption
+// })
 
 const selectedService = computed(() => {
   return useDropStore().selectServiceOption
@@ -71,21 +72,22 @@ const submitVisitData = () => {
     notify.warning({
       message: t('plsSelectPatient'),
     })
-  } else if (!selectedDoctor.value?.id) {
-    notify.warning({
-      message: t('plsSelectDoctor'),
-    })
+    // } else if (!selectedDoctor.value?.id) {
+    //   notify.warning({
+    //     message: t('plsSelectDoctor'),
+    //   })
   } else if (!selectedService.value?.id) {
     notify.warning({
       message: t('plsSelectService'),
     })
   } else {
     isLoading.value = true
-    VisitService.createVisit({
-      patientId: selectedPatient.value?.patient?.id,
-      userId: selectedDoctor.value?.id,
-      serviceId: selectedService.value?.id,
-    })
+    VisitService.createVisit(
+      cleanObjectEmptyFields({
+        patientId: selectedPatient.value?.patient?.id,
+        serviceId: selectedService.value?.id,
+      })
+    )
       .then(() => {
         notify.success({
           message: t('createdVisit'),
@@ -113,10 +115,10 @@ const submitVisitData = () => {
       <p>{{ $t('selectPatient') }}</p>
       <SelectOptionPatient :options="patients" />
     </div>
-    <div>
+    <!-- <div>
       <p>{{ $t('selectDoctor') }}</p>
       <SelectOptionDoctor :options="doctors" />
-    </div>
+    </div> -->
     <div>
       <p>{{ $t('selectService') }}</p>
       <SelectOptionService :options="services" />

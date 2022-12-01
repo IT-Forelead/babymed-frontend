@@ -41,12 +41,6 @@ export default [
     component: () => import('../views/Users.vue'),
     meta: { layout: 'dashboard' },
   },
-  // {
-  //   path: '/payment',
-  //   name: 'Payment',
-  //   component: () => import('../views/Payments.vue'),
-  //   meta: { layout: 'dashboard' },
-  // },
   {
     path: '/patient-visit',
     name: 'PatientVisit',

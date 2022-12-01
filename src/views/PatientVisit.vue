@@ -3,7 +3,7 @@ import authHeader from '../mixins/auth-header'
 import { computed, ref } from '@vue/reactivity'
 import { useVisitStore } from '../store/visit.store'
 import VisitsReportItem from '../components/VisitsReportItem.vue'
-import AddVisit from '../components/AddVisit.vue'
+import AddVisit from '../components/Registration/AddVisit.vue'
 import { useModalStore } from '../store/modal.store'
 import { onMounted, watch } from 'vue'
 import { useDropStore } from '../store/drop.store'
@@ -57,14 +57,14 @@ watch(
     selectedPatient.value = data
   }
 )
-const selectedDoctor = ref({})
+// const selectedDoctor = ref({})
 
-watch(
-  () => useDropStore().selectDoctorOption,
-  (data) => {
-    selectedDoctor.value = data
-  }
-)
+// watch(
+//   () => useDropStore().selectDoctorOption,
+//   (data) => {
+//     selectedDoctor.value = data
+//   }
+// )
 const selectedService = ref({})
 
 watch(
@@ -95,7 +95,7 @@ watch(
         </div>
         <AddVisit />
       </div>
-      <div v-if="Object.keys(selectedDoctor).length !== 0 || Object.keys(selectedPatient).length !== 0 || Object.keys(selectedService).length !== 0" class="bg-white rounded-lg p-3 col-span-2 text-gray-600">
+      <div v-if="Object.keys(selectedPatient).length !== 0 || Object.keys(selectedService).length !== 0" class="bg-white rounded-lg p-3 col-span-2 text-gray-600">
         <h1 class="text-2xl font-bold">{{ $t('patient') }}</h1>
         <div class="border-y-2 border-dashed my-2 p-3">
           <div class="flex justify-between border-b-2 border-dotted py-2">
@@ -110,14 +110,14 @@ watch(
               <div class="capitalize" v-if="Object.keys(selectedPatient).length !== 0">{{ selectedPatient?.patient?.address }}</div>
             </div>
           </div>
-          <div class="flex justify-between border-b-2 border-dotted py-2">
+          <!-- <div class="flex justify-between border-b-2 border-dotted py-2">
             <div class="font-bold">{{ $t('doctor') }}:</div>
             <div class="capitalize text-right text-lg font-semibold text-gray-700" v-if="Object.keys(selectedDoctor).length !== 0">
               {{ selectedDoctor?.firstname + ' ' + selectedDoctor?.lastname }} <br />
               {{ selectedDoctor?.phone }}
             </div>
             <div v-else class="capitalize">********</div>
-          </div>
+          </div> -->
           <div class="flex justify-between py-2">
             <div class="font-bold">{{ $t('service') }}:</div>
             <div class="capitalize text-right text-lg font-semibold text-gray-700" v-if="Object.keys(selectedService).length !== 0">

@@ -5,6 +5,7 @@ import { computed, ref } from '@vue/reactivity'
 import { usePatientStore } from '../store/patient.store'
 import { useModalStore } from '../store/modal.store'
 import { onMounted } from 'vue'
+import ArrowDownIcon from '../assets/icons/ArrowDownIcon.vue'
 
 const API_URL = import.meta.env.VITE_BASE_URL
 
@@ -51,7 +52,14 @@ onMounted(() => {
   <div class="bg-white rounded-lg w-full p-5">
     <div class="flex items-center justify-between">
       <p class="text-3xl font-bold">{{ $t('patientsReport') }}</p>
-      <div class="flex items-center justify-center space-x-3">
+      <div class="flex items-center space-x-3">
+        <label for="" class="flex items-center">
+          <input type="datetime-local" class="border-none text-gray-500 bg-gray-100 rounded-lg w-full">
+        </label>
+        <ArrowDownIcon class="-rotate-90 text-gray-600"/>
+        <label for="" class="flex items-center">
+          <input type="datetime-local" class="border-none text-gray-500 bg-gray-100 rounded-lg w-full">
+        </label>
         <select class="border-none rounded-lg bg-gray-100 capitalize text-gray-400">
           <option value="" selected>{{ $t('sortBy') }}</option>
           <option value="1">Sort 1</option>
