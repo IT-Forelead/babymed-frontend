@@ -13,9 +13,6 @@ onMounted(() => {
     .then((res) => {
       useAddressStore().setRegions(res)
     })
-    .catch((err) => {
-      console.log('ERR: ', err)
-    })
 })
 
 const regions = computed(() => {

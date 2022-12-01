@@ -6,7 +6,8 @@ export const useModalStore = defineStore('modal', {
     isOpenPaymentStatusChangerModal: false,
     isDeleteAlert: false,
     confirmDelete: false,
-    isOpenAddVisitModal: false
+    isOpenAddVisitModal: false,
+    isOpenFilterBy: false,
   }),
   actions: {
     openModal() {
@@ -40,6 +41,9 @@ export const useModalStore = defineStore('modal', {
     denyDelete() {
       this.confirmDelete = false
       this.isDeleteAlert = false
-    }
+    },
+    toggleFilterBy() {
+      this.isOpenFilterBy = !this.isOpenFilterBy
+    },
   },
 })
