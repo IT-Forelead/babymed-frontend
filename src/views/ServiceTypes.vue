@@ -1,72 +1,52 @@
 <script setup>
-import { computed, reactive, ref } from '@vue/reactivity'
+import { computed, ref } from '@vue/reactivity'
 import { useServicesStore } from '../store/services.store'
 import { onMounted } from 'vue'
-import ServiceItem from '../components/Service/ServiceItem.vue'
 import ServicesService from '../services/services.service'
 import notify from 'izitoast'
 import 'izitoast/dist/css/iziToast.min.css'
-import { useI18n } from 'vue-i18n'
-
-const { t } = useI18n()
-
-const moneyConf = {
-  thousands: ' ',
-  suffix: ' UZS',
-  precision: 0,
-}
+import ServiceTypeItem from '../components/Service/ServiceTypeItem.vue'
 
 const isLoading = ref(false)
 
-const services = computed(() => {
-  return useServicesStore().services
+const serviceTypes = computed(() => {
+  return useServicesStore().serviceTypes
 })
 
-const getServices = () => {
-  ServicesService.getAllServices().then((res) => {
-    useServicesStore().setServices(res)
+const getServiceTypes = () => {
+  ServicesService.getAllServiceTypes().then((res) => {
+    useServicesStore().setServiceTypes(res)
   })
 }
 onMounted(() => {
-  getServices()
+  getServiceTypes()
 })
 
-const serviceData = reactive({
-  name: '',
-  cost: 0,
-})
+const serviceType = ref('')
 
 const clearFields = () => {
-  serviceData.name = ''
-  serviceData.cost = 0
+  serviceType.value = ''
 }
 
-const submitServiceData = () => {
-  if (!serviceData.name) {
+const submitServiceTypeData = () => {
+  if (!serviceType.value) {
     notify.warning({
-      message: t('plsEnterServiceName'),
-    })
-  } else if (serviceData.cost == 0) {
-    notify.warning({
-      message: t('plsEnterServicePrice'),
+      message: 'Please enter service type name?',
     })
   } else {
     isLoading.value = true
-    ServicesService.createService({
-      name: serviceData.name,
-      cost: serviceData.cost,
-    })
+    ServicesService.createServiceType(serviceType.value)
       .then(() => {
         notify.success({
-          message: t('serviceCreated'),
+          message: 'Service type successfully created!',
         })
-        getServices()
+        getServiceTypes()
         clearFields()
         isLoading.value = false
       })
       .catch(() => {
         notify.warning({
-          message: t('errorCreatingService'),
+          message: 'Error while creating service!',
         })
         setTimeout(() => {
           isLoading.value = false
@@ -78,27 +58,15 @@ const submitServiceData = () => {
 
 <template>
   <div class="w-full">
-    <!-- <div class="flex items-center justify-between bg-white rounded-lg p-3">
-      <p class="text-3xl font-bold">{{ $t('servicesManagment') }}</p>
-      <select class="border-none rounded-lg bg-gray-100 capitalize text-gray-400">
-        <option value="" selected>{{ $t('sortBy') }}</option>
-        <option value="1">Sort 1</option>
-        <option value="2">Sort 2</option>
-      </select>
-    </div> -->
     <div class="grid grid-cols-3 gap-3">
       <div class="bg-white rounded-lg mt-3 p-3">
         <p class="text-3xl font-bold mb-3">{{ $t('createService') }}</p>
         <div class="space-y-5">
-          <label for="serviceName">
-            {{ $t('serviceName') }}
-            <input v-model="serviceData.name" class="text-gray-500 mb-3 border-none bg-gray-100 rounded-lg w-full text-lg" type="text" id="serviceName" :placeholder="$t('enterServiceName')" />
+          <label for="serviceTypeName">
+            Service Type Name
+            <input v-model="serviceType" class="text-gray-500 mb-3 border-none bg-gray-100 rounded-lg w-full text-lg" type="text" id="serviceName" :placeholder="$t('enterServiceName')" />
           </label>
-          <label for="servicePrice">
-            {{ $t('servicePrice') }}
-            <money3 v-model="serviceData.cost" v-bind="moneyConf" id="servicePrice" class="border-none text-right text-gray-500 bg-gray-100 rounded-lg w-full text-lg"> </money3>
-          </label>
-          <div @click="submitServiceData()" :class="isLoading ? 'bg-gray-600' : 'bg-gray-900 hover:bg-gray-800 cursor-pointer'" class="w-full py-3 text-white rounded-lg flex items-center justify-center">
+          <div @click="submitServiceTypeData()" :class="isLoading ? 'bg-gray-600' : 'bg-gray-900 hover:bg-gray-800 cursor-pointer'" class="w-full py-3 text-white rounded-lg flex items-center justify-center">
             <svg v-if="isLoading" class="mr-2 w-5 h-5 text-gray-200 animate-spin dark:text-gray-600 fill-gray-600 dark:fill-gray-300" viewBox="0 0 100 101" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path d="M100 50.5908C100 78.2051 77.6142 100.591 50 100.591C22.3858 100.591 0 78.2051 0 50.5908C0 22.9766 22.3858 0.59082 50 0.59082C77.6142 0.59082 100 22.9766 100 50.5908ZM9.08144 50.5908C9.08144 73.1895 27.4013 91.5094 50 91.5094C72.5987 91.5094 90.9186 73.1895 90.9186 50.5908C90.9186 27.9921 72.5987 9.67226 50 9.67226C27.4013 9.67226 9.08144 27.9921 9.08144 50.5908Z" fill="currentColor" />
               <path
@@ -106,7 +74,7 @@ const submitServiceData = () => {
                 fill="currentFill"
               />
             </svg>
-            <span>{{ isLoading ? $t('creatingService') : $t('createService') }}</span>
+            <span>{{ isLoading ? 'Creating Service Type' : 'Create Service Type' }}</span>
           </div>
         </div>
       </div>
@@ -125,16 +93,15 @@ const submitServiceData = () => {
           <thead class="sticky z-10 top-0 bg-white shadow">
             <tr class="text-gray-600 capitalize text-lg leading-normal">
               <th class="py-3 px-6 text-center">{{ $t('n') }}</th>
-              <th class="py-3 px-6 text-left">{{ $t('serviceName') }}</th>
-              <th class="py-3 px-6 text-left">{{ $t('servicePrice') }}</th>
+              <th class="py-3 px-6 text-left">Service type name</th>
               <th class="py-3 px-6 text-center">{{ $t('actions') }}</th>
             </tr>
           </thead>
           <tbody class="text-gray-600 text-sm font-light">
-            <ServiceItem :services="services" />
+            <ServiceTypeItem :serviceTypes="serviceTypes" />
           </tbody>
         </table>
-        <div v-if="services.length === 0" class="w-full text-center text-red-500 mt-5">{{ $t('empty') }}</div>
+        <div v-if="serviceTypes.length === 0" class="w-full text-center text-red-500 mt-5">{{ $t('empty') }}</div>
       </div>
     </div>
   </div>

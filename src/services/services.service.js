@@ -14,6 +14,16 @@ class ServicesService {
   async deleteService(service_id) {
     return AxiosService.get(`/service/delete/${service_id}`, { headers: authHeader() })
   }
+  async createServiceType(data) {
+    return AxiosService.post('/service/create-service-type', `"${data}"`, { headers: authHeader() })
+  }
+  async getAllServiceTypes() {
+    return AxiosService.get('/service/service-types', { headers: authHeader() })
+  }
+  async deleteServiceType(service_type_id) {
+    console.log(service_type_id);
+    return AxiosService.get(`/service/delete-service-type/${service_type_id}`, { headers: authHeader() })
+  }
 }
 
 export default new ServicesService()

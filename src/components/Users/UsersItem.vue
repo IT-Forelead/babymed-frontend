@@ -20,7 +20,7 @@ const selectedUserId = ref('')
 
 const deleteUser = (id) => {
   selectedUserId.value = id
-  useModalStore().openDeleteAlert()
+  // useModalStore().openDeleteAlert()
 }
 
 watch(

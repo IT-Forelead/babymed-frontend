@@ -39,7 +39,7 @@ const addVisitThisPatient = (patient) => {
     <td v-motion-pop class="py-3 px-6 text-center">{{ moment(patient?.patient?.createdAt).format('MM/DD/YYYY h:mm:ss') }}</td>
     <td v-motion-pop class="py-3 px-6 text-center text-sm">
       {{ patient?.region?.name }} <br />
-      {{ patient?.town?.name }} <br />
+      {{ patient?.city?.name }} <br />
       {{ patient?.patient?.address }}
     </td>
     <td v-motion-pop class="py-3 px-6 text-center">

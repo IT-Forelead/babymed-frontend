@@ -6,7 +6,7 @@ class AddressService {
     return AxiosService.get('/patient/regions', { headers: authHeader() })
   }
   async getAllCities(region_id) {
-    return AxiosService.get(`/patient/towns/${region_id}`, { headers: authHeader() })
+    return AxiosService.get(`/patient/cities/${region_id}`, { headers: authHeader() })
   }
 }
 

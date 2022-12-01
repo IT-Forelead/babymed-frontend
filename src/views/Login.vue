@@ -57,6 +57,7 @@ const changeLang = () => {
 onMounted(() => {
   lang.value = localStorage.getItem('lang') || 'uz'
   document.getElementsByTagName('title')[0].innerHTML = t('title')
+  sessionStorage.clear()
 })
 </script>
 

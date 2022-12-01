@@ -7,6 +7,7 @@ import { usePatientStore } from '../../store/patient.store'
 import notify from 'izitoast'
 import 'izitoast/dist/css/iziToast.min.css'
 import { useI18n } from 'vue-i18n'
+import { cleanObjectEmptyFields } from '../../mixins/utils'
 
 const { t } = useI18n()
 
@@ -22,7 +23,7 @@ const patientForm = reactive({
   firstname: '',
   lastname: '',
   regionId: '',
-  townId: '',
+  cityId: '',
   address: '',
   birthday: '',
   phone: '',
@@ -32,10 +33,9 @@ watch(
   () => patientForm.regionId,
   (r_id) => {
     if (r_id) {
-      AddressService.getAllCities(r_id)
-        .then((res) => {
-          cities.value = res
-        })
+      AddressService.getAllCities(r_id).then((res) => {
+        cities.value = res
+      })
     }
   },
   { deep: true }
@@ -45,7 +45,7 @@ const clearForm = () => {
   patientForm.firstname = ''
   patientForm.lastname = ''
   patientForm.regionId = ''
-  patientForm.townId = ''
+  patientForm.cityId = ''
   patientForm.address = ''
   patientForm.address = ''
   patientForm.birthday = ''
@@ -73,24 +73,26 @@ const submitPatientData = () => {
     notify.warning({
       message: t('plsSelectRegion'),
     })
-  } else if (!patientForm.townId) {
+  } else if (!patientForm.cityId) {
     notify.warning({
       message: t('plsSelectTown'),
     })
-  // } else if (!patientForm.address) {
-  //   notify.warning({
-  //     message: t('plsEnterPatientAddress'),
-  //   })
+    // } else if (!patientForm.address) {
+    //   notify.warning({
+    //     message: t('plsEnterPatientAddress'),
+    //   })
   } else {
-    PatientService.createPatient({
-      firstname: patientForm.firstname,
-      lastname: patientForm.lastname,
-      regionId: patientForm.regionId,
-      townId: patientForm.townId,
-      address: patientForm.address,
-      birthday: patientForm.birthday,
-      phone: patientForm.phone.replace(/([() -])/g, ''),
-    })
+    PatientService.createPatient(
+      cleanObjectEmptyFields({
+        firstname: patientForm.firstname,
+        lastname: patientForm.lastname,
+        regionId: patientForm.regionId,
+        cityId: patientForm.cityId,
+        address: patientForm.address,
+        birthday: patientForm.birthday,
+        phone: patientForm.phone.replace(/([() -])/g, ''),
+      })
+    )
       .then(() => {
         clearForm()
         notify.success({
@@ -144,13 +146,13 @@ const submitPatientData = () => {
         <option v-for="(region, idx) in regions" :key="idx" :value="region?.id">{{ region?.name }}</option>
       </select>
       <div v-if="patientForm.regionId !== ''">
-        <p>{{ $t('town') }}</p>
-        <select v-model="patientForm.townId" class="border-none text-gray-500 bg-gray-100 rounded-lg w-full text-lg mb-5">
+        <p>City</p>
+        <select v-model="patientForm.cityId" class="border-none text-gray-500 bg-gray-100 rounded-lg w-full text-lg mb-5">
           <option value="" selected>{{ $t('selectTown') }}</option>
           <option v-for="(city, idx) in cities" :key="idx" :value="city?.id">{{ city?.name }}</option>
         </select>
       </div>
-      <label v-if="patientForm.townId !== ''" for="address">
+      <label v-if="patientForm.cityId !== ''" for="address">
         {{ $t('address') }}
         <input v-model="patientForm.address" id="address" class="border-none text-gray-500 bg-gray-100 rounded-lg w-full text-lg mb-5" type="text" :placeholder="$t('enterAddress')" />
       </label>

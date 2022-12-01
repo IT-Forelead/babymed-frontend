@@ -22,7 +22,7 @@ const selectedServiceId = ref('')
 
 const deleteService = (s_id) => {
   selectedServiceId.value = s_id
-  useModalStore().openDeleteAlert()
+  // useModalStore().openDeleteAlert()
 }
 
 watch(

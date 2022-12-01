@@ -106,7 +106,7 @@ watch(
               </div>
               <div v-else class="capitalize">********</div>
               <div v-if="Object.keys(selectedPatient).length !== 0">{{ selectedPatient?.patient?.phone }}</div>
-              <div v-if="Object.keys(selectedPatient).length !== 0">{{ selectedPatient?.region?.name + ' ' + selectedPatient?.town?.name }}</div>
+              <div v-if="Object.keys(selectedPatient).length !== 0">{{ selectedPatient?.region?.name + ' ' + selectedPatient?.city?.name }}</div>
               <div class="capitalize" v-if="Object.keys(selectedPatient).length !== 0">{{ selectedPatient?.patient?.address }}</div>
             </div>
           </div>
