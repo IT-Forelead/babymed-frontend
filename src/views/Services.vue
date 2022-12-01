@@ -18,18 +18,18 @@ const moneyConf = {
 
 const isLoading = ref(false)
 
-const services = computed(() => {
-  return useServicesStore().services
-})
+// const services = computed(() => {
+//   return useServicesStore().services
+// })
 
-const getServices = () => {
-  ServicesService.getAllServices().then((res) => {
-    useServicesStore().setServices(res)
-  })
-}
-onMounted(() => {
-  getServices()
-})
+// const getServices = () => {
+//   ServicesService.getAllServices().then((res) => {
+//     useServicesStore().setServices(res)
+//   })
+// }
+// onMounted(() => {
+//   getServices()
+// })
 
 const serviceData = reactive({
   name: '',
@@ -131,10 +131,10 @@ const submitServiceData = () => {
             </tr>
           </thead>
           <tbody class="text-gray-600 text-sm font-light">
-            <ServiceItem :services="services" />
+            <!-- <ServiceItem :services="services" /> -->
           </tbody>
         </table>
-        <div v-if="services.length === 0" class="w-full text-center text-red-500 mt-5">{{ $t('empty') }}</div>
+        <!-- <div v-if="services.length === 0" class="w-full text-center text-red-500 mt-5">{{ $t('empty') }}</div> -->
       </div>
     </div>
   </div>

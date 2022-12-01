@@ -1,6 +1,6 @@
 <script setup>
 import { computed, ref } from '@vue/reactivity'
-import { onMounted } from 'vue'
+import { onMounted, watch } from 'vue'
 import { useVisitStore } from '../../store/visit.store'
 import { useUserStore } from '../../store/user.store'
 import { usePatientStore } from '../../store/patient.store'
@@ -19,6 +19,7 @@ import { useRouter } from 'vue-router'
 import { useModalStore } from '../../store/modal.store'
 import { useI18n } from 'vue-i18n'
 import { cleanObjectEmptyFields } from '../../mixins/utils'
+import SelectOptionServiceType from '../SelectOptionServiceType.vue'
 
 const { t } = useI18n()
 
@@ -30,22 +31,17 @@ const patients = computed(() => {
   return usePatientStore().patients
 })
 
-// const doctors = computed(() => {
-//   return useUserStore().doctors
-// })
+const serviceTypes = computed(() => {
+  return useServicesStore().serviceTypes
+})
 
 const services = computed(() => {
   return useServicesStore().services
 })
 
 onMounted(() => {
-  // UserService.getAllDoctors({
-  //   role: 'doctor',
-  // }).then((res) => {
-  //   useUserStore().setDoctors(res?.data)
-  // })
-  ServicesService.getAllServices().then((res) => {
-    useServicesStore().setServices(res)
+  ServicesService.getAllServiceTypes().then((res) => {
+    useServicesStore().setServiceTypes(res)
   })
   if (!(router.currentRoute?.value?.path === '/patients' || router.currentRoute?.value?.path === '/dashboard')) {
     PatientService.getAllPatients({}).then((res) => {
@@ -59,23 +55,34 @@ const selectedPatient = computed(() => {
   return useDropStore().selectPatientOption
 })
 
-// const selectedDoctor = computed(() => {
-//   return useDropStore().selectDoctorOption
-// })
+const selectedServiceType = computed(() => {
+  return useDropStore().selectServiceTypeOption
+})
 
 const selectedService = computed(() => {
   return useDropStore().selectServiceOption
 })
+
+watch(
+  () => selectedServiceType.value,
+  (data) => {
+    if (data) {
+      ServicesService.getServicesByTypeId(data?.id).then((res) => {
+        useServicesStore().setServices(res)
+      })
+    }
+  }
+)
 
 const submitVisitData = () => {
   if (!selectedPatient.value?.patient?.id) {
     notify.warning({
       message: t('plsSelectPatient'),
     })
-    // } else if (!selectedDoctor.value?.id) {
-    //   notify.warning({
-    //     message: t('plsSelectDoctor'),
-    //   })
+  } else if (!selectedServiceType.value?.id) {
+    notify.warning({
+      message: 'Please select service type!',
+    })
   } else if (!selectedService.value?.id) {
     notify.warning({
       message: t('plsSelectService'),
@@ -115,10 +122,10 @@ const submitVisitData = () => {
       <p>{{ $t('selectPatient') }}</p>
       <SelectOptionPatient :options="patients" />
     </div>
-    <!-- <div>
-      <p>{{ $t('selectDoctor') }}</p>
-      <SelectOptionDoctor :options="doctors" />
-    </div> -->
+    <div>
+      <p>Select Service Type</p>
+      <SelectOptionServiceType :options="serviceTypes" />
+    </div>
     <div>
       <p>{{ $t('selectService') }}</p>
       <SelectOptionService :options="services" />

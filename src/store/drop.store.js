@@ -4,9 +4,11 @@ export const useDropStore = defineStore('drop', {
   state: () => ({
     selectPatientOption: '',
     selectDoctorOption: '',
+    selectServiceTypeOption: '',
     selectServiceOption: '',
     isOpenPatientDropDown: false,
     isOpenDoctorDropDown: false,
+    isOpenServiceTypeDropDown: false,
     isOpenServiceDropDown: false,
   }),
   actions: {
@@ -15,6 +17,9 @@ export const useDropStore = defineStore('drop', {
     },
     setSelectDoctorOption(data) {
       this.selectDoctorOption = data
+    },
+    setSelectServiceTypeOption(data) {
+      this.selectServiceTypeOption = data
     },
     setSelectServiceOption(data) {
       this.selectServiceOption = data
@@ -31,6 +36,12 @@ export const useDropStore = defineStore('drop', {
     closeDoctorDropDown() {
       this.isOpenDoctorDropDown = false
     },
+    openServiceTypeDropDown() {
+      this.isOpenServiceTypeDropDown = true
+    },
+    closeServiceTypeDropDown() {
+      this.isOpenServiceTypeDropDown = false
+    },
     openServiceDropDown() {
       this.isOpenServiceDropDown = true
     },
@@ -44,6 +55,7 @@ export const useDropStore = defineStore('drop', {
       this.isOpenDoctorDropDown = false
       this.isOpenPatientDropDown = false
       this.isOpenServiceDropDown = false
+      this.isOpenServiceTypeDropDown = false
     }
   },
 })
