@@ -27,7 +27,9 @@ const currentLabel = computed(() => {
   } else if (router.currentRoute?.value?.path === '/users') {
     return t('usersManagment')
   } else if (router.currentRoute?.value?.path === '/service-types') {
-    return "Service Types"
+    return 'Service Types'
+  } else if (router.currentRoute?.value?.path === '/expenses') {
+    return 'Expenses'
   }
 })
 </script>

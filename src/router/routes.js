@@ -48,6 +48,12 @@ export default [
     meta: { layout: 'dashboard' },
   },
   {
+    path: '/expenses',
+    name: 'Expenses',
+    component: () => import('../views/Expenses.vue'),
+    meta: { layout: 'dashboard' },
+  },
+  {
     path: '/notfound',
     name: 'Not-Found',
     component: () => import('../components/NotFound.vue'),
