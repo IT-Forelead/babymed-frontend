@@ -1,15 +1,15 @@
 <script setup>
 import { computed, reactive, ref } from '@vue/reactivity'
-import { useServicesStore } from '../store/services.store'
 import { onMounted } from 'vue'
+import { useServicesStore } from '../store/services.store'
+import { useDropStore } from '../store/drop.store'
 import ServiceItem from '../components/Service/ServiceItem.vue'
 import notify from 'izitoast'
 import 'izitoast/dist/css/iziToast.min.css'
-import { useI18n } from 'vue-i18n'
 import SelectOptionServiceType from '../components/SelectOptionServiceType.vue'
 import { cleanObjectEmptyFields } from '../mixins/utils'
-import { useDropStore } from '../store/drop.store'
 import ServicesService from '../services/services.service'
+import { useI18n } from 'vue-i18n'
 
 const { t } = useI18n()
 

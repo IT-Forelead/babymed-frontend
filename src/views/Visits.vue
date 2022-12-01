@@ -71,7 +71,7 @@ onMounted(() => {
             <th class="py-3 px-6 text-center">{{ $t('createdAt') }}</th>
             <th class="py-3 px-6 text-center">{{ $t('paymentStatus') }}</th>
             <th class="py-3 px-6 text-center">{{ $t('service') }}</th>
-            <th class="py-3 px-6 text-center">{{ $t('doctor') }}</th>
+            <!-- <th class="py-3 px-6 text-center">{{ $t('doctor') }}</th> -->
             <th class="py-3 px-6 text-center">{{ $t('actions') }}</th>
           </tr>
         </thead>

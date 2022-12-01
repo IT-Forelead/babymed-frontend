@@ -9,6 +9,9 @@ import useMoneyFormatter from '../../mixins/currencyFormatter'
 import VisitService from '../../services/visit.service'
 import notify from 'izitoast'
 import 'izitoast/dist/css/iziToast.min.css'
+import { useI18n } from 'vue-i18n'
+
+const { t } = useI18n()
 
 const patient = computed(() => {
   return useVisitStore().selectedPatient
@@ -72,7 +75,7 @@ const submitPaymentStatus = () => {
             </li>
             <li class="flex justify-between items-center">
               <div class="text-base text-gray-500">{{ $t('servicePrice') }}:</div>
-              <div class="text-lg text-gray-700">{{ useMoneyFormatter(patient?.service?.cost) }}</div>
+              <div class="text-lg text-gray-700">{{ useMoneyFormatter(patient?.service?.price) }}</div>
             </li>
           </ul>
           <p class="mb-3 text-center">{{ $t('clickToChangePaymentStatus') }}</p>

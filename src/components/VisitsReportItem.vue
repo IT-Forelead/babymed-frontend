@@ -62,12 +62,12 @@ const translatePaymentStatus = (status) => {
     </td>
     <td v-motion-pop class="py-3 px-6 text-center capitalize">
       {{ patient?.service?.name }} <br />
-     <span class="text-sm font-bold italic">{{ useMoneyFormatter(patient?.service?.cost) }}</span>
+     <span class="text-sm font-bold italic">{{ useMoneyFormatter(patient?.service?.price) }}</span>
     </td>
-    <td v-motion-pop class="py-3 px-6 text-center capitalize">
+    <!-- <td v-motion-pop class="py-3 px-6 text-center capitalize">
       {{ patient?.user?.firstname }} <br/> 
       {{ patient?.user?.lastname}}
-    </td>
+    </td> -->
     <td v-motion-pop class="py-3 px-6 text-center">
       <div class="flex item-center justify-center">
         <div v-if="patient?.patientVisit?.paymentStatus.includes('not_paid')" @click="open(patient)" class="w-4 mr-2 transform text-blue-500 hover:text-purple-500 hover:scale-110 cursor-pointer">
@@ -80,7 +80,7 @@ const translatePaymentStatus = (status) => {
     </td>
   </tr>
   <tr class="text-gray-700 text-md dark:text-gray-300 dark:bg-gray-800">
-    <td v-motion-pop colspan="10">
+    <td v-motion-pop colspan="8">
       <div class="flex items-center justify-center w-full p-2">
         <InfiniteLoading v-bind="$attrs" />
       </div>

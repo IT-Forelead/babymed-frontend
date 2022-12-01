@@ -56,7 +56,7 @@ watch(
       {{ service?.name }}
     </td>
     <td v-motion-pop class="py-3 px-6 text-left">
-      {{ useMoneyFormatter(service?.cost) }}
+      {{ useMoneyFormatter(service?.price) }}
     </td>
     <td v-motion-pop class="py-3 px-6 text-center">
       <div class="flex item-center justify-center">

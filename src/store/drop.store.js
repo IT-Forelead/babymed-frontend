@@ -50,12 +50,13 @@ export const useDropStore = defineStore('drop', {
     },
     clearStore() {
       this.selectDoctorOption = ''
+      this.selectServiceTypeOption = ''
       this.selectPatientOption = ''
       this.selectServiceOption = ''
       this.isOpenDoctorDropDown = false
       this.isOpenPatientDropDown = false
       this.isOpenServiceDropDown = false
       this.isOpenServiceTypeDropDown = false
-    }
+    },
   },
 })

@@ -122,7 +122,7 @@ watch(
             <div class="font-bold">{{ $t('service') }}:</div>
             <div class="capitalize text-right text-lg font-semibold text-gray-700" v-if="Object.keys(selectedService).length !== 0">
               {{ selectedService?.name }} <br />
-              {{ useMoneyFormatter(selectedService?.cost) }}
+              {{ useMoneyFormatter(selectedService?.price) }}
             </div>
             <div v-else class="capitalize">********</div>
           </div>
@@ -130,7 +130,7 @@ watch(
         <div v-if="Object.keys(selectedService).length !== 0" class="flex items-center justify-between font-bold text-2xl px-3">
           <div>{{ $t('total') }}:</div>
           <div class="text-right font-semibold text-gray-700">
-            {{ useMoneyFormatter(selectedService?.cost) }}
+            {{ useMoneyFormatter(selectedService?.price) }}
           </div>
         </div>
       </div>
@@ -153,7 +153,7 @@ watch(
               <th class="py-3 px-6 text-center">{{ $t('createdAt') }}</th>
               <th class="py-3 px-6 text-center">{{ $t('paymentStatus') }}</th>
               <th class="py-3 px-6 text-center">{{ $t('service') }}</th>
-              <th class="py-3 px-6 text-center">{{ $t('doctor') }}</th>
+              <!-- <th class="py-3 px-6 text-center">{{ $t('doctor') }}</th> -->
               <th class="py-3 px-6 text-center">{{ $t('actions') }}</th>
             </tr>
           </thead>
