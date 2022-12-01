@@ -3,10 +3,13 @@ import { computed, reactive, ref } from '@vue/reactivity'
 import { useServicesStore } from '../store/services.store'
 import { onMounted } from 'vue'
 import ServiceItem from '../components/Service/ServiceItem.vue'
-import ServicesService from '../services/services.service'
 import notify from 'izitoast'
 import 'izitoast/dist/css/iziToast.min.css'
 import { useI18n } from 'vue-i18n'
+import SelectOptionServiceType from '../components/SelectOptionServiceType.vue'
+import { cleanObjectEmptyFields } from '../mixins/utils'
+import { useDropStore } from '../store/drop.store'
+import ServicesService from '../services/services.service'
 
 const { t } = useI18n()
 
@@ -33,34 +36,56 @@ const isLoading = ref(false)
 
 const serviceData = reactive({
   name: '',
-  cost: 0,
+  price: 0,
+})
+
+const serviceTypes = computed(() => {
+  return useServicesStore().serviceTypes
 })
 
 const clearFields = () => {
   serviceData.name = ''
-  serviceData.cost = 0
+  serviceData.price = 0
+  useDropStore().setSelectServiceTypeOption('')
 }
+
+onMounted(() => {
+  ServicesService.getAllServiceTypes().then((res) => {
+    useServicesStore().setServiceTypes(res)
+  })
+})
+
+const selectedServiceType = computed(() => {
+  return useDropStore().selectServiceTypeOption
+})
 
 const submitServiceData = () => {
   if (!serviceData.name) {
     notify.warning({
       message: t('plsEnterServiceName'),
     })
-  } else if (serviceData.cost == 0) {
+  } else if (!selectedServiceType.value?.id) {
+    notify.warning({
+      message: 'Please select service type!',
+    })
+  } else if (serviceData.price == 0) {
     notify.warning({
       message: t('plsEnterServicePrice'),
     })
   } else {
     isLoading.value = true
-    ServicesService.createService({
-      name: serviceData.name,
-      cost: serviceData.cost,
-    })
+    ServicesService.createService(
+      cleanObjectEmptyFields({
+        serviceTypeId: selectedServiceType.value?.id,
+        name: serviceData.name,
+        price: serviceData.price,
+      })
+    )
       .then(() => {
         notify.success({
           message: t('serviceCreated'),
         })
-        getServices()
+        // getServices()
         clearFields()
         isLoading.value = false
       })
@@ -94,9 +119,13 @@ const submitServiceData = () => {
             {{ $t('serviceName') }}
             <input v-model="serviceData.name" class="text-gray-500 mb-3 border-none bg-gray-100 rounded-lg w-full text-lg" type="text" id="serviceName" :placeholder="$t('enterServiceName')" />
           </label>
+          <label for="">
+            Service Type
+            <SelectOptionServiceType :options="serviceTypes" class="mb-3" />
+          </label>
           <label for="servicePrice">
             {{ $t('servicePrice') }}
-            <money3 v-model="serviceData.cost" v-bind="moneyConf" id="servicePrice" class="border-none text-right text-gray-500 bg-gray-100 rounded-lg w-full text-lg"> </money3>
+            <money3 v-model="serviceData.price" v-bind="moneyConf" id="servicePrice" class="border-none text-right text-gray-500 bg-gray-100 rounded-lg w-full text-lg"> </money3>
           </label>
           <div @click="submitServiceData()" :class="isLoading ? 'bg-gray-600' : 'bg-gray-900 hover:bg-gray-800 cursor-pointer'" class="w-full py-3 text-white rounded-lg flex items-center justify-center">
             <svg v-if="isLoading" class="mr-2 w-5 h-5 text-gray-200 animate-spin dark:text-gray-600 fill-gray-600 dark:fill-gray-300" viewBox="0 0 100 101" fill="none" xmlns="http://www.w3.org/2000/svg">
