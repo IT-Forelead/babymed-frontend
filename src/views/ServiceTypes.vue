@@ -60,11 +60,11 @@ const submitServiceTypeData = () => {
   <div class="w-full">
     <div class="grid grid-cols-3 gap-3">
       <div class="bg-white rounded-lg mt-3 p-3">
-        <p class="text-3xl font-bold mb-3">{{ $t('createService') }}</p>
+        <p class="text-3xl font-bold mb-3">Create Service Type</p>
         <div class="space-y-5">
           <label for="serviceTypeName">
             Service Type Name
-            <input v-model="serviceType" class="text-gray-500 mb-3 border-none bg-gray-100 rounded-lg w-full text-lg" type="text" id="serviceName" :placeholder="$t('enterServiceName')" />
+            <input v-model="serviceType" class="text-gray-500 mb-1 border-none bg-gray-100 rounded-lg w-full text-lg" type="text" id="serviceName" :placeholder="$t('enterServiceName')" />
           </label>
           <div @click="submitServiceTypeData()" :class="isLoading ? 'bg-gray-600' : 'bg-gray-900 hover:bg-gray-800 cursor-pointer'" class="w-full py-3 text-white rounded-lg flex items-center justify-center">
             <svg v-if="isLoading" class="mr-2 w-5 h-5 text-gray-200 animate-spin dark:text-gray-600 fill-gray-600 dark:fill-gray-300" viewBox="0 0 100 101" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -80,7 +80,7 @@ const submitServiceTypeData = () => {
       </div>
       <div class="max-h-[77vh] overflow-auto mt-3 col-span-2 bg-white rounded-lg">
         <div class="flex items-center justify-between p-3">
-          <p class="text-3xl font-bold">{{ $t('servicesReport') }}</p>
+          <p class="text-3xl font-bold">Xizmat turlari hisoboti</p>
           <div class="flex items-center justify-center space-x-3">
             <select class="border-none rounded-lg bg-gray-100 capitalize text-gray-400">
               <option value="" selected>{{ $t('sortBy') }}</option>

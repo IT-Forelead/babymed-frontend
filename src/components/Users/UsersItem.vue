@@ -57,10 +57,10 @@ watch(
     <td v-motion-pop class="py-3 px-6 text-left uppercase">
       {{ user?.role }}
     </td>
-    <td v-motion-pop class="py-3 px-6 text-left uppercase">
-      {{ user?.subRoleId ? user?.subRoleId : '-' }}
+    <td v-motion-pop class="py-3 px-6 text-left">
+      {{ user?.subRoleName ? user?.subRoleName : '-' }}
     </td>
-    <td v-motion-pop class="py-3 px-6 text-left uppercase">
+    <td v-motion-pop class="py-3 px-6 text-left">
       {{ user?.phone }}
     </td>
     <td v-motion-pop class="py-3 px-6 text-center">

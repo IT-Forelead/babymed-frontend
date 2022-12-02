@@ -71,6 +71,7 @@ const submitUserData = () => {
           .then((res) => {
             useUserStore().clearStore()
             useUserStore().setUsers(res?.data)
+            showSubRoles.value = false
           })
           .catch(() => {
             notify.error({

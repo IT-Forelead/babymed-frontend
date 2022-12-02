@@ -1,15 +1,17 @@
 <script setup>
 import ReportItem from '../components/ReportItem.vue'
 import authHeader from '../mixins/auth-header'
-import { computed, ref } from '@vue/reactivity'
+import { computed, ref, reactive } from '@vue/reactivity'
 import { usePatientStore } from '../store/patient.store'
 import { useModalStore } from '../store/modal.store'
 import { onMounted } from 'vue'
 import ArrowDownIcon from '../assets/icons/ArrowDownIcon.vue'
 import FilterIcon from '../assets/icons/FilterIcon.vue'
 import AddressService from '../services/address.service'
+import PatientService from '../services/patient.service'
 import { useAddressStore } from '../store/address.store'
 import { onClickOutside } from '@vueuse/core'
+import { cleanObjectEmptyFields } from '../mixins/utils'
 
 const API_URL = import.meta.env.VITE_BASE_URL
 
@@ -71,15 +73,24 @@ onClickOutside(dropdown, () => {
   }
 })
 
+const filterData = reactive({
+  patientFirstName: '',
+  patientLastName: '',
+  regionId: '',
+  startDate: '',
+  endDate: '',
+})
+
 const submitFilterData = () => {
   isLoading.value = true
-  console.log('Filter by data!')
-  setTimeout(() => {
+  PatientService.getAllPatients(cleanObjectEmptyFields(filterData)).then((res) => {
+    usePatientStore().clearStore()
+    usePatientStore().setPatients(res?.data)
     isLoading.value = false
     if (useModalStore().isOpenFilterBy) {
       useModalStore().toggleFilterBy()
     }
-  }, 500)
+  })
 }
 </script>
 
@@ -93,15 +104,15 @@ const submitFilterData = () => {
           <div v-if="useModalStore().isOpenFilterBy" class="absolute bg-white shadow rounded-xl p-3 z-20 top-12 -left-20 space-y-3">
             <label for="firstname">
               {{ $t('firstname') }}
-              <input class="border-none text-gray-500 bg-gray-100 rounded-lg w-full" type="text" id="firstname" :placeholder="$t('enterFirstname')" />
+              <input v-model="filterData.patientFirstName" class="border-none text-gray-500 bg-gray-100 rounded-lg w-full" type="text" id="firstname" :placeholder="$t('enterFirstname')" />
             </label>
             <label for="lastname">
               {{ $t('lastname') }}
-              <input class="border-none text-gray-500 bg-gray-100 rounded-lg w-full" type="text" id="lastname" :placeholder="$t('enterLastname')" />
+              <input v-model="filterData.patientLastName" class="border-none text-gray-500 bg-gray-100 rounded-lg w-full" type="text" id="lastname" :placeholder="$t('enterLastname')" />
             </label>
             <label for="">
               <p>{{ $t('region') }}</p>
-              <select class="border-none text-gray-500 bg-gray-100 rounded-lg w-full">
+              <select v-model="filterData.regionId" class="border-none text-gray-500 bg-gray-100 rounded-lg w-full">
                 <option value="" selected>{{ $t('selectRegion') }}</option>
                 <option v-for="(region, idx) in regions" :key="idx" :value="region?.id">{{ region?.name }}</option>
               </select>
@@ -109,12 +120,12 @@ const submitFilterData = () => {
             <div class="flex items-center space-x-1">
               <label for="">
                 From
-                <input type="datetime-local" class="border-none text-gray-500 bg-gray-100 rounded-lg w-full" />
+                <input v-model="filterData.startDate" type="datetime-local" class="border-none text-gray-500 bg-gray-100 rounded-lg w-full" />
               </label>
               <ArrowDownIcon class="-rotate-90 text-gray-600 mt-6" />
               <label for="">
                 To
-                <input type="datetime-local" class="border-none text-gray-500 bg-gray-100 rounded-lg w-full" />
+                <input v-model="filterData.endDate" type="datetime-local" class="border-none text-gray-500 bg-gray-100 rounded-lg w-full" />
               </label>
             </div>
             <div v-if="isLoading" class="w-full bg-gray-600 py-3 select-none text-white rounded-lg flex items-center justify-center">
