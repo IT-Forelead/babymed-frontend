@@ -23,30 +23,45 @@ const selectedServiceId = ref('')
 const deleteService = (s_id) => {
   selectedServiceId.value = s_id
   // useModalStore().openDeleteAlert()
+  ServicesService.deleteService(selectedServiceId.value)
+    .then(() => {
+      notify.success({
+        message: t('deletedService'),
+      })
+      ServicesService.getAllServices().then((res) => {
+        useServicesStore().setServices(res)
+      })
+      selectedServiceId.value = ''
+    })
+    .catch(() => {
+      notify.warning({
+        message: t('errorDeletingService'),
+      })
+    })
 }
 
-watch(
-  () => useModalStore().confirmDelete,
-  (confirm) => {
-    if (confirm) {
-      ServicesService.deleteService(selectedServiceId.value)
-        .then(() => {
-          notify.success({
-            message: t('deletedService'),
-          })
-          ServicesService.getAllServices().then((res) => {
-            useServicesStore().setServices(res)
-          })
-          selectedServiceId.value = ''
-        })
-        .catch(() => {
-          notify.warning({
-            message: t('errorDeletingService'),
-          })
-        })
-    }
-  }
-)
+// watch(
+//   () => useModalStore().confirmDelete,
+//   (confirm) => {
+//     if (confirm) {
+//       ServicesService.deleteService(selectedServiceId.value)
+//         .then(() => {
+//           notify.success({
+//             message: t('deletedService'),
+//           })
+//           ServicesService.getAllServices().then((res) => {
+//             useServicesStore().setServices(res)
+//           })
+//           selectedServiceId.value = ''
+//         })
+//         .catch(() => {
+//           notify.warning({
+//             message: t('errorDeletingService'),
+//           })
+//         })
+//     }
+//   }
+// )
 </script>
 
 <template>
