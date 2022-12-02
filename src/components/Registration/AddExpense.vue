@@ -1,22 +1,40 @@
 <script setup>
-import { computed, reactive } from '@vue/reactivity'
+import { computed, reactive, ref } from '@vue/reactivity'
 import { onMounted } from 'vue'
 import { useVisitStore } from '../../store/visit.store'
 import { cleanObjectEmptyFields } from '../../mixins/utils'
 import VisitService from '../../services/visit.service'
 import ExpenseService from '../../services/expenses.service'
+import UserService from '../../services/user.service'
+import { useUserStore } from '../../store/user.store'
+import SelectOptionDoctor from '../SelectOptionDoctor.vue'
+import PlusIcon from '../../assets/icons/PlusIcon.vue'
 import notify from 'izitoast'
 import 'izitoast/dist/css/iziToast.min.css'
 import { useI18n } from 'vue-i18n'
+import { useDropStore } from '../../store/drop.store'
+import useMoneyFormatter from '../../mixins/currencyFormatter'
 
 const { t } = useI18n()
+
+const moneyConf = {
+  thousands: ' ',
+  suffix: ' UZS',
+  precision: 0,
+}
+
+const expenseItem = reactive({
+  userId: '',
+  subRole: '',
+  price: 0,
+})
 
 const expenseForm = reactive({
   patientVisitId: '',
   operationExpenseItems: [],
-  forLaboratory: '',
-  forTools: '',
-  forDrugs: '',
+  forLaboratory: 0,
+  forTools: 0,
+  forDrugs: 0,
   partnerDoctorFullName: '',
   partnerDoctorPrice: '',
 })
@@ -29,6 +47,11 @@ const clearForm = () => {
   expenseForm.forDrugs = ''
   expenseForm.partnerDoctorFullName = ''
   expenseForm.partnerDoctorPrice = ''
+  useDropStore().clearStore()
+  displayItems.value = []
+  expenseItem.subRole = ''
+  expenseItem.price = 0
+  expenseItem.userId = ''
 }
 
 onMounted(() => {
@@ -36,37 +59,49 @@ onMounted(() => {
     useVisitStore().clearStore()
     useVisitStore().setPatients(res?.data)
   })
+  UserService.getAllDoctors({}).then((res) => {
+    useUserStore().clearStore()
+    useUserStore().setDoctors(res?.data)
+  })
+  UserService.getSubRoles().then((res) => {
+    useUserStore().clearStore()
+    useUserStore().setSubRoles(res)
+  })
 })
 
 const visits = computed(() => {
   return useVisitStore().patients
 })
 
-const submitExpenseData = () => {
+const doctors = computed(() => {
+  return useUserStore().doctors
+})
+
+const subRoles = computed(() => {
+  return useUserStore().subRoles
+})
+
+const submitExpenseFormData = () => {
   if (!expenseForm.patientVisitId) {
     notify.warning({
       message: 'Please select patient visit!',
     })
-    // } else if (!expenseForm.operationExpenseItems) {
-    //   notify.warning({
-    //     message: t('plsEnterPatientLastname'),
-    //   })
-    // } else if (!patientForm.birthday) {
-    //   notify.warning({
-    //     message: t('plsEnterPatientBirthday'),
-    //   })
-    // } else if (!patientForm.phone) {
-    //   notify.warning({
-    //     message: t('plsEnterPatientPhone'),
-    //   })
-    // } else if (!patientForm.regionId) {
-    //   notify.warning({
-    //     message: t('plsSelectRegion'),
-    //   })
-    // } else if (!patientForm.cityId) {
-    //   notify.warning({
-    //     message: t('plsSelectTown'),
-    //   })
+  } else if (expenseForm.forLaboratory == 0) {
+    notify.warning({
+      message: 'Please enter laboratory price!',
+    })
+  } else if (expenseForm.forTools == 0) {
+    notify.warning({
+      message: 'Please enter tools price!',
+    })
+  } else if (expenseForm.forDrugs == 0) {
+    notify.warning({
+      message: 'Please enter drugs price!',
+    })
+  } else if (expenseForm.operationExpenseItems.length < 4) {
+    notify.warning({
+      message: 'Please enter all doctors!',
+    })
   } else {
     ExpenseService.createExpense(cleanObjectEmptyFields(expenseForm))
       .then(() => {
@@ -82,9 +117,33 @@ const submitExpenseData = () => {
       })
   }
 }
+
+const displayItems = ref([])
+
+const selectedDoctor = computed(() => {
+  return useDropStore().selectDoctorOption
+})
+
+const addItems = () => {
+  expenseItem.userId = useDropStore().selectDoctorOption?.id
+  expenseForm.operationExpenseItems.push({
+    userId: selectedDoctor?.value?.id,
+    subRoleId: expenseItem.subRole?.id,
+    price: expenseItem.price,
+  })
+  displayItems.value.push({
+    doctor: selectedDoctor?.value?.firstname + ' ' + selectedDoctor?.value?.lastname,
+    subRole: expenseItem.subRole?.name,
+    price: expenseItem.price,
+  })
+  useDropStore().clearStore()
+  expenseItem.subRole = ''
+  expenseItem.price = 0
+  expenseItem.userId = ''
+}
 </script>
 <template>
-  <div class="grid gap-10 grid-cols-2 my-5">
+  <div class="grid grid-cols-3 mt-5 gap-5">
     <div>
       <p>Select visit</p>
       <select v-model="expenseForm.patientVisitId" class="border-none text-gray-500 bg-gray-100 rounded-lg w-full text-lg mb-5">
@@ -93,37 +152,77 @@ const submitExpenseData = () => {
           {{ visit?.patient?.firstname + ' ' + visit?.patient?.lastname + ' | ' + visit?.service?.name }}
         </option>
       </select>
-      <!-- <label for="lastname">
-        {{ $t('lastname') }}
-        <input v-model="patientForm.lastname" class="border-none text-gray-500 bg-gray-100 rounded-lg w-full text-lg mb-5" type="text" id="lastname" :placeholder="$t('enterLastname')" />
-      </label>
-      <label for="birthday">
-        {{ $t('birthday') }}
-        <input v-model="patientForm.birthday" class="border-none text-gray-500 bg-gray-100 rounded-lg w-full text-lg mb-5" type="date" id="birthday" :placeholder="$t('birthday')" />
-      </label>
-      <label for="phone">
-        {{ $t('phone') }}
-        <input v-model="patientForm.phone" class="border-none text-gray-500 bg-gray-100 rounded-lg w-full text-lg mb-5" type="text" v-mask="'+998(##) ###-##-##'" placeholder="+998(00) 000-00-00" />
-      </label> -->
     </div>
     <div>
-      <!-- <p>{{ $t('region') }}</p>
-      <select v-model="patientForm.regionId" class="border-none text-gray-500 bg-gray-100 rounded-lg w-full text-lg mb-5">
-        <option value="" selected>{{ $t('selectRegion') }}</option>
-        <option v-for="(region, idx) in regions" :key="idx" :value="region?.id">{{ region?.name }}</option>
-      </select>
-      <div v-if="patientForm.regionId !== ''">
-        <p>City</p>
-        <select v-model="patientForm.cityId" class="border-none text-gray-500 bg-gray-100 rounded-lg w-full text-lg mb-5">
-          <option value="" selected>{{ $t('selectTown') }}</option>
-          <option v-for="(city, idx) in cities" :key="idx" :value="city?.id">{{ city?.name }}</option>
-        </select>
-      </div>
-      <label v-if="patientForm.cityId !== ''" for="address">
-        {{ $t('address') }}
-        <input v-model="patientForm.address" id="address" class="border-none text-gray-500 bg-gray-100 rounded-lg w-full text-lg mb-5" type="text" :placeholder="$t('enterAddress')" />
-      </label> -->
+      <p>Partner doctor</p>
+      <input type="text" v-model="expenseForm.partnerDoctorFullName" placeholder="Enter partner doctor" class="border-none text-gray-500 bg-gray-100 rounded-lg w-full text-lg" />
     </div>
+    <div>
+      <p>Partner doctor Price</p>
+      <money3 v-model="expenseForm.partnerDoctorPrice" v-bind="moneyConf" class="border-none text-right text-gray-500 bg-gray-100 rounded-lg w-full text-lg"> </money3>
+    </div>
+  </div>
+  <div class="grid grid-cols-3 gap-5 mb-5">
+    <div>
+      <p>Laboratory Price</p>
+      <money3 v-model="expenseForm.forLaboratory" v-bind="moneyConf" class="border-none text-right text-gray-500 bg-gray-100 rounded-lg w-full text-lg"> </money3>
+    </div>
+    <div>
+      <p>Tools Price</p>
+      <money3 v-model="expenseForm.forTools" v-bind="moneyConf" class="border-none text-right text-gray-500 bg-gray-100 rounded-lg w-full text-lg"> </money3>
+    </div>
+    <div>
+      <p>Drugs Price</p>
+      <money3 v-model="expenseForm.forDrugs" v-bind="moneyConf" class="border-none text-right text-gray-500 bg-gray-100 rounded-lg w-full text-lg"> </money3>
+    </div>
+  </div>
+  <table v-if="displayItems?.length !== 0" class="w-full bg-gray-100">
+    <tr>
+      <th>No</th>
+      <th>Doctor</th>
+      <th>Sub role</th>
+      <th>Price</th>
+    </tr>
+    <tr class="text-center divide-y py-5" v-for="(item, idx) in displayItems" :key="idx">
+      <td>{{ idx + 1 }}</td>
+      <td>{{ item?.doctor }}</td>
+      <td>{{ item?.subRole }}</td>
+      <td>{{ useMoneyFormatter(item?.price) }}</td>
+    </tr>
+  </table>
+  <div class="flex items-center space-x-5 mt-3">
+    <div class="basis-1/3">
+      <label for="lastname">
+        Select doctor
+        <SelectOptionDoctor :options="doctors" class="flex" />
+      </label>
+    </div>
+    <div class="basis-1/3">
+      <label for="">
+        Sub role
+        <select v-model="expenseItem.subRole" class="border-none text-gray-500 bg-gray-100 rounded-lg w-full text-lg">
+          <option value="" selected>Select Sub Role</option>
+          <option v-for="(subRole, idx) in subRoles" :key="idx" :value="subRole" class="capitalize">
+            {{ subRole?.name }}
+          </option>
+        </select>
+      </label>
+    </div>
+    <div class="basis-1/3">
+      <label for="lastname">
+        Price <br />
+        <money3 v-model="expenseItem.price" v-bind="moneyConf" class="border-none text-right text-gray-500 bg-gray-100 rounded-lg w-full text-lg"> </money3>
+      </label>
+    </div>
+    <div class="flex-1">
+      <div @click="addItems()" class="w-8 h-8 bg-lime-400 mt-5 hover:bg-lime-500 cursor-pointer hover:scale-110 transition-all duration-300 flex items-center justify-center rounded-full text-3xl p-1">
+        <PlusIcon />
+      </div>
+    </div>
+  </div>
+  <div class="flex items-center justify-end mt-5 space-x-5">
+    <div @click="clearForm()" class="p-2 text-center text-lg text-white rounded-lg mt-3 bg-gray-400 w-1/5 hover:bg-gray-500 cursor-pointer">Clear Form</div>
+    <div @click="submitExpenseFormData()" class="p-2 text-center text-lg text-white rounded-lg mt-3 bg-green-400 w-1/5 hover:bg-green-500 cursor-pointer">Save expense</div>
   </div>
 </template>
 

@@ -12,6 +12,7 @@ import MoneyExchangeIcon from '../assets/icons/MoneyExchangeIcon.vue'
 import ExpenseReportItem from '../components/ExpenseReportItem.vue'
 import { useTabStore } from '../store/tab.store'
 import AddExpense from '../components/Registration/AddExpense.vue'
+import ExpenseService from '../services/expenses.service'
 
 const API_URL = import.meta.env.VITE_BASE_URL
 
@@ -73,19 +74,27 @@ const submitFilterData = () => {
     }
   }, 500)
 }
+
+const openFirstTab = () => {
+  useTabStore().openFirstTab()
+  ExpenseService.getAllExpenses({}).then((res) => {
+    useExpenseStore().clearStore()
+    useExpenseStore().setExpenses(res?.data)
+  })
+}
 </script>
 
 <template>
   <div class="bg-white rounded-lg w-full p-5">
     <div class="flex items-center justify-between">
       <div class="flex items-center space-x-3">
-        <div @click="useTabStore().openFirstTab()" :class="useTabStore().isOpenFirstTab ? 'bg-lime-400' : 'bg-gray-200 hover:bg-gray-400 cursor-pointer transition-all duration-300 hover:scale-105'" class="rounded-lg p-1.5 px-3 flex items-center"><MoneyBagIconm class="w-6 h-6 mr-1" /> Expense reports</div>
+        <div @click="openFirstTab()" :class="useTabStore().isOpenFirstTab ? 'bg-lime-400' : 'bg-gray-200 hover:bg-gray-400 cursor-pointer transition-all duration-300 hover:scale-105'" class="rounded-lg p-1.5 px-3 flex items-center"><MoneyBagIconm class="w-6 h-6 mr-1" /> Expense reports</div>
         <div>|</div>
         <div @click="useTabStore().openSecondTab()" :class="useTabStore().isOpenSecondTab ? 'bg-lime-400' : 'bg-gray-200 hover:bg-gray-400 cursor-pointer transition-all duration-300 hover:scale-105'" class="rounded-lg p-1.5 px-3 flex items-center"><MoneyExchangeIcon class="w-5 h-5 mr-1" /> Add expenses</div>
       </div>
       <div class="flex items-center space-x-3">
         <div class="relative" ref="dropdown">
-          <div @click="useModalStore().toggleFilterBy()" class="border-none select-none text-gray-500 bg-gray-100 rounded-lg w-full p-2 px-5 flex items-center hover:bg-gray-200 cursor-pointer"><FilterIcon class="w-5 h-5 text-gray-400" /> Filter By</div>
+          <div v-if="useTabStore().isOpenFirstTab" @click="useModalStore().toggleFilterBy()" class="border-none select-none text-gray-500 bg-gray-100 rounded-lg w-full p-2 px-5 flex items-center hover:bg-gray-200 cursor-pointer"><FilterIcon class="w-5 h-5 text-gray-400" /> Filter By</div>
           <div v-if="useModalStore().isOpenFilterBy" class="absolute bg-white shadow rounded-xl p-3 z-20 top-12 -left-20 space-y-3">
             <div class="flex items-center space-x-1">
               <label for="">
@@ -113,14 +122,11 @@ const submitFilterData = () => {
             </div>
           </div>
         </div>
-        <select class="border-none rounded-lg bg-gray-100 capitalize text-gray-400">
+        <select v-if="useTabStore().isOpenFirstTab" class="border-none rounded-lg bg-gray-100 capitalize text-gray-400">
           <option value="" selected>{{ $t('sortBy') }}</option>
           <option value="1">Sort 1</option>
           <option value="2">Sort 2</option>
         </select>
-        <div @click="useModalStore().openModal()" class="bg-black text-white rounded-xl p-2 px-4 cursor-pointer hover:bg-black/75">
-          <p class="text-base">+ {{ $t('addPatient') }}</p>
-        </div>
       </div>
     </div>
     <div v-if="useTabStore().isOpenFirstTab" class="max-h-[77vh] overflow-auto mt-3 expenses-wrapper">
