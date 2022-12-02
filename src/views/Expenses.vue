@@ -10,6 +10,8 @@ import { onClickOutside } from '@vueuse/core'
 import MoneyBagIconm from '../assets/icons/MoneyBagIcon.vue'
 import MoneyExchangeIcon from '../assets/icons/MoneyExchangeIcon.vue'
 import ExpenseReportItem from '../components/ExpenseReportItem.vue'
+import { useTabStore } from '../store/tab.store'
+import AddExpense from '../components/Registration/AddExpense.vue'
 
 const API_URL = import.meta.env.VITE_BASE_URL
 
@@ -77,9 +79,9 @@ const submitFilterData = () => {
   <div class="bg-white rounded-lg w-full p-5">
     <div class="flex items-center justify-between">
       <div class="flex items-center space-x-3">
-        <div class="bg-lime-400 rounded-lg p-1.5 px-3 flex items-center"><MoneyBagIconm class="w-6 h-6 mr-1" /> Expense reports</div>
+        <div @click="useTabStore().openFirstTab()" :class="useTabStore().isOpenFirstTab ? 'bg-lime-400' : 'bg-gray-200 hover:bg-gray-400 cursor-pointer transition-all duration-300 hover:scale-105'" class="rounded-lg p-1.5 px-3 flex items-center"><MoneyBagIconm class="w-6 h-6 mr-1" /> Expense reports</div>
         <div>|</div>
-        <div class="bg-gray-200 hover:bg-gray-400 cursor-pointer rounded-lg p-1.5 px-3 flex items-center"><MoneyExchangeIcon class="w-5 h-5 mr-1" /> Add expenses</div>
+        <div @click="useTabStore().openSecondTab()" :class="useTabStore().isOpenSecondTab ? 'bg-lime-400' : 'bg-gray-200 hover:bg-gray-400 cursor-pointer transition-all duration-300 hover:scale-105'" class="rounded-lg p-1.5 px-3 flex items-center"><MoneyExchangeIcon class="w-5 h-5 mr-1" /> Add expenses</div>
       </div>
       <div class="flex items-center space-x-3">
         <div class="relative" ref="dropdown">
@@ -121,7 +123,7 @@ const submitFilterData = () => {
         </div>
       </div>
     </div>
-    <div class="max-h-[77vh] overflow-auto mt-3 expenses-wrapper">
+    <div v-if="useTabStore().isOpenFirstTab" class="max-h-[77vh] overflow-auto mt-3 expenses-wrapper">
       <table class="min-w-max w-full table-auto">
         <thead class="sticky z-10 top-0 bg-white shadow">
           <tr class="text-gray-600 capitalize text-lg leading-normal">
@@ -138,6 +140,7 @@ const submitFilterData = () => {
       </table>
       <div v-if="expenses?.length === 0" class="w-full text-center text-red-500">{{ $t('empty') }}</div>
     </div>
+    <AddExpense v-if="useTabStore().isOpenSecondTab" />
   </div>
 </template>
 <style scoped>

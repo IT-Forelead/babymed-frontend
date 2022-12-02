@@ -8,6 +8,9 @@ class VisitService {
   async getVisits(filter) {
     return AxiosService.post('/visit/report', filter, { headers: authHeader() })
   }
+  async getAllVisits(filter) {
+    return AxiosService.post('/visit/report?page=1&limit=1000', filter, { headers: authHeader() })
+  }
   async changePaymentStatus(id) {
     return AxiosService.get(`/visit/update-payment-status/${id}`, { headers: authHeader() })
   }

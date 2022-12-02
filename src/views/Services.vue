@@ -21,18 +21,22 @@ const moneyConf = {
 
 const isLoading = ref(false)
 
-// const services = computed(() => {
-//   return useServicesStore().services
-// })
+const services = computed(() => {
+  return useServicesStore().services
+})
 
-// const getServices = () => {
-//   ServicesService.getAllServices().then((res) => {
-//     useServicesStore().setServices(res)
-//   })
-// }
-// onMounted(() => {
-//   getServices()
-// })
+const getServices = () => {
+  ServicesService.getAllServices().then((res) => {
+    useServicesStore().setServices(res)
+  })
+  ServicesService.getAllServiceTypes().then((res) => {
+    useServicesStore().setServiceTypes(res)
+  })
+}
+
+onMounted(() => {
+  getServices()
+})
 
 const serviceData = reactive({
   name: '',
@@ -48,12 +52,6 @@ const clearFields = () => {
   serviceData.price = 0
   useDropStore().setSelectServiceTypeOption('')
 }
-
-onMounted(() => {
-  ServicesService.getAllServiceTypes().then((res) => {
-    useServicesStore().setServiceTypes(res)
-  })
-})
 
 const selectedServiceType = computed(() => {
   return useDropStore().selectServiceTypeOption
@@ -85,7 +83,7 @@ const submitServiceData = () => {
         notify.success({
           message: t('serviceCreated'),
         })
-        // getServices()
+        getServices()
         clearFields()
         isLoading.value = false
       })
@@ -103,14 +101,6 @@ const submitServiceData = () => {
 
 <template>
   <div class="w-full">
-    <!-- <div class="flex items-center justify-between bg-white rounded-lg p-3">
-      <p class="text-3xl font-bold">{{ $t('servicesManagment') }}</p>
-      <select class="border-none rounded-lg bg-gray-100 capitalize text-gray-400">
-        <option value="" selected>{{ $t('sortBy') }}</option>
-        <option value="1">Sort 1</option>
-        <option value="2">Sort 2</option>
-      </select>
-    </div> -->
     <div class="grid grid-cols-3 gap-3">
       <div class="bg-white rounded-lg mt-3 p-3">
         <p class="text-3xl font-bold mb-3">{{ $t('createService') }}</p>
@@ -160,10 +150,10 @@ const submitServiceData = () => {
             </tr>
           </thead>
           <tbody class="text-gray-600 text-sm font-light">
-            <!-- <ServiceItem :services="services" /> -->
+            <ServiceItem :services="services" />
           </tbody>
         </table>
-        <!-- <div v-if="services.length === 0" class="w-full text-center text-red-500 mt-5">{{ $t('empty') }}</div> -->
+        <div v-if="services?.length === 0" class="w-full text-center text-red-500 mt-5">{{ $t('empty') }}</div>
       </div>
     </div>
   </div>
