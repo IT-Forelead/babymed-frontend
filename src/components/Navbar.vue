@@ -8,6 +8,7 @@ import DeleteAlert from './DeleteAlert.vue'
 import ChangePaymentStatus from './Payments/ChangePaymentStatus.vue'
 import AddVisitModal from './AddVisitModal.vue'
 import { useI18n } from 'vue-i18n'
+import OperationInfoModal from './Operations/OperationInfoModal.vue'
 
 const { t } = useI18n()
 
@@ -62,6 +63,7 @@ const currentLabel = computed(() => {
     <DeleteAlert />
     <!-- Add Visit Modal -->
     <AddVisitModal />
+    <OperationInfoModal />
   </div>
 </template>
 

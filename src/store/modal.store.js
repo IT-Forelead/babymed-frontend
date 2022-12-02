@@ -8,6 +8,7 @@ export const useModalStore = defineStore('modal', {
     confirmDelete: false,
     isOpenAddVisitModal: false,
     isOpenFilterBy: false,
+    isOpenOperationExpenseInfo: false,
   }),
   actions: {
     openModal() {
@@ -41,6 +42,12 @@ export const useModalStore = defineStore('modal', {
     denyDelete() {
       this.confirmDelete = false
       this.isDeleteAlert = false
+    },
+    openOperationExpenseInfoModal() {
+      this.isOpenOperationExpenseInfo = true
+    },
+    closeOperationExpenseInfoModal() {
+      this.isOpenOperationExpenseInfo = false
     },
     toggleFilterBy() {
       this.isOpenFilterBy = !this.isOpenFilterBy

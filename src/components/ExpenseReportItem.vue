@@ -10,6 +10,7 @@ import moment from 'moment'
 import { useRouter } from 'vue-router'
 import { useModalStore } from '../store/modal.store'
 import { useDropStore } from '../store/drop.store'
+import ExpenseService from '../services/expenses.service'
 import { useI18n } from 'vue-i18n'
 
 const { t } = useI18n()
@@ -22,13 +23,17 @@ const props = defineProps({
 
 const { expenses } = toRefs(props)
 
-// const addVisitThisPatient = (patient) => {
-//   useDropStore().setSelectPatientOption(patient)
-//   useModalStore().openAddVisitModal()
-// }
+const clickedTheRow = (data) => {
+  ExpenseService.getExpenseItemsByExpenseId(data?.operationExpense?.id).then((res) => {
+    console.log(res);
+    useDropStore().setSelectedExpenseItems(res)
+  })
+  useDropStore().setSelectedExpense(data)
+  useModalStore().openOperationExpenseInfoModal()
+}
 </script>
 <template>
-  <tr class="border-y border-gray-200 hover:bg-gray-100 text-lg font-medium" v-for="(expense, idx) in expenses" :key="idx">
+  <tr class="border-y cursor-pointer border-gray-200 hover:bg-gray-100 text-lg font-medium" v-for="(expense, idx) in expenses" :key="idx" @click="clickedTheRow(expense)">
     <td v-motion-pop class="text-center">{{ idx + 1 }}</td>
     <td v-motion-pop class="py-3 px-6 text-left">
       <div class="flex items-center">
@@ -44,7 +49,7 @@ const { expenses } = toRefs(props)
     </td>
     <td v-motion-pop class="py-3 px-6 text-center capitalize">
       {{ expense?.service?.name }} <br />
-     <span class="text-sm font-bold italic">{{ useMoneyFormatter(expense?.service?.price) }}</span>
+      <span class="text-sm font-bold italic">{{ useMoneyFormatter(expense?.service?.price) }}</span>
     </td>
     <td v-motion-pop class="py-3 px-6 text-center">{{ moment(expense?.operationExpense?.createdAt).format('MM/DD/YYYY h:mm:ss') }}</td>
     <!-- <td v-motion-pop class="py-3 px-6 text-center">{{ moment(patient?.patient?.createdAt).format('MM/DD/YYYY h:mm:ss') }}</td> -->

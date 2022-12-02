@@ -6,6 +6,8 @@ export const useDropStore = defineStore('drop', {
     selectDoctorOption: '',
     selectServiceTypeOption: '',
     selectServiceOption: '',
+    selectedExpense: {},
+    selectedExpenseItems: [],
     isOpenPatientDropDown: false,
     isOpenDoctorDropDown: false,
     isOpenServiceTypeDropDown: false,
@@ -14,6 +16,12 @@ export const useDropStore = defineStore('drop', {
   actions: {
     setSelectPatientOption(data) {
       this.selectPatientOption = data
+    },
+    setSelectedExpense(data) {
+      this.selectedExpense = data
+    },
+    setSelectedExpenseItems(data) {
+      this.selectedExpenseItems = data
     },
     setSelectDoctorOption(data) {
       this.selectDoctorOption = data
