@@ -25,7 +25,6 @@ const { expenses } = toRefs(props)
 
 const clickedTheRow = (data) => {
   ExpenseService.getExpenseItemsByExpenseId(data?.operationExpense?.id).then((res) => {
-    console.log(res);
     useDropStore().setSelectedExpenseItems(res)
   })
   useDropStore().setSelectedExpense(data)

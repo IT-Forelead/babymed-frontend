@@ -37,7 +37,6 @@ const loadExpenses = async ($state) => {
         headers: authHeader(),
       })
       const json = await response.json()
-      console.log(json);
       total.value = json?.total
       setTimeout(() => {
         // patients.value.push(...json?.data)

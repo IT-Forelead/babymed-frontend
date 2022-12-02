@@ -24,7 +24,6 @@ const confirm = computed(() => useModalStore().confirmDelete)
 
 const deleteServiceType = (st_id) => {
   selectedServiceTypeId.value = st_id
-  console.log(st_id)
   // useModalStore().openDeleteAlert()
   ServicesService.deleteServiceType(selectedServiceTypeId.value)
     .then(() => {
