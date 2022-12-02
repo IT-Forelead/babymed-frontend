@@ -1,36 +1,34 @@
 <script setup>
-import ReportItem from '../components/ReportItem.vue'
 import authHeader from '../mixins/auth-header'
 import { computed, ref } from '@vue/reactivity'
-import { usePatientStore } from '../store/patient.store'
+import { useExpenseStore } from '../store/expense.store'
 import { useModalStore } from '../store/modal.store'
 import { onMounted } from 'vue'
 import ArrowDownIcon from '../assets/icons/ArrowDownIcon.vue'
 import FilterIcon from '../assets/icons/FilterIcon.vue'
-import AddressService from '../services/address.service'
-import { useAddressStore } from '../store/address.store'
 import { onClickOutside } from '@vueuse/core'
 import MoneyBagIconm from '../assets/icons/MoneyBagIcon.vue'
 import MoneyExchangeIcon from '../assets/icons/MoneyExchangeIcon.vue'
+import ExpenseReportItem from '../components/ExpenseReportItem.vue'
 
 const API_URL = import.meta.env.VITE_BASE_URL
 
 const isLoading = ref(false)
 
 const total = ref(1)
-const patients = computed(() => {
-  return usePatientStore().patients
+const expenses = computed(() => {
+  return useExpenseStore().expenses
 })
-const target = ref('.patients-wrapper')
+const target = ref('.expenses-wrapper')
 const distance = ref(200)
 
 let page = 0
-const loadPatients = async ($state) => {
+const loadExpenses = async ($state) => {
   page++
   let additional = total.value % 30 == 0 ? 0 : 1
   if (total.value !== 0 && total.value / 30 + additional >= page) {
     try {
-      const response = await fetch(`${API_URL}/patient/report`, {
+      const response = await fetch(`${API_URL}/operation-expense/report`, {
         method: 'POST',
         body: JSON.stringify({
           page: page,
@@ -39,10 +37,11 @@ const loadPatients = async ($state) => {
         headers: authHeader(),
       })
       const json = await response.json()
+      console.log(json);
       total.value = json?.total
       setTimeout(() => {
         // patients.value.push(...json?.data)
-        usePatientStore().setPatients(json?.data)
+        useExpenseStore().setExpenses(json?.data)
         $state.loaded()
       }, 500)
     } catch (error) {
@@ -52,17 +51,7 @@ const loadPatients = async ($state) => {
 }
 
 onMounted(() => {
-  usePatientStore().clearStore()
-})
-
-onMounted(() => {
-  AddressService.getAllRegions().then((res) => {
-    useAddressStore().setRegions(res)
-  })
-})
-
-const regions = computed(() => {
-  return useAddressStore().regions
+  useExpenseStore().clearStore()
 })
 
 const dropdown = ref(null)
@@ -133,24 +122,22 @@ const submitFilterData = () => {
         </div>
       </div>
     </div>
-    <div class="max-h-[77vh] overflow-auto mt-3 patients-wrapper">
+    <div class="max-h-[77vh] overflow-auto mt-3 expenses-wrapper">
       <table class="min-w-max w-full table-auto">
         <thead class="sticky z-10 top-0 bg-white shadow">
           <tr class="text-gray-600 capitalize text-lg leading-normal">
             <th class="py-3 px-6 text-center">{{ $t('n') }}</th>
-            <th class="py-3 px-6 text-left">{{ $t('patientName') }}</th>
-            <th class="py-3 px-6 text-left">{{ $t('phone') }}</th>
+            <th class="py-3 px-6 text-left">Patient</th>
+            <th class="py-3 px-6 text-center">{{ $t('service') }}</th>
             <th class="py-3 px-6 text-center">{{ $t('createdAt') }}</th>
-            <th class="py-3 px-6 text-center">{{ $t('address') }}</th>
-            <th class="py-3 px-6 text-center">{{ $t('birthday') }}</th>
             <th class="py-3 px-6 text-center">{{ $t('actions') }}</th>
           </tr>
         </thead>
         <tbody class="text-gray-600 text-sm font-light">
-          <ReportItem :patients="patients" :distance="distance" :target="target" @infinite="loadPatients" />
+          <ExpenseReportItem :expenses="expenses" :distance="distance" :target="target" @infinite="loadExpenses" />
         </tbody>
       </table>
-      <div v-if="patients.length === 0" class="w-full text-center text-red-500">{{ $t('empty') }}</div>
+      <div v-if="expenses?.length === 0" class="w-full text-center text-red-500">{{ $t('empty') }}</div>
     </div>
   </div>
 </template>

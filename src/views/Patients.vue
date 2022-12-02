@@ -170,7 +170,7 @@ const submitFilterData = () => {
           <ReportItem :patients="patients" :distance="distance" :target="target" @infinite="loadPatients" />
         </tbody>
       </table>
-      <div v-if="patients.length === 0" class="w-full text-center text-red-500">{{ $t('empty') }}</div>
+      <div v-if="patients?.length === 0" class="w-full text-center text-red-500">{{ $t('empty') }}</div>
     </div>
   </div>
 </template>
