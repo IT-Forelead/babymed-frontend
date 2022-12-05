@@ -145,43 +145,43 @@ const addItems = () => {
 <template>
   <div class="grid grid-cols-3 mt-5 gap-5">
     <div>
-      <p>Select visit</p>
+      <p>{{ $t('selectVisit') }}</p>
       <select v-model="expenseForm.patientVisitId" class="border-none text-gray-500 bg-gray-100 rounded-lg w-full text-lg mb-5">
-        <option value="" selected>Select Patient Visit</option>
+        <option value="" selected>{{ $t('selectPatientVisit') }}</option>
         <option v-for="(visit, idx) in visits" :key="idx" :value="visit?.patientVisit?.id" class="capitalize">
           {{ visit?.patient?.firstname + ' ' + visit?.patient?.lastname + ' | ' + visit?.service?.name }}
         </option>
       </select>
     </div>
     <div>
-      <p>Partner doctor</p>
+      <p>{{ $t('partnerDoctor') }}</p>
       <input type="text" v-model="expenseForm.partnerDoctorFullName" placeholder="Enter partner doctor" class="border-none text-gray-500 bg-gray-100 rounded-lg w-full text-lg" />
     </div>
     <div>
-      <p>Partner doctor Price</p>
+      <p>{{ $t('partnerDoctorPrice') }}</p>
       <money3 v-model="expenseForm.partnerDoctorPrice" v-bind="moneyConf" class="border-none text-right text-gray-500 bg-gray-100 rounded-lg w-full text-lg"> </money3>
     </div>
   </div>
   <div class="grid grid-cols-3 gap-5 mb-5">
     <div>
-      <p>Laboratory Price</p>
+      <p>{{ $t('laboratoryPrice') }}</p>
       <money3 v-model="expenseForm.forLaboratory" v-bind="moneyConf" class="border-none text-right text-gray-500 bg-gray-100 rounded-lg w-full text-lg"> </money3>
     </div>
     <div>
-      <p>Tools Price</p>
+      <p>{{ $t('toolsPrice') }}</p>
       <money3 v-model="expenseForm.forTools" v-bind="moneyConf" class="border-none text-right text-gray-500 bg-gray-100 rounded-lg w-full text-lg"> </money3>
     </div>
     <div>
-      <p>Drugs Price</p>
+      <p>{{ $t('drugsPrice') }}</p>
       <money3 v-model="expenseForm.forDrugs" v-bind="moneyConf" class="border-none text-right text-gray-500 bg-gray-100 rounded-lg w-full text-lg"> </money3>
     </div>
   </div>
   <table v-if="displayItems?.length !== 0" class="w-full bg-gray-100">
     <tr>
-      <th>No</th>
-      <th>Doctor</th>
-      <th>Sub role</th>
-      <th>Price</th>
+      <th>{{ $t('n') }}</th>
+      <th>{{ $t('doctor') }}</th>
+      <th>{{ $t('subRole') }}</th>
+      <th>{{ $t('price') }}</th>
     </tr>
     <tr class="text-center divide-y py-5" v-for="(item, idx) in displayItems" :key="idx">
       <td>{{ idx + 1 }}</td>
@@ -193,15 +193,15 @@ const addItems = () => {
   <div class="flex items-center space-x-5 mt-3">
     <div class="basis-1/3">
       <label for="lastname">
-        Select doctor
+        {{ $t('selectDoctor') }}
         <SelectOptionDoctor :options="doctors" class="flex" />
       </label>
     </div>
     <div class="basis-1/3">
       <label for="">
-        Sub role
+        {{ $t('subRole') }}
         <select v-model="expenseItem.subRole" class="border-none text-gray-500 bg-gray-100 rounded-lg w-full text-lg">
-          <option value="" selected>Select Sub Role</option>
+          <option value="" selected>{{ $t('selectSubRole') }}</option>
           <option v-for="(subRole, idx) in subRoles" :key="idx" :value="subRole" class="capitalize">
             {{ subRole?.name }}
           </option>
@@ -210,7 +210,7 @@ const addItems = () => {
     </div>
     <div class="basis-1/3">
       <label for="lastname">
-        Price <br />
+        {{ $t('price') }} <br />
         <money3 v-model="expenseItem.price" v-bind="moneyConf" class="border-none text-right text-gray-500 bg-gray-100 rounded-lg w-full text-lg"> </money3>
       </label>
     </div>
@@ -221,8 +221,8 @@ const addItems = () => {
     </div>
   </div>
   <div class="flex items-center justify-end mt-5 space-x-5">
-    <div @click="clearForm()" class="p-2 text-center text-lg text-white rounded-lg mt-3 bg-gray-400 w-1/5 hover:bg-gray-500 cursor-pointer">Clear Form</div>
-    <div @click="submitExpenseFormData()" class="p-2 text-center text-lg text-white rounded-lg mt-3 bg-green-400 w-1/5 hover:bg-green-500 cursor-pointer">Save expense</div>
+    <div @click="clearForm()" class="p-2 text-center text-lg text-white rounded-lg mt-3 bg-gray-400 w-1/5 hover:bg-gray-500 cursor-pointer">{{ $t('clear') }}</div>
+    <div @click="submitExpenseFormData()" class="p-2 text-center text-lg text-white rounded-lg mt-3 bg-green-400 w-1/5 hover:bg-green-500 cursor-pointer">{{ $t('save') }}</div>
   </div>
 </template>
 

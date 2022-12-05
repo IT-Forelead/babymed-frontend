@@ -120,7 +120,7 @@ const submitVisitData = () => {
       <SelectOptionPatient :options="patients" />
     </div>
     <div>
-      <p>Select Service Type</p>
+      <p>{{ $t('selectServiceType') }}</p>
       <SelectOptionServiceType :options="serviceTypes" />
     </div>
     <div>
