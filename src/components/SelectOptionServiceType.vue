@@ -6,6 +6,7 @@ import { useDropStore } from '../store/drop.store'
 import UserBoldIcon from '../assets/icons/UserBoldIcon.vue'
 import TimesIcon from '../assets/icons/TimesIcon.vue'
 import ChevronRightIcon from '../assets/icons/ChevronRightIcon.vue'
+import { useServicesStore } from '../store/services.store'
 
 const props = defineProps({
   options: { type: Array, required: true },
@@ -22,6 +23,8 @@ watch(useDropStore(), () => {
 
 const clearSelectedOptionData = () => {
   useDropStore().setSelectServiceTypeOption('')
+  useDropStore().setSelectServiceOption('')
+  useServicesStore().setServices([])
 }
 
 onClickOutside(dropdown, () => {
