@@ -13,7 +13,7 @@
       <p class="text-4xl font-bold">30%</p>
       <div class="rounded-lg bg-lime-300 px-1">+4.2%</div>
     </div>
-    <p class="text-center">Chart below</p>
+    <p class="text-center">Chart Below</p>
     <div class="flex items-baseline space-x-10 justify-center">
       <div class="h-14 w-10 rounded bg-gray-100"></div>
       <div class="h-24 w-10 rounded bg-gray-100"></div>

@@ -38,6 +38,17 @@ const loadPatients = async ($state) => {
         }),
         headers: authHeader(),
       })
+      if (response?.headers.get('x-new-token')) {
+        sessionStorage.setItem('token', response?.headers.get('x-new-token'))
+        await fetch(`${API_URL}/patient/report`, {
+          method: 'POST',
+          body: JSON.stringify({
+            page: 1,
+            limit: 30,
+          }),
+          headers: authHeader(),
+        })
+      }
       const json = await response.json()
       total.value = json?.total
       setTimeout(() => {

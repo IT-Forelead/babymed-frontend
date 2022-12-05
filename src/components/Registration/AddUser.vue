@@ -126,14 +126,14 @@ watch(
       <select v-model="userForm.role" class="rounded-lg w-full text-gray-500 border-none bg-gray-100 p-2.5 mb-3">
         <option value="">{{ $t('selectRole') }}</option>
         <option value="admin">Admin</option>
-        <option value="doctor">Doctor</option>
+        <option value="doctor">{{ $t('doctor') }}</option>
       </select>
     </label>
     <!-- Show only doctor select -->
     <label for="" v-if="showSubRoles">
       Sub role<br />
       <select v-model="userForm.subRoleId" class="rounded-lg w-full text-gray-500 border-none bg-gray-100 p-2.5 mb-3">
-        <option value="">Select sub role</option>
+        <option value="">{{ $t('selectSubRole') }}</option>
         <option v-for="(sr, idx) in subRoles" :key="idx" :value="sr?.id">{{ sr?.name }}</option>
       </select>
     </label>
