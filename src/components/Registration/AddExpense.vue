@@ -125,21 +125,31 @@ const selectedDoctor = computed(() => {
 })
 
 const addItems = () => {
-  expenseItem.userId = useDropStore().selectDoctorOption?.id
-  expenseForm.operationExpenseItems.push({
-    userId: selectedDoctor?.value?.id,
-    subRoleId: expenseItem.subRole?.id,
-    price: expenseItem.price,
-  })
-  displayItems.value.push({
-    doctor: selectedDoctor?.value?.firstname + ' ' + selectedDoctor?.value?.lastname,
-    subRole: expenseItem.subRole?.name,
-    price: expenseItem.price,
-  })
-  useDropStore().clearStore()
-  expenseItem.subRole = ''
-  expenseItem.price = 0
-  expenseItem.userId = ''
+  if (!useDropStore().selectDoctorOption?.id) {
+    notify.warning({
+      message: 'Please select doctor!',
+    })
+  } else if (!expenseItem.subRole?.id) {
+    notify.warning({
+      message: 'Please select sub role!',
+    })
+  } else {
+    expenseItem.userId = useDropStore().selectDoctorOption?.id
+    expenseForm.operationExpenseItems.push({
+      userId: selectedDoctor?.value?.id,
+      subRoleId: expenseItem.subRole?.id,
+      price: expenseItem.price,
+    })
+    displayItems.value.push({
+      doctor: selectedDoctor?.value?.firstname + ' ' + selectedDoctor?.value?.lastname,
+      subRole: expenseItem.subRole?.name,
+      price: expenseItem.price,
+    })
+    useDropStore().clearStore()
+    expenseItem.subRole = ''
+    expenseItem.price = 0
+    expenseItem.userId = ''
+  }
 }
 </script>
 <template>
