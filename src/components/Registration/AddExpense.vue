@@ -225,7 +225,7 @@ const addItems = () => {
       </label>
     </div>
     <div class="flex-1">
-      <div @click="addItems()" class="w-8 h-8 bg-lime-400 mt-5 hover:bg-lime-500 cursor-pointer hover:scale-110 transition-all duration-300 flex items-center justify-center rounded-full text-3xl p-1">
+      <div @click="addItems()" class="w-8 h-8 bg-lime-300 mt-5 hover:bg-lime-400 cursor-pointer hover:scale-110 transition-all duration-300 flex items-center justify-center rounded-full text-3xl p-1">
         <PlusIcon />
       </div>
     </div>

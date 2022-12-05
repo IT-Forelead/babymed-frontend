@@ -88,9 +88,9 @@ const openFirstTab = () => {
   <div class="bg-white rounded-lg w-full p-5">
     <div class="flex items-center justify-between">
       <div class="flex items-center space-x-3">
-        <div @click="openFirstTab()" :class="useTabStore().isOpenFirstTab ? 'bg-lime-400' : 'bg-gray-200 hover:bg-gray-400 cursor-pointer transition-all duration-300 hover:scale-105'" class="rounded-lg p-1.5 px-3 flex items-center"><MoneyBagIconm class="w-6 h-6 mr-1" /> Expense reports</div>
+        <div @click="openFirstTab()" :class="useTabStore().isOpenFirstTab ? 'bg-lime-300' : 'bg-gray-200 hover:bg-gray-400 cursor-pointer transition-all duration-300 hover:scale-105'" class="rounded-lg p-1.5 px-3 flex items-center"><MoneyBagIconm class="w-6 h-6 mr-1" /> Expense reports</div>
         <div>|</div>
-        <div @click="useTabStore().openSecondTab()" :class="useTabStore().isOpenSecondTab ? 'bg-lime-400' : 'bg-gray-200 hover:bg-gray-400 cursor-pointer transition-all duration-300 hover:scale-105'" class="rounded-lg p-1.5 px-3 flex items-center"><MoneyExchangeIcon class="w-5 h-5 mr-1" /> Add expenses</div>
+        <div @click="useTabStore().openSecondTab()" :class="useTabStore().isOpenSecondTab ? 'bg-lime-300' : 'bg-gray-200 hover:bg-gray-400 cursor-pointer transition-all duration-300 hover:scale-105'" class="rounded-lg p-1.5 px-3 flex items-center"><MoneyExchangeIcon class="w-5 h-5 mr-1" /> Add expenses</div>
       </div>
       <div class="flex items-center space-x-3">
         <div class="relative" ref="dropdown">
