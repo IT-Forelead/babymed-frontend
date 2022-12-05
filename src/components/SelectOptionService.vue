@@ -49,7 +49,7 @@ const optionClicked = (data) => {
           {{ option?.name }}
         </div>
         <div v-if="options?.length === 0" class="hover:bg-gray-200 cursor-pointer p-2 rounded-lg capitalize">
-          <p class="text-red-500">This service type not attached service!</p>
+          <p class="text-red-500">T{{ $t('serviceError') }}</p>
         </div>
       </div>
     </label>

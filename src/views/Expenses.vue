@@ -88,13 +88,13 @@ const openFirstTab = () => {
   <div class="bg-white rounded-lg w-full p-5">
     <div class="flex items-center justify-between">
       <div class="flex items-center space-x-3">
-        <div @click="openFirstTab()" :class="useTabStore().isOpenFirstTab ? 'bg-lime-400' : 'bg-gray-200 hover:bg-gray-400 cursor-pointer transition-all duration-300 hover:scale-105'" class="rounded-lg p-1.5 px-3 flex items-center"><MoneyBagIconm class="w-6 h-6 mr-1" /> Expense reports</div>
+        <div @click="openFirstTab()" :class="useTabStore().isOpenFirstTab ? 'bg-lime-400' : 'bg-gray-200 hover:bg-gray-400 cursor-pointer transition-all duration-300 hover:scale-105'" class="rounded-lg p-1.5 px-3 flex items-center"><MoneyBagIconm class="w-6 h-6 mr-1" />{{ $t('expenseReports') }}</div>
         <div>|</div>
-        <div @click="useTabStore().openSecondTab()" :class="useTabStore().isOpenSecondTab ? 'bg-lime-400' : 'bg-gray-200 hover:bg-gray-400 cursor-pointer transition-all duration-300 hover:scale-105'" class="rounded-lg p-1.5 px-3 flex items-center"><MoneyExchangeIcon class="w-5 h-5 mr-1" /> Add expenses</div>
+        <div @click="useTabStore().openSecondTab()" :class="useTabStore().isOpenSecondTab ? 'bg-lime-400' : 'bg-gray-200 hover:bg-gray-400 cursor-pointer transition-all duration-300 hover:scale-105'" class="rounded-lg p-1.5 px-3 flex items-center"><MoneyExchangeIcon class="w-5 h-5 mr-1" /> {{ $t('addExpenses') }}</div>
       </div>
       <div class="flex items-center space-x-3">
         <div class="relative" ref="dropdown">
-          <div v-if="useTabStore().isOpenFirstTab" @click="useModalStore().toggleFilterBy()" class="border-none select-none text-gray-500 bg-gray-100 rounded-lg w-full p-2 px-5 flex items-center hover:bg-gray-200 cursor-pointer"><FilterIcon class="w-5 h-5 text-gray-400" /> Filter By</div>
+          <div v-if="useTabStore().isOpenFirstTab" @click="useModalStore().toggleFilterBy()" class="border-none select-none text-gray-500 bg-gray-100 rounded-lg w-full p-2 px-5 flex items-center hover:bg-gray-200 cursor-pointer"><FilterIcon class="w-5 h-5 text-gray-400" /> {{ $t('filter') }}</div>
           <div v-if="useModalStore().isOpenFilterBy" class="absolute bg-white shadow rounded-xl p-3 z-20 top-12 -left-20 space-y-3">
             <div class="flex items-center space-x-1">
               <label for="">
@@ -115,10 +115,10 @@ const openFirstTab = () => {
                   fill="currentFill"
                 />
               </svg>
-              <span>Fetching</span>
+              <span>{{ $t('loading') }}</span>
             </div>
             <div v-else @click="submitFilterData()" class="w-full bg-gray-900 hover:bg-gray-800 cursor-pointer select-none py-3 text-white rounded-lg flex items-center justify-center">
-              <span>Filter</span>
+              <span>{{ $t('filter') }}</span>
             </div>
           </div>
         </div>
@@ -134,7 +134,7 @@ const openFirstTab = () => {
         <thead class="sticky z-10 top-0 bg-white shadow">
           <tr class="text-gray-600 capitalize text-lg leading-normal">
             <th class="py-3 px-6 text-center">{{ $t('n') }}</th>
-            <th class="py-3 px-6 text-left">Patient</th>
+            <th class="py-3 px-6 text-left">{{ $t('patient') }}</th>
             <th class="py-3 px-6 text-center">{{ $t('service') }}</th>
             <th class="py-3 px-6 text-center">{{ $t('createdAt') }}</th>
             <th class="py-3 px-6 text-center">{{ $t('actions') }}</th>

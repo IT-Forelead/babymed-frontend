@@ -110,7 +110,7 @@ const submitServiceData = () => {
             <input v-model="serviceData.name" class="text-gray-500 mb-3 border-none bg-gray-100 rounded-lg w-full text-lg" type="text" id="serviceName" :placeholder="$t('enterServiceName')" />
           </label>
           <label for="">
-            Service Type
+            {{ $t('serviceType') }}
             <SelectOptionServiceType :options="serviceTypes" class="mb-3" />
           </label>
           <label for="servicePrice">

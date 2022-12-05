@@ -109,7 +109,7 @@ onMounted(() => {
       <router-link to="/expenses" class="flex items-center justify-between hover:bg-gray-800 hover:text-gray-100 p-3 rounded-lg cursor-pointer" :class="useSidebarStore().isOpenSidebar && router?.currentRoute?.value?.path === '/expenses' ? 'justify-between bg-gray-800 text-gray-100' : !useSidebarStore().isOpenSidebar && router?.currentRoute?.value?.path === '/expenses' ? 'bg-gray-800 text-gray-100 justify-center' : ''">
         <div class="flex items-center space-x-2">
           <PaymentIcon class="w-7 h-7" />
-          <p v-if="isOpen">Expenses</p>
+          <p v-if="isOpen">{{ $t('expenses') }}</p>
         </div>
       </router-link>
     </div>

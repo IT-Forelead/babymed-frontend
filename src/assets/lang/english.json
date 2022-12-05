@@ -68,7 +68,6 @@
   "patientsVisit": "Patients Visit",
   "patients": "Patients",
   "services": "Services",
-  "servicesManagement": "Services Management",
   "serviceName": "Service name",
   "servicePrice": "Service price",
   "role": "Role",
@@ -134,5 +133,12 @@
   "selectPatientVisit": "Select Patient Visit",
   "subRole": "Sub Role",
   "selectSubRole": "Select Sub Role",
-  "selectServiceType": "Select Service Type"
+  "selectServiceType": "Select Service Type",
+  "serviceError": "This service type not attached service!",
+  "expenses": "Expenses",
+  "expenseReports": "Expense reports",
+  "addExpenses": "Add expenses",
+  "filter": "filter",
+  "serviceType": "Service Type",
+  "createServiceType": "Create Service Type"
 }

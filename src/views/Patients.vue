@@ -136,10 +136,10 @@ const submitFilterData = () => {
                   fill="currentFill"
                 />
               </svg>
-              <span>Fetching</span>
+              <span>{{ $t('loading') }}</span>
             </div>
             <div v-else @click="submitFilterData()" class="w-full bg-gray-900 hover:bg-gray-800 cursor-pointer select-none py-3 text-white rounded-lg flex items-center justify-center">
-              <span>Filter</span>
+              <span>{{ $t('filter') }}</span>
             </div>
           </div>
         </div>

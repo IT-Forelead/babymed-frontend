@@ -68,7 +68,6 @@
   "patientsVisit": "Bemor tashriflari",
   "patients": "Bemorlar",
   "services": "Xizmatlar",
-  "servicesManagement": "Xizmatlarni boshqarish",
   "serviceName": "Xizmat nomi",
   "servicePrice": "Xizmat narxi",
   "role": "Rol",
@@ -134,5 +133,12 @@
   "selectPatientVisit": "Bemor tashrifini tanlang",
   "subRole": "Lavozim",
   "selectSubRole": "Lavozimni tanlang",
-  "selectServiceType": "Xizmat turini tanlang"
+  "selectServiceType": "Xizmat turini tanlang",
+  "serviceError": "Ushbu xizmat turi biriktirilmagan xizmat!",
+  "expenses": "Xarajatlar",
+  "expenseReports": "Xarajatlar hisoboti",
+  "addExpenses": "Xarajatlarni qo'shing",
+  "filter": "filtr",
+  "serviceType": "Xizmat turi",
+  "createServiceType": "Xizmat turini yarating"
 }

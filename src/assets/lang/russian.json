@@ -68,7 +68,6 @@
   "patientsVisit": "Посещения пациентов",
   "patients": "Пациенты",
   "services": "Услуги",
-  "servicesManagement": "Управление услугами",
   "serviceName": "Наименование услуги",
   "servicePrice": "Цена услуги",
   "role": "Роль",
@@ -134,5 +133,12 @@
   "selectPatientVisit": "Выберите посещение пациента",
   "subRole": "Должность",
   "selectSubRole": "Выберите позицию",
-  "selectServiceType": "Выберите тип услуги"
+  "selectServiceType": "Выберите тип услуги",
+  "serviceError": "Этот тип услуги не привязан к сервису!",
+  "expenses": "Затраты",
+  "expenseReports":"Отчеты о расходах",
+  "addExpenses": "Добавить расходы",
+  "filter": "фильтр",
+  "serviceType": "Тип Обслуживания",
+  "createServiceType": "Создать тип службы"
 }

@@ -68,7 +68,6 @@
   "patientsVisit": "Бемор ташрифлари",
   "patients": "Беморлар",
   "services": "Хизматлар",
-  "servicesManagement": "Хизматларни бошқариш",
   "serviceName": "Хизмат номи",
   "servicePrice": "Хизмат нархи",
   "role": "Рол",
@@ -134,5 +133,12 @@
   "selectPatientVisit": "Бемор ташрифини танланг",
   "subRole": "Лавозим",
   "selectSubRole": "Лавозимни танланг",
-  "selectServiceType": "Хизмат турини танланг"
+  "selectServiceType": "Хизмат турини танланг",
+  "serviceError": "Ушбу хизмат тури бириктирилмаган хизмат!",
+  "expenses": "Харажатлар",
+  "expenseReports": "Харажатлар ҳисоботи",
+  "addExpenses": "Харажатларни қўшинг",
+  "filter": "филтр",
+  "serviceType": "хизмат тури",
+  "createServiceType":"Хизмат турини яратинг"
 }
