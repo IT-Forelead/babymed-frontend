@@ -167,7 +167,7 @@ const addItems = () => {
     </div>
     <div>
       <p>{{ $t('partnerDoctor') }}</p>
-      <input type="text" v-model="expenseForm.partnerDoctorFullName" placeholder="Enter partner doctor" class="border-none text-gray-500 bg-gray-100 rounded-lg w-full text-lg" />
+      <input type="text" v-model="expenseForm.partnerDoctorFullName" :placeholder="$t('enterPartnerDoctor')" class="border-none text-gray-500 bg-gray-100 rounded-lg w-full text-lg" />
     </div>
     <div>
       <p>{{ $t('partnerDoctorPrice') }}</p>

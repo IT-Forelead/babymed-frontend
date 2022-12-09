@@ -90,13 +90,13 @@ onMounted(() => {
         <router-link to="/service-types" class="flex items-center justify-between hover:text-gray-100 p-3 rounded-lg cursor-pointer" :class="{ 'text-gray-100': useSidebarStore().isOpenSidebar && router?.currentRoute?.value?.path === '/service-types' }">
           <div :class="isOpen ? 'pl-6' : 'pl-1'" class="flex items-center space-x-2">
             <p>-</p>
-            <p v-text="isOpen ? 'Service Types' : 'ST'"></p>
+            <p v-text="isOpen ? t('serviceTypes') : 'ST'"></p>
           </div>
         </router-link>
         <router-link to="/services" class="flex items-center justify-between hover:text-gray-100 p-3 rounded-lg cursor-pointer" :class="{ 'text-gray-100': useSidebarStore().isOpenSidebar && router?.currentRoute?.value?.path === '/services' }">
           <div :class="isOpen ? 'pl-6' : 'pl-1'" class="flex items-center space-x-2">
             <p>-</p>
-            <p v-text="isOpen ? 'Create Service' : 'CS'"></p>
+            <p v-text="isOpen ? t('createService') : 'CS'"></p>
           </div>
         </router-link>
       </div>
