@@ -61,12 +61,7 @@ onMounted(() => {
   <div class="bg-white rounded-lg w-full p-5">
     <div class="flex items-center justify-between">
       <p class="text-3xl font-bold">{{ $t('visitsReport') }}</p>
-      <div class="flex items-center space-x-3">
-        <select class="border-none rounded-lg bg-gray-100 capitalize text-gray-400">
-          <option value="" selected>{{ $t('sortBy') }}</option>
-          <option value="1">Sort 1</option>
-          <option value="2">Sort 2</option>
-        </select>
+      <div class="flex items-center">
         <div @click="useModalStore().openAddVisitModal()" class="bg-black text-white rounded-xl p-2 px-4 cursor-pointer hover:bg-black/75">
           <p class="text-base">+ {{ $t('addVisit') }}</p>
         </div>

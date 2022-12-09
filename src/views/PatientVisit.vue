@@ -88,14 +88,6 @@ watch(
 
 <template>
   <div class="w-full p-3">
-    <!-- <div class="flex items-center justify-between">
-      <p class="text-3xl font-bold">{{ $t('patientsReport') }}</p>
-      <select class="border-none rounded-lg bg-gray-100 capitalize text-gray-400">
-        <option value="" selected>{{ $t('sortBy') }}</option>
-        <option value="1">Sort 1</option>
-        <option value="2">Sort 2</option>
-      </select>
-    </div> -->
     <div class="grid grid-cols-3 gap-3">
       <div class="bg-white rounded-lg p-3">
         <div class="flex items-center justify-between">
@@ -121,14 +113,6 @@ watch(
               <div class="capitalize" v-if="Object.keys(selectedPatient).length !== 0">{{ selectedPatient?.patient?.address }}</div>
             </div>
           </div>
-          <!-- <div class="flex justify-between border-b-2 border-dotted py-2">
-            <div class="font-bold">{{ $t('doctor') }}:</div>
-            <div class="capitalize text-right text-lg font-semibold text-gray-700" v-if="Object.keys(selectedDoctor).length !== 0">
-              {{ selectedDoctor?.firstname + ' ' + selectedDoctor?.lastname }} <br />
-              {{ selectedDoctor?.phone }}
-            </div>
-            <div v-else class="capitalize">********</div>
-          </div> -->
           <div class="flex justify-between py-2">
             <div class="font-bold">{{ $t('service') }}:</div>
             <div class="capitalize text-right text-lg font-semibold text-gray-700" v-if="Object.keys(selectedService).length !== 0">
@@ -146,15 +130,8 @@ watch(
         </div>
       </div>
       <div v-else class="max-h-[82vh] overflow-auto patients-wrapper bg-white rounded-lg col-span-2">
-        <div class="flex items-center justify-between p-3 w-full">
+        <div class="flex items-center p-3 w-full">
           <p class="text-3xl font-bold">{{ $t('visitsReport') }}</p>
-          <div class="flex items-center justify-center space-x-3">
-            <select class="border-none rounded-lg bg-gray-100 capitalize text-gray-400">
-              <option value="" selected>{{ $t('sortBy') }}</option>
-              <option value="1">Sort 1</option>
-              <option value="2">Sort 2</option>
-            </select>
-          </div>
         </div>
         <table class="min-w-max w-full table-auto">
           <thead class="sticky z-10 top-0 bg-white shadow">
