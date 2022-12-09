@@ -55,19 +55,18 @@ const translatePaymentStatus = (status) => {
     </td>
     <td v-motion-pop class="py-3 px-6 text-left" v-if="router.currentRoute?.value?.path === '/visits'">{{ patient?.patient?.phone }}</td>
     <td v-motion-pop class="py-3 px-6 text-center">{{ moment(patient?.patientVisit?.createdAt).format('MM/DD/YYYY h:mm:ss') }}</td>
-    <td v-motion-pop class="py-3 px-6 text-center">
-      <span class="p-1.5 px-3 text-sm rounded-full text-white" :class="patient?.patientVisit?.paymentStatus === 'not_paid' ? 'bg-red-500' : 'bg-green-400'">
-        {{ translatePaymentStatus(patient?.patientVisit?.paymentStatus) }}
-      </span>
+    <td v-motion-pop class="py-3 px-6 text-center capitalize">
+      {{ patient?.service?.serviceTypeName }}
     </td>
     <td v-motion-pop class="py-3 px-6 text-center capitalize">
       {{ patient?.service?.name }} <br />
      <span class="text-sm font-bold italic">{{ useMoneyFormatter(patient?.service?.price) }}</span>
     </td>
-    <!-- <td v-motion-pop class="py-3 px-6 text-center capitalize">
-      {{ patient?.user?.firstname }} <br/> 
-      {{ patient?.user?.lastname}}
-    </td> -->
+    <td v-motion-pop class="py-3 px-6 text-center">
+      <span class="p-1.5 px-3 text-sm rounded-full text-white" :class="patient?.patientVisit?.paymentStatus === 'not_paid' ? 'bg-red-500' : 'bg-green-400'">
+        {{ translatePaymentStatus(patient?.patientVisit?.paymentStatus) }}
+      </span>
+    </td>
     <td v-motion-pop class="py-3 px-6 text-center">
       <div class="flex item-center justify-center">
         <div v-if="patient?.patientVisit?.paymentStatus.includes('not_paid')" @click="open(patient)" class="w-4 mr-2 transform text-blue-500 hover:text-purple-500 hover:scale-110 cursor-pointer">
