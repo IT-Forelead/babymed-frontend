@@ -66,8 +66,8 @@ const submitPaymentStatus = () => {
               <div class="text-lg text-gray-700 capitalize">{{ patient?.patient?.firstname + ' ' + patient?.patient?.lastname }}</div>
             </li>
             <li class="flex justify-between items-center">
-              <div class="text-base text-gray-500">{{ $t('doctor') }}:</div>
-              <div class="text-lg text-gray-700 capitalize">{{ patient?.user?.firstname + ' ' + patient?.user?.lastname }}</div>
+              <div class="text-base text-gray-500">{{ $t('serviceType') }}:</div>
+              <div class="text-lg text-gray-700 capitalize">{{ patient?.service?.serviceTypeName }}</div>
             </li>
             <li class="flex justify-between items-center">
               <div class="text-base text-gray-500">{{ $t('serviceName') }}:</div>
