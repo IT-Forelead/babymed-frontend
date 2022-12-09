@@ -59,7 +59,9 @@ onMounted(() => {
     useVisitStore().clearStore()
     useVisitStore().setPatients(res?.data)
   })
-  UserService.getAllDoctors({}).then((res) => {
+  UserService.getAllDoctors({
+    role: 'doctor',
+  }).then((res) => {
     useUserStore().clearStore()
     useUserStore().setDoctors(res?.data)
   })
@@ -86,18 +88,18 @@ const submitExpenseFormData = () => {
     notify.warning({
       message: t('plsSelectPatientVisit'),
     })
-  } else if (expenseForm.forLaboratory == 0) {
-    notify.warning({
-      message: t('pleaseEnterLPrice'),
-    })
-  } else if (expenseForm.forTools == 0) {
-    notify.warning({
-      message: t('plsEnterTPrice'),
-    })
-  } else if (expenseForm.forDrugs == 0) {
-    notify.warning({
-      message: t('plsEnterDPrice'),
-    })
+  // } else if (expenseForm.forLaboratory == 0) {
+  //   notify.warning({
+  //     message: t('pleaseEnterLPrice'),
+  //   })
+  // } else if (expenseForm.forTools == 0) {
+  //   notify.warning({
+  //     message: t('plsEnterTPrice'),
+  //   })
+  // } else if (expenseForm.forDrugs == 0) {
+  //   notify.warning({
+  //     message: t('plsEnterDPrice'),
+  //   })
   } else if (expenseForm.operationExpenseItems.length < 4) {
     notify.warning({
       message: t('plsEnter'),

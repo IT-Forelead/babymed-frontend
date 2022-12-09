@@ -12,7 +12,7 @@ class PatientService {
     return AxiosService.post('/patient/report', data, { headers: authHeader() })
   }
   async getPatientsByFullname(data) {
-    return AxiosService.get('/patient/search-by-fullname/' + data, { headers: authHeader() })
+    return AxiosService.get('/patient/search?full_name=' + data, { headers: authHeader() })
   }
 }
 

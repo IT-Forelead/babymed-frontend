@@ -29,6 +29,17 @@ const loadPatients = async ($state) => {
         }),
         headers: authHeader(),
       })
+      if (response?.headers.get('x-new-token')) {
+        sessionStorage.setItem('token', response?.headers.get('x-new-token'))
+        await fetch(`${API_URL}/visit/report`, {
+          method: 'POST',
+          body: JSON.stringify({
+            page: 1,
+            limit: 10,
+          }),
+          headers: authHeader(),
+        })
+      }
       const json = await response.json()
       total.value = json?.total
       setTimeout(() => {
@@ -69,9 +80,9 @@ onMounted(() => {
             <th class="py-3 px-6 text-left">{{ $t('patientName') }}</th>
             <th class="py-3 px-6 text-left">{{ $t('phone') }}</th>
             <th class="py-3 px-6 text-center">{{ $t('createdAt') }}</th>
-            <th class="py-3 px-6 text-center">{{ $t('paymentStatus') }}</th>
+            <th class="py-3 px-6 text-center">{{ $t('serviceType') }}</th>
             <th class="py-3 px-6 text-center">{{ $t('service') }}</th>
-            <!-- <th class="py-3 px-6 text-center">{{ $t('doctor') }}</th> -->
+            <th class="py-3 px-6 text-center">{{ $t('paymentStatus') }}</th>
             <th class="py-3 px-6 text-center">{{ $t('actions') }}</th>
           </tr>
         </thead>
