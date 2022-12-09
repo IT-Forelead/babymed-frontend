@@ -84,35 +84,35 @@ const subRoles = computed(() => {
 const submitExpenseFormData = () => {
   if (!expenseForm.patientVisitId) {
     notify.warning({
-      message: 'Please select patient visit!',
+      message: t('plsSelectPatientVisit'),
     })
   } else if (expenseForm.forLaboratory == 0) {
     notify.warning({
-      message: 'Please enter laboratory price!',
+      message: t('pleaseEnterLPrice'),
     })
   } else if (expenseForm.forTools == 0) {
     notify.warning({
-      message: 'Please enter tools price!',
+      message: t('plsEnterTPrice'),
     })
   } else if (expenseForm.forDrugs == 0) {
     notify.warning({
-      message: 'Please enter drugs price!',
+      message: t('plsEnterDPrice'),
     })
   } else if (expenseForm.operationExpenseItems.length < 4) {
     notify.warning({
-      message: 'Please enter all doctors!',
+      message: t('plsEnter'),
     })
   } else {
     ExpenseService.createExpense(cleanObjectEmptyFields(expenseForm))
       .then(() => {
         clearForm()
         notify.success({
-          message: 'Expense succesfully created!',
+          message: t('expenseCreated'),
         })
       })
       .catch((err) => {
         notify.error({
-          message: 'Error while creating expense',
+          message: t('errorExpense'),
         })
       })
   }
@@ -127,11 +127,11 @@ const selectedDoctor = computed(() => {
 const addItems = () => {
   if (!useDropStore().selectDoctorOption?.id) {
     notify.warning({
-      message: 'Please select doctor!',
+      message: t('plsSelectDoctor'),
     })
   } else if (!expenseItem.subRole?.id) {
     notify.warning({
-      message: 'Please select sub role!',
+      message: t('plsSelectSubRole'),
     })
   } else {
     expenseItem.userId = useDropStore().selectDoctorOption?.id

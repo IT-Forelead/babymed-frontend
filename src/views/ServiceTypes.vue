@@ -6,6 +6,9 @@ import ServicesService from '../services/services.service'
 import notify from 'izitoast'
 import 'izitoast/dist/css/iziToast.min.css'
 import ServiceTypeItem from '../components/Service/ServiceTypeItem.vue'
+import { useI18n } from 'vue-i18n'
+
+const { t } = useI18n()
 
 const isLoading = ref(false)
 
@@ -31,14 +34,14 @@ const clearFields = () => {
 const submitServiceTypeData = () => {
   if (!serviceType.value) {
     notify.warning({
-      message: 'Please enter service type name?',
+      message: t('plsEnterServiceTypeName'),
     })
   } else {
     isLoading.value = true
     ServicesService.createServiceType(serviceType.value)
       .then(() => {
         notify.success({
-          message: 'Service type successfully created!',
+          message: t('serviceTypeCreated'),
         })
         getServiceTypes()
         clearFields()
@@ -46,7 +49,7 @@ const submitServiceTypeData = () => {
       })
       .catch(() => {
         notify.warning({
-          message: 'Error while creating service!',
+          message: t('errorCreatingService'),
         })
         setTimeout(() => {
           isLoading.value = false

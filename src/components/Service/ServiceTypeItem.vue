@@ -28,7 +28,7 @@ const deleteServiceType = (st_id) => {
   ServicesService.deleteServiceType(selectedServiceTypeId.value)
     .then(() => {
       notify.success({
-        message: 'Successfully deleted service type!',
+        message: t('succesfullyDeleted'),
       })
       ServicesService.getAllServiceTypes().then((res) => {
         useServicesStore().setServiceTypes(res)
@@ -37,7 +37,7 @@ const deleteServiceType = (st_id) => {
     })
     .catch(() => {
       notify.warning({
-        message: 'Error while deleting service type!',
+        message: t('errorServiceType'),
       })
     })
 }

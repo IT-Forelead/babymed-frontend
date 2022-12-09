@@ -100,7 +100,7 @@ const submitFilterData = () => {
       <p class="text-3xl font-bold">{{ $t('patientsReport') }}</p>
       <div class="flex items-center space-x-3">
         <div class="relative" ref="dropdown">
-          <div @click="useModalStore().toggleFilterBy()" class="border-none select-none text-gray-500 bg-gray-100 rounded-lg w-full p-2 px-5 flex items-center hover:bg-gray-200 cursor-pointer"><FilterIcon class="w-5 h-5 text-gray-400" /> Filter By</div>
+          <div @click="useModalStore().toggleFilterBy()" class="border-none select-none text-gray-500 bg-gray-100 rounded-lg w-full p-2 px-5 flex items-center hover:bg-gray-200 cursor-pointer"><FilterIcon class="w-5 h-5 text-gray-400" /> {{ $t('filter') }}</div>
           <div v-if="useModalStore().isOpenFilterBy" class="absolute bg-white shadow rounded-xl p-3 z-20 top-12 -left-20 space-y-3">
             <label for="firstname">
               {{ $t('firstname') }}

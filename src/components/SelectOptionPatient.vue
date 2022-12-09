@@ -13,6 +13,9 @@ import notify from 'izitoast'
 import 'izitoast/dist/css/iziToast.min.css'
 import PatientService from '../services/patient.service'
 import { usePatientStore } from '../store/patient.store'
+import { useI18n } from 'vue-i18n'
+
+const { t } = useI18n()
 
 const router = useRouter()
 
@@ -64,13 +67,13 @@ const getSearchResult = () => {
       if (!res?.length) {
         notify.info({
           title: searchPatient.value,
-          message: '<- this patient not found, please enter another text for search!',
+          message: t('patientNotFound'),
         })
       }
     })
   } else {
     notify.warning({
-      message: 'Please enter something or select patient!',
+      message: t('plsEnterSomething'),
     })
   }
 }

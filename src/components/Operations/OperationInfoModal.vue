@@ -37,51 +37,51 @@ const calculateTotalExpense = (expense) => {
           </button>
         </div>
         <div class="p-6">
-          <h1 class="text-xl font-bold">Patient:</h1>
+          <h1 class="text-xl font-bold">{{ $t('patient') }}:</h1>
           <ul class="border-b mb-3 pb-3">
             <li class="flex justify-between">
-              <p class="capitalize">Patient Fullname:</p>
+              <p class="capitalize">{{ $t('patientFullName') }}:</p>
               <p class="capitalize">{{ expense?.patient?.firstname + ' ' + expense?.patient?.lastname }}</p>
             </li>
             <li class="flex justify-between">
-              <p class="capitalize">Patient Phone:</p>
+              <p class="capitalize">{{ $t('patientPhone') }}:</p>
               <p>{{ expense?.patient?.phone }}</p>
             </li>
             <li class="flex justify-between">
-              <p class="capitalize">Patient Phone:</p>
+              <p class="capitalize">{{ $t('patientPhone') }}:</p>
               <p class="capitalize">{{ expense?.service?.name }}</p>
             </li>
           </ul>
-          <h1 class="text-xl font-bold">All expenses:</h1>
+          <h1 class="text-xl font-bold">{{ $t('allExpenses') }}:</h1>
           <ul class="border-b mb-3 pb-3">
             <li class="flex justify-between">
-              <p class="capitalize">for laboratory:</p>
+              <p class="capitalize">{{ $t('forLaboratory') }}:</p>
               <p>{{ useMoneyFormatter(expense?.operationExpense?.forLaboratory) }}</p>
             </li>
             <li class="flex justify-between">
-              <p class="capitalize">for tools:</p>
+              <p class="capitalize">{{ $t('forTools') }}:</p>
               <p>{{ useMoneyFormatter(expense?.operationExpense?.forTools) }}</p>
             </li>
             <li class="flex justify-between">
-              <p class="capitalize">for drugs:</p>
+              <p class="capitalize">{{ $t('forDrugs') }}:</p>
               <p>{{ useMoneyFormatter(expense?.operationExpense?.forDrugs) }}</p>
             </li>
             <li class="flex justify-between">
               <p class="capitalize">
-                Partner Doctor <b class="capitalize">{{ expense?.partnerDoctorFullName }}</b
+                {{ $t('partnerDoctor') }} <b class="capitalize">{{ expense?.partnerDoctorFullName }}</b
                 >:
               </p>
               <p>{{ useMoneyFormatter(expense?.operationExpense?.partnerDoctorPrice) }}</p>
             </li>
           </ul>
           <div class="border-dashed pb-3 border-b-2">
-            <h1 class="text-xl font-bold mb-3">All doctors:</h1>
+            <h1 class="text-xl font-bold mb-3">{{ $t('allDoctors') }}:</h1>
             <table v-if="expenseItems?.length !== 0" class="w-full bg-gray-100 rounded-lg">
               <tr>
-                <th>No</th>
-                <th class="text-left">Doctor</th>
-                <th>Sub role</th>
-                <th>Price</th>
+                <th>{{ $t('n') }}</th>
+                <th class="text-left">{{ $t('doctor') }}</th>
+                <th>{{ $t('subRole') }}</th>
+                <th>{{ $t('price') }}</th>
               </tr>
               <tr class="text-center divide-y py-5" v-for="(item, idx) in expenseItems" :key="idx">
                 <td>{{ idx + 1 }}</td>
@@ -92,7 +92,7 @@ const calculateTotalExpense = (expense) => {
             </table>
           </div>
           <div class="flex justify-between items-center mt-2">
-            <p class="text-2xl font-bold">Total:</p>
+            <p class="text-2xl font-bold">{{ $t('total') }}:</p>
             <p class="text-2xl font-bold">{{ useMoneyFormatter(calculateTotalExpense(expense)) }}</p>
           </div>
         </div>
