@@ -134,7 +134,7 @@ watch(
     </label>
     <!-- Show only doctor select -->
     <label for="" v-if="showSubRoles">
-      Sub role<br />
+      {{ $t('subRole') }}<br />
       <select v-model="userForm.subRoleId" class="rounded-lg w-full text-gray-500 border-none bg-gray-100 p-2.5 mb-3">
         <option value="">{{ $t('selectSubRole') }}</option>
         <option v-for="(sr, idx) in subRoles" :key="idx" :value="sr?.id">{{ sr?.name }}</option>

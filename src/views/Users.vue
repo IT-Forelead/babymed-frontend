@@ -51,7 +51,7 @@ onMounted(() => {
               <th class="py-3 px-6 text-center">{{ $t('n') }}</th>
               <th class="py-3 px-6 text-left">{{ $t('userFullname') }}</th>
               <th class="py-3 px-6 text-left">{{ $t('role') }}</th>
-              <th class="py-3 px-6 text-left">Sub role</th>
+              <th class="py-3 px-6 text-left">{{ $t('subRole') }}</th>
               <th class="py-3 px-6 text-left">{{ $t('phone') }}</th>
               <th class="py-3 px-6 text-center">{{ $t('actions') }}</th>
             </tr>
