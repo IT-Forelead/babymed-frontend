@@ -135,7 +135,7 @@
   "subRole": "Lavozim",
   "selectSubRole": "Lavozimni tanlang",
   "selectServiceType": "Xizmat turini tanlang",
-  "serviceError": "Ushbu xizmat turi biriktirilmagan xizmat!",
+  "serviceError": "Ushbu xizmatga turi biriktirilmagan!",
   "expenses": "Xarajatlar",
   "expenseReports": "Xarajatlar hisoboti",
   "addExpenses": "Xarajatlarni qo'shing",
