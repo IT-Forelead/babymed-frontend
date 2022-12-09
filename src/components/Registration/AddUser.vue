@@ -105,6 +105,9 @@ watch(
         })
       }
       showSubRoles.value = true
+    } else {
+      useUserStore().setSubRoles([])
+      showSubRoles.value = false
     }
   }
 )
