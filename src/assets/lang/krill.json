@@ -163,5 +163,7 @@
   "forDrugs": "Дорилар учун",
   "allDoctors": "Барча шифокорлар",
   "plsEnterServiceTypeName": "Илтимос, хизмат тури номини киритинг",
-  "serviceTypeCreated": "Хизмат тури муфаввақиятли яратилди!"
+  "serviceTypeCreated": "Хизмат тури муфаввақиятли яратилди!",
+  "servicesTypeReport": "Хизмат тури ҳисоботи",
+  "serviceTypeName": "Хизмат Тури Номи"
 }

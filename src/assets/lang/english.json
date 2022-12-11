@@ -163,5 +163,7 @@
   "forDrugs": "For drugs",
   "allDoctors": "All doctors",
   "plsEnterServiceTypeName": "Please enter service type name?",
-  "serviceTypeCreated": "Service type successfully created!"
+  "serviceTypeCreated": "Service type successfully created!",
+  "servicesTypeReport": "Services Type Report",
+  "serviceTypeName": "Service Type Name"
 }

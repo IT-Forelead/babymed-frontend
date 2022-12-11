@@ -163,5 +163,7 @@
   "forDrugs": "Dorilar uchun",
   "allDoctors": "Barcha shifokorlar",
   "plsEnterServiceTypeName": "Iltimos, xizmat turi nomini kiriting",
-  "serviceTypeCreated": "Xizmat turi mufavvaqiyatli yaratildi!"
+  "serviceTypeCreated": "Xizmat turi mufavvaqiyatli yaratildi!",
+  "servicesTypeReport": "Xizmat turi hisoboti",
+  "serviceTypeName": "Xizmat Turi Nomi"
 }
