@@ -46,7 +46,7 @@ const changeLang = (lang) => {
 onMounted(() => {
   currentLang.value = localStorage.getItem('lang') || 'uz'
   document.getElementsByTagName('title')[0].innerHTML = t('title')
-  useAuthStore().setUser(decodeJwt(sessionStorage.getItem('token')))
+  useAuthStore().setUser(decodeJwt(localStorage.getItem('token')))
 })
 </script>
 

@@ -54,12 +54,12 @@ const changeLang = () => {
   document.getElementsByTagName('title')[0].innerHTML = t('title')
 }
 
-sessionStorage.clear()
+localStorage.clear()
 
 onMounted(() => {
   lang.value = localStorage.getItem('lang') || 'uz'
   document.getElementsByTagName('title')[0].innerHTML = t('title')
-  sessionStorage.clear()
+  localStorage.clear()
 })
 </script>
 

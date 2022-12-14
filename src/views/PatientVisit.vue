@@ -35,7 +35,7 @@ const loadPatients = async ($state) => {
         headers: authHeader(),
       })
       if (response?.headers.get('x-new-token')) {
-        sessionStorage.setItem('token', response?.headers.get('x-new-token'))
+        localStorage.setItem('token', response?.headers.get('x-new-token'))
         await fetch(`${API_URL}/visit/report`, {
           method: 'POST',
           body: JSON.stringify({
