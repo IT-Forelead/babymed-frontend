@@ -48,7 +48,7 @@ const calculateTotalExpense = (expense) => {
               <p>{{ expense?.patient?.phone }}</p>
             </li>
             <li class="flex justify-between">
-              <p class="capitalize">{{ $t('patientPhone') }}:</p>
+              <p class="capitalize">{{ $t('service') }}:</p>
               <p class="capitalize">{{ expense?.service?.name }}</p>
             </li>
           </ul>
@@ -68,8 +68,7 @@ const calculateTotalExpense = (expense) => {
             </li>
             <li class="flex justify-between">
               <p class="capitalize">
-                {{ $t('partnerDoctor') }} <b class="capitalize">{{ expense?.partnerDoctorFullName }}</b
-                >:
+                {{ $t('partnerDoctor') }} <b class="capitalize">{{ expense?.operationExpense?.partnerDoctorFullName }}</b>:
               </p>
               <p>{{ useMoneyFormatter(expense?.operationExpense?.partnerDoctorPrice) }}</p>
             </li>

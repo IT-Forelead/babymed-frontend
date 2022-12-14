@@ -125,6 +125,7 @@
   "price": "Price",
   "clear": "Clear",
   "partnerDoctor": "Partner doctor",
+  "enterPartnerDoctor": "Enter partner doctor full name",
   "partnerDoctorPrice": "Partner doctor Price",
   "laboratoryPrice": "Laboratory Price",
   "toolsPrice": "Tools Price",
@@ -139,7 +140,8 @@
   "expenseReports": "Expense reports",
   "addExpenses": "Add expenses",
   "filter": "Filter",
-  "serviceType": "Service Type",
+  "serviceType": "Service type",
+  "serviceTypes": "Service types",
   "createServiceType": "Create Service Type",
   "plsSelectPatientVisit": "Please select patient visit!",
   "pleaseEnterLPrice": "Please enter laboratory price!",
@@ -161,5 +163,7 @@
   "forDrugs": "For drugs",
   "allDoctors": "All doctors",
   "plsEnterServiceTypeName": "Please enter service type name?",
-  "serviceTypeCreated": "Service type successfully created!"
+  "serviceTypeCreated": "Service type successfully created!",
+  "servicesTypeReport": "Services Type Report",
+  "serviceTypeName": "Service Type Name"
 }

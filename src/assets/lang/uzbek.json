@@ -125,6 +125,7 @@
   "price": "Narx",
   "clear": "Tozalash",
   "partnerDoctor": "Hamkor shifokor",
+  "enterPartnerDoctor": "Hamkor shifokor ismini kiriting",
   "partnerDoctorPrice": "Hamkor shifokor narxi",
   "laboratoryPrice": "Laboratoriya narxi",
   "toolsPrice": "Asboblar narxi",
@@ -134,12 +135,13 @@
   "subRole": "Lavozim",
   "selectSubRole": "Lavozimni tanlang",
   "selectServiceType": "Xizmat turini tanlang",
-  "serviceError": "Ushbu xizmat turi biriktirilmagan xizmat!",
+  "serviceError": "Ushbu xizmatga turi biriktirilmagan!",
   "expenses": "Xarajatlar",
   "expenseReports": "Xarajatlar hisoboti",
   "addExpenses": "Xarajatlarni qo'shing",
   "filter": "Filtr",
   "serviceType": "Xizmat turi",
+  "serviceTypes": "Xizmat turlari",
   "createServiceType": "Xizmat turini yarating",
   "plsSelectPatientVisit": "Iltimos, bemor tashrifini tanlang!",
   "pleaseEnterLPrice": "Iltimos, laboratoriya narxini kiriting!",
@@ -161,5 +163,7 @@
   "forDrugs": "Dorilar uchun",
   "allDoctors": "Barcha shifokorlar",
   "plsEnterServiceTypeName": "Iltimos, xizmat turi nomini kiriting",
-  "serviceTypeCreated": "Xizmat turi mufavvaqiyatli yaratildi!"
+  "serviceTypeCreated": "Xizmat turi mufavvaqiyatli yaratildi!",
+  "servicesTypeReport": "Xizmat turi hisoboti",
+  "serviceTypeName": "Xizmat Turi Nomi"
 }

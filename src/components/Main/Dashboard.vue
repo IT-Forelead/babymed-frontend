@@ -62,13 +62,8 @@ onMounted(() => {
 <template>
   <StatisticsSection />
   <div class="bg-white rounded-lg w-full p-5">
-    <div class="flex items-center justify-between">
+    <div class="flex items-center">
       <p class="text-3xl font-bold">{{ $t('patientsReport') }}</p>
-      <select class="border-none rounded-lg bg-gray-100 capitalize text-gray-400">
-        <option value="" selected>{{ $t('sortBy') }}</option>
-        <option value="1">Sort 1</option>
-        <option value="2">Sort 2</option>
-      </select>
     </div>
     <div class="h-80 overflow-auto mt-3 patients-wrapper">
       <table class="min-w-max w-full table-auto">

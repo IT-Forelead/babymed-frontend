@@ -125,6 +125,7 @@
   "price": "Нарх",
   "clear": "Тозалаш",
   "partnerDoctor": "Ҳамкор шифокор",
+  "enterPartnerDoctor": "Ҳамкор шифокор исмини киритинг",
   "partnerDoctorPrice": "Ҳамкор шифокор нархи",
   "laboratoryPrice": "Лаборатория Нархи",
   "toolsPrice": "Aсбоблар нархи",
@@ -134,12 +135,13 @@
   "subRole": "Лавозим",
   "selectSubRole": "Лавозимни танланг",
   "selectServiceType": "Хизмат турини танланг",
-  "serviceError": "Ушбу хизмат тури бириктирилмаган хизмат!",
+  "serviceError": "Ушбу хизматга тури бириктирилмаган!",
   "expenses": "Харажатлар",
   "expenseReports": "Харажатлар ҳисоботи",
   "addExpenses": "Харажатларни қўшинг",
   "filter": "Филтр",
   "serviceType": "Хизмат тури",
+  "serviceTypes": "Хизмат турлари",
   "createServiceType": "Хизмат турини яратинг",
   "plsSelectPatientVisit": "Илтимос, бемор ташрифини танланг!",
   "pleaseEnterLPrice": "Илтимос, лаборатория нархини киритинг!",
@@ -161,5 +163,7 @@
   "forDrugs": "Дорилар учун",
   "allDoctors": "Барча шифокорлар",
   "plsEnterServiceTypeName": "Илтимос, хизмат тури номини киритинг",
-  "serviceTypeCreated": "Хизмат тури муфаввақиятли яратилди!"
+  "serviceTypeCreated": "Хизмат тури муфаввақиятли яратилди!",
+  "servicesTypeReport": "Хизмат тури ҳисоботи",
+  "serviceTypeName": "Хизмат Тури Номи"
 }

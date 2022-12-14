@@ -106,7 +106,7 @@ const openFirstTab = () => {
       <div class="flex items-center space-x-3">
         <div class="relative" ref="dropdown">
           <div v-if="useTabStore().isOpenFirstTab" @click="useModalStore().toggleFilterBy()" class="border-none select-none text-gray-500 bg-gray-100 rounded-lg w-full p-2 px-5 flex items-center hover:bg-gray-200 cursor-pointer"><FilterIcon class="w-5 h-5 text-gray-400" /> {{ $t('filter') }}</div>
-          <div v-if="useModalStore().isOpenFilterBy" class="absolute bg-white shadow rounded-xl p-3 z-20 top-12 -left-20 space-y-3">
+          <div v-if="useModalStore().isOpenFilterBy" class="absolute bg-white shadow rounded-xl p-3 z-20 top-12 right-0 space-y-3">
             <div class="flex items-center space-x-1">
               <label for="">
                 From
@@ -133,11 +133,6 @@ const openFirstTab = () => {
             </div>
           </div>
         </div>
-        <select v-if="useTabStore().isOpenFirstTab" class="border-none rounded-lg bg-gray-100 capitalize text-gray-400">
-          <option value="" selected>{{ $t('sortBy') }}</option>
-          <option value="1">Sort 1</option>
-          <option value="2">Sort 2</option>
-        </select>
       </div>
     </div>
     <div v-if="useTabStore().isOpenFirstTab" class="max-h-[77vh] overflow-auto mt-3 expenses-wrapper">
@@ -148,7 +143,6 @@ const openFirstTab = () => {
             <th class="py-3 px-6 text-left">{{ $t('patient') }}</th>
             <th class="py-3 px-6 text-center">{{ $t('service') }}</th>
             <th class="py-3 px-6 text-center">{{ $t('createdAt') }}</th>
-            <th class="py-3 px-6 text-center">{{ $t('actions') }}</th>
           </tr>
         </thead>
         <tbody class="text-gray-600 text-sm font-light">
