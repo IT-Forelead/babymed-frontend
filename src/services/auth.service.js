@@ -11,17 +11,16 @@ class AuthService {
         password: user.password,
       })
       .then((res) => {
-        sessionStorage.setItem('token', res?.data?.value)
+        localStorage.setItem('token', res?.data?.value)
       })
-    return sessionStorage.getItem('token')
+    return localStorage.getItem('token')
   }
   async logout() {
     await axios
       .get(API_URL + '/auth/logout', { headers: authHeader() })
       .then(() => {
-        sessionStorage.clear()
+        localStorage.clear()
       })
-    sessionStorage.clear()
     localStorage.clear()
   }
 }

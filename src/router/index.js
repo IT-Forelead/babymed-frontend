@@ -9,7 +9,7 @@ const router = createRouter({
 router.beforeEach((to, from, next) => {
   const publicPages = ['/']
   const authNotRequired = !publicPages.includes(to.path)
-  const notLoggedIn = sessionStorage.getItem('token')
+  const notLoggedIn = localStorage.getItem('token')
   if ((authNotRequired && notLoggedIn) || publicPages.includes(`/${to.path.split('/')[1]}`)) {
     next()
   } else {
