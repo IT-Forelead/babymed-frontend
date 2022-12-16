@@ -4,7 +4,7 @@ import {onMounted} from 'vue'
 import {useVisitStore} from '../../store/visit.store'
 import {cleanObjectEmptyFields} from '../../mixins/utils'
 import VisitService from '../../services/visit.service'
-import ExpenseService from '../../services/expenses.service'
+import OperationExpenseService from '../../services/operationExpenses.service'
 import UserService from '../../services/user.service'
 import {useUserStore} from '../../store/user.store'
 import SelectOptionDoctor from '../SelectOptionDoctor.vue'
@@ -107,7 +107,7 @@ const submitExpenseFormData = () => {
       message: t('plsEnter'),
     })
   } else {
-    ExpenseService.createExpense(cleanObjectEmptyFields(expenseForm))
+    OperationExpenseService.createExpense(cleanObjectEmptyFields(expenseForm))
         .then(() => {
           clearForm()
           notify.success({

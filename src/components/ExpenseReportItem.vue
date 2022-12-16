@@ -10,7 +10,7 @@ import moment from 'moment'
 import { useRouter } from 'vue-router'
 import { useModalStore } from '../store/modal.store'
 import { useDropStore } from '../store/drop.store'
-import ExpenseService from '../services/expenses.service'
+import OperationExpenseService from '../services/operationExpenses.service'
 import { useI18n } from 'vue-i18n'
 
 const { t } = useI18n()
@@ -24,7 +24,7 @@ const props = defineProps({
 const { expenses } = toRefs(props)
 
 const clickedTheRow = (data) => {
-  ExpenseService.getExpenseItemsByExpenseId(data?.operationExpense?.id).then((res) => {
+  OperationExpenseService.getExpenseItemsByExpenseId(data?.operationExpense?.id).then((res) => {
     useDropStore().setSelectedExpenseItems(res)
   })
   useDropStore().setSelectedExpense(data)

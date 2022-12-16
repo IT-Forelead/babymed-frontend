@@ -12,7 +12,7 @@ import MoneyExchangeIcon from '../assets/icons/MoneyExchangeIcon.vue'
 import ExpenseReportItem from '../components/ExpenseReportItem.vue'
 import { useTabStore } from '../store/tab.store'
 import AddExpense from '../components/Registration/AddExpense.vue'
-import ExpenseService from '../services/expenses.service'
+import OperationExpenseService from '../services/operationExpenses.service'
 
 const API_URL = import.meta.env.VITE_BASE_URL
 
@@ -88,7 +88,7 @@ const submitFilterData = () => {
 
 const openFirstTab = () => {
   useTabStore().openFirstTab()
-  ExpenseService.getAllExpenses({}).then((res) => {
+  OperationExpenseService.getAllExpenses({}).then((res) => {
     useExpenseStore().clearStore()
     useExpenseStore().setExpenses(res?.data)
   })

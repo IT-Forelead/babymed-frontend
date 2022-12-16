@@ -133,7 +133,7 @@ onMounted(() => {
         </div>
       </div>
       <div :class="{ hidden: !isOpenExpense }" class="transition-all duration-300">
-        <router-link to="/jkkkkj"
+        <router-link to="/expenses"
           class="flex items-center justify-between hover:text-gray-100 p-3 rounded-lg cursor-pointer"
           :class="{ 'text-gray-100': useSidebarStore().isOpenExpenseMenu && router?.currentRoute?.value?.path === '/jkkkkj' }">
           <div :class="isOpenExpense ? 'pl-6' : 'pl-1'" class="flex items-center space-x-2">
