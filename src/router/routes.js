@@ -36,18 +36,6 @@ export default [
     meta: { layout: 'dashboard' },
   },
   {
-    path: '/value1',
-    name: 'value1',
-    component: () => import('../views/value1.vue'),
-    meta: { layout: 'dashboard' },
-  },
-  {
-    path: '/value2',
-    name: 'value2',
-    component: () => import('../views/value2.vue'),
-    meta: { layout: 'dashboard' },
-  },
-  {
     path: '/users',
     name: 'Users',
     component: () => import('../views/Users.vue'),
@@ -60,9 +48,15 @@ export default [
     meta: { layout: 'dashboard' },
   },
   {
-    path: '/expenses',
-    name: 'Expenses',
-    component: () => import('../views/Expenses.vue'),
+    path: '/operation-expenses',
+    name: 'Operation Expenses',
+    component: () => import('../views/OperationExpenses.vue'),
+    meta: { layout: 'dashboard' },
+  },
+  {
+    path: '/checkup-expenses',
+    name: 'Checkup Expenses',
+    component: () => import('../views/CheckupExpenses.vue'),
     meta: { layout: 'dashboard' },
   },
   {
