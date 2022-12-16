@@ -36,6 +36,18 @@ export default [
     meta: { layout: 'dashboard' },
   },
   {
+    path: '/value1',
+    name: 'value1',
+    component: () => import('../views/value1.vue'),
+    meta: { layout: 'dashboard' },
+  },
+  {
+    path: '/value2',
+    name: 'value2',
+    component: () => import('../views/value2.vue'),
+    meta: { layout: 'dashboard' },
+  },
+  {
     path: '/users',
     name: 'Users',
     component: () => import('../views/Users.vue'),
@@ -62,5 +74,11 @@ export default [
     path: '/:pathMach(.*)*',
     name: 'NotFound',
     component: () => import('../components/NotFound.vue'),
+  },
+  {
+    path: '/jkkkkj',
+    name: 'jkkkkj',
+    component: () => import('../components/ExpenseReportItem.vue'),
+    meta: { layout: 'dashboard' },
   },
 ]

@@ -22,6 +22,7 @@ const { t } = useI18n()
 
 const router = useRouter()
 const isOpen = computed(() => useSidebarStore().isOpenSidebar)
+const isOpenExpense = computed(() => useSidebarStore().isOpenExpenseMenu)
 const isOpenSubMenu = computed(() => useSidebarStore().isOpenSubMenu)
 
 const logout = () => {
@@ -59,25 +60,33 @@ onMounted(() => {
       <p v-if="isOpen" class="text-xl font-bold capitalize">Baby med</p>
     </div>
     <div class="mt-5 h-[500px] overflow-auto py-5 px-2 text-gray-400 space-y-3">
-      <router-link to="/dashboard" :class="useSidebarStore().isOpenSidebar && router?.currentRoute?.value?.path === '/dashboard' ? 'justify-between bg-gray-800 text-gray-100' : !useSidebarStore().isOpenSidebar && router?.currentRoute?.value?.path === '/dashboard' ? 'bg-gray-800 text-gray-100 justify-center' : ''" class="flex items-center hover:bg-gray-800 hover:text-gray-100 p-3 rounded-lg cursor-pointer">
+      <router-link to="/dashboard"
+        :class="useSidebarStore().isOpenSidebar && router?.currentRoute?.value?.path === '/dashboard' ? 'justify-between bg-gray-800 text-gray-100' : !useSidebarStore().isOpenSidebar && router?.currentRoute?.value?.path === '/dashboard' ? 'bg-gray-800 text-gray-100 justify-center' : ''"
+        class="flex items-center hover:bg-gray-800 hover:text-gray-100 p-3 rounded-lg cursor-pointer">
         <div class="flex items-center space-x-2">
           <HomeIcon class="w-7 h-7" />
           <p v-if="isOpen">{{ $t('mainPage') }}</p>
         </div>
       </router-link>
-      <router-link to="/visits" class="flex items-center justify-between hover:bg-gray-800 hover:text-gray-100 p-3 rounded-lg cursor-pointer" :class="useSidebarStore().isOpenSidebar && router?.currentRoute?.value?.path === '/visits' ? 'justify-between bg-gray-800 text-gray-100' : !useSidebarStore().isOpenSidebar && router?.currentRoute?.value?.path === '/visits' ? 'bg-gray-800 text-gray-100 justify-center' : ''">
+      <router-link to="/visits"
+        class="flex items-center justify-between hover:bg-gray-800 hover:text-gray-100 p-3 rounded-lg cursor-pointer"
+        :class="useSidebarStore().isOpenSidebar && router?.currentRoute?.value?.path === '/visits' ? 'justify-between bg-gray-800 text-gray-100' : !useSidebarStore().isOpenSidebar && router?.currentRoute?.value?.path === '/visits' ? 'bg-gray-800 text-gray-100 justify-center' : ''">
         <div class="flex items-center space-x-2">
           <VisitsIcon class="w-7 h-7" />
           <p v-if="isOpen">{{ $t('patientsVisit') }}</p>
         </div>
       </router-link>
-      <router-link to="/patients" class="flex items-center justify-between hover:bg-gray-800 hover:text-gray-100 p-3 rounded-lg cursor-pointer" :class="useSidebarStore().isOpenSidebar && router?.currentRoute?.value?.path === '/patients' ? 'justify-between bg-gray-800 text-gray-100' : !useSidebarStore().isOpenSidebar && router?.currentRoute?.value?.path === '/patients' ? 'bg-gray-800 text-gray-100 justify-center' : ''">
+      <router-link to="/patients"
+        class="flex items-center justify-between hover:bg-gray-800 hover:text-gray-100 p-3 rounded-lg cursor-pointer"
+        :class="useSidebarStore().isOpenSidebar && router?.currentRoute?.value?.path === '/patients' ? 'justify-between bg-gray-800 text-gray-100' : !useSidebarStore().isOpenSidebar && router?.currentRoute?.value?.path === '/patients' ? 'bg-gray-800 text-gray-100 justify-center' : ''">
         <div class="flex items-center space-x-2">
           <UsersIcon class="w-7 h-7" />
           <p v-if="isOpen">{{ $t('patients') }}</p>
         </div>
       </router-link>
-      <div @click="useSidebarStore().toggleSidebarSubMenu()" class="flex items-center justify-between hover:bg-gray-800 hover:text-gray-100 p-3 rounded-lg cursor-pointer" :class="useSidebarStore().isOpenSidebar && router?.currentRoute?.value?.path === '/services' ? 'justify-between bg-gray-800 text-gray-100' : !useSidebarStore().isOpenSidebar && router?.currentRoute?.value?.path === '/services' ? 'bg-gray-800 text-gray-100 justify-center' : ''">
+      <div @click="useSidebarStore().toggleSidebarSubMenu()"
+        class="flex items-center justify-between hover:bg-gray-800 hover:text-gray-100 p-3 rounded-lg cursor-pointer"
+        :class="useSidebarStore().isOpenSidebar && router?.currentRoute?.value?.path === '/services' ? 'justify-between bg-gray-800 text-gray-100' : !useSidebarStore().isOpenSidebar && router?.currentRoute?.value?.path === '/services' ? 'bg-gray-800 text-gray-100 justify-center' : ''">
         <div class="flex items-center space-x-2">
           <ServicesIcon class="w-7 h-7" />
           <p v-if="isOpen">{{ $t('services') }}</p>
@@ -87,42 +96,74 @@ onMounted(() => {
         </div>
       </div>
       <div :class="{ hidden: !isOpenSubMenu }" class="transition-all duration-300">
-        <router-link to="/service-types" class="flex items-center justify-between hover:text-gray-100 p-3 rounded-lg cursor-pointer" :class="{ 'text-gray-100': useSidebarStore().isOpenSidebar && router?.currentRoute?.value?.path === '/service-types' }">
+        <router-link to="/service-types"
+          class="flex items-center justify-between hover:text-gray-100 p-3 rounded-lg cursor-pointer"
+          :class="{ 'text-gray-100': useSidebarStore().isOpenSidebar && router?.currentRoute?.value?.path === '/service-types' }">
           <div :class="isOpen ? 'pl-6' : 'pl-1'" class="flex items-center space-x-2">
             <p>-</p>
             <p v-text="isOpen ? t('serviceTypes') : 'ST'"></p>
           </div>
         </router-link>
-        <router-link to="/services" class="flex items-center justify-between hover:text-gray-100 p-3 rounded-lg cursor-pointer" :class="{ 'text-gray-100': useSidebarStore().isOpenSidebar && router?.currentRoute?.value?.path === '/services' }">
+        <router-link to="/services"
+          class="flex items-center justify-between hover:text-gray-100 p-3 rounded-lg cursor-pointer"
+          :class="{ 'text-gray-100': useSidebarStore().isOpenSidebar && router?.currentRoute?.value?.path === '/services' }">
           <div :class="isOpen ? 'pl-6' : 'pl-1'" class="flex items-center space-x-2">
             <p>-</p>
             <p v-text="isOpen ? t('createService') : 'CS'"></p>
           </div>
         </router-link>
       </div>
-      <router-link to="/users" class="flex items-center justify-between hover:bg-gray-800 hover:text-gray-100 p-3 rounded-lg cursor-pointer" :class="useSidebarStore().isOpenSidebar && router?.currentRoute?.value?.path === '/users' ? 'justify-between bg-gray-800 text-gray-100' : !useSidebarStore().isOpenSidebar && router?.currentRoute?.value?.path === '/users' ? 'bg-gray-800 text-gray-100 justify-center' : ''">
+      <router-link to="/users"
+        class="flex items-center justify-between hover:bg-gray-800 hover:text-gray-100 p-3 rounded-lg cursor-pointer"
+        :class="useSidebarStore().isOpenSidebar && router?.currentRoute?.value?.path === '/users' ? 'justify-between bg-gray-800 text-gray-100' : !useSidebarStore().isOpenSidebar && router?.currentRoute?.value?.path === '/users' ? 'bg-gray-800 text-gray-100 justify-center' : ''">
         <div class="flex items-center space-x-2">
           <UserPlusIcon class="w-7 h-7" />
           <p v-if="isOpen">{{ $t('users') }}</p>
         </div>
       </router-link>
-      <router-link to="/expenses" class="flex items-center justify-between hover:bg-gray-800 hover:text-gray-100 p-3 rounded-lg cursor-pointer" :class="useSidebarStore().isOpenSidebar && router?.currentRoute?.value?.path === '/expenses' ? 'justify-between bg-gray-800 text-gray-100' : !useSidebarStore().isOpenSidebar && router?.currentRoute?.value?.path === '/expenses' ? 'bg-gray-800 text-gray-100 justify-center' : ''">
+      <div @click="useSidebarStore().toggleExpenseMenu()"
+        class="flex items-center justify-between hover:bg-gray-800 hover:text-gray-100 p-3 rounded-lg cursor-pointer"
+        :class="useSidebarStore().isOpenSidebar && router?.currentRoute?.value?.path === '/expenses' ? 'justify-between bg-gray-800 text-gray-100' : !useSidebarStore().isOpenSidebar && router?.currentRoute?.value?.path === '/expenses' ? 'bg-gray-800 text-gray-100 justify-center' : ''">
         <div class="flex items-center space-x-2">
           <PaymentIcon class="w-7 h-7" />
           <p v-if="isOpen">{{ $t('expenses') }}</p>
         </div>
-      </router-link>
+        <div>
+          <ChevronRightIcon class="w-5 h-5 transition-all duration-300" :class="{ 'rotate-90': isOpenExpense }" />
+        </div>
+      </div>
+      <div :class="{ hidden: !isOpenExpense }" class="transition-all duration-300">
+        <router-link to="/jkkkkj"
+          class="flex items-center justify-between hover:text-gray-100 p-3 rounded-lg cursor-pointer"
+          :class="{ 'text-gray-100': useSidebarStore().isOpenExpenseMenu && router?.currentRoute?.value?.path === '/jkkkkj' }">
+          <div :class="isOpenExpense ? 'pl-6' : 'pl-1'" class="flex items-center space-x-2">
+            <p>-</p>
+            <p v-text="isOpenExpense ? 'Operatsita xarajatlari' : 'ST'"></p>
+          </div>
+        </router-link>
+        <router-link to="/value2"
+          class="flex items-center justify-between hover:text-gray-100 p-3 rounded-lg cursor-pointer"
+          :class="{ 'text-gray-100': useSidebarStore().isOpenExpenseMenu && router?.currentRoute?.value?.path === '/value2' }">
+          <div :class="isOpenExpense ? 'pl-6' : 'pl-1'" class="flex items-center space-x-2">
+            <p>-</p>
+            <p v-text="isOpenExpense ? 'Shifokor xarajatlari' : 'CS'"></p>
+          </div>
+        </router-link>
+      </div>
     </div>
     <div class="absolute bottom-10 w-full flex justify-center items-center flex-col space-y-2">
       <div v-if="isOpen" class="w-24 h-24 flex items-center justify-center p-2 rounded-full">
         <img src="/logo.png" alt="hero" class="w-full" />
       </div>
       <div v-if="isOpen">
-        <p class="text-lg font-bold text-gray-400 text-center">{{ useAuthStore().user?.firstname + ' ' + useAuthStore().user?.lastname }}</p>
+        <p class="text-lg font-bold text-gray-400 text-center">{{ useAuthStore().user?.firstname + ' ' +
+            useAuthStore().user?.lastname
+        }}</p>
         <p class="text-gray-600 text-center">{{ useAuthStore().user?.phone }}</p>
       </div>
       <div :class="{ 'flex-col space-x-0 space-y-3': !isOpen }" class="flex items-center justify-center space-x-5">
-        <div @click="toggleLangDrop()" class="relative border border-gray-600 rounded-lg p-2 cursor-pointer hover:bg-gray-800">
+        <div @click="toggleLangDrop()"
+          class="relative border border-gray-600 rounded-lg p-2 cursor-pointer hover:bg-gray-800">
           <div v-if="isLangShow" class="absolute bottom-12 bg-gray-700 rounded-lg p-1 left-0 w-24">
             <div @click="changeLang('uz')" class="flex items-center space-x-2 hover:bg-slate-600 p-1 rounded">
               <p>O'zbek</p>

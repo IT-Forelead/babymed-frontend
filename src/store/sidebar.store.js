@@ -4,6 +4,7 @@ export const useSidebarStore = defineStore('sidebar', {
   state: () => ({
     isOpenSidebar: true,
     isOpenSubMenu: false,
+    isOpenExpenseMenu: false,
   }),
   actions: {
     toggleSidebar() {
@@ -12,6 +13,9 @@ export const useSidebarStore = defineStore('sidebar', {
     },
     toggleSidebarSubMenu() {
       this.isOpenSubMenu = !this.isOpenSubMenu
+    },
+    toggleExpenseMenu() {
+      this.isOpenExpenseMenu = !this.isOpenExpenseMenu
     },
   },
 })
