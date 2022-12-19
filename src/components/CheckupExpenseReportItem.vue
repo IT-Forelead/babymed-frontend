@@ -1,21 +1,10 @@
 <script setup>
-import EditIcon from '../assets/icons/EditIcon.vue'
 import UserIcon from '../assets/icons/UserIcon.vue'
-import TrashIcon from '../assets/icons/TrashIcon.vue'
 import InfiniteLoading from 'v3-infinite-loading'
 import 'v3-infinite-loading/lib/style.css'
 import useMoneyFormatter from '../mixins/currencyFormatter'
 import { toRefs } from 'vue'
 import moment from 'moment'
-import { useRouter } from 'vue-router'
-import { useModalStore } from '../store/modal.store'
-import { useDropStore } from '../store/drop.store'
-import CheckupExpenseService from '../services/checkupExpenses.service'
-import { useI18n } from 'vue-i18n'
-
-const { t } = useI18n()
-
-const router = useRouter()
 
 const props = defineProps({
   checkupExpenses: { type: Array, required: true },
@@ -33,9 +22,7 @@ const { checkupExpenses } = toRefs(props)
           <UserIcon class="w-10 h-10 rounded-full border p-2" />
         </div>
         <div class="text-base leading-5">
-          <span class="font-medium capitalize">{{ expense?.user?.firstname }}</span>
-          <br />
-          <span class="font-medium capitalize">{{ expense?.user?.lastname }}</span>
+          <span class="font-medium capitalize">{{ expense?.user?.firstname + " " + expense?.user?.lastname }}</span>
         </div>
       </div>
     </td>

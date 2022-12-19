@@ -8,7 +8,7 @@ class CheckupExpenseService {
   async getCheckupExpenses(data) {
     return AxiosService.post('/checkup-expense/report?page=1&limit=10', data, { headers: authHeader() })
   }
-  async getAllDocotrShare() {
+  async getAllDocotrShares() {
     return AxiosService.get('/checkup-expense/doctor-shares', { headers: authHeader() })
   }
   async deleteDoctorShare(doctorShareId) {

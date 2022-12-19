@@ -165,5 +165,11 @@
   "plsEnterServiceTypeName": "Iltimos, xizmat turi nomini kiriting",
   "serviceTypeCreated": "Xizmat turi mufavvaqiyatli yaratildi!",
   "servicesTypeReport": "Xizmat turi hisoboti",
-  "serviceTypeName": "Xizmat Turi Nomi"
+  "serviceTypeName": "Xizmat Turi Nomi",
+  "doctorShare":"Doktor ulushi",
+  "doctorShares":"Doktor ulushlari",
+  "createDoctorShare":"Doktor ulushini yaratish",
+  "creatingDoctorShare":"Doktor ulushi yaratilmoqda",
+  "checkupExpensesReport":"Tekshirish xarajatlari hisoboti",
+  "operationExpensesReport":"Operatsiya xarajatlari hisoboti"
 }

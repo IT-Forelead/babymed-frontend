@@ -138,7 +138,7 @@ onMounted(() => {
           :class="{ 'text-gray-100': useSidebarStore().isOpenExpenseMenu && router?.currentRoute?.value?.path === '/operation-expenses' }">
           <div :class="isOpenExpense ? 'pl-6' : 'pl-1'" class="flex items-center space-x-2">
             <p>-</p>
-            <p v-text="isOpenExpense ? 'Operation Expenses Report' : 'OR'"></p>
+            <p v-text="isOpenExpense ? t('operationExpensesReport') : 'OR'"></p>
           </div>
         </router-link>
         <router-link to="/checkup-expenses"
@@ -146,7 +146,7 @@ onMounted(() => {
           :class="{ 'text-gray-100': useSidebarStore().isOpenExpenseMenu && router?.currentRoute?.value?.path === '/checkup-expenses' }">
           <div :class="isOpenExpense ? 'pl-6' : 'pl-1'" class="flex items-center space-x-2">
             <p>-</p>
-            <p v-text="isOpenExpense ? 'Checkup Expenses Report' : 'CR'"></p>
+            <p v-text="isOpenExpense ? t('checkupExpensesReport') : 'CR'"></p>
           </div>
         </router-link>
       </div>

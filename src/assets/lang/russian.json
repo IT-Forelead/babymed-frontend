@@ -164,5 +164,11 @@
   "plsEnterServiceTypeName": "Пожалуйста, введите название типа услуг",
   "serviceTypeCreated": "Тип услуг успешно создан!",
   "servicesTypeReport": "Отчет о типах услуг",
-  "serviceTypeName": "Название Типа услуг"
+  "serviceTypeName": "Название Типа услуг",
+  "doctorShare":"Поделиться доктором",
+  "doctorShares":"Поделиться доктором",
+  "createDoctorShare":"Создать поделиться доктором",
+  "creatingDoctorShare":"Создание поделиться доктором",
+  "checkupExpensesReport":"Отчет о расходах на проверку",
+  "operationExpensesReport":"Отчет об операционных расходах"
 }

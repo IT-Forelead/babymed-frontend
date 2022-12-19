@@ -165,5 +165,11 @@
   "plsEnterServiceTypeName": "Илтимос, хизмат тури номини киритинг",
   "serviceTypeCreated": "Хизмат тури муфаввақиятли яратилди!",
   "servicesTypeReport": "Хизмат тури ҳисоботи",
-  "serviceTypeName": "Хизмат Тури Номи"
+  "serviceTypeName": "Хизмат Тури Номи",
+  "doctorShare":"Доктор улуши",
+  "doctorShares":"Доктор улушлари",
+  "createDoctorShare":"Доктор улушини яратиш",
+  "creatingDoctorShare":"Доктор улуши яратилмоқда",
+  "checkupExpensesReport":"Текшириш харажатлари ҳисоботи",
+  "operationExpensesReport":"Операция харажатлари ҳисоботи"
 }

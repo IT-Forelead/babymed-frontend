@@ -165,5 +165,11 @@
   "plsEnterServiceTypeName": "Please enter service type name?",
   "serviceTypeCreated": "Service type successfully created!",
   "servicesTypeReport": "Services Type Report",
-  "serviceTypeName": "Service Type Name"
+  "serviceTypeName": "Service Type Name",
+  "doctorShare":"Doctor share",
+  "doctorShares":"Doctor shares",
+  "createDoctorShare":"Create doctor share",
+  "creatingDoctorShare":"Creating doctor share",
+  "operationExpensesReport":"Operation Expenses Report",
+  "checkupExpensesReport":"Checkup Expenses Report"
 }
