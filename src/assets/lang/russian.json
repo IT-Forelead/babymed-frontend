@@ -101,6 +101,7 @@
   "userFullname": "Имя пользователя",
   "plsSelectDoctor": "Выберите врача",
   "plsSelectService": "Выберите сервис",
+  "plsSelectServiceType": "Выберите сервис тип",
   "createdVisit": "Посещение успешно создано!",
   "errorCreatingVisit": "Ошибка при создании визита!",
   "doctor": "Доктор",

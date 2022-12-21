@@ -1,12 +1,13 @@
 <script setup>
 import authHeader from '../mixins/auth-header'
-import { computed, ref } from '@vue/reactivity'
+import { computed, ref, reactive } from '@vue/reactivity'
 import { useCheckupExpenseStore } from '../store/checkupExpense.store'
+import { useServicesStore } from '../store/services.store'
+import { useUserStore } from '../store/user.store'
 import { useModalStore } from '../store/modal.store'
 import { onMounted } from 'vue'
 import ArrowDownIcon from '../assets/icons/ArrowDownIcon.vue'
 import FilterIcon from '../assets/icons/FilterIcon.vue'
-import PercentIcon from '../assets/icons/PercentIcon.vue'
 import { onClickOutside } from '@vueuse/core'
 import MoneyBagIconm from '../assets/icons/MoneyBagIcon.vue'
 import MoneyExchangeIcon from '../assets/icons/MoneyExchangeIcon.vue'
@@ -14,9 +15,10 @@ import CheckupExpenseReportItem from '../components/CheckupExpenseReportItem.vue
 import DoctorShareItem from '../components/DoctorShareItem.vue'
 import { useTabStore } from '../store/tab.store'
 import CheckupExpenseService from '../services/checkupExpenses.service'
-import SelectOptionServiceType from '../components/SelectOptionServiceType.vue'
-import SelectOptionService from '../components/SelectOptionService.vue'
-import SelectOptionDoctor from '../components/SelectOptionDoctor.vue'
+import ServicesService from '../services/services.service'
+import UserService from '../services/user.service'
+import AddDoctorShare from '../components/Registration/AddDoctorShare.vue'
+import { cleanObjectEmptyFields } from '../mixins/utils'
 
 const API_URL = import.meta.env.VITE_BASE_URL
 
@@ -67,19 +69,8 @@ const loadExpenses = async ($state) => {
   } else $state.loaded()
 }
 
-const doctorShares = computed(() => {
-  return useCheckupExpenseStore().doctorShares
-})
-
-const getDoctorShares = () => {
-  CheckupExpenseService.getAllDocotrShares().then((res) => {
-    useCheckupExpenseStore().setDoctorShares(res)
-  })
-}
-
 onMounted(() => {
-  useCheckupExpenseStore().clearStore(),
-  getDoctorShares()
+  useCheckupExpenseStore().clearStore()
 })
 
 const dropdown = ref(null)
@@ -90,15 +81,23 @@ onClickOutside(dropdown, () => {
   }
 })
 
+const filterData = reactive({
+  userId: '',
+  serviceId: '',
+  startDate: '',
+  endDate: '',
+})
+
 const submitFilterData = () => {
   isLoading.value = true
-  console.log('Filter by data!')
-  setTimeout(() => {
+  CheckupExpenseService.getCheckupExpenses(cleanObjectEmptyFields(filterData)).then((res) => {
+    useCheckupExpenseStore().clearStore()
+    useCheckupExpenseStore().setCheckupExpenses(res?.data)
     isLoading.value = false
     if (useModalStore().isOpenFilterBy) {
       useModalStore().toggleFilterBy()
     }
-  }, 500)
+  })
 }
 
 const openFirstTab = () => {
@@ -108,6 +107,40 @@ const openFirstTab = () => {
     useCheckupExpenseStore().setCheckupExpenses(res?.data)
   })
 }
+
+/* second tab */
+const openSecondTab = () => {
+  useTabStore().openSecondTab()
+  useCheckupExpenseStore().clearStore(),
+  CheckupExpenseService.getAllDocotrShares().then((res) => {
+    useCheckupExpenseStore().setDoctorShares(res)
+  })
+  ServicesService.getAllServices().then((res) => {
+    useServicesStore().setServices(res)
+  })
+  UserService.getAllDoctors({
+    role: 'doctor',
+  }).then((res) => {
+    useUserStore().setDoctors(res?.data)
+  })
+}
+
+const doctorShares = computed(() => {
+  return useCheckupExpenseStore().doctorShares
+})
+
+const services = computed(() => {
+  return useServicesStore().services
+})
+
+const doctors = computed(() => {
+  return useUserStore().doctors
+})
+
+onMounted(() => {
+  openSecondTab()
+})
+
 </script>
 
 <template>
@@ -116,21 +149,35 @@ const openFirstTab = () => {
       <div class="flex items-center space-x-3">
         <div @click="openFirstTab()" :class="useTabStore().isOpenFirstTab ? 'bg-lime-400' : 'bg-gray-200 hover:bg-gray-400 cursor-pointer transition-all duration-300 hover:scale-105'" class="rounded-lg p-1.5 px-3 flex items-center"><MoneyBagIconm class="w-6 h-6 mr-1" />{{ $t('checkupExpensesReport') }}</div>
         <div>|</div>
-        <div @click="useTabStore().openSecondTab()" :class="useTabStore().isOpenSecondTab ? 'bg-lime-400' : 'bg-gray-200 hover:bg-gray-400 cursor-pointer transition-all duration-300 hover:scale-105'" class="rounded-lg p-1.5 px-3 flex items-center"><MoneyExchangeIcon class="w-5 h-5 mr-1" /> {{ $t('doctorShares') }}</div>
+        <div @click="openSecondTab()" :class="useTabStore().isOpenSecondTab ? 'bg-lime-400' : 'bg-gray-200 hover:bg-gray-400 cursor-pointer transition-all duration-300 hover:scale-105'" class="rounded-lg p-1.5 px-3 flex items-center"><MoneyExchangeIcon class="w-5 h-5 mr-1" /> {{ $t('doctorShares') }}</div>
       </div>
       <div class="flex items-center space-x-3">
         <div class="relative" ref="dropdown">
           <div v-if="useTabStore().isOpenFirstTab" @click="useModalStore().toggleFilterBy()" class="border-none select-none text-gray-500 bg-gray-100 rounded-lg w-full p-2 px-5 flex items-center hover:bg-gray-200 cursor-pointer"><FilterIcon class="w-5 h-5 text-gray-400" /> {{ $t('filter') }}</div>
           <div v-if="useModalStore().isOpenFilterBy" class="absolute bg-white shadow rounded-xl p-3 z-20 top-12 right-0 space-y-3">
+            <div>
+              <p>{{ $t('doctor') }}</p>
+              <select v-model="filterData.doctorId" class="border-none text-gray-500 bg-gray-100 rounded-lg w-full">
+                <option value="" selected>{{ $t('selectDoctor') }}</option>
+                <option v-for="(doctor, idx) in doctors" :key="idx" :value="doctor?.id">{{ doctor?.firstName + " " + doctor?.lastName }}</option>
+              </select>
+            </div>
+            <div>
+              <p>{{ $t('service') }}</p>
+              <select v-model="filterData.serviceId" class="border-none text-gray-500 bg-gray-100 rounded-lg w-full">
+                <option value="" selected>{{ $t('selectService') }}</option>
+                <option v-for="(service, idx) in services" :key="idx" :value="service?.id">{{ service?.name }}</option>
+              </select>
+            </div>
             <div class="flex items-center space-x-1">
               <label for="">
                 From
-                <input type="datetime-local" class="border-none text-gray-500 bg-gray-100 rounded-lg w-full" />
+                <input v-model="filterData.startDate" type="datetime-local" class="border-none text-gray-500 bg-gray-100 rounded-lg w-full" />
               </label>
               <ArrowDownIcon class="-rotate-90 text-gray-600 mt-6" />
               <label for="">
                 To
-                <input type="datetime-local" class="border-none text-gray-500 bg-gray-100 rounded-lg w-full" />
+                <input v-model="filterData.endDate" type="datetime-local" class="border-none text-gray-500 bg-gray-100 rounded-lg w-full" />
               </label>
             </div>
             <div v-if="isLoading" class="w-full bg-gray-600 py-3 select-none text-white rounded-lg flex items-center justify-center">
@@ -165,7 +212,7 @@ const openFirstTab = () => {
           <CheckupExpenseReportItem :checkupExpenses="checkupExpenses" :distance="distance" :target="target" @infinite="loadExpenses" />
         </tbody>
       </table>
-      <div v-if="expenses?.length === 0" class="w-full text-center text-red-500">{{ $t('empty') }}</div>
+      <div v-if="checkupExpenses?.length === 0" class="w-full text-center text-red-500">{{ $t('empty') }}</div>
     </div>
     <div v-if="useTabStore().isOpenSecondTab" class="grid grid- grid-cols-3 mt-5 gap-8">
       <div class="col-span-2">
@@ -189,35 +236,7 @@ const openFirstTab = () => {
       </div>
       <div class="bg-white rounded-lg p-3">
         <p class="text-3xl font-bold mb-3">{{ $t('createDoctorShare') }}</p>
-        <div class="space-y-5">
-          <div>
-            <p>{{ $t('selectDoctor') }}</p>
-            <SelectOptionDoctor :options="doctors" />
-          </div>
-          <div>
-            <p>{{ $t('selectServiceType') }}</p>
-            <SelectOptionServiceType :options="serviceTypes" />
-          </div>
-          <div>
-            <p>{{ $t('selectService') }}</p>
-            <SelectOptionService :options="service" />
-          </div>
-          <div class="relative w-full">
-            <p>{{ $t('doctorShare') }}</p>
-            <input min="0" max="100" class="rounded-lg pr-8 w-full text-gray-500 bg-gray-100 text-lg text-right mb-1 border-none" type="number" name="card_number" placeholder="0" />
-            <PercentIcon  class="absolute bottom-1 right-5 -mb-0.5 transform translate-x-1/2 -translate-y-1/2 text-gray-500 h-6 w-6" />
-          </div>
-          <div :class="isLoading ? 'bg-gray-600' : 'bg-gray-900 hover:bg-gray-800 cursor-pointer'" class="w-full py-3 text-white rounded-lg flex items-center justify-center">
-            <svg v-if="isLoading" class="mr-2 w-5 h-5 text-gray-200 animate-spin dark:text-gray-600 fill-gray-600 dark:fill-gray-300" viewBox="0 0 100 101" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M100 50.5908C100 78.2051 77.6142 100.591 50 100.591C22.3858 100.591 0 78.2051 0 50.5908C0 22.9766 22.3858 0.59082 50 0.59082C77.6142 0.59082 100 22.9766 100 50.5908ZM9.08144 50.5908C9.08144 73.1895 27.4013 91.5094 50 91.5094C72.5987 91.5094 90.9186 73.1895 90.9186 50.5908C90.9186 27.9921 72.5987 9.67226 50 9.67226C27.4013 9.67226 9.08144 27.9921 9.08144 50.5908Z" fill="currentColor" />
-              <path
-                d="M93.9676 39.0409C96.393 38.4038 97.8624 35.9116 97.0079 33.5539C95.2932 28.8227 92.871 24.3692 89.8167 20.348C85.8452 15.1192 80.8826 10.7238 75.2124 7.41289C69.5422 4.10194 63.2754 1.94025 56.7698 1.05124C51.7666 0.367541 46.6976 0.446843 41.7345 1.27873C39.2613 1.69328 37.813 4.19778 38.4501 6.62326C39.0873 9.04874 41.5694 10.4717 44.0505 10.1071C47.8511 9.54855 51.7191 9.52689 55.5402 10.0491C60.8642 10.7766 65.9928 12.5457 70.6331 15.2552C75.2735 17.9648 79.3347 21.5619 82.5849 25.841C84.9175 28.9121 86.7997 32.2913 88.1811 35.8758C89.083 38.2158 91.5421 39.6781 93.9676 39.0409Z"
-                fill="currentFill"
-              />
-            </svg>
-            <span>{{ isLoading ? $t('creatingDoctorShare') : $t('createDoctorShare') }}</span>
-          </div>
-        </div>
+        <AddDoctorShare />
       </div>
     </div>
   </div>

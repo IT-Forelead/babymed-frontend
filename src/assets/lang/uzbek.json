@@ -101,6 +101,7 @@
   "userFullname": "Foydalanuvchi ismi",
   "plsSelectDoctor": "Iltimos, shifokorni tanlang",
   "plsSelectService": "Iltimos, Xizmatni tanlang",
+  "plsSelectServiceType": "Iltimos, Xizmat turini tanlang",
   "createdVisit": "Tashrif muvaffaqiyatli yaratildi!",
   "errorCreatingVisit": "Tashrif yaratishda xatolik yuz berdi!",
   "doctor": "Shifokor",

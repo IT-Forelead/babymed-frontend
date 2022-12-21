@@ -1,6 +1,6 @@
 <script setup>
 import authHeader from '../mixins/auth-header'
-import { computed, ref } from '@vue/reactivity'
+import { computed, ref, reactive } from '@vue/reactivity'
 import { useExpenseStore } from '../store/expense.store'
 import { useModalStore } from '../store/modal.store'
 import { onMounted } from 'vue'
@@ -13,6 +13,7 @@ import ExpenseReportItem from '../components/ExpenseReportItem.vue'
 import { useTabStore } from '../store/tab.store'
 import AddExpense from '../components/Registration/AddExpense.vue'
 import OperationExpenseService from '../services/operationExpenses.service'
+import { cleanObjectEmptyFields } from '../mixins/utils'
 
 const API_URL = import.meta.env.VITE_BASE_URL
 
@@ -75,15 +76,21 @@ onClickOutside(dropdown, () => {
   }
 })
 
+const filterData = reactive({
+  startDate: '',
+  endDate: '',
+})
+
 const submitFilterData = () => {
   isLoading.value = true
-  console.log('Filter by data!')
-  setTimeout(() => {
+  OperationExpenseService.getAllExpenses(cleanObjectEmptyFields(filterData)).then((res) => {
+    useExpenseStore().clearStore()
+    useExpenseStore().setExpenses(res?.data)
     isLoading.value = false
     if (useModalStore().isOpenFilterBy) {
       useModalStore().toggleFilterBy()
     }
-  }, 500)
+  })
 }
 
 const openFirstTab = () => {
@@ -110,12 +117,12 @@ const openFirstTab = () => {
             <div class="flex items-center space-x-1">
               <label for="">
                 From
-                <input type="datetime-local" class="border-none text-gray-500 bg-gray-100 rounded-lg w-full" />
+                <input v-model="filterData.startDate" type="datetime-local" class="border-none text-gray-500 bg-gray-100 rounded-lg w-full" />
               </label>
               <ArrowDownIcon class="-rotate-90 text-gray-600 mt-6" />
               <label for="">
                 To
-                <input type="datetime-local" class="border-none text-gray-500 bg-gray-100 rounded-lg w-full" />
+                <input v-model="filterData.endDate" type="datetime-local" class="border-none text-gray-500 bg-gray-100 rounded-lg w-full" />
               </label>
             </div>
             <div v-if="isLoading" class="w-full bg-gray-600 py-3 select-none text-white rounded-lg flex items-center justify-center">

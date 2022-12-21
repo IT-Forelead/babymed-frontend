@@ -101,6 +101,7 @@
   "userFullname": "Фойдаланувчи исми",
   "plsSelectDoctor": "Илтимос, шифокорни танланг",
   "plsSelectService": "Илтимос, Хизматни танланг",
+  "plsSelectServiceType": "Илтимос, Хизмат турини танланг",
   "createdVisit": "Ташриф муваффақиятли яратилди!",
   "errorCreatingVisit": "Ташриф яратишда хатолик юз берди!",
   "doctor": "Шифокор",

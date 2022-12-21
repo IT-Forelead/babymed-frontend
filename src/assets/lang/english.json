@@ -101,6 +101,7 @@
   "userFullname": "User fullname",
   "plsSelectDoctor": "Please select doctor",
   "plsSelectService": "Please select service",
+  "plsSelectServiceType": "Please select service type",
   "createdVisit": "Visit successfully created!",
   "errorCreatingVisit": "Error while creating visit!",
   "doctor": "Doctor",
