@@ -171,6 +171,10 @@
   "doctorShares":"Doctor shares",
   "createDoctorShare":"Create doctor share",
   "creatingDoctorShare":"Creating doctor share",
+  "errorCreatingDoctorShare": "Error while creating doctor share!",
+  "doctorShareCreated": "Doctor share successfully created!",
+  "deletedDoctorShare": "Doctor share successfully deleted!",
+  "errorDeletingDoctorShare": "Error while deleting doctor share!",
   "operationExpensesReport":"Operation Expenses Report",
   "checkupExpensesReport":"Checkup Expenses Report"
 }

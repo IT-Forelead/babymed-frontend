@@ -4,7 +4,6 @@ import { useDropStore } from '../store/drop.store'
 import { watch } from 'vue'
 import { onClickOutside } from '@vueuse/core'
 import { toRefs } from 'vue'
-import UserBoldIcon from '../assets/icons/UserBoldIcon.vue'
 import TimesIcon from '../assets/icons/TimesIcon.vue'
 import ChevronRightIcon from '../assets/icons/ChevronRightIcon.vue'
 

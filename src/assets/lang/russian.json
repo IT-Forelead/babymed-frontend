@@ -170,6 +170,10 @@
   "doctorShares":"Поделиться доктором",
   "createDoctorShare":"Создать поделиться доктором",
   "creatingDoctorShare":"Создание поделиться доктором",
+  "errorCreatingDoctorShare": "Ошибка при создании общего доступа к врачу!",
+  "doctorShareCreated": "Общий доступ к доктору успешно создан!",
+  "deletedDoctorShare": "Doctor share successfully deleted!",
+  "errorDeletingDoctorShare": "Error while deleting doctor share!",
   "checkupExpensesReport":"Отчет о расходах на проверку",
   "operationExpensesReport":"Отчет об операционных расходах"
 }

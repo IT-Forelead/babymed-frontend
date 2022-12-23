@@ -23,15 +23,16 @@ const deleteDoctorShare = (id) => {
   CheckupExpenseService.deleteDoctorShare(id)
     .then(() => {
       notify.success({
-        message: t('succesfullyDeleted'),
+        message: t('deletedDoctorShare'),
       })
       CheckupExpenseService.getAllDocotrShares().then((res) => {
+        useCheckupExpenseStore().clearStore()
         useCheckupExpenseStore().setDoctorShares(res)
       })
     })
     .catch(() => {
       notify.warning({
-        message: "error doctor Share",
+        message: t('errorDeletingDoctorShare'),
       })
     })
 }

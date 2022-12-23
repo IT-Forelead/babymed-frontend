@@ -167,10 +167,14 @@
   "serviceTypeCreated": "Xizmat turi mufavvaqiyatli yaratildi!",
   "servicesTypeReport": "Xizmat turi hisoboti",
   "serviceTypeName": "Xizmat Turi Nomi",
-  "doctorShare":"Doktor ulushi",
-  "doctorShares":"Doktor ulushlari",
-  "createDoctorShare":"Doktor ulushini yaratish",
-  "creatingDoctorShare":"Doktor ulushi yaratilmoqda",
+  "doctorShare":"Shifokor ulushi",
+  "doctorShares":"Shifokor ulushlari",
+  "createDoctorShare":"Shifokor ulushini yaratish",
+  "creatingDoctorShare":"Shifokor ulushi yaratilmoqda",
+  "errorCreatingDoctorShare": "Shifokor ulushini yaratishda xatolik yuz berdi!",
+  "doctorShareCreated": "Shifokor ulushi muvaffaqiyatli yaratildi!",
+  "deletedDoctorShare": "Shifokor ulushi muvaffaqiyatli o'chirildi!",
+  "errorDeletingDoctorShare": "Shifokor ulushini o'chirishda xatolik yuz berdi!",
   "checkupExpensesReport":"Tekshirish xarajatlari hisoboti",
   "operationExpensesReport":"Operatsiya xarajatlari hisoboti"
 }

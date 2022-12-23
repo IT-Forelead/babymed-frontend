@@ -1,7 +1,5 @@
 <script setup>
-import EditIcon from '../assets/icons/EditIcon.vue'
 import UserIcon from '../assets/icons/UserIcon.vue'
-import TrashIcon from '../assets/icons/TrashIcon.vue'
 import InfiniteLoading from 'v3-infinite-loading'
 import 'v3-infinite-loading/lib/style.css'
 import useMoneyFormatter from '../mixins/currencyFormatter'

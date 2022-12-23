@@ -167,10 +167,14 @@
   "serviceTypeCreated": "Хизмат тури муфаввақиятли яратилди!",
   "servicesTypeReport": "Хизмат тури ҳисоботи",
   "serviceTypeName": "Хизмат Тури Номи",
-  "doctorShare":"Доктор улуши",
-  "doctorShares":"Доктор улушлари",
-  "createDoctorShare":"Доктор улушини яратиш",
-  "creatingDoctorShare":"Доктор улуши яратилмоқда",
+  "doctorShare":"Шифокор улуши",
+  "doctorShares":"Шифокор улушлари",
+  "createDoctorShare":"Шифокор улушини яратиш",
+  "creatingDoctorShare":"Шифокор улуши яратилмоқда",
+  "errorCreatingDoctorShare": "Шифокор улушини яратишда хатолик юз берди!",
+  "doctorShareCreated": "Шифокор улуши муваффақиятли яратилди!",
+  "deletedDoctorShare": "Шифокор улуши муваффақиятли ўчирилди!",
+  "errorDeletingDoctorShare": "Шифокор улушини ўчиришда хатолик юз берди!",
   "checkupExpensesReport":"Текшириш харажатлари ҳисоботи",
   "operationExpensesReport":"Операция харажатлари ҳисоботи"
 }
