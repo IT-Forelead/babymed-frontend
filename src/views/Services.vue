@@ -22,12 +22,12 @@ const moneyConf = {
 const isLoading = ref(false)
 
 const services = computed(() => {
-  return useServicesStore().services
+  return useServicesStore().allServices
 })
 
 const getServices = () => {
   ServicesService.getAllServices().then((res) => {
-    useServicesStore().setServices(res)
+    useServicesStore().setAllServices(res)
   })
   ServicesService.getAllServiceTypes().then((res) => {
     useServicesStore().setServiceTypes(res)

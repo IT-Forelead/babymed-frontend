@@ -96,7 +96,7 @@ const submitDoctorShareData = () => {
       })
       CheckupExpenseService.getAllDocotrShares().then((res) => {
         useCheckupExpenseStore().clearStore()
-        useCheckupExpenseStore().setDoctorShares(res?.data)
+        useCheckupExpenseStore().setDoctorShares(res)
       })
       useDropStore().clearStore()
       isLoading.value = false

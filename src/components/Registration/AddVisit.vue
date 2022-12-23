@@ -92,23 +92,23 @@ const submitVisitData = () => {
         serviceId: selectedService.value?.id,
       })
     )
-      .then(() => {
-        notify.success({
-          message: t('createdVisit'),
-        })
-        VisitService.getVisits({}).then((res) => {
-          useVisitStore().clearStore()
-          useVisitStore().setPatients(res?.data)
-        })
-        useModalStore().closeAddVisitModal()
-        useDropStore().clearStore()
-        isLoading.value = false
+    .then(() => {
+      notify.success({
+        message: t('createdVisit'),
       })
-      .catch((err) => {
-        notify.error({
-          message: t('errorCreatingVisit'),
-        })
+      VisitService.getVisits({}).then((res) => {
+        useVisitStore().clearStore()
+        useVisitStore().setPatients(res?.data)
       })
+      useModalStore().closeAddVisitModal()
+      useDropStore().clearStore()
+      isLoading.value = false
+    })
+    .catch((err) => {
+      notify.error({
+        message: t('errorCreatingVisit'),
+      })
+    })
   }
 }
 </script>
