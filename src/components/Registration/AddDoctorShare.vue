@@ -90,22 +90,22 @@ const submitDoctorShareData = () => {
         percent: percent.value,
       })
     )
-      .then(() => {
-        notify.success({
-          message: t('doctorShareCreated'),
-        })
-        CheckupExpenseService.getAllDocotrShares().then((res) => {
-          useCheckupExpenseStore().clearStore()
-          useCheckupExpenseStore().setDoctorShares(res?.data)
-        })
-        useDropStore().clearStore()
-        isLoading.value = false
+    .then(() => {
+      notify.success({
+        message: t('doctorShareCreated'),
       })
-      .catch((err) => {
-        notify.error({
-          message: t('errorCreatingDoctorShare'),
-        })
+      CheckupExpenseService.getAllDocotrShares().then((res) => {
+        useCheckupExpenseStore().clearStore()
+        useCheckupExpenseStore().setDoctorShares(res?.data)
       })
+      useDropStore().clearStore()
+      isLoading.value = false
+    })
+    .catch((err) => {
+      notify.error({
+        message: t('errorCreatingDoctorShare'),
+      })
+    })
   }
 }
 </script>

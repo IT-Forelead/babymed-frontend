@@ -37,7 +37,7 @@ const { checkupExpenses } = toRefs(props)
         {{ useMoneyFormatter(percentCalc(expense?.service?.price, expense?.doctorShare?.percent)) }}
       </span>
     </td>
-    <td v-motion-pop class="py-3 px-6 text-center">{{ moment(expense?.operationExpense?.createdAt).format('MM/DD/YYYY h:mm:ss') }}</td>
+    <td v-motion-pop class="py-3 px-6 text-center">{{ moment(expense?.checkupExpense?.createdAt).format('MM/DD/YYYY h:mm:ss') }}</td>
   </tr>
   <tr class="text-gray-700 text-md dark:text-gray-300 dark:bg-gray-800">
     <td v-motion-pop colspan="10">
