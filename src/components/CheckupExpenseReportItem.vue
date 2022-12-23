@@ -3,6 +3,7 @@ import UserIcon from '../assets/icons/UserIcon.vue'
 import InfiniteLoading from 'v3-infinite-loading'
 import 'v3-infinite-loading/lib/style.css'
 import useMoneyFormatter from '../mixins/currencyFormatter'
+import percentCalc from '../mixins/percentCalc'
 import { toRefs } from 'vue'
 import moment from 'moment'
 
@@ -30,7 +31,12 @@ const { checkupExpenses } = toRefs(props)
       {{ expense?.service?.name }} <br />
       <span class="text-sm font-bold italic">{{ useMoneyFormatter(expense?.service?.price) }}</span>
     </td>
-    <td v-motion-pop class="py-3 px-6 text-center">{{ expense?.doctorShare?.percent }}%</td>
+    <td v-motion-pop class="py-3 px-6 text-center">
+      {{ expense?.doctorShare?.percent }}% <br>
+      <span class="text-sm font-bold italic">
+        {{ useMoneyFormatter(percentCalc(expense?.service?.price, expense?.doctorShare?.percent)) }}
+      </span>
+    </td>
     <td v-motion-pop class="py-3 px-6 text-center">{{ moment(expense?.operationExpense?.createdAt).format('MM/DD/YYYY h:mm:ss') }}</td>
   </tr>
   <tr class="text-gray-700 text-md dark:text-gray-300 dark:bg-gray-800">

@@ -4,6 +4,7 @@ import TrashIcon from '../assets/icons/TrashIcon.vue'
 import InfiniteLoading from 'v3-infinite-loading'
 import 'v3-infinite-loading/lib/style.css'
 import useMoneyFormatter from '../mixins/currencyFormatter'
+import percentCalc from '../mixins/percentCalc'
 import { toRefs } from 'vue'
 import notify from 'izitoast'
 import 'izitoast/dist/css/iziToast.min.css'
@@ -55,7 +56,12 @@ const deleteDoctorShare = (id) => {
       {{ doctorShare?.service?.name }} <br />
       <span class="text-sm font-bold italic">{{ useMoneyFormatter(doctorShare?.service?.price) }}</span>
     </td>
-    <td v-motion-pop class="py-3 px-6 text-center">{{ doctorShare?.doctorShare?.percent }}%</td>
+    <td v-motion-pop class="py-3 px-6 text-center">
+      {{ doctorShare?.doctorShare?.percent }}% <br>
+      <span class="text-sm font-bold italic">
+        {{ useMoneyFormatter(percentCalc(doctorShare?.service?.price, doctorShare?.doctorShare?.percent)) }}
+      </span>
+    </td>
     <td v-motion-pop class="py-3 px-6 text-center">
       <div class="flex item-center justify-center">
         <div @click="deleteDoctorShare(doctorShare?.doctorShare?.id)" class="w-4 mr-3 transform text-red-500 hover:text-red-600 hover:scale-110 cursor-pointer">
