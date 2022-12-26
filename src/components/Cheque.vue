@@ -5,7 +5,41 @@ import { useModalStore } from '../store/modal.store'
 import print from 'print-js'
 
 const printing = () => {
-  print('ticket', 'html')
+  print({
+    printable: 'ticket',
+    type: 'html',
+    style: `
+    * {
+      margin: 0;
+      padding: 0;
+    }
+    #ticket {
+      font-family: 'Courier New', Courier, monospace;
+    }
+    td {
+      vertical-align: top;
+    }
+    .header {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-bottom: 1px solid #999;
+    }
+    .title {
+      margin-left: 10px;
+    }
+    .checkid {
+      font-weight: bold;
+      margin-top: 5px;
+      font-size: 20px;
+      text-align: center;
+    }
+    .total {
+      text-align: right;
+      border-top: 1px dashed #999;
+      padding: 5px;
+    }`,
+  })
 }
 
 const closeModal = () => {
@@ -24,42 +58,35 @@ const closeModal = () => {
   <div v-if="useModalStore().isOpenPrintModal" class="overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 backdrop-blur bg-gray-900/75 w-full max-h-screen md:inset-0 md:h-full">
     <div class="relative p-4 w-full h-full max-w-xs md:h-auto left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
       <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
-        <div class="flex justify-center" id="ticket">
-          <div class="ticket">
-            <img src="/logo.png" alt="Logo" />
-            <p class="centered">BABYMED</p>
-            <table>
-              <thead>
+        <div class="p-1 flex justify-center" id="ticket">
+          <div>
+            <div class="flex items-center justify-center space-x-3 border-b-2 border-gray-500 mb-2 pb-2 header">
+              <img src="/logo.png" class="w-1/4" alt="Logo" />
+              <div class="title">
+                <h1 class="font-bold whitespace-nowrap">BABYMED HOSPITAL</h1>
+                <p style="font-size: 12px;">Lorem ipsum dolor sit.</p>
+              </div>
+            </div>
+            <p class="text-center font-bold checkid">Check No: 26da88ba-b9b3-458b-91d5-1fe33a751843</p>
+            <p class="text-center font-bold checkid">Sharipov Ism Familiya qizi</p>
+            <table class="w-full max-w-[255px] mx-auto border-b-2 border-dashed">
+              <thead class="border-y-2 border-dashed">
                 <tr>
-                  <th class="quantity">No</th>
-                  <th class="description">Description</th>
-                  <th class="price">$$</th>
+                  <th>No</th>
+                  <th>Description</th>
+                  <th>Price</th>
                 </tr>
               </thead>
               <tbody>
-                <tr>
-                  <td class="quantity">1.</td>
-                  <td class="description">ARDUINO</td>
-                  <td class="price">$25.00</td>
-                </tr>
-                <tr>
-                  <td class="quantity">2.</td>
-                  <td class="description">JAVASCRIPT</td>
-                  <td class="price">$10.00</td>
-                </tr>
-                <tr>
-                  <td class="quantity">3.</td>
-                  <td class="description">STICKER PACK</td>
-                  <td class="price">$10.00</td>
-                </tr>
-                <tr>
-                  <td class="quantity"></td>
-                  <td class="description">TOTAL</td>
-                  <td class="price">$55.00</td>
+                <tr v-for="i in 5" :key="i">
+                  <td>{{ i }}.</td>
+                  <td>ARDUINO {{ i }}</td>
+                  <td>{{ 1000 * i }} UZS</td>
                 </tr>
               </tbody>
             </table>
-            <p class="centered">Thanks for your purchase! <br />parzibyte.me/blog</p>
+            <h1 class="text-right px-3 font-bold total">TOTAL: 500 000.00 UZS</h1>
+            <p class="text-right px-3 total">12.05.2021 16:35:03</p>
           </div>
         </div>
         <div class="p-3 flex justify-end space-x-2">
@@ -71,47 +98,10 @@ const closeModal = () => {
   </div>
 </template>
 <style scoped>
-td,
-th,
-tr,
-table {
-  border-top: 1px dashed black;
-  border-collapse: collapse;
+#ticket {
+  font-family: 'Courier New', Courier, monospace;
 }
-
-td.description,
-th.description {
-  width: 90px;
-  max-width: 90px;
-}
-
-td.quantity,
-th.quantity {
-  width: 20px;
-  max-width: 20px;
-  word-break: break-all;
-}
-
-td.price,
-th.price {
-  width: 40px;
-  max-width: 40px;
-  word-break: break-all;
-}
-
-.centered {
-  text-align: center;
-  align-content: center;
-}
-
-.ticket {
-  font-size: 12px;
-  width: 155px;
-  max-width: 155px;
-}
-
-img {
-  max-width: inherit;
-  width: inherit;
+td {
+  vertical-align: top;
 }
 </style>
