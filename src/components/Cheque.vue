@@ -3,6 +3,7 @@ import { computed } from '@vue/reactivity'
 import useMoneyFormatter from '../mixins/currencyFormatter'
 import { useModalStore } from '../store/modal.store'
 import print from 'print-js'
+import moment from 'moment'
 
 const printing = () => {
   print({
@@ -35,9 +36,14 @@ const printing = () => {
     }
     .total {
       text-align: center;
-      border-top: 1px dashed #999;
-      padding: 5px;
       margin-right: 5px;
+    }
+    .total1 {
+      border-top: 1px dashed #999;
+      padding-top: 5px;
+    }
+    .total2 {
+      border-bottom: 1px dashed #999;
     }`,
   })
 }
@@ -64,11 +70,11 @@ const closeModal = () => {
               <img src="/logo.png" class="w-1/4" alt="Logo" />
               <div class="title">
                 <h1 class="font-bold whitespace-nowrap">BABYMED HOSPITAL</h1>
-                <p style="font-size: 12px;">Lorem ipsum dolor sit.</p>
+                <p style="font-size: 12px">Lorem ipsum dolor sit.</p>
               </div>
             </div>
             <p class="text-center font-bold checkid mx-3">Check No: 26da88ba-b9b3-458b-91d5-1fe33a751843</p>
-            <p class="text-center font-bold checkid">Sharipov Ism Familiya qizi</p>
+            <p class="text-center font-bold checkid">Sharipov Familiya</p>
             <table class="w-full max-w-[255px] mx-auto border-b-2 border-dashed">
               <thead class="border-y-2 border-dashed">
                 <tr>
@@ -85,8 +91,9 @@ const closeModal = () => {
                 </tr>
               </tbody>
             </table>
-            <h1 class="text-center px-3 font-bold total">TOTAL: 500 000.00 UZS</h1>
-            <p class="text-center px-3 total">12.05.2021 16:35:03</p>
+            <h1 class="text-center px-3 font-bold total total1">TOTAL: {{ useMoneyFormatter(500000) }}</h1>
+            <h1 class="text-center px-3 font-bold total">Admin: Admin Adminov</h1>
+            <p class="text-center px-3 total total2">{{ moment(moment.now()).format('MM.DD.YYYY hh:mm:ss') }}</p>
           </div>
         </div>
         <div class="p-3 flex justify-end space-x-2">
