@@ -5,7 +5,7 @@ import { useCheckupExpenseStore } from '../store/checkupExpense.store'
 import { useServicesStore } from '../store/services.store'
 import { useUserStore } from '../store/user.store'
 import { useModalStore } from '../store/modal.store'
-import { onMounted } from 'vue'
+import { onMounted, onUnmounted } from 'vue'
 import ArrowDownIcon from '../assets/icons/ArrowDownIcon.vue'
 import FilterIcon from '../assets/icons/FilterIcon.vue'
 import { onClickOutside } from '@vueuse/core'
@@ -137,8 +137,8 @@ const doctors = computed(() => {
   return useUserStore().doctors
 })
 
-onMounted(() => {
-  openSecondTab()
+onUnmounted(() => {
+  openFirstTab()
 })
 
 </script>

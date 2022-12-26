@@ -3,7 +3,7 @@ import authHeader from '../mixins/auth-header'
 import { computed, ref, reactive } from '@vue/reactivity'
 import { useExpenseStore } from '../store/expense.store'
 import { useModalStore } from '../store/modal.store'
-import { onMounted } from 'vue'
+import { onMounted, onUnmounted } from 'vue'
 import ArrowDownIcon from '../assets/icons/ArrowDownIcon.vue'
 import FilterIcon from '../assets/icons/FilterIcon.vue'
 import { onClickOutside } from '@vueuse/core'
@@ -29,17 +29,18 @@ const distance = ref(200)
 let page = 0
 const loadExpenses = async ($state) => {
   page++
-  let additional = total.value % 30 == 0 ? 0 : 1
-  if (total.value !== 0 && total.value / 30 + additional >= page) {
+  let additional = total.value % 10 == 0 ? 0 : 1
+  if (total.value !== 0 && total.value / 10 + additional >= page) {
     try {
       const response = await fetch(`${API_URL}/operation-expense/report`, {
         method: 'POST',
         body: JSON.stringify({
           page: page,
-          limit: 30,
+          limit: 10,
         }),
         headers: authHeader(),
       })
+      const json = await response.json()
       if (response?.headers.get('x-new-token')) {
         localStorage.setItem('token', response?.headers.get('x-new-token'))
         await fetch(`${API_URL}/operation-expense/report`, {
@@ -51,7 +52,6 @@ const loadExpenses = async ($state) => {
           headers: authHeader(),
         })
       }
-      const json = await response.json()
       total.value = json?.total
       setTimeout(() => {
         // patients.value.push(...json?.data)
@@ -63,10 +63,6 @@ const loadExpenses = async ($state) => {
     }
   } else $state.loaded()
 }
-
-onMounted(() => {
-  useExpenseStore().clearStore()
-})
 
 const dropdown = ref(null)
 
@@ -100,6 +96,19 @@ const openFirstTab = () => {
     useExpenseStore().setExpenses(res?.data)
   })
 }
+
+const openSecondTab = () => {
+  useTabStore().openSecondTab()
+  useExpenseStore().clearStore()
+}
+
+onMounted(() => {
+  useExpenseStore().clearStore()
+})
+
+onUnmounted(() => {
+  openFirstTab()
+})
 </script>
 
 <template>
@@ -108,7 +117,7 @@ const openFirstTab = () => {
       <div class="flex items-center space-x-3">
         <div @click="openFirstTab()" :class="useTabStore().isOpenFirstTab ? 'bg-lime-400' : 'bg-gray-200 hover:bg-gray-400 cursor-pointer transition-all duration-300 hover:scale-105'" class="rounded-lg p-1.5 px-3 flex items-center"><MoneyBagIconm class="w-6 h-6 mr-1" />{{ $t('expenseReports') }}</div>
         <div>|</div>
-        <div @click="useTabStore().openSecondTab()" :class="useTabStore().isOpenSecondTab ? 'bg-lime-400' : 'bg-gray-200 hover:bg-gray-400 cursor-pointer transition-all duration-300 hover:scale-105'" class="rounded-lg p-1.5 px-3 flex items-center"><MoneyExchangeIcon class="w-5 h-5 mr-1" /> {{ $t('addExpenses') }}</div>
+        <div @click="openSecondTab()" :class="useTabStore().isOpenSecondTab ? 'bg-lime-400' : 'bg-gray-200 hover:bg-gray-400 cursor-pointer transition-all duration-300 hover:scale-105'" class="rounded-lg p-1.5 px-3 flex items-center"><MoneyExchangeIcon class="w-5 h-5 mr-1" /> {{ $t('addExpenses') }}</div>
       </div>
       <div class="flex items-center space-x-3">
         <div class="relative" ref="dropdown">
