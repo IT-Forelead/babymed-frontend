@@ -9,6 +9,8 @@ const printing = () => {
   print({
     printable: 'ticket',
     type: 'html',
+    showModal: true,
+    modalMessage: 'Preparing check...',
     style: `
     * {
       margin: 0;
@@ -97,8 +99,8 @@ const closeModal = () => {
           </div>
         </div>
         <div class="p-3 flex justify-end space-x-2">
-          <div @click="closeModal()" class="bg-gray-500 rounded-lg p-2 text-white cursor-pointer text-xs">Close</div>
-          <div @click="printing()" class="bg-green-500 rounded-lg p-2 text-white cursor-pointer text-xs">Print</div>
+          <div @click="closeModal()" class="bg-gray-500 rounded p-1 px-4 text-white cursor-pointer">Close</div>
+          <div @click="printing()" class="bg-green-500 rounded p-1 px-4 text-white cursor-pointer">Print</div>
         </div>
       </div>
     </div>
