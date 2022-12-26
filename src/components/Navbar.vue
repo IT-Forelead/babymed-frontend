@@ -4,11 +4,13 @@ import BellIcon from '../assets/icons/BellIcon.vue'
 import Registration from './Registration.vue'
 import { computed } from '@vue/reactivity'
 import { useRouter } from 'vue-router'
+import { useModalStore } from '../store/modal.store'
 import DeleteAlert from './DeleteAlert.vue'
 import ChangePaymentStatus from './Payments/ChangePaymentStatus.vue'
 import AddVisitModal from './AddVisitModal.vue'
 import { useI18n } from 'vue-i18n'
 import OperationInfoModal from './Operations/OperationInfoModal.vue'
+import Cheque from './Cheque.vue'
 
 const { t } = useI18n()
 
@@ -64,6 +66,8 @@ const currentLabel = computed(() => {
     <!-- Add Visit Modal -->
     <AddVisitModal />
     <OperationInfoModal />
+    <button @click=" useModalStore().openPrintModal()">Print</button>
+    <Cheque/>
   </div>
 </template>
 
