@@ -29,15 +29,15 @@ const printing = () => {
       margin-left: 10px;
     }
     .checkid {
-      font-weight: bold;
+      font-weight: 600;
       margin-top: 5px;
-      font-size: 20px;
       text-align: center;
     }
     .total {
-      text-align: right;
+      text-align: center;
       border-top: 1px dashed #999;
       padding: 5px;
+      margin-right: 5px;
     }`,
   })
 }
@@ -67,7 +67,7 @@ const closeModal = () => {
                 <p style="font-size: 12px;">Lorem ipsum dolor sit.</p>
               </div>
             </div>
-            <p class="text-center font-bold checkid">Check No: 26da88ba-b9b3-458b-91d5-1fe33a751843</p>
+            <p class="text-center font-bold checkid mx-3">Check No: 26da88ba-b9b3-458b-91d5-1fe33a751843</p>
             <p class="text-center font-bold checkid">Sharipov Ism Familiya qizi</p>
             <table class="w-full max-w-[255px] mx-auto border-b-2 border-dashed">
               <thead class="border-y-2 border-dashed">
@@ -81,12 +81,12 @@ const closeModal = () => {
                 <tr v-for="i in 5" :key="i">
                   <td>{{ i }}.</td>
                   <td>ARDUINO {{ i }}</td>
-                  <td>{{ 1000 * i }} UZS</td>
+                  <td>{{ useMoneyFormatter(100000 * i) }}</td>
                 </tr>
               </tbody>
             </table>
-            <h1 class="text-right px-3 font-bold total">TOTAL: 500 000.00 UZS</h1>
-            <p class="text-right px-3 total">12.05.2021 16:35:03</p>
+            <h1 class="text-center px-3 font-bold total">TOTAL: 500 000.00 UZS</h1>
+            <p class="text-center px-3 total">12.05.2021 16:35:03</p>
           </div>
         </div>
         <div class="p-3 flex justify-end space-x-2">
