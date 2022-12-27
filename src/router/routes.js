@@ -69,10 +69,4 @@ export default [
     name: 'NotFound',
     component: () => import('../components/NotFound.vue'),
   },
-  {
-    path: '/jkkkkj',
-    name: 'jkkkkj',
-    component: () => import('../components/ExpenseReportItem.vue'),
-    meta: { layout: 'dashboard' },
-  },
 ]

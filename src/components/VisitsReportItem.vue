@@ -1,7 +1,6 @@
 <script setup>
-import EditIcon from '../assets/icons/EditIcon.vue'
+import PrinterIcon from '../assets/icons/PrinterIcon.vue'
 import UserIcon from '../assets/icons/UserIcon.vue'
-import PlusIcon from '../assets/icons/PlusIcon.vue'
 import MoneyPlusIcon from '../assets/icons/MoneyPlusIcon.vue'
 import InfiniteLoading from 'v3-infinite-loading'
 import 'v3-infinite-loading/lib/style.css'
@@ -72,9 +71,9 @@ const translatePaymentStatus = (status) => {
         <div v-if="patient?.patientVisit?.paymentStatus.includes('not_paid')" @click="open(patient)" class="w-4 mr-2 transform text-blue-500 hover:text-purple-500 hover:scale-110 cursor-pointer">
           <MoneyPlusIcon class="w-6 h-6" />
         </div>
-        <!-- <div v-if="router.currentRoute?.value?.path === '/patients' || router.currentRoute?.value?.path === '/dashboard'" class="w-4 mr-2 transform text-blue-500 hover:text-purple-500 hover:scale-110 cursor-pointer">
-          <EditIcon class="w-6 h-6" />
-        </div> -->
+        <div v-if="router.currentRoute?.value?.path === '/visits' || router.currentRoute?.value?.path === '/dashboard'" @click="useModalStore().openPrintModal()" class="w-4 mr-2 transform text-blue-500 hover:text-purple-500 hover:scale-110 cursor-pointer">
+          <PrinterIcon class="w-6 h-6" />
+        </div>
       </div>
     </td>
   </tr>

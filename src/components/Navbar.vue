@@ -66,7 +66,6 @@ const currentLabel = computed(() => {
     <!-- Add Visit Modal -->
     <AddVisitModal />
     <OperationInfoModal />
-    <button @click=" useModalStore().openPrintModal()">Print</button>
     <Cheque/>
   </div>
 </template>

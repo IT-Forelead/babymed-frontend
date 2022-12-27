@@ -70,8 +70,8 @@ const closeModal = () => {
             <div class="flex items-center justify-center space-x-3 border-b-2 border-gray-500 mb-2 pb-2 header">
               <img src="/logo.png" class="w-1/4" alt="Logo" />
               <div class="title">
-                <h1 class="font-bold whitespace-nowrap">BABYMED HOSPITAL</h1>
-                <p style="font-size: 12px">Lorem ipsum dolor sit.</p>
+                <h1 class="font-bold whitespace-nowrap">BABY MED HOSPITAL</h1>
+                <p style="font-size: 12px">Многопрофильный медицинский центр</p>
               </div>
             </div>
             <p class="text-center checkid mx-3">Check No: 26da88ba-b9b3-458b-91d5-1fe33a751843</p>
@@ -93,8 +93,8 @@ const closeModal = () => {
               </tbody>
             </table>
             <h1 class="text-center px-3 font-bold total total1">TOTAL: {{ useMoneyFormatter(500000) }}</h1>
-            <p class="text-center px-3 total">Admin: Admin Adminov</p>
-            <p class="text-center px-3 total total2">{{ moment(moment.now()).format('MM.DD.YYYY hh:mm:ss') }}</p>
+            <p class="text-center px-3 total">Зарегистрировал: Admin Adminov</p>
+            <p class="text-center px-3 total total2">Дата: {{ moment(moment.now()).format('MM.DD.YYYY hh:mm:ss') }}</p>
           </div>
         </div>
         <div class="p-3 flex justify-end space-x-2">
