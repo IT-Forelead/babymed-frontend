@@ -108,17 +108,17 @@ const submitExpenseFormData = () => {
     })
   } else {
     OperationExpenseService.createExpense(cleanObjectEmptyFields(expenseForm))
-        .then(() => {
-          clearForm()
-          notify.success({
-            message: t('expenseCreated'),
-          })
+      .then(() => {
+        clearForm()
+        notify.success({
+          message: t('expenseCreated'),
         })
-        .catch((err) => {
-          notify.error({
-            message: t('errorExpense'),
-          })
+      })
+      .catch((err) => {
+        notify.error({
+          message: t('errorExpense'),
         })
+      })
   }
 }
 
