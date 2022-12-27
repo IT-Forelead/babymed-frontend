@@ -77,10 +77,6 @@ watch(
     selectedService.value = data
   }
 )
-
-onMounted(() => {
-  payload.value = parseJwt(localStorage.getItem('token'))
-})
 </script>
 
 <template>

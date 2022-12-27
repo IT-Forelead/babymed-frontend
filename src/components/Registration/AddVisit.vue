@@ -16,8 +16,10 @@ import { useRouter } from 'vue-router'
 import { useModalStore } from '../../store/modal.store'
 import { useI18n } from 'vue-i18n'
 import { cleanObjectEmptyFields } from '../../mixins/utils'
-import SelectOptionServiceType from '../SelectOptionServiceType.vue'
 import MultiSelect from '../MultiSelect.vue'
+import { useMultiSelectStore } from '../../store/multiselect.store'
+import TimesIcon from '../../assets/icons/TimesIcon.vue'
+import ChevronRightIcon from '../../assets/icons/ChevronRightIcon.vue'
 
 const { t } = useI18n()
 
@@ -29,17 +31,13 @@ const patients = computed(() => {
   return usePatientStore().patients
 })
 
-const serviceTypes = computed(() => {
-  return useServicesStore().serviceTypes
-})
-
 const services = computed(() => {
-  return useServicesStore().services
+  return useServicesStore().allServices
 })
 
 onMounted(() => {
-  ServicesService.getAllServiceTypes().then((res) => {
-    useServicesStore().setServiceTypes(res)
+  ServicesService.getAllServices().then((res) => {
+    useServicesStore().setAllServices(res)
   })
   if (!(router.currentRoute?.value?.path === '/patients' || router.currentRoute?.value?.path === '/dashboard')) {
     PatientService.getAllPatients({}).then((res) => {
@@ -53,35 +51,12 @@ const selectedPatient = computed(() => {
   return useDropStore().selectPatientOption
 })
 
-const selectedServiceType = computed(() => {
-  return useDropStore().selectServiceTypeOption
-})
-
-const selectedService = computed(() => {
-  return useDropStore().selectServiceOption
-})
-
-watch(
-  () => selectedServiceType.value,
-  (data) => {
-    if (data) {
-      ServicesService.getServicesByTypeId(data?.id).then((res) => {
-        useServicesStore().setServices(res)
-      })
-    }
-  }
-)
-
 const submitVisitData = () => {
   if (!selectedPatient.value?.patient?.id) {
     notify.warning({
       message: t('plsSelectPatient'),
     })
-  } else if (!selectedServiceType.value?.id) {
-    notify.warning({
-      message: 'Please select service type!',
-    })
-  } else if (!selectedService.value?.id) {
+  } else if (useMultiSelectStore().selectedServices.length === 0) {
     notify.warning({
       message: t('plsSelectService'),
     })
@@ -90,27 +65,33 @@ const submitVisitData = () => {
     VisitService.createVisit(
       cleanObjectEmptyFields({
         patientId: selectedPatient.value?.patient?.id,
-        serviceId: selectedService.value?.id,
+        serviceIds: useMultiSelectStore().selectedServices.map(s => s?.id),
       })
     )
-    .then(() => {
-      notify.success({
-        message: t('createdVisit'),
+      .then(() => {
+        notify.success({
+          message: t('createdVisit'),
+        })
+        VisitService.getVisits({}).then((res) => {
+          useVisitStore().clearStore()
+          useVisitStore().setPatients(res?.data)
+        })
+        useModalStore().closeAddVisitModal()
+        useDropStore().clearStore()
+        useMultiSelectStore().clearStore()
+        isLoading.value = false
       })
-      VisitService.getVisits({}).then((res) => {
-        useVisitStore().clearStore()
-        useVisitStore().setPatients(res?.data)
+      .catch((err) => {
+        notify.error({
+          message: t('errorCreatingVisit'),
+        })
       })
-      useModalStore().closeAddVisitModal()
-      useDropStore().clearStore()
-      isLoading.value = false
-    })
-    .catch((err) => {
-      notify.error({
-        message: t('errorCreatingVisit'),
-      })
-    })
   }
+}
+
+const clearMultiSelectData = () => {
+  useMultiSelectStore().clearStore()
+  useDropStore().closeServiceDropDown()
 }
 </script>
 
@@ -120,15 +101,21 @@ const submitVisitData = () => {
       <p>{{ $t('selectPatient') }}</p>
       <SelectOptionPatient :options="patients" />
     </div>
-    <!-- <div>
-      <p>{{ $t('selectServiceType') }}</p>
-      <SelectOptionServiceType :options="serviceTypes" />
-    </div>
     <div>
       <p>{{ $t('selectService') }}</p>
-      <SelectOptionService :options="services" />
-    </div> -->
-    <MultiSelect :id="'services'" :options="services" />
+      <label class="flex items-center w-full relative">
+        <div v-if="!(useMultiSelectStore().selectedServices.length === 0)" @click="useDropStore().openServiceDropDown()" class="border-none focus:ring-0 outline-0 bg-gray-100 w-full text-lg rounded-lg pl-2 py-2" v-text="useMultiSelectStore().selectedServices.map((s) => s?.name)"></div>
+        <div @click="useDropStore().openServiceDropDown()" v-else class="border-none bg-gray-100 py-2 w-full text-lg rounded-lg cursor-pointer text-gray-500 pl-2">{{ $t('select') }}</div>
+        <ChevronRightIcon @click="useDropStore().openServiceDropDown()" v-if="useMultiSelectStore().selectedServices.length === 0" class="absolute right-2.5 z-10 rotate-90 cursor-pointer text-gray-600" />
+        <TimesIcon @click="clearMultiSelectData()" v-if="!(useMultiSelectStore().selectedServices.length === 0)" class="absolute right-2.5 z-10 cursor-pointer bg-gray-500 hover:bg-gray-600 text-white rounded-full p-1" />
+        <div v-if="useDropStore().isOpenServiceDropDown" class="absolute shadow z-20 top-12 max-h-48 overflow-auto w-full bg-gray-100 rounded-lg divide-y">
+          <div v-if="useServicesStore().allServices.length === 0" class="hover:bg-gray-200 cursor-pointer p-2 rounded-lg">
+            <p class="text-red-500">Service not found</p>
+          </div>
+        </div>
+      </label>
+      <MultiSelect v-if="useDropStore().isOpenServiceDropDown" :id="'services'" :options="services" />
+    </div>
     <div v-if="isLoading" class="w-full bg-gray-600 py-3 select-none text-white rounded-lg flex items-center justify-center">
       <svg class="mr-2 w-5 h-5 text-gray-200 animate-spin dark:text-gray-600 fill-gray-600 dark:fill-gray-300" viewBox="0 0 100 101" fill="none" xmlns="http://www.w3.org/2000/svg">
         <path d="M100 50.5908C100 78.2051 77.6142 100.591 50 100.591C22.3858 100.591 0 78.2051 0 50.5908C0 22.9766 22.3858 0.59082 50 0.59082C77.6142 0.59082 100 22.9766 100 50.5908ZM9.08144 50.5908C9.08144 73.1895 27.4013 91.5094 50 91.5094C72.5987 91.5094 90.9186 73.1895 90.9186 50.5908C90.9186 27.9921 72.5987 9.67226 50 9.67226C27.4013 9.67226 9.08144 27.9921 9.08144 50.5908Z" fill="currentColor" />
