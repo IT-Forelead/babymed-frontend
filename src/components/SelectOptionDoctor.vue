@@ -18,7 +18,6 @@ const dropdown = ref(null)
 
 watch(useDropStore(), () => {
   selectedOption.value = useDropStore().selectDoctorOption
-  console.log(selectedOption.value);
 })
 
 const clearSelectedOptionData = () => {

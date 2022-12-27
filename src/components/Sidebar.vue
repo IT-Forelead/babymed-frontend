@@ -63,7 +63,7 @@ const changeLang = (lang) => {
 }
 
 const navigationGuard = (access) => {
-  access.includes(payload?.role)
+  return access.includes(payload.value?.role)
 }
 
 onMounted(() => {
@@ -91,7 +91,7 @@ onMounted(() => {
           <p v-if="isOpen">{{ $t('mainPage') }}</p>
         </div>
       </router-link>
-      <router-link to="/visits" v-if="navigationGuard(['admin', 'super_manager', 'tech_admin'])"
+      <router-link to="/visits" v-if="navigationGuard(['admin', 'cashier', 'super_manager', 'tech_admin'])"
         class="flex items-center justify-between hover:bg-gray-800 hover:text-gray-100 p-3 rounded-lg cursor-pointer"
         :class="useSidebarStore().isOpenSidebar && router?.currentRoute?.value?.path === '/visits' ? 'justify-between bg-gray-800 text-gray-100' : !useSidebarStore().isOpenSidebar && router?.currentRoute?.value?.path === '/visits' ? 'bg-gray-800 text-gray-100 justify-center' : ''">
         <div class="flex items-center space-x-2">

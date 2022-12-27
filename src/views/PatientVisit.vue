@@ -68,14 +68,7 @@ watch(
     selectedPatient.value = data
   }
 )
-// const selectedDoctor = ref({})
 
-// watch(
-//   () => useDropStore().selectDoctorOption,
-//   (data) => {
-//     selectedDoctor.value = data
-//   }
-// )
 const selectedService = ref({})
 
 watch(
@@ -84,6 +77,10 @@ watch(
     selectedService.value = data
   }
 )
+
+onMounted(() => {
+  payload.value = parseJwt(localStorage.getItem('token'))
+})
 </script>
 
 <template>

@@ -79,9 +79,9 @@ const closeModal = () => {
             <table class="w-full max-w-[255px] mx-auto border-b-2 border-dashed">
               <thead class="border-y-2 border-dashed">
                 <tr>
-                  <th>No</th>
-                  <th>Description</th>
-                  <th>Price</th>
+                  <th>№</th>
+                  <th>Услуг</th>
+                  <th>Цена</th>
                 </tr>
               </thead>
               <tbody>
@@ -92,9 +92,9 @@ const closeModal = () => {
                 </tr>
               </tbody>
             </table>
-            <h1 class="text-center px-3 font-bold total total1">TOTAL: {{ useMoneyFormatter(500000) }}</h1>
+            <h1 class="text-center px-3 font-bold total total1">Итоговая цена: {{ useMoneyFormatter(500000) }}</h1>
             <p class="text-center px-3 total">Зарегистрировал: Admin Adminov</p>
-            <p class="text-center px-3 total total2">Дата: {{ moment(moment.now()).format('MM.DD.YYYY hh:mm:ss') }}</p>
+            <p class="text-center px-3 total total2">Дата: {{ moment(moment.now()).format('MM.DD.YYYY hh:mm') }}</p>
           </div>
         </div>
         <div class="p-3 flex justify-end space-x-2">

@@ -4,7 +4,7 @@ import UserIcon from '../assets/icons/UserIcon.vue'
 import MoneyPlusIcon from '../assets/icons/MoneyPlusIcon.vue'
 import InfiniteLoading from 'v3-infinite-loading'
 import 'v3-infinite-loading/lib/style.css'
-import { toRefs } from 'vue'
+import { ref, toRefs, onMounted } from 'vue'
 import moment from 'moment'
 import { useRouter } from 'vue-router'
 import { useModalStore } from '../store/modal.store'
@@ -16,6 +16,23 @@ import { useI18n } from 'vue-i18n'
 const { t } = useI18n()
 
 const router = useRouter()
+const payload = ref({})
+
+function parseJwt(token) {
+  var base64Url = token.split('.')[1]
+  var base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/')
+  var jsonPayload = decodeURIComponent(
+    window
+      .atob(base64)
+      .split('')
+      .map(function (c) {
+        return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2)
+      })
+      .join('')
+  )
+
+  return JSON.parse(jsonPayload)
+}
 
 const props = defineProps({
   patients: { type: Array, required: true },
@@ -35,7 +52,15 @@ const translatePaymentStatus = (status) => {
   } else {
     return t('fullyPaid')
   }
-} 
+}
+
+const navigationGuard = (access) => {
+  return access.includes(payload.value?.role)
+}
+
+onMounted(() => {
+  payload.value = parseJwt(localStorage.getItem('token'))
+})
 </script>
 
 <template>
@@ -68,7 +93,7 @@ const translatePaymentStatus = (status) => {
     </td>
     <td v-motion-pop class="py-3 px-6 text-center">
       <div class="flex item-center justify-center">
-        <div v-if="patient?.patientVisit?.paymentStatus.includes('not_paid')" @click="open(patient)" class="w-4 mr-2 transform text-blue-500 hover:text-purple-500 hover:scale-110 cursor-pointer">
+        <div v-if="patient?.patientVisit?.paymentStatus.includes('not_paid') && navigationGuard(['cashier', 'super_manager', 'tech_admin'])" @click="open(patient)" class="w-4 mr-2 transform text-blue-500 hover:text-purple-500 hover:scale-110 cursor-pointer">
           <MoneyPlusIcon class="w-6 h-6" />
         </div>
         <div v-if="router.currentRoute?.value?.path === '/visits' || router.currentRoute?.value?.path === '/dashboard'" @click="useModalStore().openPrintModal()" class="w-4 mr-2 transform text-blue-500 hover:text-purple-500 hover:scale-110 cursor-pointer">

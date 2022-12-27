@@ -130,6 +130,8 @@ watch(
         <option value="">{{ $t('selectRole') }}</option>
         <option value="admin">Admin</option>
         <option value="doctor">{{ $t('doctor') }}</option>
+        <option value="cashier">Cashier</option>
+        <option value="tech_admin">Tech Admin</option>
       </select>
     </label>
     <!-- Show only doctor select -->

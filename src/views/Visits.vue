@@ -14,6 +14,23 @@ const visits = computed(() => {
 })
 const target = ref('.patients-wrapper')
 const distance = ref(10)
+const payload = ref({})
+
+function parseJwt(token) {
+  var base64Url = token.split('.')[1]
+  var base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/')
+  var jsonPayload = decodeURIComponent(
+    window
+      .atob(base64)
+      .split('')
+      .map(function (c) {
+        return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2)
+      })
+      .join('')
+  )
+
+  return JSON.parse(jsonPayload)
+}
 
 let page = 0
 const loadPatients = async ($state) => {
@@ -55,6 +72,14 @@ const loadPatients = async ($state) => {
 onMounted(() => {
   useVisitStore().clearStore()
 })
+
+const navigationGuard = (access) => {
+  return access.includes(payload.value?.role)
+}
+
+onMounted(() => {
+  payload.value = parseJwt(localStorage.getItem('token'))
+})
 </script>
 
 <template>
@@ -62,7 +87,7 @@ onMounted(() => {
     <div class="flex items-center justify-between">
       <p class="text-3xl font-bold">{{ $t('visitsReport') }}</p>
       <div class="flex items-center">
-        <div @click="useModalStore().openAddVisitModal()" class="bg-black text-white rounded-xl p-2 px-4 cursor-pointer hover:bg-black/75">
+        <div @click="useModalStore().openAddVisitModal()" v-if="navigationGuard(['admin', 'super_manager', 'tech_admin'])" class="bg-black text-white rounded-xl p-2 px-4 cursor-pointer hover:bg-black/75">
           <p class="text-base">+ {{ $t('addVisit') }}</p>
         </div>
       </div>

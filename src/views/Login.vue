@@ -36,7 +36,7 @@ const login = () => {
     })
       .then((res) => {
         if (res) {
-          router.push('/visits')
+          router.push('/dashboard')
           useAuthStore().setToken(res)
           useAuthStore().setUser(decodeJwt(res))
           isLoading.value = false

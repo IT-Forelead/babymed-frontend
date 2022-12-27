@@ -19,7 +19,7 @@ const routes = [
     name: 'visits',
     component: () => import('../views/Visits.vue'),
     meta: { layout: 'dashboard' },
-    beforeEnter: navigationGuards(['admin', 'super_manager', 'tech_admin']),
+    beforeEnter: navigationGuards(['admin', 'cashier', 'super_manager', 'tech_admin']),
   },
   {
     path: '/patients',
@@ -119,7 +119,6 @@ function navigationGuards(access) {
   if (localStorage.getItem('token')) {
     payload = parseJwt(localStorage.getItem('token'))
   }
-  console.log(payload)
   return () => {
     if (!access.includes(payload?.role)) {
       router.push('/notfound')

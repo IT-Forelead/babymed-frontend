@@ -11,10 +11,28 @@ import AddVisitModal from './AddVisitModal.vue'
 import { useI18n } from 'vue-i18n'
 import OperationInfoModal from './Operations/OperationInfoModal.vue'
 import Cheque from './Cheque.vue'
+import { ref, onMounted } from 'vue'
 
 const { t } = useI18n()
 
 const router = useRouter()
+const payload = ref({})
+
+function parseJwt(token) {
+  var base64Url = token.split('.')[1]
+  var base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/')
+  var jsonPayload = decodeURIComponent(
+    window
+      .atob(base64)
+      .split('')
+      .map(function (c) {
+        return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2)
+      })
+      .join('')
+  )
+
+  return JSON.parse(jsonPayload)
+}
 
 const currentLabel = computed(() => {
   if (router.currentRoute?.value?.path === '/visits') {
@@ -35,6 +53,14 @@ const currentLabel = computed(() => {
     return t('expenses')
   }
 })
+
+const navigationGuard = (access) => {
+  return access.includes(payload.value?.role)
+}
+
+onMounted(() => {
+  payload.value = parseJwt(localStorage.getItem('token'))
+})
 </script>
 
 <template>
@@ -53,7 +79,7 @@ const currentLabel = computed(() => {
       <div class="bg-white rounded-xl p-3 cursor-pointer hover:shadow">
         <BellIcon class="text-gray-600 h-7 w-7 fill-current" />
       </div>
-      <router-link to="/patient-visit" class="bg-gray-900 text-white rounded-xl p-3.5 px-7 cursor-pointer hover:bg-gray-800">
+      <router-link to="/patient-visit" v-if="navigationGuard(['admin', 'super_manager', 'tech_admin'])" class="bg-gray-900 text-white rounded-xl p-3.5 px-7 cursor-pointer hover:bg-gray-800">
         <p class="text-base">+ {{ $t('addRecord') }}</p>
       </router-link>
     </div>
