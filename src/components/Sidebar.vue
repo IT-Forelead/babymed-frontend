@@ -25,6 +25,24 @@ const isOpen = computed(() => useSidebarStore().isOpenSidebar)
 const isOpenExpense = computed(() => useSidebarStore().isOpenExpenseMenu)
 const isOpenSubMenu = computed(() => useSidebarStore().isOpenSubMenu)
 
+const payload = ref({})
+
+function parseJwt(token) {
+  var base64Url = token.split('.')[1]
+  var base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/')
+  var jsonPayload = decodeURIComponent(
+    window
+      .atob(base64)
+      .split('')
+      .map(function (c) {
+        return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2)
+      })
+      .join('')
+  )
+
+  return JSON.parse(jsonPayload)
+}
+
 const logout = () => {
   AuthService.logout()
   router.push('/')
@@ -44,10 +62,15 @@ const changeLang = (lang) => {
   document.getElementsByTagName('title')[0].innerHTML = t('title')
 }
 
+const navigationGuard = (access) => {
+  access.includes(payload?.role)
+}
+
 onMounted(() => {
   currentLang.value = localStorage.getItem('lang') || 'uz'
   document.getElementsByTagName('title')[0].innerHTML = t('title')
   useAuthStore().setUser(decodeJwt(localStorage.getItem('token')))
+  payload.value = parseJwt(localStorage.getItem('token'))
 })
 </script>
 
@@ -68,7 +91,7 @@ onMounted(() => {
           <p v-if="isOpen">{{ $t('mainPage') }}</p>
         </div>
       </router-link>
-      <router-link to="/visits"
+      <router-link to="/visits" v-if="navigationGuard(['admin', 'super_manager', 'tech_admin'])"
         class="flex items-center justify-between hover:bg-gray-800 hover:text-gray-100 p-3 rounded-lg cursor-pointer"
         :class="useSidebarStore().isOpenSidebar && router?.currentRoute?.value?.path === '/visits' ? 'justify-between bg-gray-800 text-gray-100' : !useSidebarStore().isOpenSidebar && router?.currentRoute?.value?.path === '/visits' ? 'bg-gray-800 text-gray-100 justify-center' : ''">
         <div class="flex items-center space-x-2">
@@ -76,7 +99,7 @@ onMounted(() => {
           <p v-if="isOpen">{{ $t('patientsVisit') }}</p>
         </div>
       </router-link>
-      <router-link to="/patients"
+      <router-link to="/patients" v-if="navigationGuard(['admin', 'super_manager', 'tech_admin'])"
         class="flex items-center justify-between hover:bg-gray-800 hover:text-gray-100 p-3 rounded-lg cursor-pointer"
         :class="useSidebarStore().isOpenSidebar && router?.currentRoute?.value?.path === '/patients' ? 'justify-between bg-gray-800 text-gray-100' : !useSidebarStore().isOpenSidebar && router?.currentRoute?.value?.path === '/patients' ? 'bg-gray-800 text-gray-100 justify-center' : ''">
         <div class="flex items-center space-x-2">
@@ -84,7 +107,7 @@ onMounted(() => {
           <p v-if="isOpen">{{ $t('patients') }}</p>
         </div>
       </router-link>
-      <div @click="useSidebarStore().toggleSidebarSubMenu()"
+      <div @click="useSidebarStore().toggleSidebarSubMenu()" v-if="navigationGuard(['super_manager', 'tech_admin'])"
         class="flex items-center justify-between hover:bg-gray-800 hover:text-gray-100 p-3 rounded-lg cursor-pointer"
         :class="useSidebarStore().isOpenSidebar && router?.currentRoute?.value?.path === '/services' || router?.currentRoute?.value?.path === '/service-types' ? 'justify-between bg-gray-800 text-gray-100' : !useSidebarStore().isOpenSidebar && router?.currentRoute?.value?.path === '/services' ? 'bg-gray-800 text-gray-100 justify-center' : ''">
         <div class="flex items-center space-x-2">
@@ -113,7 +136,7 @@ onMounted(() => {
           </div>
         </router-link>
       </div>
-      <router-link to="/users"
+      <router-link to="/users" v-if="navigationGuard(['super_manager', 'tech_admin'])"
         class="flex items-center justify-between hover:bg-gray-800 hover:text-gray-100 p-3 rounded-lg cursor-pointer"
         :class="useSidebarStore().isOpenSidebar && router?.currentRoute?.value?.path === '/users' ? 'justify-between bg-gray-800 text-gray-100' : !useSidebarStore().isOpenSidebar && router?.currentRoute?.value?.path === '/users' ? 'bg-gray-800 text-gray-100 justify-center' : ''">
         <div class="flex items-center space-x-2">
@@ -121,7 +144,7 @@ onMounted(() => {
           <p v-if="isOpen">{{ $t('users') }}</p>
         </div>
       </router-link>
-      <div @click="useSidebarStore().toggleExpenseMenu()"
+      <div @click="useSidebarStore().toggleExpenseMenu()" v-if="navigationGuard(['cashier', 'super_manager', 'tech_admin'])"
         class="flex items-center justify-between hover:bg-gray-800 hover:text-gray-100 p-3 rounded-lg cursor-pointer"
         :class="useSidebarStore().isOpenSidebar && router?.currentRoute?.value?.path === '/operation-expenses' || router?.currentRoute?.value?.path === '/checkup-expenses' ? 'justify-between bg-gray-800 text-gray-100' : !useSidebarStore().isOpenSidebar && router?.currentRoute?.value?.path === '/expenses' ? 'bg-gray-800 text-gray-100 justify-center' : ''">
         <div class="flex items-center space-x-2">
