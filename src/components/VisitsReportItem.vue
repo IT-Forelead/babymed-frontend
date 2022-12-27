@@ -54,7 +54,7 @@ const translatePaymentStatus = (status) => {
       </div>
     </td>
     <td v-motion-pop class="py-3 px-6 text-left" v-if="router.currentRoute?.value?.path === '/visits'">{{ patient?.patient?.phone }}</td>
-    <td v-motion-pop class="py-3 px-6 text-center">{{ moment(patient?.patientVisit?.createdAt).format('MM/DD/YYYY h:mm') }}</td>
+    <td v-motion-pop class="py-3 px-6 text-center">{{ moment(patient?.patientVisit?.createdAt).format('DD/MM/YYYY h:mm') }}</td>
     <td v-motion-pop class="py-3 px-6 text-center capitalize">
       {{ patient?.service?.serviceTypeName }}
     </td>
