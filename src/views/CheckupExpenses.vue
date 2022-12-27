@@ -115,9 +115,6 @@ const openSecondTab = () => {
   CheckupExpenseService.getAllDocotrShares().then((res) => {
     useCheckupExpenseStore().setDoctorShares(res)
   })
-  ServicesService.getAllServices().then((res) => {
-    useServicesStore().setServices(res)
-  })
   UserService.getAllDoctors({
     role: 'doctor',
   }).then((res) => {
