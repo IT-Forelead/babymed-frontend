@@ -32,7 +32,6 @@ const printing = () => {
       margin-left: 10px;
     }
     .checkid {
-      font-weight: 600;
       margin-top: 5px;
       text-align: center;
     }
@@ -75,8 +74,8 @@ const closeModal = () => {
                 <p style="font-size: 12px">Lorem ipsum dolor sit.</p>
               </div>
             </div>
-            <p class="text-center font-bold checkid mx-3">Check No: 26da88ba-b9b3-458b-91d5-1fe33a751843</p>
-            <p class="text-center font-bold checkid">Sharipov Familiya</p>
+            <p class="text-center checkid mx-3">Check No: 26da88ba-b9b3-458b-91d5-1fe33a751843</p>
+            <h1 class="text-center font-bold checkid">Sharipov Familiya</h1>
             <table class="w-full max-w-[255px] mx-auto border-b-2 border-dashed">
               <thead class="border-y-2 border-dashed">
                 <tr>
@@ -94,7 +93,7 @@ const closeModal = () => {
               </tbody>
             </table>
             <h1 class="text-center px-3 font-bold total total1">TOTAL: {{ useMoneyFormatter(500000) }}</h1>
-            <h1 class="text-center px-3 font-bold total">Admin: Admin Adminov</h1>
+            <p class="text-center px-3 total">Admin: Admin Adminov</p>
             <p class="text-center px-3 total total2">{{ moment(moment.now()).format('MM.DD.YYYY hh:mm:ss') }}</p>
           </div>
         </div>
