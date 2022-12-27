@@ -9,6 +9,7 @@ export const useModalStore = defineStore('modal', {
     isOpenAddVisitModal: false,
     isOpenFilterBy: false,
     isOpenOperationExpenseInfo: false,
+    isOpenPrintModal: false,
   }),
   actions: {
     openModal() {
@@ -48,6 +49,12 @@ export const useModalStore = defineStore('modal', {
     },
     closeOperationExpenseInfoModal() {
       this.isOpenOperationExpenseInfo = false
+    },
+    openPrintModal() {
+      this.isOpenPrintModal = true
+    },
+    closePrintModal() {
+      this.isOpenPrintModal = false
     },
     toggleFilterBy() {
       this.isOpenFilterBy = !this.isOpenFilterBy

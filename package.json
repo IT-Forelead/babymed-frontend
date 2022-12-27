@@ -18,6 +18,7 @@
     "izitoast": "^1.4.0",
     "moment": "^2.29.4",
     "pinia": "^2.0.23",
+    "print-js": "^1.6.0",
     "v-money3": "^3.22.2",
     "v3-infinite-loading": "^1.0.6",
     "vue": "^3.2.41",
