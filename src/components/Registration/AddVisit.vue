@@ -71,8 +71,6 @@ watch(
   }
 )
 
-
-
 const displayItems = ref([])
 const serviceIds = ref([])
 
@@ -169,7 +167,7 @@ const submitVisitData = () => {
     <div>
       <p>{{ $t('selectService') }}</p>
       <label class="flex items-center w-full relative">
-        <div v-if="!(useMultiSelectStore().selectedServices.length === 0)" @click="useDropStore().openServiceDropDown()" class="border-none focus:ring-0 outline-0 bg-gray-100 w-full text-lg rounded-lg pl-2 py-2" v-text="useMultiSelectStore().selectedServices.map((s) => s?.name)"></div>
+        <div v-if="!(useMultiSelectStore().selectedServices.length === 0)" @click="useDropStore().openServiceDropDown()" class="border-none focus:ring-0 outline-0 bg-gray-100 w-full text-lg rounded-lg pl-2 py-2" v-text="useMultiSelectStore().selectedServices.map((s) => s?.name).join(', ')"></div>
         <div @click="useDropStore().openServiceDropDown()" v-else class="border-none bg-gray-100 py-2 w-full text-lg rounded-lg cursor-pointer text-gray-500 pl-2">{{ $t('select') }}</div>
         <ChevronRightIcon @click="useDropStore().openServiceDropDown()" v-if="useMultiSelectStore().selectedServices.length === 0" class="absolute right-2.5 z-10 rotate-90 cursor-pointer text-gray-600" />
         <TimesIcon @click="clearMultiSelectData()" v-if="!(useMultiSelectStore().selectedServices.length === 0)" class="absolute right-2.5 z-10 cursor-pointer bg-gray-500 hover:bg-gray-600 text-white rounded-full p-1" />
