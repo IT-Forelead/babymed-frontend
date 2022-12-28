@@ -85,10 +85,10 @@ onMounted(() => {
       </div>
     </td>
     <td v-motion-pop class="py-3 px-6 text-left" v-if="router.currentRoute?.value?.path === '/visits'">{{ patient?.patient?.phone }}</td>
-    <td v-motion-pop class="py-3 px-6 text-center">{{ moment(patient?.patientVisits?.createdAt).format('DD/MM/YYYY h:mm') }}</td>
+    <td v-motion-pop class="py-3 px-6 text-center">{{ moment(patient?.patientVisits[0]?.createdAt).format('DD/MM/YYYY h:mm') }}</td>
     <td v-motion-pop class="py-3 px-6 text-center capitalize">
       <div v-for="(service, idx) in patient?.services" :key="idx">
-        {{ service?.serviceTypeName + " - " + service?.name }} <br> <span class="text-sm font-bold italic">{{ useMoneyFormatter(service?.price) }}</span>
+        {{ service?.serviceTypeName + " - " + service?.name }} - <span class="text-sm font-bold italic">{{ useMoneyFormatter(service?.price) }}</span>
       </div>
     </td>
     <td v-motion-pop class="py-3 px-6 text-center">
@@ -97,11 +97,11 @@ onMounted(() => {
       </span>
     </td>
     <td v-motion-pop class="py-3 px-6 text-center">
-      <div class="flex item-center justify-center">
+      <div class="flex item-center justify-center space-x-2">
         <div v-if="patient?.patientVisit?.paymentStatus.includes('not_paid') && navigationGuard(['cashier', 'super_manager', 'tech_admin'])" @click="open(patient)" class="w-4 mr-2 transform text-blue-500 hover:text-purple-500 hover:scale-110 cursor-pointer">
           <MoneyPlusIcon class="w-6 h-6" />
         </div>
-        <div v-if="router.currentRoute?.value?.path === '/visits' || router.currentRoute?.value?.path === '/dashboard'" @click="printCheque(patient?.services)" class="w-4 mr-2 transform text-blue-500 hover:text-purple-500 hover:scale-110 cursor-pointer">
+        <div v-if="router.currentRoute?.value?.path === '/visits' || router.currentRoute?.value?.path === '/dashboard'" @click="printCheque(patient)" class="w-4 mr-2 transform text-blue-500 hover:text-purple-500 hover:scale-110 cursor-pointer">
           <PrinterIcon class="w-6 h-6" />
         </div>
       </div>
