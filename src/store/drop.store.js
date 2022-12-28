@@ -12,10 +12,14 @@ export const useDropStore = defineStore('drop', {
     isOpenDoctorDropDown: false,
     isOpenServiceTypeDropDown: false,
     isOpenServiceDropDown: false,
+    selectedCheque: []
   }),
   actions: {
     setSelectPatientOption(data) {
       this.selectPatientOption = data
+    },
+    setSelectedCheque(data) {
+      this.selectedCheque = data
     },
     setSelectedExpense(data) {
       this.selectedExpense = data

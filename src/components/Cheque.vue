@@ -4,6 +4,7 @@ import useMoneyFormatter from '../mixins/currencyFormatter'
 import { useModalStore } from '../store/modal.store'
 import print from 'print-js'
 import moment from 'moment'
+import { useDropStore } from '../store/drop.store'
 
 const printing = () => {
   print({
@@ -51,15 +52,15 @@ const printing = () => {
 
 const closeModal = () => {
   useModalStore().closePrintModal()
-  // useDropStore().setSelectedExpense({})
-  // useDropStore().setSelectedExpenseItems([])
 }
 
-// const calculateTotalExpense = (expense) => {
-//   let expensesTotal = expense?.operationExpense?.forLaboratory + expense?.operationExpense?.forTools + expense?.operationExpense?.forDrugs + expense?.operationExpense?.partnerDoctorPrice
-//   let allDoctorsPriceTotal = expenseItems.value?.map((i) => i?.item?.price).reduce((s, a) => s + a, 0)
-//   return expensesTotal + allDoctorsPriceTotal || 0
-// }
+const services = computed(() => {
+  return useDropStore().selectedCheque
+})
+
+const totalPrice = () => {
+  return services.value?.map((s) => s?.price).reduce((s, a) => s + a, 0)
+}
 </script>
 <template>
   <div v-if="useModalStore().isOpenPrintModal" class="overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 backdrop-blur bg-gray-900/75 w-full max-h-screen md:inset-0 md:h-full">
@@ -85,14 +86,14 @@ const closeModal = () => {
                 </tr>
               </thead>
               <tbody>
-                <tr v-for="i in 5" :key="i">
-                  <td>{{ i }}.</td>
-                  <td>ARDUINO {{ i }}</td>
-                  <td>{{ useMoneyFormatter(100000 * i) }}</td>
+                <tr v-for="(service, idx) in services" :key="idx">
+                  <td>{{ idx }}.</td>
+                  <td class="capitalize">{{ service?.name }}</td>
+                  <td>{{ useMoneyFormatter(service?.price) }}</td>
                 </tr>
               </tbody>
             </table>
-            <h1 class="text-center px-3 font-bold total total1">Итоговая цена: {{ useMoneyFormatter(500000) }}</h1>
+            <h1 class="text-center px-3 font-bold total total1">Итоговая цена: {{ useMoneyFormatter(totalPrice) }}</h1>
             <p class="text-center px-3 total">Зарегистрировал: Admin Adminov</p>
             <p class="text-center px-3 total total2">Дата: {{ moment(moment.now()).format('MM.DD.YYYY hh:mm') }}</p>
           </div>

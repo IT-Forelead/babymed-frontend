@@ -8,6 +8,7 @@ import { ref, toRefs, onMounted } from 'vue'
 import moment from 'moment'
 import { useRouter } from 'vue-router'
 import { useModalStore } from '../store/modal.store'
+import { useDropStore } from '../store/drop.store'
 import { useVisitStore } from '../store/visit.store'
 import { useTabStore } from '../store/tab.store'
 import useMoneyFormatter from '../mixins/currencyFormatter'
@@ -54,6 +55,12 @@ const translatePaymentStatus = (status) => {
   }
 }
 
+const printCheque = (data) => {
+  console.log(data);
+  useModalStore().openPrintModal()
+  useDropStore().setSelectedCheque(data)
+}
+
 const navigationGuard = (access) => {
   return access.includes(payload.value?.role)
 }
@@ -78,13 +85,11 @@ onMounted(() => {
       </div>
     </td>
     <td v-motion-pop class="py-3 px-6 text-left" v-if="router.currentRoute?.value?.path === '/visits'">{{ patient?.patient?.phone }}</td>
-    <td v-motion-pop class="py-3 px-6 text-center">{{ moment(patient?.patientVisit?.createdAt).format('DD/MM/YYYY h:mm') }}</td>
+    <td v-motion-pop class="py-3 px-6 text-center">{{ moment(patient?.patientVisits?.createdAt).format('DD/MM/YYYY h:mm') }}</td>
     <td v-motion-pop class="py-3 px-6 text-center capitalize">
-      {{ patient?.service?.serviceTypeName }}
-    </td>
-    <td v-motion-pop class="py-3 px-6 text-center capitalize">
-      {{ patient?.service?.name }} <br />
-     <span class="text-sm font-bold italic">{{ useMoneyFormatter(patient?.service?.price) }}</span>
+      <div v-for="(service, idx) in patient?.services" :key="idx">
+        {{ service?.serviceTypeName + " - " + service?.name }} <br> <span class="text-sm font-bold italic">{{ useMoneyFormatter(service?.price) }}</span>
+      </div>
     </td>
     <td v-motion-pop class="py-3 px-6 text-center">
       <span class="p-1.5 px-3 text-sm rounded-full text-white" :class="patient?.patientVisit?.paymentStatus === 'not_paid' ? 'bg-red-500' : 'bg-green-400'">
@@ -96,7 +101,7 @@ onMounted(() => {
         <div v-if="patient?.patientVisit?.paymentStatus.includes('not_paid') && navigationGuard(['cashier', 'super_manager', 'tech_admin'])" @click="open(patient)" class="w-4 mr-2 transform text-blue-500 hover:text-purple-500 hover:scale-110 cursor-pointer">
           <MoneyPlusIcon class="w-6 h-6" />
         </div>
-        <div v-if="router.currentRoute?.value?.path === '/visits' || router.currentRoute?.value?.path === '/dashboard'" @click="useModalStore().openPrintModal()" class="w-4 mr-2 transform text-blue-500 hover:text-purple-500 hover:scale-110 cursor-pointer">
+        <div v-if="router.currentRoute?.value?.path === '/visits' || router.currentRoute?.value?.path === '/dashboard'" @click="printCheque(patient?.services)" class="w-4 mr-2 transform text-blue-500 hover:text-purple-500 hover:scale-110 cursor-pointer">
           <PrinterIcon class="w-6 h-6" />
         </div>
       </div>

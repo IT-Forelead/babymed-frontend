@@ -100,7 +100,6 @@ onMounted(() => {
             <th class="py-3 px-6 text-left">{{ $t('patientName') }}</th>
             <th class="py-3 px-6 text-left">{{ $t('phone') }}</th>
             <th class="py-3 px-6 text-center">{{ $t('createdAt') }}</th>
-            <th class="py-3 px-6 text-center">{{ $t('serviceType') }}</th>
             <th class="py-3 px-6 text-center">{{ $t('service') }}</th>
             <th class="py-3 px-6 text-center">{{ $t('paymentStatus') }}</th>
             <th class="py-3 px-6 text-center">{{ $t('actions') }}</th>
