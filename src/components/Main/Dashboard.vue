@@ -1,4 +1,4 @@
-<script setup>
+``<script setup>
 import StatisticsSection from './Statistics/StatisticsSection.vue'
 import Registration from '../Registration.vue'
 import ReportItem from '../ReportItem.vue'
@@ -60,7 +60,7 @@ onMounted(() => {
 </script>
 
 <template>
-  <StatisticsSection />
+<!--  <StatisticsSection />-->
   <div class="bg-white rounded-lg w-full p-5">
     <div class="flex items-center">
       <p class="text-3xl font-bold">{{ $t('patientsReport') }}</p>
