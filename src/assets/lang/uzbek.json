@@ -176,5 +176,11 @@
   "deletedDoctorShare": "Shifokor ulushi muvaffaqiyatli o'chirildi!",
   "errorDeletingDoctorShare": "Shifokor ulushini o'chirishda xatolik yuz berdi!",
   "checkupExpensesReport":"Tekshirish xarajatlari hisoboti",
-  "operationExpensesReport":"Operatsiya xarajatlari hisoboti"
+  "operationExpensesReport":"Operatsiya xarajatlari hisoboti",
+  "cashier":"Kassir",
+  "serviceNotFound":"Xizmat topilmadi",
+  "close":"Yopish",
+  "print":"Chop etish",
+  "preparingCheck":"Chek tayyorlanmoqda",
+  "enterPatientName":"Bemor ismini kiriting"
 }

@@ -176,5 +176,11 @@
   "deletedDoctorShare": "Doctor share successfully deleted!",
   "errorDeletingDoctorShare": "Error while deleting doctor share!",
   "operationExpensesReport":"Operation Expenses Report",
-  "checkupExpensesReport":"Checkup Expenses Report"
+  "checkupExpensesReport":"Checkup Expenses Report",
+  "cashier":"Cashier",
+  "serviceNotFound":"Service not found",
+  "close":"Close",
+  "print":"Print",
+  "preparingCheck":"Preparing check",
+  "enterPatientName":"Enter patient name"
 }

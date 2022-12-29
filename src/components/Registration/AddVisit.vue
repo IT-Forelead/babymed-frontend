@@ -173,7 +173,7 @@ const submitVisitData = () => {
         <TimesIcon @click="clearMultiSelectData()" v-if="!(useMultiSelectStore().selectedServices.length === 0)" class="absolute right-2.5 z-10 cursor-pointer bg-gray-500 hover:bg-gray-600 text-white rounded-full p-1" />
         <div v-if="useDropStore().isOpenServiceDropDown" class="absolute shadow z-20 top-12 max-h-48 overflow-auto w-full bg-gray-100 rounded-lg divide-y">
           <div v-if="useServicesStore().services.length === 0" class="hover:bg-gray-200 cursor-pointer p-2 rounded-lg">
-            <p class="text-red-500">Service not found</p>
+            <p class="text-red-500">{{ $t('serviceNotFound')}}</p>
           </div>
         </div>
       </label>

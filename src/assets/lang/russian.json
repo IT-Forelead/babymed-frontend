@@ -175,5 +175,11 @@
   "deletedDoctorShare": "Doctor share successfully deleted!",
   "errorDeletingDoctorShare": "Error while deleting doctor share!",
   "checkupExpensesReport":"Отчет о расходах на проверку",
-  "operationExpensesReport":"Отчет об операционных расходах"
+  "operationExpensesReport":"Отчет об операционных расходах",
+  "cashier":"Кассир",
+  "serviceNotFound":"Сервис не найден",
+  "close": "Закрыть",
+  "print": "Печать",
+  "preparingCheck":"Подготовка проверки",
+  "enterPatientName":"Введите имя пациента"
 }

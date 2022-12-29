@@ -176,5 +176,11 @@
   "deletedDoctorShare": "Шифокор улуши муваффақиятли ўчирилди!",
   "errorDeletingDoctorShare": "Шифокор улушини ўчиришда хатолик юз берди!",
   "checkupExpensesReport":"Текшириш харажатлари ҳисоботи",
-  "operationExpensesReport":"Операция харажатлари ҳисоботи"
+  "operationExpensesReport":"Операция харажатлари ҳисоботи",
+  "cashier":"Кассир",
+  "serviceNotFound":"Хизмат топилмади",
+  "close":"Ёпиш",
+  "print":"Чоп етиш",
+  "preparingCheck":"Чек тайёрланмоқда",
+  "enterPatientName":"Бемор исмини киритинг"
 }

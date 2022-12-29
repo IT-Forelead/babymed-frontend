@@ -5,13 +5,16 @@ import { useModalStore } from '../store/modal.store'
 import print from 'print-js'
 import moment from 'moment'
 import { useDropStore } from '../store/drop.store'
+import { useI18n } from 'vue-i18n'
+
+const { t } = useI18n()
 
 const printing = () => {
   print({
     printable: 'ticket',
     type: 'html',
     showModal: true,
-    modalMessage: 'Preparing check...',
+    modalMessage: t('preparingCheck'),
     style: `
     * {
       margin: 0;
@@ -91,8 +94,8 @@ const totalPrice = () => {
           </div>
         </div>
         <div class="p-3 flex justify-end space-x-2">
-          <div @click="closeModal()" class="bg-gray-500 rounded p-1 px-4 text-white cursor-pointer">Close</div>
-          <div @click="printing()" class="bg-green-500 rounded p-1 px-4 text-white cursor-pointer">Print</div>
+          <div @click="closeModal()" class="bg-gray-500 rounded p-1 px-4 text-white cursor-pointer">{{ $t('close') }}</div>
+          <div @click="printing()" class="bg-green-500 rounded p-1 px-4 text-white cursor-pointer">{{ $t('print') }}</div>
         </div>
       </div>
     </div>

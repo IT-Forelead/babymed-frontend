@@ -2,7 +2,6 @@
 import EditIcon from '../assets/icons/EditIcon.vue'
 import UserIcon from '../assets/icons/UserIcon.vue'
 import PlusIcon from '../assets/icons/PlusIcon.vue'
-import MoneyPlusIcon from '../assets/icons/MoneyPlusIcon.vue'
 import InfiniteLoading from 'v3-infinite-loading'
 import 'v3-infinite-loading/lib/style.css'
 import { toRefs } from 'vue'
