@@ -1,4 +1,4 @@
-<script setup>
+``<script setup>
 import StatisticsSection from './Statistics/StatisticsSection.vue'
 import Registration from '../Registration.vue'
 import ReportItem from '../ReportItem.vue'
