@@ -27,7 +27,7 @@ const submitPaymentStatus = () => {
       message: t('nothingChanged'),
     })
   } else {
-    VisitService.changePaymentStatus(patient.value?.patientVisit?.id)
+    VisitService.changePaymentStatus(patient.value?.patientVisit?.chequeId)
       .then(() => {
         notify.success({
           message: t('paymentStatusChanged'),
@@ -45,6 +45,10 @@ const submitPaymentStatus = () => {
       })
   }
 }
+
+const totalPrice = () => {
+  return patient.value?.services.map((s) => s?.price).reduce((s, a) => s + a, 0)
+}
 </script>
 
 <template>
@@ -60,24 +64,30 @@ const submitPaymentStatus = () => {
           </button>
         </div>
         <div class="p-4 space-y-5">
-          <ul class="space-y-1 border-b pb-4">
-            <li class="flex justify-between items-center">
+          <div class="space-y-2 border-b pb-4">
+            <div class="flex justify-between items-center">
               <div class="text-base text-gray-500">{{ $t('patient') }}:</div>
               <div class="text-lg text-gray-700 capitalize">{{ patient?.patient?.firstname + ' ' + patient?.patient?.lastname }}</div>
-            </li>
-            <li class="flex justify-between items-center">
-              <div class="text-base text-gray-500">{{ $t('serviceType') }}:</div>
-              <div class="text-lg text-gray-700 capitalize">{{ patient?.service?.serviceTypeName }}</div>
-            </li>
-            <li class="flex justify-between items-center">
-              <div class="text-base text-gray-500">{{ $t('serviceName') }}:</div>
-              <div class="text-lg text-gray-700 capitalize">{{ patient?.service?.name }}</div>
-            </li>
-            <li class="flex justify-between items-center">
-              <div class="text-base text-gray-500">{{ $t('servicePrice') }}:</div>
-              <div class="text-lg text-gray-700">{{ useMoneyFormatter(patient?.service?.price) }}</div>
-            </li>
-          </ul>
+            </div>
+            <table class="w-full bg-gray-100">
+              <tr>
+                <th>{{ $t('n') }}</th>
+                <th>{{ $t('serviceType') }}</th>
+                <th>{{ $t('service') }}</th>
+                <th>{{ $t('price') }}</th>
+              </tr>
+              <tr class="text-center divide-y py-5" v-for="(service, idx) in patient?.services" :key="idx">
+                <td>{{ idx + 1 }}</td>
+                <td>{{ service?.serviceTypeName }}</td>
+                <td>{{ service?.name }}</td>
+                <td>{{ useMoneyFormatter(service?.price) }}</td>
+              </tr>
+            </table>
+            <div class="flex justify-between items-center">
+              <div class="text-base text-gray-500">{{ $t('total') }}:</div>
+              <div class="text-lg text-gray-700 font-bold">{{ useMoneyFormatter(totalPrice()) }}</div>
+            </div>
+          </div>
           <p class="mb-3 text-center">{{ $t('clickToChangePaymentStatus') }}</p>
           <div class="flex items-center justify-center space-x-3">
             <div @click="useTabStore().changeTab('not_paid')" :class="useTabStore().isNotPaid ? 'border-green-500 text-green-500 border' : 'border-gray-200 border text-gray-600 cursor-pointer hover:shadow hover:scale-105'" class="flex items-center justify-center p-2 rounded-lg px-3 transition-all duration-300">
