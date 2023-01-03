@@ -69,7 +69,7 @@ const totalPrice = () => {
               </div>
             </div>
             <hr class="margin-y">
-            <p class="text-center checkid mx-3">Check No: {{ report?.patientVisits[0]?.chequeId }}</p>
+            <p class="text-center checkid mx-3">Check No: {{ report?.patientVisit?.chequeId }}</p>
             <h1 class="text-center font-bold checkid">
               {{ report?.patient?.firstname + ' ' +  report?.patient?.lastname }}
             </h1>
@@ -90,7 +90,7 @@ const totalPrice = () => {
             <p class="text-center px-3 total text-lg">Итоговая цена:</p>
             <h1 class="text-center px-3 font-bold total text-xl total-price">{{ useMoneyFormatter(totalPrice()) }}</h1>
             <p class="text-center px-3 total">Зарегистрировал(а): {{ report?.userFirstName + ' ' +  report?.userLastName }}</p>
-            <p class="text-center px-3 total">Дата: {{ moment(report?.patientVisits[0]?.createdAt).format('DD/MM/YYYY h:mm') }}</p>
+            <p class="text-center px-3 total">Дата: {{ moment(report?.patientVisit?.createdAt).format('DD/MM/YYYY h:mm') }}</p>
           </div>
         </div>
         <div class="p-3 flex justify-end space-x-2">

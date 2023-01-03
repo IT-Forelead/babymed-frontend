@@ -27,13 +27,16 @@ const submitPaymentStatus = () => {
       message: t('nothingChanged'),
     })
   } else {
-    VisitService.changePaymentStatus(patient.value?.patientVisit?.chequeId)
+    VisitService.changePaymentStatus(patient.value?.patientVisit?.id)
       .then(() => {
         notify.success({
           message: t('paymentStatusChanged'),
         })
         useModalStore().closePaymentStatusChangerModal()
-        VisitService.getVisits({}).then((res) => {
+        VisitService.getVisits({
+          page: 1,
+          limit: 10
+        }).then((res) => {
           useVisitStore().clearStore()
           useVisitStore().setPatients(res?.data)
         })
