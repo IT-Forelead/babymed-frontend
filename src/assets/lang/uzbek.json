@@ -182,5 +182,6 @@
   "close":"Yopish",
   "print":"Chop etish",
   "preparingCheck":"Chek tayyorlanmoqda",
-  "enterPatientName":"Bemor ismini kiriting"
+  "enterPatientName":"Bemor ismini kiriting",
+  "visitingTime":"Tashrif vaqti"
 }

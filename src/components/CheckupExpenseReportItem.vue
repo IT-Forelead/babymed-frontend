@@ -27,15 +27,28 @@ const { checkupExpenses } = toRefs(props)
         </div>
       </div>
     </td>
-    <td v-motion-pop class="py-3 px-6 text-center capitalize">
-      {{ expense?.service?.name }} <br />
-      <span class="text-sm font-bold italic">{{ useMoneyFormatter(expense?.service?.price) }}</span>
+    <td v-motion-pop class="py-3 px-6 text-left">
+      <div class="flex flex-col space-y-1 justify-center">
+        <div class="text-base leading-5font-medium capitalize">{{ expense?.patient?.firstname + " " + expense?.patient?.lastname }}</div>
+        <div class="flex items-center space-x-2">
+          <span class="text-sm text-gray-500">{{ $t('visitingTime') }}:</span>
+          <span class="text-base">{{ moment(expense?.visit?.createdAt).format('DD/MM/YYYY h:mm') }}</span>
+        </div>
+      </div>
     </td>
     <td v-motion-pop class="py-3 px-6 text-center">
-      {{ expense?.doctorShare?.percent }}% <br>
-      <span class="text-sm font-bold italic">
-        {{ useMoneyFormatter(percentCalc(expense?.service?.price, expense?.doctorShare?.percent)) }}
-      </span>
+      <div class="flex flex-col space-y-1 justify-center">
+        <div class="capitalize">{{ expense?.service?.name }}</div>
+        <div class="text-sm font-bold italic">{{ useMoneyFormatter(expense?.service?.price) }}</div>
+      </div>
+    </td>
+    <td v-motion-pop class="py-3 px-6 text-center">
+      <div class="flex flex-col space-y-1 justify-center">
+        <div>{{ expense?.doctorShare?.percent }}%</div>
+        <div class="text-sm font-bold italic">
+          {{ useMoneyFormatter(percentCalc(expense?.service?.price, expense?.doctorShare?.percent)) }}
+        </div>
+      </div>
     </td>
     <td v-motion-pop class="py-3 px-6 text-center">{{ moment(expense?.checkupExpense?.createdAt).format('DD/MM/YYYY h:mm') }}</td>
   </tr>

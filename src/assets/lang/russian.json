@@ -181,5 +181,6 @@
   "close": "Закрыть",
   "print": "Печать",
   "preparingCheck":"Подготовка проверки",
-  "enterPatientName":"Введите имя пациента"
+  "enterPatientName":"Введите имя пациента",
+  "visitingTime":"Время посещения"
 }

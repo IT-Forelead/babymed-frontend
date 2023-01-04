@@ -200,6 +200,7 @@ onUnmounted(() => {
           <tr class="text-gray-600 capitalize text-lg leading-normal">
             <th class="py-3 px-6 text-center">{{ $t('n') }}</th>
             <th class="py-3 px-6 text-left">{{ $t('doctor') }}</th>
+            <th class="py-3 px-6 text-left">{{ $t('patient') }}</th>
             <th class="py-3 px-6 text-center">{{ $t('service') }}</th>
             <th class="py-3 px-6 text-center">{{ $t('doctorShare') }}</th>
             <th class="py-3 px-6 text-center">{{ $t('createdAt') }}</th>
