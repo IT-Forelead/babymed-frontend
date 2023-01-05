@@ -51,6 +51,8 @@ const currentLabel = computed(() => {
     return t('serviceTypes')
   } else if (router.currentRoute?.value?.path === '/expenses') {
     return t('expenses')
+  } else if (router.currentRoute?.value?.path === '/operation-expenses') {
+    return t('expenses')
   }
 })
 
@@ -92,7 +94,7 @@ onMounted(() => {
     <!-- Add Visit Modal -->
     <AddVisitModal />
     <OperationInfoModal />
-    <Cheque/>
+    <Cheque />
   </div>
 </template>
 

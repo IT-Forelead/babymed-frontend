@@ -1,21 +1,21 @@
 <script setup>
-import {computed, reactive, ref} from '@vue/reactivity'
-import {onMounted} from 'vue'
-import {useVisitStore} from '../../store/visit.store'
-import {cleanObjectEmptyFields} from '../../mixins/utils'
+import { computed, reactive, ref } from '@vue/reactivity'
+import { onMounted } from 'vue'
+import { useVisitStore } from '../../store/visit.store'
+import { cleanObjectEmptyFields } from '../../mixins/utils'
 import VisitService from '../../services/visit.service'
 import OperationExpenseService from '../../services/operationExpenses.service'
 import UserService from '../../services/user.service'
-import {useUserStore} from '../../store/user.store'
+import { useUserStore } from '../../store/user.store'
 import SelectOptionDoctor from '../SelectOptionDoctor.vue'
 import PlusIcon from '../../assets/icons/PlusIcon.vue'
 import notify from 'izitoast'
 import 'izitoast/dist/css/iziToast.min.css'
-import {useI18n} from 'vue-i18n'
-import {useDropStore} from '../../store/drop.store'
+import { useI18n } from 'vue-i18n'
+import { useDropStore } from '../../store/drop.store'
 import useMoneyFormatter from '../../mixins/currencyFormatter'
 
-const {t} = useI18n()
+const { t } = useI18n()
 
 const moneyConf = {
   thousands: ' ',
@@ -54,12 +54,17 @@ const clearForm = () => {
   expenseItem.userId = ''
 }
 
+const filteredVisits = ref([])
+
 onMounted(() => {
-  VisitService.getAllVisits({
-    serviceTypeId: '712852a6-830f-45bd-9797-43c5c50ba1df'
-  }).then((res) => {
+  VisitService.getAllVisitsForExpense().then((res) => {
     useVisitStore().clearStore()
     useVisitStore().setPatients(res?.data)
+    res?.data.map((v) => {
+      v?.services.map((service) => {
+        filteredVisits.value.push([v?.patientVisit?.id, service, v?.patient])
+      })
+    })
   })
   UserService.getAllDoctors({
     role: 'doctor',
@@ -148,40 +153,34 @@ const addItems = () => {
   <div class="grid grid-cols-3 mt-5 gap-5">
     <div>
       <p>{{ $t('selectVisit') }}</p>
-      <select v-model="expenseForm.patientVisitId"
-              class="border-none text-gray-500 bg-gray-100 rounded-lg w-full text-lg mb-5">
+      <select v-model="expenseForm.patientVisitId" class="border-none text-gray-500 bg-gray-100 rounded-lg w-full text-lg mb-5">
         <option value="" selected>{{ $t('selectPatientVisit') }}</option>
-        <option v-for="(visit, idx) in visits" :key="idx" :value="visit?.patientVisit?.id" class="capitalize">
-          {{ visit?.patient?.firstname + ' ' + visit?.patient?.lastname + ' | ' + visit?.service?.name }}
+        <option v-for="(visit, idx) in filteredVisits" :key="idx" :value="visit[0]" class="capitalize">
+          {{ visit[2]?.firstname + ' ' + visit[2]?.lastname + ' | ' + visit[1]?.name }}
         </option>
       </select>
     </div>
     <div>
       <p>{{ $t('partnerDoctor') }}</p>
-      <input type="text" v-model="expenseForm.partnerDoctorFullName" :placeholder="$t('enterPartnerDoctor')"
-             class="border-none text-gray-500 bg-gray-100 rounded-lg w-full text-lg"/>
+      <input type="text" v-model="expenseForm.partnerDoctorFullName" :placeholder="$t('enterPartnerDoctor')" class="border-none text-gray-500 bg-gray-100 rounded-lg w-full text-lg" />
     </div>
     <div>
       <p>{{ $t('partnerDoctorPrice') }}</p>
-      <money3 v-model="expenseForm.partnerDoctorPrice" v-bind="moneyConf"
-              class="border-none text-right text-gray-500 bg-gray-100 rounded-lg w-full text-lg"></money3>
+      <money3 v-model="expenseForm.partnerDoctorPrice" v-bind="moneyConf" class="border-none text-right text-gray-500 bg-gray-100 rounded-lg w-full text-lg"></money3>
     </div>
   </div>
   <div class="grid grid-cols-3 gap-5 mb-5">
     <div>
       <p>{{ $t('laboratoryPrice') }}</p>
-      <money3 v-model="expenseForm.forLaboratory" v-bind="moneyConf"
-              class="border-none text-right text-gray-500 bg-gray-100 rounded-lg w-full text-lg"></money3>
+      <money3 v-model="expenseForm.forLaboratory" v-bind="moneyConf" class="border-none text-right text-gray-500 bg-gray-100 rounded-lg w-full text-lg"></money3>
     </div>
     <div>
       <p>{{ $t('toolsPrice') }}</p>
-      <money3 v-model="expenseForm.forTools" v-bind="moneyConf"
-              class="border-none text-right text-gray-500 bg-gray-100 rounded-lg w-full text-lg"></money3>
+      <money3 v-model="expenseForm.forTools" v-bind="moneyConf" class="border-none text-right text-gray-500 bg-gray-100 rounded-lg w-full text-lg"></money3>
     </div>
     <div>
       <p>{{ $t('drugsPrice') }}</p>
-      <money3 v-model="expenseForm.forDrugs" v-bind="moneyConf"
-              class="border-none text-right text-gray-500 bg-gray-100 rounded-lg w-full text-lg"></money3>
+      <money3 v-model="expenseForm.forDrugs" v-bind="moneyConf" class="border-none text-right text-gray-500 bg-gray-100 rounded-lg w-full text-lg"></money3>
     </div>
   </div>
   <table v-if="displayItems?.length !== 0" class="w-full bg-gray-100">
@@ -202,7 +201,7 @@ const addItems = () => {
     <div class="basis-1/3">
       <label for="lastname">
         {{ $t('selectDoctor') }}
-        <SelectOptionDoctor :options="doctors" class="flex"/>
+        <SelectOptionDoctor :options="doctors" class="flex" />
       </label>
     </div>
     <div class="basis-1/3">
@@ -218,25 +217,21 @@ const addItems = () => {
     </div>
     <div class="basis-1/3">
       <label for="lastname">
-        {{ $t('price') }} <br/>
-        <money3 v-model="expenseItem.price" v-bind="moneyConf"
-                class="border-none text-right text-gray-500 bg-gray-100 rounded-lg w-full text-lg"></money3>
+        {{ $t('price') }} <br />
+        <money3 v-model="expenseItem.price" v-bind="moneyConf" class="border-none text-right text-gray-500 bg-gray-100 rounded-lg w-full text-lg"></money3>
       </label>
     </div>
     <div class="flex-1">
-      <div @click="addItems()"
-           class="w-8 h-8 bg-lime-300 mt-5 hover:bg-lime-400 cursor-pointer hover:scale-110 transition-all duration-300 flex items-center justify-center rounded-full text-3xl p-1">
-        <PlusIcon/>
+      <div @click="addItems()" class="w-8 h-8 bg-lime-300 mt-5 hover:bg-lime-400 cursor-pointer hover:scale-110 transition-all duration-300 flex items-center justify-center rounded-full text-3xl p-1">
+        <PlusIcon />
       </div>
     </div>
   </div>
   <div class="flex items-center justify-end mt-5 space-x-5">
-    <div @click="clearForm()"
-         class="p-2 text-center text-lg text-white rounded-lg mt-3 bg-gray-400 w-1/5 hover:bg-gray-500 cursor-pointer">
+    <div @click="clearForm()" class="p-2 text-center text-lg text-white rounded-lg mt-3 bg-gray-400 w-1/5 hover:bg-gray-500 cursor-pointer">
       {{ $t('clear') }}
     </div>
-    <div @click="submitExpenseFormData()"
-         class="p-2 text-center text-lg text-white rounded-lg mt-3 bg-green-400 w-1/5 hover:bg-green-500 cursor-pointer">
+    <div @click="submitExpenseFormData()" class="p-2 text-center text-lg text-white rounded-lg mt-3 bg-green-400 w-1/5 hover:bg-green-500 cursor-pointer">
       {{ $t('save') }}
     </div>
   </div>
