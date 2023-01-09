@@ -53,6 +53,8 @@ const currentLabel = computed(() => {
     return t('expenses')
   } else if (router.currentRoute?.value?.path === '/operation-expenses') {
     return t('expenses')
+  } else if (router.currentRoute?.value?.path === '/checkup-expenses') {
+    return t('expenses')
   }
 })
 
