@@ -1,9 +1,8 @@
 <script setup>
 import { computed, reactive, ref } from '@vue/reactivity'
 import { onMounted } from 'vue'
-import { useVisitStore } from '../../store/visit.store'
+import { useExpenseStore } from '../../store/expense.store'
 import { cleanObjectEmptyFields } from '../../mixins/utils'
-import VisitService from '../../services/visit.service'
 import OperationExpenseService from '../../services/operationExpenses.service'
 import UserService from '../../services/user.service'
 import { useUserStore } from '../../store/user.store'
@@ -30,7 +29,7 @@ const expenseItem = reactive({
 })
 
 const expenseForm = reactive({
-  patientVisitId: '',
+  operationId: '',
   operationExpenseItems: [],
   forLaboratory: 0,
   forTools: 0,
@@ -40,7 +39,7 @@ const expenseForm = reactive({
 })
 
 const clearForm = () => {
-  expenseForm.patientVisitId = ''
+  expenseForm.operationId = ''
   expenseForm.operationExpenseItems = []
   expenseForm.forLaboratory = ''
   expenseForm.forTools = ''
@@ -54,17 +53,10 @@ const clearForm = () => {
   expenseItem.userId = ''
 }
 
-const filteredVisits = ref([])
-
 onMounted(() => {
-  VisitService.getAllVisitsForExpense().then((res) => {
-    useVisitStore().clearStore()
-    useVisitStore().setPatients(res?.data)
-    res?.data.map((v) => {
-      v?.services.map((service) => {
-        filteredVisits.value.push([v?.patientVisit?.id, service, v?.patient])
-      })
-    })
+  OperationExpenseService.getOperations({}).then((res) => {
+    useExpenseStore().clearStore()
+    useExpenseStore().setOperations(res?.data)
   })
   UserService.getAllDoctors({
     role: 'doctor',
@@ -78,8 +70,8 @@ onMounted(() => {
   })
 })
 
-const visits = computed(() => {
-  return useVisitStore().patients
+const operations = computed(() => {
+  return useExpenseStore().operations
 })
 
 const doctors = computed(() => {
@@ -91,7 +83,7 @@ const subRoles = computed(() => {
 })
 
 const submitExpenseFormData = () => {
-  if (!expenseForm.patientVisitId) {
+  if (!expenseForm.operationId) {
     notify.warning({
       message: t('plsSelectPatientVisit'),
     })
@@ -153,10 +145,10 @@ const addItems = () => {
   <div class="grid grid-cols-3 mt-5 gap-5">
     <div>
       <p>{{ $t('selectVisit') }}</p>
-      <select v-model="expenseForm.patientVisitId" class="border-none text-gray-500 bg-gray-100 rounded-lg w-full text-lg mb-5">
+      <select v-model="expenseForm.operationId" class="border-none text-gray-500 bg-gray-100 rounded-lg w-full text-lg mb-5">
         <option value="" selected>{{ $t('selectPatientVisit') }}</option>
-        <option v-for="(visit, idx) in filteredVisits" :key="idx" :value="visit[0]" class="capitalize">
-          {{ visit[2]?.firstname + ' ' + visit[2]?.lastname + ' | ' + visit[1]?.name }}
+        <option v-for="(operation, idx) in operations" :key="idx" :value="operation?.operation?.id" class="capitalize">
+          {{ operation?.patient?.firstname + ' ' + operation?.patient?.lastname + ' | ' + operation?.service?.name }}
         </option>
       </select>
     </div>
