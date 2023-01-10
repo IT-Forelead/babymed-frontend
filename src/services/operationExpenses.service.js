@@ -8,6 +8,12 @@ class ExpenseService {
   async getAllExpenses(data) {
     return AxiosService.post('/operation-expense/report?page=1&limit=10', data, { headers: authHeader() })
   }
+  async getOperations(data) {
+    return AxiosService.post('/operation-expense/operations?page=1&limit=10', data, { headers: authHeader() })
+  }
+  async getAllOperationServices() {
+    return AxiosService.get('/operation-expense/operation-services', { headers: authHeader() })
+  }
   async getExpenseItemsByExpenseId(ex_id) {
     return AxiosService.get('/operation-expense/items/' + ex_id, { headers: authHeader() })
   }
