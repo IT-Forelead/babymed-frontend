@@ -13,13 +13,18 @@ const printing = () => {
   print({
     printable: 'ticket',
     type: 'html',
-    font_size: '13px',
     showModal: true,
+    font_size: '16px',
     modalMessage: t('preparingCheck'),
     style: `
     * {
       margin: 0;
       padding: 0;
+      font-family: "Lucida Console";
+    }
+    #ticket {
+      text-align: center;
+      font-size: 40px;
     }
     .header {
       display: flex;
@@ -29,11 +34,8 @@ const printing = () => {
     .margin-y {
       margin: 8px 0;
     }
-    .checkid {
-      text-align: center;
-    }
-    .total {
-      text-align: center;
+    table {
+      text-align: left;
     }`,
   })
 }
@@ -61,25 +63,27 @@ const totalPrice = () => {
               <img src="/cheque_logo.jpg" class="w-[80%]" alt="Logo"/>
             </div>
             <center>
-              <p style="">Многопрофильный медицинский центр</p>
+              <p>Многопрофильный медицинский центр</p>
             </center>
             <hr class="margin-y">
-            <p class="text-center checkid mx-3">Check No: {{ report?.patientVisit?.chequeId }}</p>
+            <p class="text-center checkid mx-3">Check No: {{ report?.patientVisit?.id }} </p>
             <h1 class="text-center font-bold checkid">
               {{ report?.patient?.firstname + ' ' + report?.patient?.lastname }}
             </h1>
+              <h1>ВНИМАНИЕ!!!</h1>
+              <p>Порядок приёма пациентов:</p>
+              <span>Сначала проходят пациенты заранее записанные на определённое время. 
+                Пациенты ожидающие в живой очереди, будут проходить на приём, после заранее записанных пациентов.
+                ПАЦИЕНТОВ НА СКОРОЙ ПОМОЩИ ПРИНИМАЕМ БЕЗ ОЧЕРЕДИ!!!</span>
             <hr class="margin-y">
             <table class="w-full max-w-[255px] mx-auto">
-              <tbody>
               <tr class="text-sm" v-for="(service, idx) in report.services" :key="idx">
                 <td>{{ idx + 1 }}.</td>
                 <td class="capitalize">
-                  <span class="text-base">{{ service?.name }}</span>
-                  <br>
-                  <b>{{ useMoneyFormatter(service?.price) }}</b>
+                  <p>{{ service?.name }}</p>
+                  <strong>{{ useMoneyFormatter(service?.price) }}</strong>
                 </td>
               </tr>
-              </tbody>
             </table>
             <hr class="margin-y">
             <p class="text-center px-3 total text-lg">Итоговая цена:</p>
