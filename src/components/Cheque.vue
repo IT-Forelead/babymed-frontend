@@ -1,27 +1,25 @@
 <script setup>
-import { computed } from '@vue/reactivity'
+import {computed} from '@vue/reactivity'
 import useMoneyFormatter from '../mixins/currencyFormatter'
-import { useModalStore } from '../store/modal.store'
+import {useModalStore} from '../store/modal.store'
 import print from 'print-js'
 import moment from 'moment'
-import { useDropStore } from '../store/drop.store'
-import { useI18n } from 'vue-i18n'
+import {useDropStore} from '../store/drop.store'
+import {useI18n} from 'vue-i18n'
 
-const { t } = useI18n()
+const {t} = useI18n()
 
 const printing = () => {
   print({
     printable: 'ticket',
     type: 'html',
+    font_size: '13px',
     showModal: true,
     modalMessage: t('preparingCheck'),
     style: `
     * {
       margin: 0;
       padding: 0;
-    }
-    #ticket {
-      font-family: 'Courier New', Courier, monospace;
     }
     .header {
       display: flex;
@@ -30,9 +28,6 @@ const printing = () => {
     }
     .margin-y {
       margin: 8px 0;
-    }
-    .title {
-      margin-left: 10px;
     }
     .checkid {
       text-align: center;
@@ -56,46 +51,56 @@ const totalPrice = () => {
 }
 </script>
 <template>
-  <div v-if="useModalStore().isOpenPrintModal" class="overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 backdrop-blur bg-gray-900/75 w-full max-h-screen md:inset-0 md:h-full">
+  <div v-if="useModalStore().isOpenPrintModal"
+       class="overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 backdrop-blur bg-gray-900/75 w-full max-h-screen md:inset-0 md:h-full">
     <div class="relative p-4 w-full h-full max-w-xs md:h-auto left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
       <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
         <div class="p-1 flex justify-center" id="ticket">
           <div>
             <div class="flex items-center justify-center space-x-3 mb-2 pb-2 header">
-              <img src="/logo.png" class="w-1/4" alt="Logo" />
-              <div class="title">
-                <h1 class="font-bold whitespace-nowrap">BABY MED HOSPITAL</h1>
-                <p style="font-size: 12px">Многопрофильный медицинский центр</p>
-              </div>
+              <img src="/cheque_logo.jpg" class="w-[80%]" alt="Logo"/>
             </div>
+            <center>
+              <p style="">Многопрофильный медицинский центр</p>
+            </center>
             <hr class="margin-y">
             <p class="text-center checkid mx-3">Check No: {{ report?.patientVisit?.chequeId }}</p>
             <h1 class="text-center font-bold checkid">
-              {{ report?.patient?.firstname + ' ' +  report?.patient?.lastname }}
+              {{ report?.patient?.firstname + ' ' + report?.patient?.lastname }}
             </h1>
             <hr class="margin-y">
             <table class="w-full max-w-[255px] mx-auto">
               <tbody>
-                <tr class="text-sm" v-for="(service, idx) in report.services" :key="idx">
-                  <td>{{ idx + 1}}.</td>
-                  <td class="capitalize">
-                    <span class="text-base">{{ service?.name }}</span>
+              <tr class="text-sm" v-for="(service, idx) in report.services" :key="idx">
+                <td>{{ idx + 1 }}.</td>
+                <td class="capitalize">
+                  <span class="text-base">{{ service?.name }}</span>
                   <br>
                   <b>{{ useMoneyFormatter(service?.price) }}</b>
                 </td>
-                </tr>
+              </tr>
               </tbody>
             </table>
             <hr class="margin-y">
             <p class="text-center px-3 total text-lg">Итоговая цена:</p>
             <h1 class="text-center px-3 font-bold total text-xl total-price">{{ useMoneyFormatter(totalPrice()) }}</h1>
-            <p class="text-center px-3 total">Зарегистрировал(а): {{ report?.userFirstName + ' ' +  report?.userLastName }}</p>
-            <p class="text-center px-3 total">Дата: {{ moment(report?.patientVisit?.createdAt).format('DD/MM/YYYY h:mm') }}</p>
+            <p class="text-center px-3 total">Зарегистрировал(а): {{
+                report?.userFirstName + ' ' + report?.userLastName
+              }}</p>
+            <p class="text-center px-3 total">Дата: {{
+                moment(report?.patientVisit?.createdAt).format('DD/MM/YYYY h:mm')
+              }}</p>
           </div>
         </div>
         <div class="p-3 flex justify-end space-x-2">
-          <div @click="closeModal()" class="bg-gray-500 rounded p-1 px-4 text-white cursor-pointer">{{ $t('close') }}</div>
-          <div @click="printing()" class="bg-green-500 rounded p-1 px-4 text-white cursor-pointer">{{ $t('print') }}</div>
+          <div @click="closeModal()" class="bg-gray-500 rounded p-1 px-4 text-white cursor-pointer">{{
+              $t('close')
+            }}
+          </div>
+          <div @click="printing()" class="bg-green-500 rounded p-1 px-4 text-white cursor-pointer">{{
+              $t('print')
+            }}
+          </div>
         </div>
       </div>
     </div>
