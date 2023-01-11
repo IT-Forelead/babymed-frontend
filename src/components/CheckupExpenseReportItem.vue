@@ -37,13 +37,14 @@ const { checkupExpenses } = toRefs(props)
       </div>
     </td>
     <td v-motion-pop class="py-3 px-6 text-center">
-      <div class="flex flex-col space-y-1 justify-center">
+      <div class="flex flex-col space-y-0.5 justify-center">
+        <div class="capitalize">{{ expense?.service?.serviceTypeName }}</div>
         <div class="capitalize">{{ expense?.service?.name }}</div>
         <div class="text-sm font-bold italic">{{ useMoneyFormatter(expense?.service?.price) }}</div>
       </div>
     </td>
     <td v-motion-pop class="py-3 px-6 text-center">
-      <div class="flex flex-col space-y-1 justify-center">
+      <div class="flex flex-col space-y-0.5 justify-center">
         <div>{{ expense?.doctorShare?.percent }}%</div>
         <div class="text-sm font-bold italic">
           {{ useMoneyFormatter(percentCalc(expense?.service?.price, expense?.doctorShare?.percent)) }}
