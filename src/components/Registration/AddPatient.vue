@@ -142,7 +142,7 @@ const submitPatientData = () => {
         <option v-for="(region, idx) in regions" :key="idx" :value="region?.id">{{ region?.name }}</option>
       </select>
       <div v-if="patientForm.regionId !== ''">
-        <p>City</p>
+        <p>{{ $t('town') }}</p>
         <select v-model="patientForm.cityId" class="border-none text-gray-500 bg-gray-100 rounded-lg w-full text-lg mb-5">
           <option value="" selected>{{ $t('selectTown') }}</option>
           <option v-for="(city, idx) in cities" :key="idx" :value="city?.id">{{ city?.name }}</option>
