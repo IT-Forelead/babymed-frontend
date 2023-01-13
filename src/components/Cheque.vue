@@ -63,7 +63,7 @@ const totalPrice = () => {
         <div class="p-1 flex justify-center" id="ticket">
           <div class="text-center">
             <div class="flex items-center justify-center space-x-3 mb-2 pb-2 header">
-              <img src="/cheque_logo.jpg" class="w-[80%]" alt="Logo" />
+              <img src="/images/cheque_logo.jpg" class="w-[80%]" alt="Logo" />
             </div>
             <center>
               <p>Куп тармокли тиббиёт маркази</p>
