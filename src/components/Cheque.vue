@@ -65,9 +65,7 @@ const totalPrice = () => {
             <div class="flex items-center justify-center space-x-3 mb-2 pb-2 header">
               <img src="/images/cheque_logo.jpg" class="w-[80%]" alt="Logo" />
             </div>
-            <center>
-              <p>Куп тармокли тиббиёт маркази</p>
-            </center>
+            <p class="text-center">Куп тармокли тиббиёт маркази</p>
             <hr class="margin-y">
             <p class="text-center checkid mx-3">Check No: {{ report?.patientVisit?.id }} </p>
             <h1 class="text-center checkid">
