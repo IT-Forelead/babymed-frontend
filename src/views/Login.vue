@@ -140,7 +140,7 @@ onMounted(() => {
       </div>
       <div
           class="absolute bottom-0 right-0 w-full left-36 bg-slate-300/40 p-5 h-[520px] 2xl:h-[620px] rounded-tl-[42px]">
-        <div class="bg-[url('/dashboard.png')] w-full h-[620px] rounded-tl-3xl"></div>
+        <div class="bg-[url('/images/dashboard.png')] w-full h-[620px] rounded-tl-3xl"></div>
       </div>
     </div>
   </div>

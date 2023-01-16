@@ -183,5 +183,6 @@
   "print":"Chop etish",
   "preparingCheck":"Chek tayyorlanmoqda",
   "enterPatientName":"Bemor ismini kiriting",
-  "visitingTime":"Tashrif vaqti"
+  "visitingTime":"Tashrif vaqti",
+  "days":"kun"
 }

@@ -182,5 +182,6 @@
   "print": "Печать",
   "preparingCheck":"Подготовка проверки",
   "enterPatientName":"Введите имя пациента",
-  "visitingTime":"Время посещения"
+  "visitingTime":"Время посещения",
+  "days":"суток"
 }

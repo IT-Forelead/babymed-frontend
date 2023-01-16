@@ -183,5 +183,6 @@
   "print":"Print",
   "preparingCheck":"Preparing check",
   "enterPatientName":"Enter patient name",
-  "visitingTime":"Visiting time"
+  "visitingTime":"Visiting time",
+  "days":"days"
 }
