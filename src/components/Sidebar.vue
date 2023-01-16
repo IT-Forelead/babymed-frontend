@@ -78,7 +78,7 @@ onMounted(() => {
   <div class="relative text-white">
     <div :class="isOpen ? 'p-5' : 'py-3 p-2'" class="flex items-center space-x-3 transition-all duration-300">
       <div class="w-12 h-12 flex items-center justify-center">
-        <img src="/logo.png" alt="" />
+        <img src="/images/logo.png" alt="" />
       </div>
       <p v-if="isOpen" class="text-xl font-bold capitalize">Baby med</p>
     </div>
@@ -176,7 +176,7 @@ onMounted(() => {
     </div>
     <div class="absolute bottom-10 w-full flex justify-center items-center flex-col space-y-2">
       <div v-if="isOpen" class="w-24 h-24 flex items-center justify-center p-2 rounded-full">
-        <img src="/logo.png" alt="hero" class="w-full" />
+        <img src="/images/logo.png" alt="hero" class="w-full" />
       </div>
       <div v-if="isOpen">
         <p class="text-lg font-bold text-gray-400 text-center">{{ useAuthStore().user?.firstname + ' ' +
