@@ -175,6 +175,8 @@
   "deletedDoctorShare": "Doctor share successfully deleted!",
   "errorDeletingDoctorShare": "Error while deleting doctor share!",
   "checkupExpensesReport":"Отчет о расходах на проверку",
+  "operations": "Операции",
+  "operationServices": "сервисная операция",
   "operationExpensesReport":"Отчет об операционных расходах",
   "cashier":"Кассир",
   "serviceNotFound":"Сервис не найден",

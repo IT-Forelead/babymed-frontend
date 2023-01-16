@@ -5,9 +5,13 @@ class ExpenseService {
   async createExpense(data) {
     return AxiosService.post('/operation-expense/create', data, { headers: authHeader() })
   }
+  async createOperationService(data) {
+    return AxiosService.post('/operation-expense/create/operation-service', `"${data}"`, { headers: authHeader() })
+  }
   async getAllExpenses(data) {
     return AxiosService.post('/operation-expense/report?page=1&limit=10', data, { headers: authHeader() })
   }
+
   async getOperations(data) {
     return AxiosService.post('/operation-expense/operations?page=1&limit=10', data, { headers: authHeader() })
   }

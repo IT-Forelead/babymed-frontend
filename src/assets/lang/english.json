@@ -175,6 +175,8 @@
   "doctorShareCreated": "Doctor share successfully created!",
   "deletedDoctorShare": "Doctor share successfully deleted!",
   "errorDeletingDoctorShare": "Error while deleting doctor share!",
+  "operations": "Operations",
+  "operationServices": "Operation Services",
   "operationExpensesReport":"Operation Expenses Report",
   "checkupExpensesReport":"Checkup Expenses Report",
   "cashier":"Cashier",

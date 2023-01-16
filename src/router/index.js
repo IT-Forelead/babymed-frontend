@@ -64,6 +64,13 @@ const routes = [
         beforeEnter: navigationGuards(['cashier', 'super_manager', 'tech_admin']),
     },
     {
+        path: '/operations',
+        name: 'Operations',
+        component: () => import('../views/Operations.vue'),
+        meta: {layout: 'dashboard'},
+        beforeEnter: navigationGuards(['cashier', 'super_manager', 'tech_admin']),
+    },
+    {
         path: '/checkup-expenses',
         name: 'Checkup Expenses',
         component: () => import('../views/CheckupExpenses.vue'),

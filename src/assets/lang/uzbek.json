@@ -175,6 +175,8 @@
   "doctorShareCreated": "Shifokor ulushi muvaffaqiyatli yaratildi!",
   "deletedDoctorShare": "Shifokor ulushi muvaffaqiyatli o'chirildi!",
   "errorDeletingDoctorShare": "Shifokor ulushini o'chirishda xatolik yuz berdi!",
+  "operations": "Operatsiyalar",
+  "operationServices": "Operatsiya bo'limlari",
   "checkupExpensesReport":"Tekshirish xarajatlari hisoboti",
   "operationExpensesReport":"Operatsiya xarajatlari hisoboti",
   "cashier":"Kassir",
