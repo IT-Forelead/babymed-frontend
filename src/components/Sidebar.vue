@@ -17,6 +17,7 @@ import UsersIcon from '../assets/icons/UsersIcon.vue'
 import { useI18n } from 'vue-i18n'
 import ServicesIcon from '../assets/icons/ServicesIcon.vue'
 import ChevronRightIcon from '../assets/icons/ChevronRightIcon.vue'
+import MedicalInformationOutlineIcon from '../assets/icons/MedicalInformationOutlineIcon.vue'
 
 const { t } = useI18n()
 
@@ -111,7 +112,7 @@ onMounted(() => {
         class="flex items-center justify-between hover:bg-gray-800 hover:text-gray-100 p-3 rounded-lg cursor-pointer"
         :class="useSidebarStore().isOpenSidebar && router?.currentRoute?.value?.path === '/operations' ? 'justify-between bg-gray-800 text-gray-100' : !useSidebarStore().isOpenSidebar && router?.currentRoute?.value?.path === '/operations' ? 'bg-gray-800 text-gray-100 justify-center' : ''">
         <div class="flex items-center space-x-2">
-          <UsersIcon class="w-7 h-7" />
+          <MedicalInformationOutlineIcon class="w-7 h-7" />
           <p v-if="isOpen">{{ $t('operations') }}</p>
         </div>
       </router-link>
