@@ -112,10 +112,10 @@ const submitDoctorShareData = () => {
 
 <template>
   <div class="space-y-5">
-    <div>
-      <p>{{ $t('selectDoctor') }}</p>
-      <SelectOptionDoctor :options="doctors" />
-    </div>
+    ` <div>
+        <p>{{ $t('selectDoctor') }}</p>
+        <SelectOptionDoctor :options="doctors" />
+      </div>`
     <div>
       <p>{{ $t('selectServiceType') }}</p>
       <SelectOptionServiceType :options="serviceTypes" />

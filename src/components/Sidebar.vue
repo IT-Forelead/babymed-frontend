@@ -107,6 +107,14 @@ onMounted(() => {
           <p v-if="isOpen">{{ $t('patients') }}</p>
         </div>
       </router-link>
+      <router-link to="/operations" v-if="navigationGuard(['admin', 'super_manager', 'tech_admin'])"
+        class="flex items-center justify-between hover:bg-gray-800 hover:text-gray-100 p-3 rounded-lg cursor-pointer"
+        :class="useSidebarStore().isOpenSidebar && router?.currentRoute?.value?.path === '/operations' ? 'justify-between bg-gray-800 text-gray-100' : !useSidebarStore().isOpenSidebar && router?.currentRoute?.value?.path === '/operations' ? 'bg-gray-800 text-gray-100 justify-center' : ''">
+        <div class="flex items-center space-x-2">
+          <UsersIcon class="w-7 h-7" />
+          <p v-if="isOpen">{{ $t('operations') }}</p>
+        </div>
+      </router-link>
       <div @click="useSidebarStore().toggleSidebarSubMenu()" v-if="navigationGuard(['super_manager', 'tech_admin'])"
         class="flex items-center justify-between hover:bg-gray-800 hover:text-gray-100 p-3 rounded-lg cursor-pointer"
         :class="useSidebarStore().isOpenSidebar && router?.currentRoute?.value?.path === '/services' || router?.currentRoute?.value?.path === '/service-types' ? 'justify-between bg-gray-800 text-gray-100' : !useSidebarStore().isOpenSidebar && router?.currentRoute?.value?.path === '/services' ? 'bg-gray-800 text-gray-100 justify-center' : ''">
@@ -144,7 +152,8 @@ onMounted(() => {
           <p v-if="isOpen">{{ $t('users') }}</p>
         </div>
       </router-link>
-      <div @click="useSidebarStore().toggleExpenseMenu()" v-if="navigationGuard(['cashier', 'super_manager', 'tech_admin'])"
+      <div @click="useSidebarStore().toggleExpenseMenu()"
+        v-if="navigationGuard(['cashier', 'super_manager', 'tech_admin'])"
         class="flex items-center justify-between hover:bg-gray-800 hover:text-gray-100 p-3 rounded-lg cursor-pointer"
         :class="useSidebarStore().isOpenSidebar && router?.currentRoute?.value?.path === '/operation-expenses' || router?.currentRoute?.value?.path === '/checkup-expenses' ? 'justify-between bg-gray-800 text-gray-100' : !useSidebarStore().isOpenSidebar && router?.currentRoute?.value?.path === '/expenses' ? 'bg-gray-800 text-gray-100 justify-center' : ''">
         <div class="flex items-center space-x-2">
@@ -179,7 +188,8 @@ onMounted(() => {
         <img src="/logo.png" alt="hero" class="w-full" />
       </div>
       <div v-if="isOpen">
-        <p class="text-lg font-bold text-gray-400 text-center">{{ useAuthStore().user?.firstname + ' ' +
+        <p class="text-lg font-bold text-gray-400 text-center">{{
+          useAuthStore().user?.firstname + ' ' +
             useAuthStore().user?.lastname
         }}</p>
         <p class="text-gray-600 text-center">{{ useAuthStore().user?.phone }}</p>
