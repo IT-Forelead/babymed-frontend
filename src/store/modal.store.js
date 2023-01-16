@@ -10,6 +10,7 @@ export const useModalStore = defineStore('modal', {
     isOpenFilterBy: false,
     isOpenOperationExpenseInfo: false,
     isOpenPrintModal: false,
+    isOpenPrintPdfModal: false,
   }),
   actions: {
     openModal() {
@@ -55,6 +56,12 @@ export const useModalStore = defineStore('modal', {
     },
     closePrintModal() {
       this.isOpenPrintModal = false
+    },
+    openPrintPdfModal() {
+      this.isOpenPrintPdfModal = true
+    },
+    closePrintPdfModal() {
+      this.isOpenPrintPdfModal = false
     },
     toggleFilterBy() {
       this.isOpenFilterBy = !this.isOpenFilterBy
