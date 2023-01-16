@@ -18,6 +18,7 @@ export const useExpenseStore = defineStore('expense', {
     },
     clearStore() {
       this.expenses = []
+      this.operations = []
       this.operationServices = []
     },
   },

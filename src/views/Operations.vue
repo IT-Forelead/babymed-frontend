@@ -1,10 +1,9 @@
 <script setup>
 import authHeader from '../mixins/auth-header'
 import { computed, ref, reactive } from '@vue/reactivity'
-import {useExpenseStore} from '../store/expense.store'
+import { useExpenseStore } from '../store/expense.store'
 import { useCheckupExpenseStore } from '../store/checkupExpense.store'
 import { useServicesStore } from '../store/services.store'
-import { useUserStore } from '../store/user.store'
 import { useModalStore } from '../store/modal.store'
 import { onMounted, onUnmounted } from 'vue'
 import ArrowDownIcon from '../assets/icons/ArrowDownIcon.vue'
@@ -12,22 +11,21 @@ import FilterIcon from '../assets/icons/FilterIcon.vue'
 import { onClickOutside } from '@vueuse/core'
 import MoneyBagIconm from '../assets/icons/MoneyBagIcon.vue'
 import MoneyExchangeIcon from '../assets/icons/MoneyExchangeIcon.vue'
-import CheckupExpenseReportItem from '../components/CheckupExpenseReportItem.vue'
-import DoctorShareItem from '../components/DoctorShareItem.vue'
+import OperationServiceItem from '../components/Service/OperationServiceItem.vue'
+import OperationReportItem from '../components/OperationReportItem.vue'
 import { useTabStore } from '../store/tab.store'
 import CheckupExpenseService from '../services/checkupExpenses.service'
-import ServicesService from '../services/services.service'
-import UserService from '../services/user.service'
-import AddDoctorShare from '../components/Registration/AddDoctorShare.vue'
+import ExpenseService from '../services/operationExpenses.service'
 import { cleanObjectEmptyFields } from '../mixins/utils'
+import AddOperationService from '../components/Registration/AddOperationService.vue'
 
 const API_URL = import.meta.env.VITE_BASE_URL
 
 const isLoading = ref(false)
 
 const total = ref(1)
-const checkupExpenses = computed(() => {
-  return useCheckupExpenseStore().checkupExpenses
+const operations = computed(() => {
+  return useExpenseStore().operations
 })
 const target = ref('.expenses-wrapper')
 const distance = ref(200)
@@ -60,7 +58,6 @@ const loadExpenses = async ($state) => {
       const json = await response.json()
       total.value = json?.total
       setTimeout(() => {
-        // patients.value.push(...json?.data)
         useExpenseStore().setOperations(json?.data)
         $state.loaded()
       }, 500)
@@ -91,9 +88,9 @@ const filterData = reactive({
 
 const submitFilterData = () => {
   isLoading.value = true
-  CheckupExpenseService.getCheckupExpenses(cleanObjectEmptyFields(filterData)).then((res) => {
-    useCheckupExpenseStore().clearStore()
-    useCheckupExpenseStore().setCheckupExpenses(res?.data)
+  ExpenseService.getOperations(cleanObjectEmptyFields(filterData)).then((res) => {
+    useExpenseStore().clearStore()
+    useExpenseStore().setOperations(res?.data)
     isLoading.value = false
     if (useModalStore().isOpenFilterBy) {
       useModalStore().toggleFilterBy()
@@ -103,36 +100,27 @@ const submitFilterData = () => {
 
 const openFirstTab = () => {
   useTabStore().openFirstTab()
-  CheckupExpenseService.getCheckupExpenses({}).then((res) => {
-    useCheckupExpenseStore().clearStore()
-    useCheckupExpenseStore().setCheckupExpenses(res?.data)
+  ExpenseService.getOperations({}).then((res) => {
+    useExpenseStore().clearStore()
+    useExpenseStore().setOperations(res?.data)
   })
 }
 
 /* second tab */
 const openSecondTab = () => {
   useTabStore().openSecondTab()
-  useCheckupExpenseStore().clearStore(),
-    CheckupExpenseService.getAllDocotrShares().then((res) => {
-      useCheckupExpenseStore().setDoctorShares(res)
-    })
-  UserService.getAllDoctors({
-    role: 'doctor',
-  }).then((res) => {
-    useUserStore().setDoctors(res?.data)
+  useExpenseStore().clearStore(),
+  ExpenseService.getAllOperationServices().then((res) => {
+    useExpenseStore().setOperationServices(res)
   })
 }
 
-const doctorShares = computed(() => {
-  return useCheckupExpenseStore().doctorShares
+const operationServices = computed(() => {
+  return useExpenseStore().operationServices
 })
 
 const services = computed(() => {
   return useServicesStore().services
-})
-
-const doctors = computed(() => {
-  return useUserStore().doctors
 })
 
 onUnmounted(() => {
@@ -213,19 +201,17 @@ onUnmounted(() => {
         <thead class="sticky z-10 top-0 bg-white shadow">
           <tr class="text-gray-600 capitalize text-lg leading-normal">
             <th class="py-3 px-6 text-center">{{ $t('n') }}</th>
-            <th class="py-3 px-6 text-left">{{ $t('doctor') }}</th>
             <th class="py-3 px-6 text-left">{{ $t('patient') }}</th>
-            <th class="py-3 px-6 text-center">{{ $t('service') }}</th>
-            <th class="py-3 px-6 text-center">{{ $t('doctorShare') }}</th>
+            <th class="py-3 px-6 text-center">{{ $t('phone') }}</th>
             <th class="py-3 px-6 text-center">{{ $t('createdAt') }}</th>
+            <th class="py-3 px-6 text-center">{{ $t('service') }}</th>
           </tr>
         </thead>
         <tbody class="text-gray-600 text-sm font-light">
-          <CheckupExpenseReportItem :checkupExpenses="checkupExpenses" :distance="distance" :target="target"
-            @infinite="loadExpenses" />
+          <OperationReportItem :operations="operations" :distance="distance" :target="target" @infinite="loadExpenses" />
         </tbody>
       </table>
-      <div v-if="checkupExpenses?.length === 0" class="w-full text-center text-red-500">{{ $t('empty') }}</div>
+      <div v-if="operations?.length === 0" class="w-full text-center text-red-500">{{ $t('empty') }}</div>
     </div>
     <div v-if="useTabStore().isOpenSecondTab" class="grid grid- grid-cols-3 mt-5 gap-8">
       <div class="col-span-2">
@@ -236,21 +222,20 @@ onUnmounted(() => {
           <thead class="sticky z-10 top-0 bg-white shadow">
             <tr class="text-gray-600 capitalize text-lg leading-normal">
               <th class="py-3 px-6 text-center">{{ $t('n') }}</th>
-              <th class="py-3 px-6 text-left">{{ $t('doctor') }}</th>
+              <th class="py-3 px-6 text-left">{{ $t('serviceType') }}</th>
               <th class="py-3 px-6 text-center">{{ $t('service') }}</th>
-              <th class="py-3 px-6 text-center">{{ $t('doctorShare') }}</th>
+              <th class="py-3 px-6 text-center">{{ $t('servicePrice') }}</th>
               <th class="py-3 px-6 text-center">{{ $t('actions') }}</th>
             </tr>
           </thead>
           <tbody class="text-gray-600 text-sm font-light">
-            <DoctorShareItem :doctorShares="doctorShares" :distance="distance" :target="target"
-              @infinite="loadExpenses" />
+            <OperationServiceItem :operationServices="operationServices"/>
           </tbody>
         </table>
       </div>
       <div class="bg-white rounded-lg p-3">
         <p class="text-3xl font-bold mb-3">{{ $t('createDoctorShare') }}</p>
-        <AddDoctorShare />
+        <AddOperationService />
       </div>
     </div>
   </div>
