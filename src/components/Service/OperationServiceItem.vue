@@ -3,10 +3,10 @@ import 'v3-infinite-loading/lib/style.css'
 import { ref, toRefs, watch } from 'vue'
 import TrashIcon from '../../assets/icons/TrashIcon.vue'
 import useMoneyFormatter from '../../mixins/currencyFormatter.js'
-import ServicesService from '../../services/services.service'
+import ExpenseService from '../../services/operationExpenses.service'
 import notify from 'izitoast'
 import 'izitoast/dist/css/iziToast.min.css'
-import { useServicesStore } from '../../store/services.store'
+import { useExpenseStore } from '../../store/expense.store'
 import { useModalStore } from '../../store/modal.store'
 import { useI18n } from 'vue-i18n'
 
@@ -19,22 +19,23 @@ const props = defineProps({
 const { operationServices } = toRefs(props)
 const selectedServiceId = ref('')
 
-const deleteService = (s_id) => {
+const deleteOperationService = (s_id) => {
   selectedServiceId.value = s_id
   // useModalStore().openDeleteAlert()
-  ServicesService.deleteService(selectedServiceId.value)
+  ExpenseService.deleteOperationService(selectedServiceId.value)
     .then(() => {
       notify.success({
-        message: t('deletedService'),
+        message: t('deletedOperationService'),
       })
-      ServicesService.getAllServices().then((res) => {
-        useServicesStore().setServices(res)
+      ExpenseService.getAllOperationServices().then((res) => {
+        useExpenseStore().clearStore()
+        useExpenseStore().setOperationServices(res)
       })
       selectedServiceId.value = ''
     })
     .catch(() => {
       notify.warning({
-        message: t('errorDeletingService'),
+        message: t('errorDeletingOperationService'),
       })
     })
 }
@@ -71,7 +72,7 @@ const deleteService = (s_id) => {
     <td v-motion-pop class="py-3 px-6 text-left">{{ useMoneyFormatter(service?.service?.price) }}</td>
     <td v-motion-pop class="py-3 px-6 text-center">
       <div class="flex item-center justify-center">
-        <div class="w-4 mr-3 transform text-red-500 hover:text-red-600 hover:scale-110 cursor-pointer">
+        <div @click="deleteOperationService(service?.operationService?.id)" class="w-4 mr-3 transform text-red-500 hover:text-red-600 hover:scale-110 cursor-pointer">
           <TrashIcon class="w-6 h-6" />
         </div>
       </div>

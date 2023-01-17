@@ -21,6 +21,9 @@ class ExpenseService {
   async getExpenseItemsByExpenseId(ex_id) {
     return AxiosService.get('/operation-expense/items/' + ex_id, { headers: authHeader() })
   }
+  async deleteOperationService(id) {
+    return AxiosService.get(`/operation-expense/delete/operation-service/${id}`, { headers: authHeader() })
+  }
 }
 
 export default new ExpenseService()
