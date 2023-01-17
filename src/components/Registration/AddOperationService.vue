@@ -59,7 +59,7 @@ const submitOperationServiceData = () => {
     ExpenseService.createOperationService(selectedService.value?.id)
     .then(() => {
       notify.success({
-        message: t('doctorShareCreated'),
+        message: t('operationServiceCreated'),
       })
       ExpenseService.getAllOperationServices().then((res) => {
         useExpenseStore().clearStore()
@@ -70,7 +70,7 @@ const submitOperationServiceData = () => {
     })
     .catch((err) => {
       notify.error({
-        message: t('errorCreatingDoctorShare'),
+        message: t('errorCreatingOperationService'),
       })
     })
   }
@@ -95,10 +95,10 @@ const submitOperationServiceData = () => {
           fill="currentFill"
         />
       </svg>
-      <span>{{ $t('creatingDoctorShare') }}</span>
+      <span>{{ $t('creatingOperationService') }}</span>
     </div>
     <div v-else @click="submitOperationServiceData()" class="w-full bg-gray-900 hover:bg-gray-800 cursor-pointer select-none py-3 text-white rounded-lg flex items-center justify-center">
-      <span>{{ $t('createDoctorShare') }}</span>
+      <span>{{ $t('createOperationService') }}</span>
     </div>
   </div>
 </template>

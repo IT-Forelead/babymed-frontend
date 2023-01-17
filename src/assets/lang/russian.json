@@ -185,5 +185,15 @@
   "preparingCheck":"Подготовка проверки",
   "enterPatientName":"Введите имя пациента",
   "visitingTime":"Время посещения",
-  "days":"суток"
+  "days":"суток",
+  "from":"от",
+  "to":"к",
+  "operationManagment":"Управление операциями",
+  "operationServicesReport":"Отчет об операционных службах",
+  "createOperationService":"Создать операционный сервис",
+  "creatingOperationService":"Создание службы операции",
+  "operationServiceCreated":"Операционный сервис успешно создан!",
+  "errorCreatingOperationService":"Ошибка при создании службы операции!",
+  "deletedOperationService":"Операционная служба успешно удалена!",
+  "errorDeletingOperationService":"Ошибка при удалении службы операции!"
 }

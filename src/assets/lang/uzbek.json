@@ -186,5 +186,15 @@
   "preparingCheck":"Chek tayyorlanmoqda",
   "enterPatientName":"Bemor ismini kiriting",
   "visitingTime":"Tashrif vaqti",
-  "days":"kun"
+  "days":"kun",
+  "from":"Dan",
+  "to":"Gacha",
+  "operationManagment":"Operatsiya boshqaruvi",
+  "operationServicesReport":"Operatsiya xizmatlari hisoboti",
+  "createOperationService":"Operatsiya xizmatini yaratish",
+  "creatingOperationService":"Operatsiya xizmati yaratilmoqda",
+  "operationServiceCreated":"Operatsiya xizmati muvaffaqiyatli yaratildi!",
+  "errorCreatingOperationService":"Operatsiya xizmatini yaratishda xatolik yuz berdi!",
+  "deletedOperationService":"Operatsiya xizmati muvaffaqiyatli o'chirildi!",
+  "errorDeletingOperationService":"Operatsiya xizmatini o'chirishda xatolik yuz berdi!"
 }

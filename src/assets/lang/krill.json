@@ -186,5 +186,15 @@
   "preparingCheck":"Чек тайёрланмоқда",
   "enterPatientName":"Бемор исмини киритинг",
   "visitingTime":"Ташриф вақти",
-  "days":"кун"
+  "days":"кун",
+  "from":"Дан",
+  "to":"Гача",
+  "operationManagment":"Операция бошқаруви",
+  "operationServicesReport":"Операция хизматлари ҳисоботи",
+  "createOperationService":"Операция хизматини яратиш",
+  "creatingOperationService":"Операция хизмати яратилмоқда",
+  "operationServiceCreated":"Операция хизмати муваффақиятли яратилди!",
+  "errorCreatingOperationService":"Операция хизматини яратишда хатолик юз берди!",
+  "deletedOperationService":"Операция хизмати муваффақиятли ўчирилди!",
+  "errorDeletingOperationService":"Операция хизматини ўчиришда хатолик юз берди!"
 }

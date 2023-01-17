@@ -7,8 +7,8 @@ import { onMounted, onUnmounted } from 'vue'
 import ArrowDownIcon from '../assets/icons/ArrowDownIcon.vue'
 import FilterIcon from '../assets/icons/FilterIcon.vue'
 import { onClickOutside } from '@vueuse/core'
-import MoneyBagIconm from '../assets/icons/MoneyBagIcon.vue'
-import MoneyExchangeIcon from '../assets/icons/MoneyExchangeIcon.vue'
+import MedicalInformationOutlineIcon from '../assets/icons/MedicalInformationOutlineIcon.vue'
+import ServicesIcon from '../assets/icons/ServicesIcon.vue'
 import OperationServiceItem from '../components/Service/OperationServiceItem.vue'
 import OperationReportItem from '../components/OperationReportItem.vue'
 import { useTabStore } from '../store/tab.store'
@@ -132,20 +132,19 @@ onUnmounted(() => {
 </script>
 
 <template>
-  <p class="text-3xl mb-5 font-bold">{{ $t('operations') }}</p>
   <div class="bg-white rounded-lg w-full p-5">
     <div class="flex items-center justify-between">
       <div class="flex items-center space-x-3">
         <div @click="openFirstTab()"
           :class="useTabStore().isOpenFirstTab ? 'bg-lime-400' : 'bg-gray-200 hover:bg-gray-400 cursor-pointer transition-all duration-300 hover:scale-105'"
           class="rounded-lg p-1.5 px-3 flex items-center">
-          <MoneyBagIconm class="w-6 h-6 mr-1" />{{ $t('operations') }}
+          <MedicalInformationOutlineIcon class="w-6 h-6 mr-1" />{{ $t('operations') }}
         </div>
         <div>|</div>
         <div @click="openSecondTab()"
           :class="useTabStore().isOpenSecondTab ? 'bg-lime-400' : 'bg-gray-200 hover:bg-gray-400 cursor-pointer transition-all duration-300 hover:scale-105'"
           class="rounded-lg p-1.5 px-3 flex items-center">
-          <MoneyExchangeIcon class="w-5 h-5 mr-1" /> {{ $t('operationServices') }} 
+          <ServicesIcon class="w-5 h-5 mr-1" /> {{ $t('operationServices') }} 
         </div>
       </div>
       <div class="flex items-center space-x-3">
@@ -167,17 +166,16 @@ onUnmounted(() => {
             </div>
             <div class="flex items-center space-x-1">
               <label for="">
-                From
+                {{ $t('from') }}
                 <input v-model="filterData.startDate" type="datetime-local" class="border-none text-gray-500 bg-gray-100 rounded-lg w-full" />
               </label>
               <ArrowDownIcon class="-rotate-90 text-gray-600 mt-6" />
               <label for="">
-                To
+                {{ $t('to') }}
                 <input v-model="filterData.endDate" type="datetime-local" class="border-none text-gray-500 bg-gray-100 rounded-lg w-full" />
               </label>
             </div>
-            <div v-if="isLoading"
-              class="w-full bg-gray-600 py-3 select-none text-white rounded-lg flex items-center justify-center">
+            <div v-if="isLoading" class="w-full bg-gray-600 py-3 select-none text-white rounded-lg flex items-center justify-center">
               <svg class="mr-2 w-5 h-5 text-gray-200 animate-spin dark:text-gray-600 fill-gray-600 dark:fill-gray-300"
                 viewBox="0 0 100 101" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path
@@ -217,7 +215,7 @@ onUnmounted(() => {
     <div v-if="useTabStore().isOpenSecondTab" class="grid grid- grid-cols-3 mt-5 gap-8">
       <div class="col-span-2">
         <div class="flex items-center p-3">
-          <p class="text-3xl font-bold">{{ $t('servicesTypeReport') }}</p>
+          <p class="text-3xl font-bold">{{ $t('operationServicesReport') }}</p>
         </div>
         <table class="min-w-max w-full table-auto">
           <thead class="sticky z-10 top-0 bg-white shadow">
@@ -235,7 +233,7 @@ onUnmounted(() => {
         </table>
       </div>
       <div class="bg-white rounded-lg p-3">
-        <p class="text-3xl font-bold mb-3">{{ $t('createDoctorShare') }}</p>
+        <p class="text-3xl font-bold mb-3">{{ $t('createOperationService') }}</p>
         <AddOperationService />
       </div>
     </div>

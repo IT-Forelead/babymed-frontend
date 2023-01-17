@@ -186,5 +186,15 @@
   "preparingCheck":"Preparing check",
   "enterPatientName":"Enter patient name",
   "visitingTime":"Visiting time",
-  "days":"days"
+  "days":"days",
+  "from":"From",
+  "to":"To",
+  "operationManagment":"Operation Managment",
+  "operationServicesReport":"Operation services report",
+  "createOperationService":"Create operation service",
+  "creatingOperationService":"Creating operation service",
+  "operationServiceCreated":"Operation service successfully created!",
+  "errorCreatingOperationService":"Error while creating operation service!",
+  "deletedOperationService":"Operation service successfully deleted!",
+  "errorDeletingOperationService":"Error while deleting operation service!"
 }
