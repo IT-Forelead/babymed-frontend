@@ -175,6 +175,8 @@
   "doctorShareCreated": "Шифокор улуши муваффақиятли яратилди!",
   "deletedDoctorShare": "Шифокор улуши муваффақиятли ўчирилди!",
   "errorDeletingDoctorShare": "Шифокор улушини ўчиришда хатолик юз берди!",
+  "operations": "Операциялар",
+  "operationServices": "Операция бўлимлари",
   "checkupExpensesReport":"Текшириш харажатлари ҳисоботи",
   "operationExpensesReport":"Операция харажатлари ҳисоботи",
   "cashier":"Кассир",
@@ -183,5 +185,16 @@
   "print":"Чоп етиш",
   "preparingCheck":"Чек тайёрланмоқда",
   "enterPatientName":"Бемор исмини киритинг",
-  "visitingTime":"Ташриф вақти"
+  "visitingTime":"Ташриф вақти",
+  "days":"кун",
+  "from":"Дан",
+  "to":"Гача",
+  "operationManagment":"Операция бошқаруви",
+  "operationServicesReport":"Операция хизматлари ҳисоботи",
+  "createOperationService":"Операция хизматини яратиш",
+  "creatingOperationService":"Операция хизмати яратилмоқда",
+  "operationServiceCreated":"Операция хизмати муваффақиятли яратилди!",
+  "errorCreatingOperationService":"Операция хизматини яратишда хатолик юз берди!",
+  "deletedOperationService":"Операция хизмати муваффақиятли ўчирилди!",
+  "errorDeletingOperationService":"Операция хизматини ўчиришда хатолик юз берди!"
 }

@@ -52,7 +52,7 @@ const report = computed(() => {
 })
 
 const totalPrice = () => {
-  return report.value?.services.map((s) => s?.price).reduce((s, a) => s + a, 0)
+  return report.value?.services.map((s) => s?.serviceWithTypeName?.price * s?.count).reduce((s, a) => s + a, 0)
 }
 </script>
 <template>
@@ -85,9 +85,10 @@ const totalPrice = () => {
               <tr class="text-sm" v-for="(service, idx) in report.services" :key="idx">
                 <td>{{ idx + 1 }}.</td>
                 <td class="capitalize">
-                  {{ service?.serviceTypeName }} - {{ service?.name }}
+                  {{ service?.serviceWithTypeName?.serviceTypeName }} - {{ service?.serviceWithTypeName?.name }}
+                  <span v-if="service?.count > 1"> - {{ service?.count + " " + $t('days') }}</span>
                   <br>
-                  {{ useMoneyFormatter(service?.price) }}
+                  {{ useMoneyFormatter(service?.serviceWithTypeName?.price) }}
                 </td>
               </tr>
             </table>

@@ -50,7 +50,7 @@ const submitPaymentStatus = () => {
 }
 
 const totalPrice = () => {
-  return patient.value?.services.map((s) => s?.price).reduce((s, a) => s + a, 0)
+  return patient.value?.services.map((s) => s?.serviceWithTypeName?.price * s?.count).reduce((s, a) => s + a, 0)
 }
 </script>
 
@@ -81,9 +81,12 @@ const totalPrice = () => {
               </tr>
               <tr class="text-center divide-y py-5" v-for="(service, idx) in patient?.services" :key="idx">
                 <td>{{ idx + 1 }}</td>
-                <td>{{ service?.serviceTypeName }}</td>
-                <td>{{ service?.name }}</td>
-                <td>{{ useMoneyFormatter(service?.price) }}</td>
+                <td>{{ service?.serviceWithTypeName?.serviceTypeName }}</td>
+                <td>
+                  {{ service?.serviceWithTypeName?.name }}
+                  <span v-if="service?.count > 1"> - {{ service?.count + " " + $t('days') }}</span>
+                </td>
+                <td>{{ useMoneyFormatter(service?.serviceWithTypeName?.price * service?.count) }}</td>
               </tr>
             </table>
             <div class="flex justify-between items-center">
