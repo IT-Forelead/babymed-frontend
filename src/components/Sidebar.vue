@@ -18,6 +18,7 @@ import { useI18n } from 'vue-i18n'
 import ServicesIcon from '../assets/icons/ServicesIcon.vue'
 import ChevronRightIcon from '../assets/icons/ChevronRightIcon.vue'
 import MedicalInformationOutlineIcon from '../assets/icons/MedicalInformationOutlineIcon.vue'
+import UserIcon from '../assets/icons/UserIcon.vue'
 
 const { t } = useI18n()
 
@@ -185,8 +186,8 @@ onMounted(() => {
       </div>
     </div>
     <div class="absolute bottom-10 w-full flex justify-center items-center flex-col space-y-2">
-      <div v-if="isOpen" class="w-24 h-24 flex items-center justify-center p-2 rounded-full">
-        <img src="/images/logo.png" alt="hero" class="w-full" />
+      <div v-if="isOpen" class="w-18 h-18 flex items-center justify-center p-2 rounded-full bg-gray-700">
+        <UserIcon class="w-10 h-10 text-gray-300" />
       </div>
       <div v-if="isOpen">
         <p class="text-lg font-bold text-gray-400 text-center">{{
