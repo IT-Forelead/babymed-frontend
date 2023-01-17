@@ -2,8 +2,6 @@
 import authHeader from '../mixins/auth-header'
 import { computed, ref, reactive } from '@vue/reactivity'
 import { useExpenseStore } from '../store/expense.store'
-import { useCheckupExpenseStore } from '../store/checkupExpense.store'
-import { useServicesStore } from '../store/services.store'
 import { useModalStore } from '../store/modal.store'
 import { onMounted, onUnmounted } from 'vue'
 import ArrowDownIcon from '../assets/icons/ArrowDownIcon.vue'
@@ -14,7 +12,6 @@ import MoneyExchangeIcon from '../assets/icons/MoneyExchangeIcon.vue'
 import OperationServiceItem from '../components/Service/OperationServiceItem.vue'
 import OperationReportItem from '../components/OperationReportItem.vue'
 import { useTabStore } from '../store/tab.store'
-import CheckupExpenseService from '../services/checkupExpenses.service'
 import ExpenseService from '../services/operationExpenses.service'
 import { cleanObjectEmptyFields } from '../mixins/utils'
 import AddOperationService from '../components/Registration/AddOperationService.vue'
@@ -100,16 +97,19 @@ const submitFilterData = () => {
 
 const openFirstTab = () => {
   useTabStore().openFirstTab()
+  useExpenseStore().clearStore()
   ExpenseService.getOperations({}).then((res) => {
-    useExpenseStore().clearStore()
     useExpenseStore().setOperations(res?.data)
+  })
+  ExpenseService.getAllOperationServices().then((res) => {
+    useExpenseStore().setOperationServices(res)
   })
 }
 
 /* second tab */
 const openSecondTab = () => {
   useTabStore().openSecondTab()
-  useExpenseStore().clearStore(),
+  useExpenseStore().clearStore()
   ExpenseService.getAllOperationServices().then((res) => {
     useExpenseStore().setOperationServices(res)
   })
@@ -119,8 +119,10 @@ const operationServices = computed(() => {
   return useExpenseStore().operationServices
 })
 
-const services = computed(() => {
-  return useServicesStore().services
+onMounted(() => {
+  ExpenseService.getAllOperationServices().then((res) => {
+    useExpenseStore().setOperationServices(res)
+  })
 })
 
 onUnmounted(() => {
@@ -156,23 +158,22 @@ onUnmounted(() => {
             class="absolute bg-white shadow rounded-xl p-3 z-20 top-12 right-0 space-y-3">
             <div>
               <p>{{ $t('service') }}</p>
-              <select class="border-none text-gray-500 bg-gray-100 rounded-lg w-full">
+              <select v-model="filterData.serviceId" class="border-none text-gray-500 bg-gray-100 rounded-lg w-full">
                 <option value="" selected>{{ $t('selectService') }}</option>
-                <option>1-servis</option>
-                <option>2-servis</option>
+                <option v-for="(service, idx) in operationServices" :key="idx" :value="service?.operationService?.serviceId">
+                  {{ service?.service?.name }}
+                </option>
               </select>
             </div>
             <div class="flex items-center space-x-1">
               <label for="">
                 From
-                <input v-model="filterData.startDate" type="datetime-local"
-                  class="border-none text-gray-500 bg-gray-100 rounded-lg w-full" />
+                <input v-model="filterData.startDate" type="datetime-local" class="border-none text-gray-500 bg-gray-100 rounded-lg w-full" />
               </label>
               <ArrowDownIcon class="-rotate-90 text-gray-600 mt-6" />
               <label for="">
                 To
-                <input v-model="filterData.endDate" type="datetime-local"
-                  class="border-none text-gray-500 bg-gray-100 rounded-lg w-full" />
+                <input v-model="filterData.endDate" type="datetime-local" class="border-none text-gray-500 bg-gray-100 rounded-lg w-full" />
               </label>
             </div>
             <div v-if="isLoading"

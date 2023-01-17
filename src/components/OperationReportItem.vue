@@ -31,7 +31,7 @@ const { operations } = toRefs(props)
     </td>
     <td v-motion-pop class="py-3 px-6 text-center">{{ moment(operation?.operation?.createdAt).format('DD/MM/YYYY h:mm') }}</td>
     <td v-motion-pop class="py-3 px-6 text-center capitalize">
-      <span>{{ operation?.service?.serviceTypeName + " " + operation?.service?.name + " "}}</span>
+      <span>{{ operation?.service?.serviceTypeName + " - " + operation?.service?.name + " "}}</span>
       <span class="text-sm font-bold italic">- {{ useMoneyFormatter(operation?.service?.price) }}</span>
     </td>
   </tr>
