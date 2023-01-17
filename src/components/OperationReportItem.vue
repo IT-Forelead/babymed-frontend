@@ -14,7 +14,7 @@ const { operations } = toRefs(props)
 </script>
 
 <template>
-  <tr class="border-y border-gray-200 hover:bg-gray-100 text-lg font-medium" v-for="(expense, idx) in operations" :key="idx">
+  <tr class="border-y border-gray-200 hover:bg-gray-100 text-lg font-medium" v-for="(operation, idx) in operations" :key="idx">
     <td v-motion-pop class="text-center">{{ idx + 1 }}</td>
     <td v-motion-pop class="py-3 px-6 text-left">
       <div class="flex items-center">
@@ -22,17 +22,17 @@ const { operations } = toRefs(props)
           <UserIcon class="w-10 h-10 rounded-full border p-2" />
         </div>
         <div class="text-base leading-5">
-          <span class="font-medium capitalize">{{ expense?.patient?.firstname + " " + expense?.patient?.lastname }}</span>
+          <span class="font-medium capitalize">{{ operation?.patient?.firstname + " " + operation?.patient?.lastname }}</span>
         </div>
       </div>
     </td>
     <td v-motion-pop class="py-3 px-6 text-left">
-      <div class="text-base leading-5font-medium">{{ expense?.patient?.phone }}</div>
+      <div class="text-base leading-5font-medium">{{ operation?.patient?.phone }}</div>
     </td>
-    <td v-motion-pop class="py-3 px-6 text-center">{{ moment(expense?.checkupExpense?.createdAt).format('DD/MM/YYYY h:mm') }}</td>
+    <td v-motion-pop class="py-3 px-6 text-center">{{ moment(operation?.operation?.createdAt).format('DD/MM/YYYY h:mm') }}</td>
     <td v-motion-pop class="py-3 px-6 text-center capitalize">
-      <span>{{ expense?.service?.serviceTypeName + " " + expense?.service?.name + " "}}</span>
-      <span class="text-sm font-bold italic">- {{ useMoneyFormatter(expense?.service?.price) }}</span>
+      <span>{{ operation?.service?.serviceTypeName + " " + operation?.service?.name + " "}}</span>
+      <span class="text-sm font-bold italic">- {{ useMoneyFormatter(operation?.service?.price) }}</span>
     </td>
   </tr>
   <tr class="text-gray-700 text-md dark:text-gray-300 dark:bg-gray-800">
