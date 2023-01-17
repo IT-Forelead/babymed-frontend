@@ -4,10 +4,23 @@ import TimesIcon from '../assets/icons/TimesIcon.vue'
 import SelectOptionPdfTemplate from './SelectOptionPdfTemplate.vue'
 import { useI18n } from 'vue-i18n'
 import { ref } from 'vue'
+import { useDropStore } from '../store/drop.store'
+import print from 'print-js'
 
 const { t } = useI18n()
 
 const isLoading = ref(false)
+
+const printPdf = () => {
+  print({
+    printable: 'pdf',
+    type: 'html',
+    showModal: true,
+    font_size: '15px',
+    modalMessage: t('preparingCheck'),
+    // style: ``,
+  })
+}
 </script>
 
 <template>
@@ -26,6 +39,14 @@ const isLoading = ref(false)
           <div>
             <p>Select template</p>
             <SelectOptionPdfTemplate />
+            <div id="pdf">
+              <div v-if="useDropStore().selectPdfTypeOption?.id === 'uzi'">
+                
+              </div>
+              <div v-else-if="useDropStore().selectPdfTypeOption?.id === 'doppler'">Dopler</div>
+              <div v-else-if="useDropStore().selectPdfTypeOption?.id === 'pediator'">pediator</div>
+              <!-- {{ useDropStore().selectPdfTypeOption }} -->
+            </div>
           </div>
           <div v-if="isLoading" class="w-full bg-gray-600 py-3 select-none text-white rounded-lg flex items-center justify-center">
             <svg class="mr-2 w-5 h-5 text-gray-200 animate-spin dark:text-gray-600 fill-gray-600 dark:fill-gray-300" viewBox="0 0 100 101" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -37,7 +58,7 @@ const isLoading = ref(false)
             </svg>
             <span>Printing</span>
           </div>
-          <div v-else @click="submitVisitData()" class="w-full bg-gray-900 hover:bg-gray-800 cursor-pointer select-none py-3 text-white rounded-lg flex items-center justify-center">
+          <div v-else @click="printPdf()" class="w-full bg-gray-900 hover:bg-gray-800 cursor-pointer select-none py-3 text-white rounded-lg flex items-center justify-center">
             <span>Print</span>
           </div>
         </div>
@@ -45,3 +66,13 @@ const isLoading = ref(false)
     </div>
   </div>
 </template>
+<style scoped>
+/* #pdf {
+  display: none;
+}
+@media print {
+  #pdf {
+    display: block;
+  }
+} */
+</style>

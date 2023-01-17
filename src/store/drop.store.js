@@ -6,6 +6,7 @@ export const useDropStore = defineStore('drop', {
     selectDoctorOption: '',
     selectServiceTypeOption: '',
     selectServiceOption: '',
+    selectPdfTypeOption: '',
     selectedExpense: {},
     selectedExpenseItems: [],
     isOpenPatientDropDown: false,
@@ -36,6 +37,9 @@ export const useDropStore = defineStore('drop', {
     },
     setSelectServiceOption(data) {
       this.selectServiceOption = data
+    },
+    setSelectPdfTypeOption(data) {
+      this.selectPdfTypeOption = data
     },
     openPatientDropDown() {
       this.isOpenPatientDropDown = true
@@ -72,6 +76,7 @@ export const useDropStore = defineStore('drop', {
       this.selectServiceTypeOption = ''
       this.selectPatientOption = ''
       this.selectServiceOption = ''
+      this.selectPdfTypeOption = ''
       this.isOpenDoctorDropDown = false
       this.isOpenPatientDropDown = false
       this.isOpenServiceDropDown = false

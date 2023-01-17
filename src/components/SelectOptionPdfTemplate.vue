@@ -10,13 +10,31 @@ import { useServicesStore } from '../store/services.store'
 const selectedOption = ref('')
 const dropdown = ref(null)
 
+const list = [
+  {
+    id: 'uzi',
+    name: 'Uzi namunasi'
+  },
+  {
+    id: 'doppler',
+    name: 'Doppler namunasi'
+  },
+  {
+    id: 'pediator',
+    name: 'Pediator namunasi'
+  },
+  {
+    id: 'ginekolog',
+    name: 'Ginekolog namunasi'
+  },
+]
+
 watch(useDropStore(), () => {
-  selectedOption.value = useDropStore().selectServiceTypeOption
+  selectedOption.value = useDropStore().selectPdfTypeOption
 })
 
 const clearSelectedOptionData = () => {
-  useDropStore().setSelectServiceTypeOption('')
-  useDropStore().setSelectServiceOption('')
+  useDropStore().setSelectPdfTypeOption('')
   useServicesStore().setServices([])
 }
 
@@ -25,7 +43,7 @@ onClickOutside(dropdown, () => {
 })
 
 const optionClicked = (data) => {
-  useDropStore().setSelectServiceTypeOption(data)
+  useDropStore().setSelectPdfTypeOption(data)
   useDropStore().closePdfTemplateDropDown()
 }
 </script>
@@ -37,17 +55,8 @@ const optionClicked = (data) => {
       <ChevronRightIcon @click="useDropStore().openPdfTemplateDropDown()" v-if="!selectedOption" class="absolute right-2.5 z-10 rotate-90 cursor-pointer text-gray-600" />
       <TimesIcon @click="clearSelectedOptionData()" v-if="selectedOption" class="absolute right-2.5 z-10 cursor-pointer bg-gray-500 hover:bg-gray-600 text-white rounded-full p-1" />
       <div v-if="useDropStore().isOpenPdfTemplateDropDown" class="absolute shadow p-2 z-20 top-12 max-h-56 overflow-auto w-full bg-gray-100 rounded-lg divide-y">
-        <div class="hover:bg-gray-200 cursor-pointer p-2 rounded-lg">
-          Uzi namunasi
-        </div>
-        <div class="hover:bg-gray-200 cursor-pointer p-2 rounded-lg">
-          Dopler namunasi
-        </div>
-        <div class="hover:bg-gray-200 cursor-pointer p-2 rounded-lg">
-          Oediator namunasi
-        </div>
-        <div class="hover:bg-gray-200 cursor-pointer p-2 rounded-lg">
-          Ginekolog namunasi
+        <div v-for="(pdf, idx) in list" :key="idx" @click="optionClicked(pdf)" class="hover:bg-gray-200 cursor-pointer p-2 rounded-lg" >
+          {{ pdf?.name }}
         </div>
       </div>
     </label>
