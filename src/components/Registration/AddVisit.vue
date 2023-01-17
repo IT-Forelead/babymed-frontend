@@ -23,7 +23,6 @@ import PlusIcon from '../../assets/icons/PlusIcon.vue'
 import ChevronRightIcon from '../../assets/icons/ChevronRightIcon.vue'
 
 const { t } = useI18n()
-const total = ref(1)
 
 const router = useRouter()
 
@@ -189,8 +188,6 @@ const submitVisitData = () => {
       </label>
       <MultiSelect v-if="useDropStore().isOpenServiceDropDown" :id="'services'" :options="services" />
     </div>
-    <input type="range" min="1" max="30" v-model="total">
-    {{ total }}
     <div class="flex justify-center">
       <div @click="addItems()"
         class="w-10 h-10 bg-lime-300 hover:bg-lime-400 cursor-pointer hover:scale-110 transition-all duration-300 flex items-center justify-center rounded-full text-3xl p-1">
