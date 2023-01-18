@@ -213,7 +213,7 @@ onUnmounted(() => {
       <div v-if="checkupExpenses?.length === 0" class="w-full text-center text-red-500">{{ $t('empty') }}</div>
     </div>
     <div v-if="useTabStore().isOpenSecondTab" class="grid grid- grid-cols-3 mt-5 gap-8">
-      <div class="col-span-2">
+      <div class="max-h-[75vh] col-span-2 overflow-auto">
         <div class="flex items-center p-3">
           <p class="text-3xl font-bold">{{ $t('servicesTypeReport') }}</p>
         </div>
