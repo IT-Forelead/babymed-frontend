@@ -132,18 +132,18 @@ onMounted(() => {
       <div :class="{ hidden: !isOpenExpense }" class="transition-all duration-300">
         <router-link to="/operation-expenses"
           class="flex items-center justify-between hover:text-gray-100 p-3 rounded-lg cursor-pointer"
-          :class="{ 'text-gray-100': useSidebarStore().isOpenExpenseMenu && router?.currentRoute?.value?.path === '/operation-expenses' }">
-          <div :class="isOpenExpense ? 'pl-6' : 'pl-1'" class="flex items-center space-x-2">
+          :class="{ 'text-gray-100': useSidebarStore().isOpenSidebar && router?.currentRoute?.value?.path === '/operation-expenses' }">
+          <div :class="isOpen ? 'pl-6' : 'pl-1'" class="flex items-center space-x-2">
             <p>-</p>
-            <p v-text="isOpenExpense ? t('operationExpensesReport') : 'OR'"></p>
+            <p v-text="isOpen ? t('operationExpensesReport') : 'OR'"></p>
           </div>
         </router-link>
         <router-link to="/checkup-expenses"
           class="flex items-center justify-between hover:text-gray-100 p-3 rounded-lg cursor-pointer"
-          :class="{ 'text-gray-100': useSidebarStore().isOpenExpenseMenu && router?.currentRoute?.value?.path === '/checkup-expenses' }">
-          <div :class="isOpenExpense ? 'pl-6' : 'pl-1'" class="flex items-center space-x-2">
+          :class="{ 'text-gray-100': useSidebarStore().isOpenSidebar && router?.currentRoute?.value?.path === '/checkup-expenses' }">
+          <div :class="isOpen ? 'pl-6' : 'pl-1'" class="flex items-center space-x-2">
             <p>-</p>
-            <p v-text="isOpenExpense ? t('checkupExpensesReport') : 'CR'"></p>
+            <p v-text="isOpen ? t('checkupExpensesReport') : 'CR'"></p>
           </div>
         </router-link>
       </div>
