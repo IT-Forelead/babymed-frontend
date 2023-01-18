@@ -48,7 +48,7 @@ const getSearchResult = (options) => {
 <template>
   <div class="select-none">
     <label ref="dropdown" class="flex items-center w-full relative">
-      <div v-if="selectedOption" class="border-none focus:ring-0 outline-0 bg-gray-100 w-full text-lg rounded-lg pl-2 py-2" v-text="selectedOption?.name"></div>
+      <div v-if="selectedOption && !useDropStore().isOpenServiceDropDown" class="border-none focus:ring-0 outline-0 bg-gray-100 w-full text-lg rounded-lg pl-2 py-2" v-text="selectedOption?.name"></div>
       <input type="text" v-model="searchService" v-if="useDropStore().isOpenServiceDropDown" v-on:keyup="getSearchResult(options)" class="relative w-full foucus:ring-0 focus:outline-none border-none rounded-r-lg bg-gray-100" :placeholder="$t('enterServiceName')" />
       <div @click="useDropStore().openServiceDropDown()" v-if="!useDropStore().isOpenServiceDropDown && !selectedOption" class="border-none bg-gray-100 py-2 w-full text-lg rounded-lg cursor-pointer text-gray-500 pl-2">{{ $t('select') }}</div>
       <ChevronRightIcon @click="useDropStore().openServiceDropDown()" v-if="!selectedOption" class="absolute right-2.5 z-10 rotate-90 cursor-pointer text-gray-600" />
