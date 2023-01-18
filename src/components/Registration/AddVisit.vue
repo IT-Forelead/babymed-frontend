@@ -196,7 +196,7 @@ const submitVisitData = () => {
             $t('select')
           }}</div>
         <ChevronRightIcon @click="useDropStore().openServiceDropDown()"
-          v-if="!useDropStore().isOpenServiceDropDown"
+          v-if="useMultiSelectStore().selectedServices.length === 0 && !useDropStore().isOpenServiceDropDown"
           class="absolute right-2.5 z-10 rotate-90 cursor-pointer text-gray-600" />
         <TimesIcon @click="clearMultiSelectData()" v-if="!(useMultiSelectStore().selectedServices.length === 0)"
           class="absolute right-2.5 z-10 cursor-pointer bg-gray-500 hover:bg-gray-600 text-white rounded-full p-1" />
