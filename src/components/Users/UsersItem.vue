@@ -8,6 +8,7 @@ import 'izitoast/dist/css/iziToast.min.css'
 import { useModalStore } from '../../store/modal.store'
 import { useUserStore } from '../../store/user.store'
 import { useI18n } from 'vue-i18n'
+import UserIcon from '../../assets/icons/UserIcon.vue'
 
 const { t } = useI18n()
 
@@ -51,17 +52,24 @@ watch(
 <template>
   <tr class="border-y border-gray-200 hover:bg-gray-100 text-lg font-medium" v-for="(user, idx) in users" :key="idx">
     <td v-motion-pop class="text-center">{{ idx + 1 }}</td>
-    <td v-motion-pop class="py-2 px-4 text-left capitalize">
-      {{ user?.firstname + ' ' + user?.lastname }}
+    <td v-motion-pop class="py-2 px-4 text-left">
+      <div class="flex items-center">
+        <div class="mr-2">
+          <UserIcon class="w-10 h-10 rounded-full border p-2" />
+        </div>
+        <div>
+          <div class="capitalize">
+            {{ user?.firstname + ' ' + user?.lastname }}
+          </div>
+          <div>{{ user?.phone }}</div>
+        </div>
+      </div>
     </td>
     <td v-motion-pop class="py-2 px-4 text-left uppercase">
       {{ user?.role }}
     </td>
     <td v-motion-pop class="py-2 px-4 text-left">
       {{ user?.subRoleName ? user?.subRoleName : '-' }}
-    </td>
-    <td v-motion-pop class="py-2 px-4 text-left">
-      {{ user?.phone }}
     </td>
     <td v-motion-pop class="py-2 px-4 text-center">
       <div class="flex item-center justify-center">
