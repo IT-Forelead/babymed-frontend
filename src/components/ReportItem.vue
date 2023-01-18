@@ -26,7 +26,7 @@ const addVisitThisPatient = (patient) => {
 <template>
   <tr class="border-y border-gray-200 hover:bg-gray-100 text-lg font-medium" v-for="(patient, idx) in patients" :key="idx">
     <td v-motion-pop class="text-center">{{ idx + 1 }}</td>
-    <td v-motion-pop class="py-3 px-6 text-left">
+    <td v-motion-pop class="py-2 px-4 text-left">
       <div class="flex items-center">
         <div class="mr-2">
           <UserIcon class="w-10 h-10 rounded-full border p-2" />
@@ -34,17 +34,17 @@ const addVisitThisPatient = (patient) => {
         <span class="text-lg font-medium capitalize">{{ patient?.patient?.firstname + ' ' + patient?.patient?.lastname }}</span>
       </div>
     </td>
-    <td v-motion-pop class="py-3 px-6 text-left">{{ patient?.patient?.phone }}</td>
-    <td v-motion-pop class="py-3 px-6 text-center">{{ moment(patient?.patient?.createdAt).format('DD/MM/YYYY h:mm') }}</td>
-    <td v-motion-pop class="py-3 px-6 text-center text-sm">
+    <td v-motion-pop class="py-2 px-4 text-left">{{ patient?.patient?.phone }}</td>
+    <td v-motion-pop class="py-2 px-4 text-center">{{ moment(patient?.patient?.createdAt).format('DD/MM/YYYY h:mm') }}</td>
+    <td v-motion-pop class="py-2 px-4 text-center">
       {{ patient?.region?.name }} <br />
       {{ patient?.city?.name }} <br />
       {{ patient?.patient?.address }}
     </td>
-    <td v-motion-pop class="py-3 px-6 text-center">
+    <td v-motion-pop class="py-2 px-4 text-center">
       {{ moment(patient?.patient?.birthday).format('DD/MM/YYYY') }}
     </td>
-    <td v-motion-pop class="py-3 px-6 text-center">
+    <td v-motion-pop class="py-2 px-4 text-center">
       <div class="flex item-center justify-center">
         <!-- <div v-if="router.currentRoute?.value?.path === '/patients' || router.currentRoute?.value?.path === '/dashboard'" class="w-4 mr-2 transform text-blue-500 hover:text-purple-500 hover:scale-110 cursor-pointer">
           <EditIcon class="w-6 h-6" />

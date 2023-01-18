@@ -67,10 +67,10 @@ const deleteOperationService = (s_id) => {
 <template>
   <tr class="border-y border-gray-200 hover:bg-gray-100 text-lg font-medium" v-for="(service, idx) in operationServices" :key="idx">
     <td v-motion-pop class="text-center">{{ idx + 1 }}</td>
-    <td v-motion-pop class="py-3 px-6 text-left uppercase">{{ service?.service?.serviceTypeName }}</td>
-    <td v-motion-pop class="py-3 px-6 text-left uppercase">{{ service?.service?.name }}</td>
-    <td v-motion-pop class="py-3 px-6 text-left">{{ useMoneyFormatter(service?.service?.price) }}</td>
-    <td v-motion-pop class="py-3 px-6 text-center">
+    <td v-motion-pop class="py-2 px-4 text-left uppercase">{{ service?.service?.serviceTypeName }}</td>
+    <td v-motion-pop class="py-2 px-4 text-left uppercase">{{ service?.service?.name }}</td>
+    <td v-motion-pop class="py-2 px-4 text-left text-sm italic font-bold">{{ useMoneyFormatter(service?.service?.price) }}</td>
+    <td v-motion-pop class="py-2 px-4 text-center">
       <div class="flex item-center justify-center">
         <div @click="deleteOperationService(service?.operationService?.id)" class="w-4 mr-3 transform text-red-500 hover:text-red-600 hover:scale-110 cursor-pointer">
           <TrashIcon class="w-6 h-6" />

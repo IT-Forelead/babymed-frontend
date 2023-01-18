@@ -33,12 +33,12 @@ onMounted(() => {
         <table class="min-w-max w-full table-auto">
           <thead class="sticky z-10 top-0 bg-white shadow">
             <tr class="text-gray-600 capitalize text-lg leading-normal">
-              <th class="py-3 px-6 text-center">{{ $t('n') }}</th>
-              <th class="py-3 px-6 text-left">{{ $t('userFullname') }}</th>
-              <th class="py-3 px-6 text-left">{{ $t('role') }}</th>
-              <th class="py-3 px-6 text-left">{{ $t('subRole') }}</th>
-              <th class="py-3 px-6 text-left">{{ $t('phone') }}</th>
-              <th class="py-3 px-6 text-center">{{ $t('actions') }}</th>
+              <th class="py-2 px-4 text-center">{{ $t('n') }}</th>
+              <th class="py-2 px-4 text-left">{{ $t('userFullname') }}</th>
+              <th class="py-2 px-4 text-left">{{ $t('role') }}</th>
+              <th class="py-2 px-4 text-left">{{ $t('subRole') }}</th>
+              <th class="py-2 px-4 text-left">{{ $t('phone') }}</th>
+              <th class="py-2 px-4 text-center">{{ $t('actions') }}</th>
             </tr>
           </thead>
           <tbody class="text-gray-600 text-sm font-light">
