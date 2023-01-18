@@ -37,15 +37,13 @@ const clickedTheRow = (data) => {
         <div class="mr-2">
           <UserIcon class="w-10 h-10 rounded-full border p-2" />
         </div>
-        <div class="text-base leading-5">
-          <span class="font-medium capitalize">{{ expense?.patient?.firstname }}</span
-          ><br />
-          <span class="font-medium capitalize">{{ expense?.patient?.lastname }}</span>
+        <div class="text-base leading-5 font-medium capitalize">
+          {{ expense?.patient?.firstname + " " + expense?.patient?.lastname }}
         </div>
       </div>
     </td>
     <td v-motion-pop class="py-3 px-6 text-center capitalize">
-      {{ expense?.service?.name }} <br />
+      {{ expense?.service?.serviceTypeName + " - " + expense?.service?.name }} <br />
       <span class="text-sm font-bold italic">{{ useMoneyFormatter(expense?.service?.price) }}</span>
     </td>
     <td v-motion-pop class="py-3 px-6 text-center">{{ moment(expense?.operationExpense?.createdAt).format('DD/MM/YYYY h:mm') }}</td>

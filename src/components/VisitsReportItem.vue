@@ -77,13 +77,14 @@ onMounted(() => {
         <div class="mr-2" v-if="router.currentRoute?.value?.path === '/visits'">
           <UserIcon class="w-10 h-10 rounded-full border p-2" />
         </div>
-        <span class="text-base font-medium capitalize">
-          {{ patient?.patient?.firstname }} <br>
-          {{ patient?.patient?.lastname }}
-        </span>
+        <div>
+          <div class="text-base font-medium capitalize">
+            {{ patient?.patient?.firstname + " " + patient?.patient?.lastname }}
+          </div>
+          <div>{{ patient?.patient?.phone }}</div>
+        </div>
       </div>
     </td>
-    <td v-motion-pop class="py-3 px-6 text-left" v-if="router.currentRoute?.value?.path === '/visits'">{{ patient?.patient?.phone }}</td>
     <td v-motion-pop class="py-3 px-6 text-center">{{ moment(patient?.patientVisit?.createdAt).format('DD/MM/YYYY h:mm') }}</td>
     <td v-motion-pop class="py-3 px-6 text-center capitalize">
       <div v-for="(service, idx) in patient?.services" :key="idx">

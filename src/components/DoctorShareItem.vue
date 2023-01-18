@@ -53,8 +53,7 @@ const deleteDoctorShare = (id) => {
       </div>
     </td>
     <td v-motion-pop class="py-3 px-6 text-center capitalize">
-      {{ doctorShare?.service?.serviceTypeName }} <br />
-      {{ doctorShare?.service?.name }} <br />
+      {{ doctorShare?.service?.serviceTypeName + " - " + doctorShare?.service?.name }} <br />
       <span class="text-sm font-bold italic">{{ useMoneyFormatter(doctorShare?.service?.price) }}</span>
     </td>
     <td v-motion-pop class="py-3 px-6 text-center">
