@@ -32,23 +32,21 @@ const clickedTheRow = (data) => {
 <template>
   <tr class="border-y cursor-pointer border-gray-200 hover:bg-gray-100 text-lg font-medium" v-for="(expense, idx) in expenses" :key="idx" @click="clickedTheRow(expense)">
     <td v-motion-pop class="text-center">{{ idx + 1 }}</td>
-    <td v-motion-pop class="py-3 px-6 text-left">
+    <td v-motion-pop class="py-2 px-4 text-left">
       <div class="flex items-center">
         <div class="mr-2">
           <UserIcon class="w-10 h-10 rounded-full border p-2" />
         </div>
-        <div class="text-base leading-5">
-          <span class="font-medium capitalize">{{ expense?.patient?.firstname }}</span
-          ><br />
-          <span class="font-medium capitalize">{{ expense?.patient?.lastname }}</span>
+        <div class="text-base leading-5 font-medium capitalize">
+          {{ expense?.patient?.firstname + " " + expense?.patient?.lastname }}
         </div>
       </div>
     </td>
-    <td v-motion-pop class="py-3 px-6 text-center capitalize">
-      {{ expense?.service?.name }} <br />
+    <td v-motion-pop class="py-2 px-4 text-center capitalize">
+      {{ expense?.service?.serviceTypeName + " - " + expense?.service?.name }} <br />
       <span class="text-sm font-bold italic">{{ useMoneyFormatter(expense?.service?.price) }}</span>
     </td>
-    <td v-motion-pop class="py-3 px-6 text-center">{{ moment(expense?.operationExpense?.createdAt).format('DD/MM/YYYY h:mm') }}</td>
+    <td v-motion-pop class="py-2 px-4 text-center">{{ moment(expense?.operationExpense?.createdAt).format('DD/MM/YYYY h:mm') }}</td>
   </tr>
   <tr class="text-gray-700 text-md dark:text-gray-300 dark:bg-gray-800">
     <td v-motion-pop colspan="10">

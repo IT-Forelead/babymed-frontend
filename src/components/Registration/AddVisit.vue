@@ -28,6 +28,12 @@ const router = useRouter()
 
 const isLoading = ref(false)
 
+const countConf = {
+  precision: 0,
+  min: 0,
+  max: 30,
+}
+
 const patients = computed(() => {
   return usePatientStore().patients
 })
@@ -73,6 +79,7 @@ watch(
 
 const displayItems = ref([])
 const serviceIds = ref([])
+const itemCount = ref(1)
 
 const addItems = () => {
   if (!selectedServiceType.value?.id) {
@@ -84,13 +91,27 @@ const addItems = () => {
       message: t('plsSelectService'),
     })
   } else {
-    displayItems.value.push({
-      serviceType: selectedServiceType?.value?.name,
-      services: useMultiSelectStore().selectedServices,
-    })
-    serviceIds.value.push(...useMultiSelectStore().selectedServices.map(s => s?.id))
-    clearMultiSelectData()
-    useDropStore().setSelectServiceTypeOption('')
+    if (itemCount.value > 1) {
+      for (let i = 0; i < itemCount.value; i++){
+        displayItems.value.push({
+          serviceType: selectedServiceType?.value?.name,
+          services: useMultiSelectStore().selectedServices,
+        })
+        serviceIds.value.push(...useMultiSelectStore().selectedServices.map(s => s?.id))
+      }
+      clearMultiSelectData()
+      useDropStore().setSelectServiceTypeOption('')
+      itemCount.value = 1
+    } else {
+      displayItems.value.push({
+        serviceType: selectedServiceType?.value?.name,
+        services: useMultiSelectStore().selectedServices,
+      })
+      serviceIds.value.push(...useMultiSelectStore().selectedServices.map(s => s?.id))
+      clearMultiSelectData()
+      useDropStore().setSelectServiceTypeOption('')
+      itemCount.value = 1
+    }
   }
 }
 
@@ -170,12 +191,12 @@ const submitVisitData = () => {
         <div v-if="!(useMultiSelectStore().selectedServices.length === 0)" @click="useDropStore().openServiceDropDown()"
           class="border-none focus:ring-0 outline-0 bg-gray-100 w-full text-lg rounded-lg pl-2 py-2"
           v-text="useMultiSelectStore().selectedServices.map((s) => s?.name).join(', ')"></div>
-        <div @click="useDropStore().openServiceDropDown()" v-else
+        <div @click="useDropStore().openServiceDropDown()" v-if="!useDropStore().isOpenServiceDropDown && useMultiSelectStore().selectedServices.length === 0"
           class="border-none bg-gray-100 py-2 w-full text-lg rounded-lg cursor-pointer text-gray-500 pl-2">{{
             $t('select')
           }}</div>
         <ChevronRightIcon @click="useDropStore().openServiceDropDown()"
-          v-if="useMultiSelectStore().selectedServices.length === 0"
+          v-if="useMultiSelectStore().selectedServices.length === 0 && !useDropStore().isOpenServiceDropDown"
           class="absolute right-2.5 z-10 rotate-90 cursor-pointer text-gray-600" />
         <TimesIcon @click="clearMultiSelectData()" v-if="!(useMultiSelectStore().selectedServices.length === 0)"
           class="absolute right-2.5 z-10 cursor-pointer bg-gray-500 hover:bg-gray-600 text-white rounded-full p-1" />
@@ -187,6 +208,10 @@ const submitVisitData = () => {
         </div>
       </label>
       <MultiSelect v-if="useDropStore().isOpenServiceDropDown" :id="'services'" :options="services" />
+    </div>
+    <div v-if="!(useMultiSelectStore().selectedServices.length > 1)">
+      <p>Count</p>
+      <money3 v-model="itemCount" v-bind="countConf" class="border-none text-left text-gray-500 bg-gray-100 rounded-lg w-full text-lg"></money3>
     </div>
     <div class="flex justify-center">
       <div @click="addItems()"

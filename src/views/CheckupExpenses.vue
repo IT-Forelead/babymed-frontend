@@ -198,12 +198,12 @@ onUnmounted(() => {
       <table class="min-w-max w-full table-auto">
         <thead class="sticky z-10 top-0 bg-white shadow">
           <tr class="text-gray-600 capitalize text-lg leading-normal">
-            <th class="py-3 px-6 text-center">{{ $t('n') }}</th>
-            <th class="py-3 px-6 text-left">{{ $t('doctor') }}</th>
-            <th class="py-3 px-6 text-left">{{ $t('patient') }}</th>
-            <th class="py-3 px-6 text-center">{{ $t('service') }}</th>
-            <th class="py-3 px-6 text-center">{{ $t('doctorShare') }}</th>
-            <th class="py-3 px-6 text-center">{{ $t('createdAt') }}</th>
+            <th class="py-2 px-4 text-center">{{ $t('n') }}</th>
+            <th class="py-2 px-4 text-left">{{ $t('doctor') }}</th>
+            <th class="py-2 px-4 text-left">{{ $t('patient') }}</th>
+            <th class="py-2 px-4 text-center">{{ $t('service') }}</th>
+            <th class="py-2 px-4 text-center">{{ $t('doctorShare') }}</th>
+            <th class="py-2 px-4 text-center">{{ $t('createdAt') }}</th>
           </tr>
         </thead>
         <tbody class="text-gray-600 text-sm font-light">
@@ -213,18 +213,18 @@ onUnmounted(() => {
       <div v-if="checkupExpenses?.length === 0" class="w-full text-center text-red-500">{{ $t('empty') }}</div>
     </div>
     <div v-if="useTabStore().isOpenSecondTab" class="grid grid- grid-cols-3 mt-5 gap-8">
-      <div class="col-span-2">
+      <div class="max-h-[75vh] col-span-2 overflow-auto">
         <div class="flex items-center p-3">
           <p class="text-3xl font-bold">{{ $t('servicesTypeReport') }}</p>
         </div>
         <table class="min-w-max w-full table-auto">
           <thead class="sticky z-10 top-0 bg-white shadow">
             <tr class="text-gray-600 capitalize text-lg leading-normal">
-              <th class="py-3 px-6 text-center">{{ $t('n') }}</th>
-              <th class="py-3 px-6 text-left">{{ $t('doctor') }}</th>
-              <th class="py-3 px-6 text-center">{{ $t('service') }}</th>
-              <th class="py-3 px-6 text-center">{{ $t('doctorShare') }}</th>
-              <th class="py-3 px-6 text-center">{{ $t('actions') }}</th>
+              <th class="py-2 px-4 text-center">{{ $t('n') }}</th>
+              <th class="py-2 px-4 text-left">{{ $t('doctor') }}</th>
+              <th class="py-2 px-4 text-center">{{ $t('service') }}</th>
+              <th class="py-2 px-4 text-center">{{ $t('doctorShare') }}</th>
+              <th class="py-2 px-4 text-center">{{ $t('actions') }}</th>
             </tr>
           </thead>
           <tbody class="text-gray-600 text-sm font-light">

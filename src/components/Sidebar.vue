@@ -18,6 +18,7 @@ import { useI18n } from 'vue-i18n'
 import ServicesIcon from '../assets/icons/ServicesIcon.vue'
 import ChevronRightIcon from '../assets/icons/ChevronRightIcon.vue'
 import MedicalInformationOutlineIcon from '../assets/icons/MedicalInformationOutlineIcon.vue'
+import UserIcon from '../assets/icons/UserIcon.vue'
 
 const { t } = useI18n()
 
@@ -116,6 +117,36 @@ onMounted(() => {
           <p v-if="isOpen">{{ $t('operations') }}</p>
         </div>
       </router-link>
+      <div @click="useSidebarStore().toggleExpenseMenu()"
+        v-if="navigationGuard(['cashier', 'super_manager', 'tech_admin'])"
+        class="flex items-center justify-between hover:bg-gray-800 hover:text-gray-100 p-3 rounded-lg cursor-pointer"
+        :class="useSidebarStore().isOpenSidebar && router?.currentRoute?.value?.path === '/operation-expenses' || router?.currentRoute?.value?.path === '/checkup-expenses' ? 'justify-between bg-gray-800 text-gray-100' : !useSidebarStore().isOpenSidebar && router?.currentRoute?.value?.path === '/expenses' ? 'bg-gray-800 text-gray-100 justify-center' : ''">
+        <div class="flex items-center space-x-2">
+          <PaymentIcon class="w-7 h-7" />
+          <p v-if="isOpen">{{ $t('expenses') }}</p>
+        </div>
+        <div>
+          <ChevronRightIcon class="w-5 h-5 transition-all duration-300" :class="{ 'rotate-90': isOpenExpense }" />
+        </div>
+      </div>
+      <div :class="{ hidden: !isOpenExpense }" class="transition-all duration-300">
+        <router-link to="/operation-expenses"
+          class="flex items-center justify-between hover:text-gray-100 p-3 rounded-lg cursor-pointer"
+          :class="{ 'text-gray-100': useSidebarStore().isOpenSidebar && router?.currentRoute?.value?.path === '/operation-expenses' }">
+          <div :class="isOpen ? 'pl-6' : 'pl-1'" class="flex items-center space-x-2">
+            <p>-</p>
+            <p v-text="isOpen ? t('operationExpensesReport') : 'OR'"></p>
+          </div>
+        </router-link>
+        <router-link to="/checkup-expenses"
+          class="flex items-center justify-between hover:text-gray-100 p-3 rounded-lg cursor-pointer"
+          :class="{ 'text-gray-100': useSidebarStore().isOpenSidebar && router?.currentRoute?.value?.path === '/checkup-expenses' }">
+          <div :class="isOpen ? 'pl-6' : 'pl-1'" class="flex items-center space-x-2">
+            <p>-</p>
+            <p v-text="isOpen ? t('checkupExpensesReport') : 'CR'"></p>
+          </div>
+        </router-link>
+      </div>
       <div @click="useSidebarStore().toggleSidebarSubMenu()" v-if="navigationGuard(['super_manager', 'tech_admin'])"
         class="flex items-center justify-between hover:bg-gray-800 hover:text-gray-100 p-3 rounded-lg cursor-pointer"
         :class="useSidebarStore().isOpenSidebar && router?.currentRoute?.value?.path === '/services' || router?.currentRoute?.value?.path === '/service-types' ? 'justify-between bg-gray-800 text-gray-100' : !useSidebarStore().isOpenSidebar && router?.currentRoute?.value?.path === '/services' ? 'bg-gray-800 text-gray-100 justify-center' : ''">
@@ -153,40 +184,10 @@ onMounted(() => {
           <p v-if="isOpen">{{ $t('users') }}</p>
         </div>
       </router-link>
-      <div @click="useSidebarStore().toggleExpenseMenu()"
-        v-if="navigationGuard(['cashier', 'super_manager', 'tech_admin'])"
-        class="flex items-center justify-between hover:bg-gray-800 hover:text-gray-100 p-3 rounded-lg cursor-pointer"
-        :class="useSidebarStore().isOpenSidebar && router?.currentRoute?.value?.path === '/operation-expenses' || router?.currentRoute?.value?.path === '/checkup-expenses' ? 'justify-between bg-gray-800 text-gray-100' : !useSidebarStore().isOpenSidebar && router?.currentRoute?.value?.path === '/expenses' ? 'bg-gray-800 text-gray-100 justify-center' : ''">
-        <div class="flex items-center space-x-2">
-          <PaymentIcon class="w-7 h-7" />
-          <p v-if="isOpen">{{ $t('expenses') }}</p>
-        </div>
-        <div>
-          <ChevronRightIcon class="w-5 h-5 transition-all duration-300" :class="{ 'rotate-90': isOpenExpense }" />
-        </div>
-      </div>
-      <div :class="{ hidden: !isOpenExpense }" class="transition-all duration-300">
-        <router-link to="/operation-expenses"
-          class="flex items-center justify-between hover:text-gray-100 p-3 rounded-lg cursor-pointer"
-          :class="{ 'text-gray-100': useSidebarStore().isOpenExpenseMenu && router?.currentRoute?.value?.path === '/operation-expenses' }">
-          <div :class="isOpenExpense ? 'pl-6' : 'pl-1'" class="flex items-center space-x-2">
-            <p>-</p>
-            <p v-text="isOpenExpense ? t('operationExpensesReport') : 'OR'"></p>
-          </div>
-        </router-link>
-        <router-link to="/checkup-expenses"
-          class="flex items-center justify-between hover:text-gray-100 p-3 rounded-lg cursor-pointer"
-          :class="{ 'text-gray-100': useSidebarStore().isOpenExpenseMenu && router?.currentRoute?.value?.path === '/checkup-expenses' }">
-          <div :class="isOpenExpense ? 'pl-6' : 'pl-1'" class="flex items-center space-x-2">
-            <p>-</p>
-            <p v-text="isOpenExpense ? t('checkupExpensesReport') : 'CR'"></p>
-          </div>
-        </router-link>
-      </div>
     </div>
     <div class="absolute bottom-10 w-full flex justify-center items-center flex-col space-y-2">
-      <div v-if="isOpen" class="w-24 h-24 flex items-center justify-center p-2 rounded-full">
-        <img src="/images/logo.png" alt="hero" class="w-full" />
+      <div v-if="isOpen" class="w-18 h-18 flex items-center justify-center p-2 rounded-full bg-gray-700">
+        <UserIcon class="w-10 h-10 text-gray-300" />
       </div>
       <div v-if="isOpen">
         <p class="text-lg font-bold text-gray-400 text-center">{{

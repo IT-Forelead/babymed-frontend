@@ -77,32 +77,35 @@ onMounted(() => {
 <template>
   <tr class="border-y border-gray-200 hover:bg-gray-100 text-base font-medium" v-for="(patient, idx) in patients" :key="idx">
     <td v-motion-pop class="text-center">{{ idx + 1 }}</td>
-    <td v-motion-pop class="py-3 px-6 text-left">
+    <td v-motion-pop class="py-2 px-4 text-left">
       <div class="flex items-center">
         <div class="mr-2" v-if="router.currentRoute?.value?.path === '/visits'">
           <UserIcon class="w-10 h-10 rounded-full border p-2" />
         </div>
-        <span class="text-base font-medium capitalize">
-          {{ patient?.patient?.firstname }} <br>
-          {{ patient?.patient?.lastname }}
-        </span>
+        <div>
+          <div class="text-base font-medium capitalize">
+            {{ patient?.patient?.firstname + " " + patient?.patient?.lastname }}
+          </div>
+          <div>{{ patient?.patient?.phone }}</div>
+        </div>
       </div>
     </td>
-    <td v-motion-pop class="py-3 px-6 text-left" v-if="router.currentRoute?.value?.path === '/visits'">{{ patient?.patient?.phone }}</td>
-    <td v-motion-pop class="py-3 px-6 text-center">{{ moment(patient?.patientVisit?.createdAt).format('DD/MM/YYYY h:mm') }}</td>
-    <td v-motion-pop class="py-3 px-6 text-center capitalize">
+    <td v-motion-pop class="py-2 px-4 text-center">{{ moment(patient?.patientVisit?.createdAt).format('DD/MM/YYYY h:mm') }}</td>
+    <td v-motion-pop class="py-2 px-4 text-center capitalize">
       <div v-for="(service, idx) in patient?.services" :key="idx">
-        {{ service?.serviceWithTypeName?.serviceTypeName + " - " + service?.serviceWithTypeName?.name }}
+        <span v-if="service?.serviceWithTypeName?.serviceTypeName.length < 18">{{ service?.serviceWithTypeName?.serviceTypeName }}</span>
+        <span v-else>{{ service?.serviceWithTypeName?.serviceTypeName.substring(0,17)+"..." }}</span>
+        <span> - {{ service?.serviceWithTypeName?.name }}</span>
         <span v-if="service?.count > 1"> - {{ service?.count + " " + $t('days') }}</span>
         <span class="text-sm font-bold italic">- {{ useMoneyFormatter(service?.serviceWithTypeName?.price * service?.count) }}</span>
       </div>
     </td>
-    <td v-motion-pop class="py-3 px-6 text-center">
+    <td v-motion-pop class="py-2 px-4 text-center">
       <span class="p-1.5 px-3 text-sm rounded-full text-white" :class="patient?.patientVisit?.paymentStatus === 'not_paid' ? 'bg-red-500' : 'bg-green-400'">
         {{ translatePaymentStatus(patient?.patientVisit?.paymentStatus) }}
       </span>
     </td>
-    <td v-motion-pop class="py-3 px-6 text-center">
+    <td v-motion-pop class="py-2 px-4 text-center">
       <div class="flex item-center justify-center space-x-2">
         <div v-if="patient?.patientVisit?.paymentStatus === 'not_paid' && navigationGuard(['cashier', 'super_manager', 'tech_admin'])" @click="open(patient)" class="w-4 mr-2 transform text-blue-500 hover:text-purple-500 hover:scale-110 cursor-pointer">
           <MoneyPlusIcon class="w-6 h-6" />

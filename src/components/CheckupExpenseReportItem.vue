@@ -17,7 +17,7 @@ const { checkupExpenses } = toRefs(props)
 <template>
   <tr class="border-y border-gray-200 hover:bg-gray-100 text-lg font-medium" v-for="(expense, idx) in checkupExpenses" :key="idx">
     <td v-motion-pop class="text-center">{{ idx + 1 }}</td>
-    <td v-motion-pop class="py-3 px-6 text-left">
+    <td v-motion-pop class="py-2 px-4 text-left">
       <div class="flex items-center">
         <div class="mr-2">
           <UserIcon class="w-10 h-10 rounded-full border p-2" />
@@ -27,7 +27,7 @@ const { checkupExpenses } = toRefs(props)
         </div>
       </div>
     </td>
-    <td v-motion-pop class="py-3 px-6 text-left">
+    <td v-motion-pop class="py-2 px-4 text-left">
       <div class="flex flex-col space-y-1 justify-center">
         <div class="text-base leading-5font-medium capitalize">{{ expense?.patient?.firstname + " " + expense?.patient?.lastname }}</div>
         <div class="flex items-center space-x-2">
@@ -36,14 +36,13 @@ const { checkupExpenses } = toRefs(props)
         </div>
       </div>
     </td>
-    <td v-motion-pop class="py-3 px-6 text-center">
+    <td v-motion-pop class="py-2 px-4 text-center">
       <div class="flex flex-col space-y-0.5 justify-center">
-        <div class="capitalize">{{ expense?.service?.serviceTypeName }}</div>
-        <div class="capitalize">{{ expense?.service?.name }}</div>
+        <div class="capitalize">{{ expense?.service?.serviceTypeName + " - " + expense?.service?.name }}</div>
         <div class="text-sm font-bold italic">{{ useMoneyFormatter(expense?.service?.price) }}</div>
       </div>
     </td>
-    <td v-motion-pop class="py-3 px-6 text-center">
+    <td v-motion-pop class="py-2 px-4 text-center">
       <div class="flex flex-col space-y-0.5 justify-center">
         <div>{{ expense?.doctorShare?.percent }}%</div>
         <div class="text-sm font-bold italic">
@@ -51,7 +50,7 @@ const { checkupExpenses } = toRefs(props)
         </div>
       </div>
     </td>
-    <td v-motion-pop class="py-3 px-6 text-center">{{ moment(expense?.checkupExpense?.createdAt).format('DD/MM/YYYY h:mm') }}</td>
+    <td v-motion-pop class="py-2 px-4 text-center">{{ moment(expense?.checkupExpense?.createdAt).format('DD/MM/YYYY h:mm') }}</td>
   </tr>
   <tr class="text-gray-700 text-md dark:text-gray-300 dark:bg-gray-800">
     <td v-motion-pop colspan="10">
