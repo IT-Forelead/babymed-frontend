@@ -88,7 +88,7 @@ const totalPrice = () => {
                   {{ service?.serviceWithTypeName?.serviceTypeName }} - {{ service?.serviceWithTypeName?.name }}
                   <span v-if="service?.count > 1"> - {{ service?.count + " " + $t('days') }}</span>
                   <br>
-                  {{ useMoneyFormatter(service?.serviceWithTypeName?.price) }}
+                  {{ useMoneyFormatter(service?.serviceWithTypeName?.price * service?.count) }}
                 </td>
               </tr>
             </table>

@@ -88,7 +88,9 @@ onMounted(() => {
     <td v-motion-pop class="py-2 px-4 text-center">{{ moment(patient?.patientVisit?.createdAt).format('DD/MM/YYYY h:mm') }}</td>
     <td v-motion-pop class="py-2 px-4 text-center capitalize">
       <div v-for="(service, idx) in patient?.services" :key="idx">
-        {{ service?.serviceWithTypeName?.serviceTypeName + " - " + service?.serviceWithTypeName?.name }}
+        <span v-if="service?.serviceWithTypeName?.serviceTypeName.length < 18">{{ service?.serviceWithTypeName?.serviceTypeName }}</span>
+        <span v-else>{{ service?.serviceWithTypeName?.serviceTypeName.substring(0,17)+"..." }}</span>
+        <span> - {{ service?.serviceWithTypeName?.name }}</span>
         <span v-if="service?.count > 1"> - {{ service?.count + " " + $t('days') }}</span>
         <span class="text-sm font-bold italic">- {{ useMoneyFormatter(service?.serviceWithTypeName?.price * service?.count) }}</span>
       </div>
