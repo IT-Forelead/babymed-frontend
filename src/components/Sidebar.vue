@@ -109,7 +109,7 @@ onMounted(() => {
           <p v-if="isOpen">{{ $t('patients') }}</p>
         </div>
       </router-link>
-      <router-link to="/operations" v-if="navigationGuard(['admin', 'super_manager', 'tech_admin'])"
+      <router-link to="/operations" v-if="navigationGuard(['super_manager', 'tech_admin', 'cashier'])"
         class="flex items-center justify-between hover:bg-gray-800 hover:text-gray-100 p-3 rounded-lg cursor-pointer"
         :class="useSidebarStore().isOpenSidebar && router?.currentRoute?.value?.path === '/operations' ? 'justify-between bg-gray-800 text-gray-100' : !useSidebarStore().isOpenSidebar && router?.currentRoute?.value?.path === '/operations' ? 'bg-gray-800 text-gray-100 justify-center' : ''">
         <div class="flex items-center space-x-2">

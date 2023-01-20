@@ -69,6 +69,8 @@ export const useDropStore = defineStore('drop', {
       this.isOpenPatientDropDown = false
       this.isOpenServiceDropDown = false
       this.isOpenServiceTypeDropDown = false
+      this.selectedExpenseItems = []
+      this.selectedCheque = []
     },
   },
 })
