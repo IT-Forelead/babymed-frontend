@@ -5,7 +5,6 @@ import { onClickOutside } from '@vueuse/core'
 import { useDropStore } from '../store/drop.store'
 import TimesIcon from '../assets/icons/TimesIcon.vue'
 import ChevronRightIcon from '../assets/icons/ChevronRightIcon.vue'
-import { useServicesStore } from '../store/services.store'
 
 const selectedOption = ref('')
 const dropdown = ref(null)
@@ -35,7 +34,6 @@ watch(useDropStore(), () => {
 
 const clearSelectedOptionData = () => {
   useDropStore().setSelectPdfTypeOption('')
-  useServicesStore().setServices([])
 }
 
 onClickOutside(dropdown, () => {

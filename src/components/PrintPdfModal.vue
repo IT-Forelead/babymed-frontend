@@ -9,6 +9,11 @@ import { useDropStore } from '../store/drop.store'
 const { t } = useI18n()
 
 const URL = import.meta.env.VITE_PDF_URL;
+
+const closeModal = () => {
+  useDropStore().setSelectPdfTypeOption('')
+  useModalStore().closePrintPdfModal()
+}
 </script>
 
 <template>
@@ -19,7 +24,7 @@ const URL = import.meta.env.VITE_PDF_URL;
           <div class="flex items-center justify-center space-x-3">
             <div class="text-xl font-medium">Print PDF template</div>
           </div>
-          <button @click="useModalStore().closePrintPdfModal()" class="text-gray-600 bg-gray-100 hover:bg-gray-800 hover:text-gray-300 transition-all duration-300 rounded-full text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white">
+          <button @click="closeModal()" class="text-gray-600 bg-gray-100 hover:bg-gray-800 hover:text-gray-300 transition-all duration-300 rounded-full text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white">
             <TimesIcon />
           </button>
         </div>
@@ -41,6 +46,10 @@ const URL = import.meta.env.VITE_PDF_URL;
             <div v-else-if="useDropStore().selectPdfTypeOption?.id === 'ginekolog'">
               <iframe :src="URL+'/ginekolog.html'" frameborder="0" class="w-full h-14"></iframe>
             </div>
+          </div>
+          <hr />
+          <div class="flex items-center justify-end space-x-3 mt-5 text-white">
+            <div class="rounded-lg p-3 px-7 bg-gray-900 hover:bg-gray-700 cursor-pointer" @click="closeModal()">{{ $t('cancel') }}</div>
           </div>
         </div>
       </div>
