@@ -197,5 +197,11 @@
   "operationServiceCreated":"Operation service successfully created!",
   "errorCreatingOperationService":"Error while creating operation service!",
   "deletedOperationService":"Operation service successfully deleted!",
-  "errorDeletingOperationService":"Error while deleting operation service!"
+  "errorDeletingOperationService":"Error while deleting operation service!",
+  "selectPdfTemplate":"Select PDF template",
+  "printPdfTemplate":"Print PDF template",
+  "pediatricianTemplate":"Pediatrician template",
+  "gynecologistTemplate":"Gynecologist template",
+  "ultrasoundTemplate":"Ultrasound template",
+  "dopplerUltrasoundTemplate":"Doppler ultrasound template"
 }

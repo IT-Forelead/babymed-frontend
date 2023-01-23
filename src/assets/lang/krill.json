@@ -197,5 +197,11 @@
   "operationServiceCreated":"Операция хизмати муваффақиятли яратилди!",
   "errorCreatingOperationService":"Операция хизматини яратишда хатолик юз берди!",
   "deletedOperationService":"Операция хизмати муваффақиятли ўчирилди!",
-  "errorDeletingOperationService":"Операция хизматини ўчиришда хатолик юз берди!"
+  "errorDeletingOperationService":"Операция хизматини ўчиришда хатолик юз берди!",
+  "selectPdfTemplate":"PDF шаблонини танланг",
+  "printPdfTemplate":"PDF шаблонини чоп етиш",
+  "pediatricianTemplate":"Педиатр шаблони",
+  "gynecologistTemplate":"Гинеколог шаблони",
+  "ultrasoundTemplate":"Ултратовуш шаблони",
+  "dopplerUltrasoundTemplate":"Допплер ултратовуш шаблони"
 }

@@ -197,5 +197,11 @@
   "operationServiceCreated":"Operatsiya xizmati muvaffaqiyatli yaratildi!",
   "errorCreatingOperationService":"Operatsiya xizmatini yaratishda xatolik yuz berdi!",
   "deletedOperationService":"Operatsiya xizmati muvaffaqiyatli o'chirildi!",
-  "errorDeletingOperationService":"Operatsiya xizmatini o'chirishda xatolik yuz berdi!"
+  "errorDeletingOperationService":"Operatsiya xizmatini o'chirishda xatolik yuz berdi!",
+  "selectPdfTemplate":"PDF shablonini tanlang",
+  "printPdfTemplate":"PDF shablonini chop etish",
+  "pediatricianTemplate":"Pediatr shabloni",
+  "gynecologistTemplate":"Ginekolog shabloni",
+  "ultrasoundTemplate":"Ultratovush shabloni",
+  "dopplerUltrasoundTemplate":"Doppler ultratovush shabloni"
 }

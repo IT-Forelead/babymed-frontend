@@ -196,5 +196,11 @@
   "operationServiceCreated":"Операционный сервис успешно создан!",
   "errorCreatingOperationService":"Ошибка при создании службы операции!",
   "deletedOperationService":"Операционная служба успешно удалена!",
-  "errorDeletingOperationService":"Ошибка при удалении службы операции!"
+  "errorDeletingOperationService":"Ошибка при удалении службы операции!",
+  "selectPdfTemplate":"Выберите шаблон PDF",
+  "printPdfTemplate":"Печать шаблона PDF",
+  "pediatricianTemplate":"Шаблон педиатра",
+  "gynecologistTemplate":"Шаблон гинеколога",
+  "ultrasoundTemplate":"Шаблон УЗИ",
+  "dopplerUltrasoundTemplate":"Шаблон доплер УЗИ"
 }
