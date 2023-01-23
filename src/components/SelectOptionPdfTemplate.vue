@@ -20,8 +20,8 @@ const list = [
     name: 'Doppler namunasi'
   },
   {
-    id: 'pediator',
-    name: 'Pediator namunasi'
+    id: 'pediatr',
+    name: 'Pediatr namunasi'
   },
   {
     id: 'ginekolog',

@@ -8,8 +8,6 @@ import { useDropStore } from '../store/drop.store'
 
 const { t } = useI18n()
 
-const isLoading = ref(false)
-
 const URL = import.meta.env.VITE_PDF_URL;
 </script>
 
@@ -34,9 +32,15 @@ const URL = import.meta.env.VITE_PDF_URL;
             <div v-if="useDropStore().selectPdfTypeOption?.id === 'uzi'">
               <iframe :src="URL+'/uzi.html'" frameborder="0" class="w-full h-14"></iframe>
             </div>
-            <div v-else-if="useDropStore().selectPdfTypeOption?.id === 'doppler'">Dopler</div>
-            <div v-else-if="useDropStore().selectPdfTypeOption?.id === 'pediator'">pediator</div>
-            <!-- {{ useDropStore().selectPdfTypeOption }} -->
+            <div v-else-if="useDropStore().selectPdfTypeOption?.id === 'doppler'">
+              <iframe :src="URL+'/doppler.html'" frameborder="0" class="w-full h-14"></iframe>
+            </div>
+            <div v-else-if="useDropStore().selectPdfTypeOption?.id === 'pediatr'">
+              <iframe :src="URL+'/pediatr.html'" frameborder="0" class="w-full h-14"></iframe>
+            </div>
+            <div v-else-if="useDropStore().selectPdfTypeOption?.id === 'ginekolog'">
+              <iframe :src="URL+'/ginekolog.html'" frameborder="0" class="w-full h-14"></iframe>
+            </div>
           </div>
         </div>
       </div>
