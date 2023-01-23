@@ -3,7 +3,6 @@ import { useModalStore } from '../store/modal.store'
 import TimesIcon from '../assets/icons/TimesIcon.vue'
 import SelectOptionPdfTemplate from './SelectOptionPdfTemplate.vue'
 import { useI18n } from 'vue-i18n'
-import { ref } from 'vue'
 import { useDropStore } from '../store/drop.store'
 
 const { t } = useI18n()
@@ -12,6 +11,10 @@ const URL = import.meta.env.VITE_PDF_URL;
 
 const closeModal = () => {
   useDropStore().setSelectPdfTypeOption('')
+  localStorage.removeItem('visitCreatedAt')
+  localStorage.removeItem('patientFullname')
+  localStorage.removeItem('patientBirthday')
+  localStorage.removeItem('patientAddress')
   useModalStore().closePrintPdfModal()
 }
 </script>
@@ -33,7 +36,7 @@ const closeModal = () => {
             <p>Select template</p>
             <SelectOptionPdfTemplate />
           </div>
-          <div id="pdf" class="relative min-w-full">
+          <div class="relative min-w-full">
             <div v-if="useDropStore().selectPdfTypeOption?.id === 'uzi'">
               <iframe :src="URL+'/uzi.html'" frameborder="0" class="w-full h-14"></iframe>
             </div>
@@ -56,13 +59,4 @@ const closeModal = () => {
     </div>
   </div>
 </template>
-<style scoped>
-#pdf {
-  width: 100%;
-}
-@media print {
-  #pdf {
-    size: A4 landscape;
-  }
-}
-</style>
+<style scoped></style>

@@ -286,8 +286,8 @@
     </div>
     <script>
       function printHTML() {
-        document.getElementById('visit-created-at').innerText = localStorage.getItem('token').slice(0, 10)
-        document.getElementById('patient-fullname').innerText = localStorage.getItem('token').slice(0, 10)
+        document.getElementById('visit-created-at').innerText = localStorage.getItem('visitCreatedAt')
+        document.getElementById('patient-fullname').innerText = localStorage.getItem('patientFullname')
         window.print()
       }
       document.getElementById('print-button').addEventListener('click', printHTML)
