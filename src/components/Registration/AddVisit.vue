@@ -165,22 +165,6 @@ const submitVisitData = () => {
       <p>{{ $t('selectPatient') }}</p>
       <SelectOptionPatient :options="patients" />
     </div>
-    <table v-if="displayItems?.length !== 0" class="w-full bg-gray-100">
-      <tr>
-        <th>{{ $t('n') }}</th>
-        <th>{{ $t('serviceType') }}</th>
-        <th>{{ $t('services') }}</th>
-      </tr>
-      <tr class="text-center divide-y py-5" v-for="(item, idx) in displayItems" :key="idx">
-        <td>{{ idx + 1 }}</td>
-        <td>{{ item?.serviceType }}</td>
-        <td>
-          <div v-for="(s, idx) in item?.services" :key="idx">
-            {{ s.name }}
-          </div>
-        </td>
-      </tr>
-    </table>
     <div>
       <p>{{ $t('selectServiceType') }}</p>
       <SelectOptionServiceType :options="serviceTypes" />
@@ -219,6 +203,22 @@ const submitVisitData = () => {
         <PlusIcon />
       </div>
     </div>
+    <table v-if="displayItems?.length !== 0" class="w-full bg-gray-100">
+      <tr>
+        <th>{{ $t('n') }}</th>
+        <th>{{ $t('serviceType') }}</th>
+        <th>{{ $t('services') }}</th>
+      </tr>
+      <tr class="text-center divide-y py-5" v-for="(item, idx) in displayItems" :key="idx">
+        <td>{{ idx + 1 }}</td>
+        <td>{{ item?.serviceType }}</td>
+        <td>
+          <div v-for="(s, idx) in item?.services" :key="idx">
+            {{ s.name }}
+          </div>
+        </td>
+      </tr>
+    </table>
     <div v-if="isLoading"
       class="w-full bg-gray-600 py-3 select-none text-white rounded-lg flex items-center justify-center">
       <svg class="mr-2 w-5 h-5 text-gray-200 animate-spin dark:text-gray-600 fill-gray-600 dark:fill-gray-300"
