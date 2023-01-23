@@ -9,13 +9,17 @@ const { t } = useI18n()
 
 const URL = import.meta.env.VITE_PDF_URL;
 
-const closeModal = () => {
-  useDropStore().setSelectPdfTypeOption('')
+const clear = () => {
   localStorage.removeItem('visitCreatedAt')
   localStorage.removeItem('patientFullname')
   localStorage.removeItem('patientBirthday')
   localStorage.removeItem('patientAddress')
+}
+
+const closeModal = () => {
+  useDropStore().setSelectPdfTypeOption('')
   useModalStore().closePrintPdfModal()
+  clear()
 }
 </script>
 

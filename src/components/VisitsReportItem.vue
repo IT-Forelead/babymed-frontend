@@ -65,7 +65,7 @@ const printPdf = (data) => {
   localStorage.setItem('patientFullname', data?.patient?.firstname + " " + data?.patient?.lastname)
   localStorage.setItem('visitCreatedAt', moment(data?.patientVisit?.createdAt).format('DD/MM/YYYY h:mm'))
   localStorage.setItem('patientBirthday', moment(data?.patient?.birthday).format('DD/MM/YYYY'))
-  localStorage.setItem('patientAddress', data?.region?.name + ", " + data?.city?.name + ", " + data?.patient?.address)
+  localStorage.setItem('patientAddress', data?.patient?.address ? data?.region?.name + ", " + data?.city?.name + ", " + data?.patient?.address : data?.region?.name + ", " + data?.city?.name)
   useModalStore().openPrintPdfModal()
 }
 
