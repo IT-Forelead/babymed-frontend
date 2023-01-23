@@ -76,19 +76,19 @@
         <table class="w-full border-collapse">
           <tr>
             <td class="w-1/5 p-2 text-left whitespace-nowrap border border-solid border-black">Курик санаси</td>
-            <td id="name" class="w-4/5 p-2 text-left whitespace-nowrap border border-solid border-black"></td>
+            <td id="visit-created-at" class="w-4/5 p-2 text-left whitespace-nowrap border border-solid border-black"></td>
           </tr>
           <tr>
             <td class="w-1/5 p-2 text-left whitespace-nowrap border border-solid border-black">Беморнинг Ф.И.Ш.</td>
-            <td class="w-4/5 p-2 text-left whitespace-nowrap border border-solid border-black"></td>
+            <td id="patient-fullname" class="w-4/5 p-2 text-left whitespace-nowrap border border-solid border-black"></td>
           </tr>
           <tr>
             <td class="w-1/5 p-2 text-left whitespace-nowrap border border-solid border-black">Тугилган санаси</td>
-            <td class="w-4/5 p-2 text-left whitespace-nowrap border border-solid border-black"></td>
+            <td id="patient-birthday" class="w-4/5 p-2 text-left whitespace-nowrap border border-solid border-black"></td>
           </tr>
           <tr>
             <td class="w-1/5 p-2 text-left whitespace-nowrap border border-solid border-black">Манзили</td>
-            <td class="w-4/5 p-2 text-left whitespace-nowrap border border-solid border-black"></td>
+            <td id="patient-address" class="w-4/5 p-2 text-left whitespace-nowrap border border-solid border-black"></td>
           </tr>
         </table>
         <div class="space-y-2">
@@ -152,7 +152,10 @@
     </div>
     <script>
       function printHTML() {
-        document.getElementById('name').innerText = localStorage.getItem('token').slice(0, 10)
+        document.getElementById('visit-created-at').innerText = localStorage.getItem('token').slice(0, 10)
+        document.getElementById('patient-fullname').innerText = localStorage.getItem('token').slice(0, 10)
+        document.getElementById('patient-birthday').innerText = localStorage.getItem('token').slice(0, 10)
+        document.getElementById('patient-address').innerText = localStorage.getItem('token').slice(0, 10)
         window.print()
       }
       document.getElementById('print-button').addEventListener('click', printHTML)
