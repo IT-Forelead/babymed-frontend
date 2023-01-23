@@ -6,12 +6,14 @@ export const useDropStore = defineStore('drop', {
     selectDoctorOption: '',
     selectServiceTypeOption: '',
     selectServiceOption: '',
+    selectPdfTypeOption: '',
     selectedExpense: {},
     selectedExpenseItems: [],
     isOpenPatientDropDown: false,
     isOpenDoctorDropDown: false,
     isOpenServiceTypeDropDown: false,
     isOpenServiceDropDown: false,
+    isOpenPdfTemplateDropDown: false,
     selectedCheque: []
   }),
   actions: {
@@ -35,6 +37,9 @@ export const useDropStore = defineStore('drop', {
     },
     setSelectServiceOption(data) {
       this.selectServiceOption = data
+    },
+    setSelectPdfTypeOption(data) {
+      this.selectPdfTypeOption = data
     },
     openPatientDropDown() {
       this.isOpenPatientDropDown = true
@@ -60,14 +65,22 @@ export const useDropStore = defineStore('drop', {
     closeServiceDropDown() {
       this.isOpenServiceDropDown = false
     },
+    openPdfTemplateDropDown() {
+      this.isOpenPdfTemplateDropDown = true
+    },
+    closePdfTemplateDropDown() {
+      this.isOpenPdfTemplateDropDown = false
+    },
     clearStore() {
       this.selectDoctorOption = ''
       this.selectServiceTypeOption = ''
       this.selectPatientOption = ''
       this.selectServiceOption = ''
+      this.selectPdfTypeOption = ''
       this.isOpenDoctorDropDown = false
       this.isOpenPatientDropDown = false
       this.isOpenServiceDropDown = false
+      this.isOpenPdfTemplateDropDown = false
       this.isOpenServiceTypeDropDown = false
       this.selectedExpenseItems = []
       this.selectedCheque = []

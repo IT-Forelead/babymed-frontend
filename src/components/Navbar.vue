@@ -4,7 +4,6 @@ import BellIcon from '../assets/icons/BellIcon.vue'
 import Registration from './Registration.vue'
 import { computed } from '@vue/reactivity'
 import { useRouter } from 'vue-router'
-import { useModalStore } from '../store/modal.store'
 import DeleteAlert from './DeleteAlert.vue'
 import ChangePaymentStatus from './Payments/ChangePaymentStatus.vue'
 import AddVisitModal from './AddVisitModal.vue'
@@ -12,6 +11,7 @@ import { useI18n } from 'vue-i18n'
 import OperationInfoModal from './Operations/OperationInfoModal.vue'
 import Cheque from './Cheque.vue'
 import { ref, onMounted } from 'vue'
+import PrintPdfModal from './PrintPdfModal.vue'
 
 const { t } = useI18n()
 
@@ -99,6 +99,7 @@ onMounted(() => {
     <AddVisitModal />
     <OperationInfoModal />
     <Cheque />
+    <PrintPdfModal />
   </div>
 </template>
 

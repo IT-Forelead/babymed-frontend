@@ -13,6 +13,7 @@ import { useVisitStore } from '../store/visit.store'
 import { useTabStore } from '../store/tab.store'
 import useMoneyFormatter from '../mixins/currencyFormatter'
 import { useI18n } from 'vue-i18n'
+import PdfFileIcon from '../assets/icons/PdfFileIcon.vue'
 
 const { t } = useI18n()
 
@@ -58,6 +59,14 @@ const translatePaymentStatus = (status) => {
 const printCheque = (data) => {
   useModalStore().openPrintModal()
   useDropStore().setSelectedCheque(data)
+}
+
+const printPdf = (data) => {
+  localStorage.setItem('patientFullname', data?.patient?.firstname + " " + data?.patient?.lastname)
+  localStorage.setItem('visitCreatedAt', moment(data?.patientVisit?.createdAt).format('DD/MM/YYYY h:mm'))
+  localStorage.setItem('patientBirthday', moment(data?.patient?.birthday).format('DD/MM/YYYY'))
+  localStorage.setItem('patientAddress', data?.patient?.address ? data?.region?.name + ", " + data?.city?.name + ", " + data?.patient?.address : data?.region?.name + ", " + data?.city?.name)
+  useModalStore().openPrintPdfModal()
 }
 
 const navigationGuard = (access) => {
@@ -107,6 +116,9 @@ onMounted(() => {
         </div>
         <div v-if="router.currentRoute?.value?.path === '/visits' || router.currentRoute?.value?.path === '/dashboard'" @click="printCheque(patient)" class="w-4 mr-2 transform text-blue-500 hover:text-purple-500 hover:scale-110 cursor-pointer">
           <PrinterIcon class="w-6 h-6" />
+        </div>
+        <div v-if="router.currentRoute?.value?.path === '/visits' || router.currentRoute?.value?.path === '/dashboard'" @click="printPdf(patient)" class="w-4 mr-2 transform text-blue-500 hover:text-purple-500 hover:scale-110 cursor-pointer">
+          <PdfFileIcon class="w-6 h-6" />
         </div>
       </div>
     </td>

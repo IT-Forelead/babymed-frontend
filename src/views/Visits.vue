@@ -79,6 +79,10 @@ const navigationGuard = (access) => {
 
 onMounted(() => {
   payload.value = parseJwt(localStorage.getItem('token'))
+  localStorage.removeItem('visitCreatedAt')
+  localStorage.removeItem('patientFullname')
+  localStorage.removeItem('patientBirthday')
+  localStorage.removeItem('patientAddress')
 })
 </script>
 
