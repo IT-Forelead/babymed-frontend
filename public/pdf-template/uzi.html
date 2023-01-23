@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <script src="https://cdn.tailwindcss.com"></script>
     <style>
       @import url('https://fonts.googleapis.com/css2?family=Rubik:ital,wght@1,500&display=swap');
 
@@ -40,7 +41,7 @@
         #preview {
           display: none;
         }
-        
+
         #pdf {
           display: block;
         }
@@ -49,7 +50,7 @@
   </head>
   <body>
     <div id="pdf">
-      <div class="absolute pt-4 top-0 -left-[5%] border-t-[25px] border-solid border-[#289cb8] w-1/2 -skew-x-[25deg]">
+      <div class="absolute pt-4 top-0 -left-[5%] border-t-[25px] border-solid border-[#289cb8] w-2/5 -skew-x-[25deg]">
         <img src="../images/babymed-logo.png" width="280" class="pl-20 skew-x-[25deg]" alt="BabyMed" />
       </div>
       <div class="absolute skew-x-[25deg] bg-[#289cb8] -right-[9%] top-0 w-1/2 h-32 before:absolute before:bg-gray-900 before:-left-[5%] before:h-24 before:w-[5%]">
@@ -162,7 +163,6 @@
     <div id="preview">
       <button id="print-button" class="w-full bg-gray-900 hover:bg-gray-800 cursor-pointer select-none py-3 text-white rounded-lg flex items-center justify-center">Print PDF</button>
     </div>
-    <script src="https://cdn.tailwindcss.com"></script>
     <script>
       function printHTML() {
         document.getElementById('name').innerText = localStorage.getItem('token').slice(0, 10)
