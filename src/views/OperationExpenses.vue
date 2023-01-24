@@ -125,12 +125,12 @@ onUnmounted(() => {
           <div v-if="useModalStore().isOpenFilterBy" class="absolute bg-white shadow rounded-xl p-3 z-20 top-12 right-0 space-y-3">
             <div class="flex items-center space-x-1">
               <label for="">
-                From
+                {{ $t('from') }}
                 <input v-model="filterData.startDate" type="datetime-local" class="border-none text-gray-500 bg-gray-100 rounded-lg w-full" />
               </label>
               <ArrowDownIcon class="-rotate-90 text-gray-600 mt-6" />
               <label for="">
-                To
+                {{ $t('to') }}
                 <input v-model="filterData.endDate" type="datetime-local" class="border-none text-gray-500 bg-gray-100 rounded-lg w-full" />
               </label>
             </div>

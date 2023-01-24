@@ -19,6 +19,8 @@ import ServicesService from '../services/services.service'
 import UserService from '../services/user.service'
 import AddDoctorShare from '../components/Registration/AddDoctorShare.vue'
 import { cleanObjectEmptyFields } from '../mixins/utils'
+import SelectOptionDoctor from '../components/SelectOptionDoctor.vue'
+import { useDropStore } from '../store/drop.store'
 
 const API_URL = import.meta.env.VITE_BASE_URL
 
@@ -71,6 +73,11 @@ const loadExpenses = async ($state) => {
 
 onMounted(() => {
   useCheckupExpenseStore().clearStore()
+  UserService.getAllDoctors({
+    role: 'doctor',
+  }).then((res) => {
+    useUserStore().setDoctors(res?.data)
+  })
 })
 
 const dropdown = ref(null)
@@ -90,7 +97,14 @@ const filterData = reactive({
 
 const submitFilterData = () => {
   isLoading.value = true
-  CheckupExpenseService.getCheckupExpenses(cleanObjectEmptyFields(filterData)).then((res) => {
+  CheckupExpenseService.getCheckupExpenses(cleanObjectEmptyFields(
+    {
+        userId: selectedDoctor.value?.id,
+        serviceId: filterData.serviceId,
+        startDate: filterData.startDate,
+        endDate: filterData.endDate,
+      }
+  )).then((res) => {
     useCheckupExpenseStore().clearStore()
     useCheckupExpenseStore().setCheckupExpenses(res?.data)
     isLoading.value = false
@@ -105,6 +119,11 @@ const openFirstTab = () => {
   CheckupExpenseService.getCheckupExpenses({}).then((res) => {
     useCheckupExpenseStore().clearStore()
     useCheckupExpenseStore().setCheckupExpenses(res?.data)
+  })
+  UserService.getAllDoctors({
+    role: 'doctor',
+  }).then((res) => {
+    useUserStore().setDoctors(res?.data)
   })
 }
 
@@ -134,6 +153,10 @@ const doctors = computed(() => {
   return useUserStore().doctors
 })
 
+const selectedDoctor = computed(() => {
+  return useDropStore().selectDoctorOption
+})
+
 onUnmounted(() => {
   openFirstTab()
 })
@@ -153,11 +176,8 @@ onUnmounted(() => {
           <div v-if="useTabStore().isOpenFirstTab" @click="useModalStore().toggleFilterBy()" class="border-none select-none text-gray-500 bg-gray-100 rounded-lg w-full p-2 px-5 flex items-center hover:bg-gray-200 cursor-pointer"><FilterIcon class="w-5 h-5 text-gray-400" /> {{ $t('filter') }}</div>
           <div v-if="useModalStore().isOpenFilterBy" class="absolute bg-white shadow rounded-xl p-3 z-20 top-12 right-0 space-y-3">
             <div>
-              <p>{{ $t('doctor') }}</p>
-              <select v-model="filterData.doctorId" class="border-none text-gray-500 bg-gray-100 rounded-lg w-full">
-                <option value="" selected>{{ $t('selectDoctor') }}</option>
-                <option v-for="(doctor, idx) in doctors" :key="idx" :value="doctor?.id">{{ doctor?.firstName + " " + doctor?.lastName }}</option>
-              </select>
+              <p>{{ $t('selectDoctor') }}</p>
+              <SelectOptionDoctor :options="doctors" />
             </div>
             <div>
               <p>{{ $t('service') }}</p>
@@ -168,12 +188,12 @@ onUnmounted(() => {
             </div>
             <div class="flex items-center space-x-1">
               <label for="">
-                From
+                {{ $t('from') }}
                 <input v-model="filterData.startDate" type="datetime-local" class="border-none text-gray-500 bg-gray-100 rounded-lg w-full" />
               </label>
               <ArrowDownIcon class="-rotate-90 text-gray-600 mt-6" />
               <label for="">
-                To
+                {{ $t('to') }}
                 <input v-model="filterData.endDate" type="datetime-local" class="border-none text-gray-500 bg-gray-100 rounded-lg w-full" />
               </label>
             </div>
