@@ -172,7 +172,7 @@ onMounted(() => {
           :class="{ 'text-gray-100': useSidebarStore().isOpenSidebar && router?.currentRoute?.value?.path === '/services' }">
           <div :class="isOpen ? 'pl-6' : 'pl-1'" class="flex items-center space-x-2">
             <p>-</p>
-            <p v-text="isOpen ? t('createService') : 'CS'"></p>
+            <p v-text="isOpen ? t('services') : 'S'"></p>
           </div>
         </router-link>
       </div>
