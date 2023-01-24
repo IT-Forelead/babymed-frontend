@@ -5,6 +5,7 @@ export const useServicesStore = defineStore('services', {
     services: [],
     allServices: [],
     serviceTypes: [],
+    selectedService: {},
   }),
   actions: {
     setServices(data) {
@@ -15,6 +16,9 @@ export const useServicesStore = defineStore('services', {
     },
     setServiceTypes(data) {
       this.serviceTypes = data
+    },
+    setSelectedService(data) {
+      this.selectedService = data
     },
   },
 })

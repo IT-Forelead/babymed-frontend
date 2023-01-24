@@ -8,6 +8,7 @@ export const useModalStore = defineStore('modal', {
     confirmDelete: false,
     isOpenAddVisitModal: false,
     isOpenAddServiceModal: false,
+    isOpenEditServiceModal: false,
     isOpenFilterBy: false,
     isOpenOperationExpenseInfo: false,
     isOpenPrintModal: false,
@@ -43,6 +44,12 @@ export const useModalStore = defineStore('modal', {
     },
     closeAddServiceModal() {
       this.isOpenAddServiceModal = false
+    },
+    openEditServiceModal() {
+      this.isOpenEditServiceModal = true
+    },
+    closeEditServiceModal() {
+      this.isOpenEditServiceModal = false
     },
     allowDelete() {
       this.confirmDelete = true
