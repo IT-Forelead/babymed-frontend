@@ -46,7 +46,7 @@ const clickedTheRow = (data) => {
       {{ expense?.service?.serviceTypeName + " - " + expense?.service?.name }} <br />
       <span class="text-sm font-bold italic">{{ useMoneyFormatter(expense?.service?.price) }}</span>
     </td>
-    <td v-motion-pop class="py-2 px-4 text-center">{{ moment(expense?.operationExpense?.createdAt).format('DD/MM/YYYY h:mm') }}</td>
+    <td v-motion-pop class="py-2 px-4 text-center">{{ moment(expense?.operationExpense?.createdAt).format('DD/MM/YYYY H:mm') }}</td>
   </tr>
   <tr class="text-gray-700 text-md dark:text-gray-300 dark:bg-gray-800">
     <td v-motion-pop colspan="10">

@@ -63,7 +63,7 @@ const printCheque = (data) => {
 
 const printPdf = (data) => {
   localStorage.setItem('patientFullname', data?.patient?.firstname + " " + data?.patient?.lastname)
-  localStorage.setItem('visitCreatedAt', moment(data?.patientVisit?.createdAt).format('DD/MM/YYYY h:mm'))
+  localStorage.setItem('visitCreatedAt', moment(data?.patientVisit?.createdAt).format('DD/MM/YYYY H:mm'))
   localStorage.setItem('patientBirthday', moment(data?.patient?.birthday).format('DD/MM/YYYY'))
   localStorage.setItem('patientAddress', data?.patient?.address ? data?.region?.name + ", " + data?.city?.name + ", " + data?.patient?.address : data?.region?.name + ", " + data?.city?.name)
   useModalStore().openPrintPdfModal()
@@ -94,7 +94,7 @@ onMounted(() => {
         </div>
       </div>
     </td>
-    <td v-motion-pop class="py-2 px-4 text-center">{{ moment(patient?.patientVisit?.createdAt).format('DD/MM/YYYY h:mm') }}</td>
+    <td v-motion-pop class="py-2 px-4 text-center">{{ moment(patient?.patientVisit?.createdAt).format('DD/MM/YYYY H:mm') }}</td>
     <td v-motion-pop class="py-2 px-4 text-center capitalize">
       <div v-for="(service, idx) in patient?.services" :key="idx">
         <span v-if="service?.serviceWithTypeName?.serviceTypeName.length < 18">{{ service?.serviceWithTypeName?.serviceTypeName }}</span>

@@ -101,7 +101,7 @@ const totalPrice = () => {
               report?.userFirstName + ' ' + report?.userLastName
             }}</p>
             <p class="text-center px-3 total">Сана: {{
-              moment(report?.patientVisit?.createdAt).format('DD/MM/YYYY h:mm')
+              moment(report?.patientVisit?.createdAt).format('DD/MM/YYYY H:mm')
             }}</p>
           </div>
         </div>

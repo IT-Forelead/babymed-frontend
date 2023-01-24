@@ -32,7 +32,7 @@ const { checkupExpenses } = toRefs(props)
         <div class="text-base leading-5font-medium capitalize">{{ expense?.patient?.firstname + " " + expense?.patient?.lastname }}</div>
         <div class="flex items-center space-x-2">
           <span class="text-sm text-gray-500">{{ $t('visitingTime') }}:</span>
-          <span class="text-base">{{ moment(expense?.visit?.createdAt).format('DD/MM/YYYY h:mm') }}</span>
+          <span class="text-base">{{ moment(expense?.visit?.createdAt).format('DD/MM/YYYY H:mm') }}</span>
         </div>
       </div>
     </td>
@@ -50,7 +50,7 @@ const { checkupExpenses } = toRefs(props)
         </div>
       </div>
     </td>
-    <td v-motion-pop class="py-2 px-4 text-center">{{ moment(expense?.checkupExpense?.createdAt).format('DD/MM/YYYY h:mm') }}</td>
+    <td v-motion-pop class="py-2 px-4 text-center">{{ moment(expense?.checkupExpense?.createdAt).format('DD/MM/YYYY H:mm') }}</td>
   </tr>
   <tr class="text-gray-700 text-md dark:text-gray-300 dark:bg-gray-800">
     <td v-motion-pop colspan="10">
