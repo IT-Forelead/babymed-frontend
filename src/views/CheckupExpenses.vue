@@ -179,13 +179,13 @@ onUnmounted(() => {
               <p>{{ $t('selectDoctor') }}</p>
               <SelectOptionDoctor :options="doctors" />
             </div>
-            <div>
+            <!-- <div>
               <p>{{ $t('service') }}</p>
               <select v-model="filterData.serviceId" class="border-none text-gray-500 bg-gray-100 rounded-lg w-full">
                 <option value="" selected>{{ $t('selectService') }}</option>
                 <option v-for="(service, idx) in services" :key="idx" :value="service?.id">{{ service?.name }}</option>
               </select>
-            </div>
+            </div> -->
             <div class="flex items-center space-x-1">
               <label for="">
                 {{ $t('from') }}
