@@ -28,11 +28,12 @@ const serviceData = reactive({
   price: 0,
 })
 
-const clearFields = () => {
+const closeModal = () => {
   serviceData.name = ''
   serviceData.price = 0
   useDropStore().setSelectServiceTypeOption('')
   useServicesStore().setSelectedService({})
+  useModalStore().closeEditServiceModal()
 }
 
 const submitServiceData = () => {
@@ -65,8 +66,7 @@ const submitServiceData = () => {
       ServicesService.getAllServices().then((res) => {
         useServicesStore().setAllServices(res)
       })
-      clearFields()
-      useModalStore().closeEditServiceModal()
+      closeModal()
       isLoading.value = false
     })
     .catch(() => {
@@ -113,7 +113,7 @@ watch(
           <div class="flex items-center justify-center space-x-3">
             <div class="text-xl font-medium">{{ $t('editService') }}</div>
           </div>
-          <button @click="useModalStore().closeEditServiceModal()" class="text-gray-600 bg-gray-100 hover:bg-gray-800 hover:text-gray-300 transition-all duration-300 rounded-full text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white">
+          <button @click="closeModal()" class="text-gray-600 bg-gray-100 hover:bg-gray-800 hover:text-gray-300 transition-all duration-300 rounded-full text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white">
             <TimesIcon />
           </button>
         </div>
@@ -130,7 +130,6 @@ watch(
             {{ $t('servicePrice') }}
             <money3 v-model="serviceData.price" v-bind="moneyConf" id="servicePrice" class="border-none text-right text-gray-500 bg-gray-100 rounded-lg w-full text-lg"> </money3>
           </label>
-          <p>{{ selectedService }}</p>
           <div @click="submitServiceData()" :class="isLoading ? 'bg-gray-600' : 'bg-gray-900 hover:bg-gray-800 cursor-pointer'" class="w-full py-3 text-white rounded-lg flex items-center justify-center">
             <svg v-if="isLoading" class="mr-2 w-5 h-5 text-gray-200 animate-spin dark:text-gray-600 fill-gray-600 dark:fill-gray-300" viewBox="0 0 100 101" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path d="M100 50.5908C100 78.2051 77.6142 100.591 50 100.591C22.3858 100.591 0 78.2051 0 50.5908C0 22.9766 22.3858 0.59082 50 0.59082C77.6142 0.59082 100 22.9766 100 50.5908ZM9.08144 50.5908C9.08144 73.1895 27.4013 91.5094 50 91.5094C72.5987 91.5094 90.9186 73.1895 90.9186 50.5908C90.9186 27.9921 72.5987 9.67226 50 9.67226C27.4013 9.67226 9.08144 27.9921 9.08144 50.5908Z" fill="currentColor" />

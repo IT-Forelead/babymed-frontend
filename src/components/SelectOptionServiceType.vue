@@ -1,6 +1,6 @@
 <script setup>
 import { ref } from '@vue/reactivity'
-import { watch, toRefs } from 'vue'
+import { computed, toRefs } from 'vue'
 import { onClickOutside } from '@vueuse/core'
 import { useDropStore } from '../store/drop.store'
 import TimesIcon from '../assets/icons/TimesIcon.vue'
@@ -13,11 +13,10 @@ const props = defineProps({
 
 const { options } = toRefs(props)
 
-const selectedOption = ref('')
 const dropdown = ref(null)
 
-watch(useDropStore(), () => {
-  selectedOption.value = useDropStore().selectServiceTypeOption
+const selectedOption = computed(() => {
+  return useDropStore().selectServiceTypeOption
 })
 
 const clearSelectedOptionData = () => {
