@@ -6,10 +6,13 @@ import { useDropStore } from '../store/drop.store'
 import TimesIcon from '../assets/icons/TimesIcon.vue'
 import ChevronRightIcon from '../assets/icons/ChevronRightIcon.vue'
 import { useServicesStore } from '../store/services.store'
+import {useRouter} from "vue-router";
 
 const props = defineProps({
   options: { type: Array, required: true },
 })
+
+const router = useRouter()
 
 const { options } = toRefs(props)
 
@@ -20,7 +23,8 @@ const selectedOption = computed(() => {
 })
 
 onMounted(() => {
-  clearSelectedOptionData()
+  if (router.currentRoute?.value?.path !== '/services')
+    clearSelectedOptionData()
 })
 
 const clearSelectedOptionData = () => {
