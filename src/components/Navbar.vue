@@ -13,6 +13,7 @@ import Cheque from './Cheque.vue'
 import { ref, onMounted } from 'vue'
 import PrintPdfModal from './PrintPdfModal.vue'
 import AddServiceModal from './AddServiceModal.vue'
+import EditServiceModal from './EditServiceModal.vue'
 
 const { t } = useI18n()
 
@@ -99,6 +100,7 @@ onMounted(() => {
     <!-- Add Visit Modal -->
     <AddVisitModal />
     <AddServiceModal />
+    <EditServiceModal />
     <OperationInfoModal />
     <Cheque />
     <PrintPdfModal />
