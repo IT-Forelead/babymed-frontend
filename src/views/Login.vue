@@ -11,6 +11,7 @@ import 'izitoast/dist/css/iziToast.min.css'
 import i18n from '../i18n.js'
 import {useI18n} from 'vue-i18n'
 import decodeJwt from '../mixins/utils'
+import {useSidebarStore} from "../store/sidebar.store.js";
 
 const {t} = useI18n()
 const isLoading = ref(false)
@@ -69,6 +70,7 @@ const changeLang = () => {
 onMounted(() => {
   lang.value = localStorage.getItem('lang') || 'uz'
   document.getElementsByTagName('title')[0].innerHTML = t('title')
+  useSidebarStore().clearStore()
 })
 </script>
 
