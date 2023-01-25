@@ -14,6 +14,7 @@ import { ref, onMounted } from 'vue'
 import PrintPdfModal from './PrintPdfModal.vue'
 import AddServiceModal from './AddServiceModal.vue'
 import EditServiceModal from './EditServiceModal.vue'
+import DeleteAlertModal from './DeleteAlertModal.vue'
 
 const { t } = useI18n()
 
@@ -97,6 +98,7 @@ onMounted(() => {
     <ChangePaymentStatus />
     <!-- Delete Alert -->
     <DeleteAlert />
+    <DeleteAlertModal />
     <!-- Add Visit Modal -->
     <AddVisitModal />
     <AddServiceModal />

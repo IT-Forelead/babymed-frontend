@@ -19,9 +19,9 @@ const props = defineProps({
 const { users } = toRefs(props)
 const selectedUserId = ref('')
 
-const deleteUser = (id) => {
-  selectedUserId.value = id
-  // useModalStore().openDeleteAlert()
+const deleteUser = (selectedService) => {
+  useModalStore().openDeleteAlertModal()
+  useUserStore().setSelectedUser(selectedService)
 }
 
 watch(
@@ -76,7 +76,7 @@ watch(
         <!-- <div class="w-4 mr-3 transform text-blue-500 hover:text-purple-500 hover:scale-110 cursor-pointer">
           <EditIcon class="w-6 h-6" />
         </div> -->
-        <div v-if="!user?.role?.includes('super')" @click="deleteUser(user?.id)" class="w-4 mr-3 transform text-red-500 hover:text-red-600 hover:scale-110 cursor-pointer">
+        <div v-if="!user?.role?.includes('super')" @click="deleteUser(user)" class="w-4 mr-3 transform text-red-500 hover:text-red-600 hover:scale-110 cursor-pointer">
           <TrashIcon class="w-6 h-6" />
         </div>
       </div>

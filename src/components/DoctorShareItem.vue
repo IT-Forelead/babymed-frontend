@@ -11,6 +11,7 @@ import 'izitoast/dist/css/iziToast.min.css'
 import { useCheckupExpenseStore } from '../store/checkupExpense.store'
 import CheckupExpenseService from '../services/checkupExpenses.service'
 import { useI18n } from 'vue-i18n'
+import { useModalStore } from '../store/modal.store'
 
 const { t } = useI18n()
 
@@ -20,7 +21,7 @@ const props = defineProps({
 
 const { doctorShares } = toRefs(props)
 
-const deleteDoctorShare = (id) => {
+const deleteDoctorShare2 = (id) => {
   CheckupExpenseService.deleteDoctorShare(id)
     .then(() => {
       notify.success({
@@ -36,6 +37,11 @@ const deleteDoctorShare = (id) => {
         message: t('errorDeletingDoctorShare'),
       })
     })
+}
+
+const deleteDoctorShare = (selectedDoctorShare) => {
+  useModalStore().openDeleteAlertModal()
+  useCheckupExpenseStore().setSelectedDoctorShare(selectedDoctorShare)
 }
 </script>
 
@@ -64,7 +70,7 @@ const deleteDoctorShare = (id) => {
     </td>
     <td v-motion-pop class="py-2 px-4 text-center">
       <div class="flex item-center justify-center">
-        <div @click="deleteDoctorShare(doctorShare?.doctorShare?.id)" class="w-4 mr-3 transform text-red-500 hover:text-red-600 hover:scale-110 cursor-pointer">
+        <div @click="deleteDoctorShare(doctorShare)" class="w-4 mr-3 transform text-red-500 hover:text-red-600 hover:scale-110 cursor-pointer">
           <TrashIcon class="w-6 h-6" />
         </div>
       </div>

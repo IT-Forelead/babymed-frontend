@@ -22,7 +22,7 @@ const selectedServiceTypeId = ref('')
 
 const confirm = computed(() => useModalStore().confirmDelete)
 
-const deleteServiceType = (st_id) => {
+const deleteServiceType2 = (st_id) => {
   selectedServiceTypeId.value = st_id
   // useModalStore().openDeleteAlert()
   ServicesService.deleteServiceType(selectedServiceTypeId.value)
@@ -41,6 +41,11 @@ const deleteServiceType = (st_id) => {
       })
     })
 }
+
+const deleteServiceType = (selectedServiceType) => {
+  useModalStore().openDeleteAlertModal()
+  useServicesStore().setSelectedServiceType(selectedServiceType)
+}
 </script>
 
 <template>
@@ -54,7 +59,7 @@ const deleteServiceType = (st_id) => {
         <!-- <div class="w-4 mr-3 transform text-blue-500 hover:text-purple-500 hover:scale-110 cursor-pointer">
           <EditIcon class="w-6 h-6" />
         </div> -->
-        <div @click="deleteServiceType(serviceType?.id)" class="w-4 mr-3 transform text-red-500 hover:text-red-600 hover:scale-110 cursor-pointer">
+        <div @click="deleteServiceType(serviceType)" class="w-4 mr-3 transform text-red-500 hover:text-red-600 hover:scale-110 cursor-pointer">
           <TrashIcon class="w-6 h-6" />
         </div>
       </div>

@@ -4,6 +4,7 @@ export const useCheckupExpenseStore = defineStore('checkupExpense', {
   state: () => ({
     checkupExpenses: [],
     doctorShares: [],
+    selectedDoctorShare: {},
   }),
   actions: {
     setCheckupExpenses(data) {
@@ -11,6 +12,9 @@ export const useCheckupExpenseStore = defineStore('checkupExpense', {
     },
     setDoctorShares(data) {
       this.doctorShares.push(...data)
+    },
+    setSelectedDoctorShare(data) {
+      this.selectedDoctorShare = data
     },
     clearStore() {
       this.checkupExpenses = []
