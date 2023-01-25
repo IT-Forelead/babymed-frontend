@@ -1,6 +1,6 @@
 <script setup>
 import { ref } from '@vue/reactivity'
-import { watch, toRefs } from 'vue'
+import {watch, toRefs, onMounted} from 'vue'
 import { onClickOutside } from '@vueuse/core'
 import { useDropStore } from '../store/drop.store'
 import UserBoldIcon from '../assets/icons/UserBoldIcon.vue'
@@ -15,6 +15,10 @@ const { options } = toRefs(props)
 
 const selectedOption = ref('')
 const dropdown = ref(null)
+
+onMounted(() => {
+  clearSelectedOptionData()
+})
 
 watch(useDropStore(), () => {
   selectedOption.value = useDropStore().selectDoctorOption

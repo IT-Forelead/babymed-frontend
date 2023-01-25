@@ -1,5 +1,5 @@
 <script setup>
-import { ref, toRefs } from 'vue'
+import {onMounted, ref, toRefs} from 'vue'
 import MdiCheck from '../assets/icons/MdiCheck.vue'
 import { useMultiSelectStore } from '../store/multiselect.store'
 import { onClickOutside } from '@vueuse/core'
@@ -24,6 +24,10 @@ const getSearchResult = (options) => {
     searchResults.value = []
   }
 }
+
+onMounted(() => {
+  useMultiSelectStore().clearStore()
+})
 
 const { options, id } = toRefs(props)
 

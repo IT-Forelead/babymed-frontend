@@ -47,11 +47,13 @@ const services = computed(() => {
 })
 
 onMounted(() => {
+  useMultiSelectStore().clearStore()
   ServicesService.getAllServiceTypes().then((res) => {
     useServicesStore().setServiceTypes(res)
   })
   if (!(router.currentRoute?.value?.path === '/patients' || router.currentRoute?.value?.path === '/dashboard')) {
     PatientService.getAllPatients({}).then((res) => {
+      useDropStore().clearStore()
       usePatientStore().clearStore()
       usePatientStore().setPatients(res?.data)
     })

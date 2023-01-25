@@ -16,5 +16,10 @@ export const useServicesStore = defineStore('services', {
     setServiceTypes(data) {
       this.serviceTypes = data
     },
+    clearStore() {
+      this.services = []
+      this.allServices = []
+      this.serviceTypes = []
+    }
   },
 })

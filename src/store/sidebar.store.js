@@ -17,5 +17,10 @@ export const useSidebarStore = defineStore('sidebar', {
     toggleExpenseMenu() {
       this.isOpenExpenseMenu = !this.isOpenExpenseMenu
     },
+    clearStore() {
+      this.isOpenSidebar = true
+      this.isOpenSubMenu = false
+      this.isOpenExpenseMenu = false
+    }
   },
 })
