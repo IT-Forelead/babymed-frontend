@@ -206,5 +206,6 @@
   "pediatricianTemplate":"Шаблон педиатра",
   "gynecologistTemplate":"Шаблон гинеколога",
   "ultrasoundTemplate":"Шаблон УЗИ",
-  "dopplerUltrasoundTemplate":"Шаблон доплер УЗИ"
+  "dopplerUltrasoundTemplate":"Шаблон доплер УЗИ",
+  "dailyExpenses":"Ежедневные расходы"
 }

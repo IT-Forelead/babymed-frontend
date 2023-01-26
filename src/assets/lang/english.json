@@ -207,5 +207,6 @@
   "pediatricianTemplate":"Pediatrician template",
   "gynecologistTemplate":"Gynecologist template",
   "ultrasoundTemplate":"Ultrasound template",
-  "dopplerUltrasoundTemplate":"Doppler ultrasound template"
+  "dopplerUltrasoundTemplate":"Doppler ultrasound template",
+  "dailyExpenses":"Daily expenses"
 }
