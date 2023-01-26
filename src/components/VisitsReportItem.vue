@@ -14,27 +14,12 @@ import { useTabStore } from '../store/tab.store'
 import useMoneyFormatter from '../mixins/currencyFormatter'
 import { useI18n } from 'vue-i18n'
 import PdfFileIcon from '../assets/icons/PdfFileIcon.vue'
+import {parseJwt} from "../mixins/utils.js";
 
 const { t } = useI18n()
 
 const router = useRouter()
 const payload = ref({})
-
-function parseJwt(token) {
-  var base64Url = token.split('.')[1]
-  var base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/')
-  var jsonPayload = decodeURIComponent(
-    window
-      .atob(base64)
-      .split('')
-      .map(function (c) {
-        return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2)
-      })
-      .join('')
-  )
-
-  return JSON.parse(jsonPayload)
-}
 
 const props = defineProps({
   patients: { type: Array, required: true },
@@ -74,7 +59,7 @@ const navigationGuard = (access) => {
 }
 
 onMounted(() => {
-  payload.value = parseJwt(localStorage.getItem('token'))
+  payload.value = parseJwt()
 })
 </script>
 

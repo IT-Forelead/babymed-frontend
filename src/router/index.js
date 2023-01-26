@@ -1,4 +1,5 @@
 import {createRouter, createWebHistory} from 'vue-router'
+import {parseJwt} from "../mixins/utils.js";
 
 const routes = [
     {
@@ -105,29 +106,13 @@ router.beforeEach((to, from, next) => {
     }
 })
 
-function parseJwt(token) {
-    var base64Url = token.split('.')[1]
-    var base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/')
-    var jsonPayload = decodeURIComponent(
-        window
-            .atob(base64)
-            .split('')
-            .map(function (c) {
-                return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2)
-            })
-            .join('')
-    )
-
-    return JSON.parse(jsonPayload)
-}
-
 function navigationGuards(access) {
     return () => {
-        if (localStorage.getItem('token') && !access.includes(parseJwt(localStorage.getItem('token'))?.role)) {
+        if (localStorage.getItem('token') && !access.includes(parseJwt()?.role)) {
             router.push('/notfound')
             console.log("Oops!")
         }
-        return access.includes(parseJwt(localStorage.getItem('token'))?.role)
+        return access.includes(parseJwt()?.role)
     }
 }
 
