@@ -7,6 +7,16 @@ class AxiosService {
 
     async post(url, data, config) {
         const response = await axios.post(API_URL + url, data, config)
+            .catch((err) => {
+                if (err?.response?.status === 403) {
+                    alert('Your token is expired!')
+                    localStorage.clear()
+                    window.location.reload()
+                } else {
+                    refreshToken(err?.response)
+                    throw Error(err)
+                }
+            })
         refreshToken(response)
         return response.data
     }
@@ -19,6 +29,16 @@ class AxiosService {
 
     async get(url, config) {
         const response = await axios.get(API_URL + url, config)
+            .catch((err) => {
+                if (err?.response?.status === 403) {
+                    alert('Your token is expired!')
+                    localStorage.clear()
+                    window.location.reload()
+                } else {
+                    refreshToken(err?.response)
+                    throw Error(err)
+                }
+            })
         refreshToken(response)
         return response.data
     }
