@@ -41,7 +41,7 @@ onMounted(() => {
     <div class="flex items-center">
       <p class="text-3xl font-bold">{{ $t('patientsReport') }}</p>
     </div>
-    <div class="h-80 overflow-auto mt-3 patients-wrapper">
+    <div class="h-80 overflow-auto xxl:overflow-hidden mt-3 patients-wrapper">
       <table class="min-w-max w-full table-auto">
         <thead class="sticky z-10 top-0 bg-white shadow">
         <tr class="text-gray-600 capitalize text-lg leading-normal">

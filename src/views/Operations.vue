@@ -180,7 +180,7 @@ onUnmounted(() => {
         </div>
       </div>
     </div>
-    <div v-if="useTabStore().isOpenFirstTab" class="max-h-[77vh] overflow-auto mt-3 expenses-wrapper">
+    <div v-if="useTabStore().isOpenFirstTab" class="max-h-[77vh] overflow-auto xxl:overflow-hidden mt-3 expenses-wrapper">
       <table class="min-w-max w-full table-auto">
         <thead class="sticky z-10 top-0 bg-white shadow">
         <tr class="text-gray-600 capitalize text-lg leading-normal">
@@ -198,7 +198,7 @@ onUnmounted(() => {
       <div v-if="operations?.length === 0" class="w-full text-center text-red-500">{{ $t('empty') }}</div>
     </div>
     <div v-if="useTabStore().isOpenSecondTab" class="grid grid- grid-cols-3 mt-5 gap-8">
-      <div class="max-h-[75vh] overflow-auto col-span-2">
+      <div class="max-h-[75vh] overflow-auto xxl:overflow-hidden col-span-2">
         <div class="flex items-center p-3">
           <p class="text-3xl font-bold">{{ $t('operationServicesReport') }}</p>
         </div>

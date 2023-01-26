@@ -108,7 +108,7 @@ watch(
           </div>
         </div>
       </div>
-      <div v-else class="max-h-[82vh] overflow-auto patients-wrapper bg-white rounded-lg col-span-2">
+      <div v-else class="max-h-[82vh] overflow-auto xxl:overflow-hidden patients-wrapper bg-white rounded-lg col-span-2">
         <div class="flex items-center p-3 w-full">
           <p class="text-3xl font-bold">{{ $t('visitsReport') }}</p>
         </div>

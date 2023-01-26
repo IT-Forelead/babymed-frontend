@@ -61,7 +61,7 @@ onMounted(() => {
         </div>
       </div>
     </div>
-    <div class="max-h-[77vh] overflow-auto mt-3 patients-wrapper">
+    <div class="max-h-[77vh] overflow-auto xxl:overflow-hidden mt-3 patients-wrapper">
       <table class="min-w-max w-full table-auto">
         <thead class="sticky z-10 top-0 bg-white shadow">
         <tr class="text-gray-600 capitalize text-lg leading-normal">
