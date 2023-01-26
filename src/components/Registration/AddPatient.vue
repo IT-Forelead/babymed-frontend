@@ -1,6 +1,6 @@
 <script setup>
-import { reactive, ref } from '@vue/reactivity'
-import { toRefs, watch } from 'vue'
+import {computed, reactive, ref} from '@vue/reactivity'
+import {onMounted, toRefs, watch} from 'vue'
 import AddressService from '../../services/address.service'
 import PatientService from '../../services/patient.service'
 import { usePatientStore } from '../../store/patient.store'
@@ -8,14 +8,19 @@ import notify from 'izitoast'
 import 'izitoast/dist/css/iziToast.min.css'
 import { useI18n } from 'vue-i18n'
 import { cleanObjectEmptyFields } from '../../mixins/utils'
+import {useAddressStore} from "../../store/address.store.js";
 
 const { t } = useI18n()
 
-const props = defineProps({
-  regions: { type: Array, required: true },
+onMounted(() => {
+  AddressService.getAllRegions().then((res) => {
+    useAddressStore().setRegions(res)
+  })
 })
 
-const { regions } = toRefs(props)
+const regions = computed(() => {
+  return useAddressStore().regions
+})
 
 const cities = ref([])
 

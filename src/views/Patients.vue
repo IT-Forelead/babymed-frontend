@@ -67,9 +67,12 @@ onMounted(() => {
 })
 
 onMounted(() => {
-  AddressService.getAllRegions().then((res) => {
-    useAddressStore().setRegions(res)
-  })
+  setTimeout(() => {
+        AddressService.getAllRegions().then((res) => {
+          useAddressStore().setRegions(res)
+        })
+      }, 1000
+  )
 })
 
 const regions = computed(() => {
