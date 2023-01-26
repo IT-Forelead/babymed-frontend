@@ -207,5 +207,6 @@
   "gynecologistTemplate":"Шаблон гинеколога",
   "ultrasoundTemplate":"Шаблон УЗИ",
   "dopplerUltrasoundTemplate":"Шаблон доплер УЗИ",
-  "dailyExpenses":"Ежедневные расходы"
+  "dailyExpenses":"Ежедневные расходы",
+  "deleteData":"Удалить данные"
 }

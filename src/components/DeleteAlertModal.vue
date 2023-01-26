@@ -146,13 +146,12 @@ const selectedDoctorShare = computed(() => {
     <div class="relative max-w-xl p-4 w-full h-full md:h-auto left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
       <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
         <div class="flex justify-between items-start p-4 rounded-t border-b dark:border-gray-600">
-          <div class="flex items-center justify-center space-x-3">
-            <div class="text-xl font-medium">Delete</div>
-          </div>
+          <div class="text-xl font-medium">{{ $t('deleteData') }}</div>
           <button @click="closeModal()" class="text-gray-600 bg-gray-100 hover:bg-gray-800 hover:text-gray-300 transition-all duration-300 rounded-full text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white">
             <TimesIcon />
           </button>
         </div>
+
         <!-- Service Section -->
         <div v-if="selectedService?.id" class="py-4 px-6 text-center space-y-6">
           <div>
@@ -180,6 +179,7 @@ const selectedDoctorShare = computed(() => {
             {{ $t('noCancel') }}
           </button>
         </div>
+
         <!-- Operation Service Section -->
         <div v-if="selectedOperationService?.operationService?.id" class="py-4 px-6 text-center space-y-6">
           <div>
@@ -293,6 +293,7 @@ const selectedDoctorShare = computed(() => {
             {{ $t('noCancel') }}
           </button>
         </div>
+
       </div>
     </div>
   </div>

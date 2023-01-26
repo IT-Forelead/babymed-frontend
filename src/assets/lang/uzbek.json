@@ -208,5 +208,6 @@
   "gynecologistTemplate":"Ginekolog shabloni",
   "ultrasoundTemplate":"Ultratovush shabloni",
   "dopplerUltrasoundTemplate":"Doppler ultratovush shabloni",
-  "dailyExpenses":"Kunlik xarajatlar"
+  "dailyExpenses":"Kunlik xarajatlar",
+  "deleteData":"Ma'lumotni o'chirish"
 }
