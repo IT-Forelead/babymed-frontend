@@ -1,12 +1,9 @@
 <script setup>
 import 'v3-infinite-loading/lib/style.css'
-import { ref, toRefs, watch } from 'vue'
+import { toRefs } from 'vue'
 import TrashIcon from '../../assets/icons/TrashIcon.vue'
 import EditIcon from '../../assets/icons/EditIcon.vue'
 import useMoneyFormatter from '../../mixins/currencyFormatter.js'
-import ServicesService from '../../services/services.service'
-import notify from 'izitoast'
-import 'izitoast/dist/css/iziToast.min.css'
 import { useServicesStore } from '../../store/services.store'
 import { useModalStore } from '../../store/modal.store'
 import { useI18n } from 'vue-i18n'
@@ -18,27 +15,6 @@ const props = defineProps({
 })
 
 const { services } = toRefs(props)
-const selectedServiceId = ref('')
-
-const deleteService2 = (s_id) => {
-  selectedServiceId.value = s_id
-  // useModalStore().openDeleteAlert()
-  ServicesService.deleteService(selectedServiceId.value)
-    .then(() => {
-      notify.success({
-        message: t('deletedService'),
-      })
-      ServicesService.getAllServices().then((res) => {
-        useServicesStore().setAllServices(res)
-      })
-      selectedServiceId.value = ''
-    })
-    .catch(() => {
-      notify.warning({
-        message: t('errorDeletingService'),
-      })
-    })
-}
 
 const editService = (selectedService) => {
   useModalStore().openEditServiceModal()
@@ -49,29 +25,6 @@ const deleteService = (selectedService) => {
   useModalStore().openDeleteAlertModal()
   useServicesStore().setSelectedService(selectedService)
 }
-
-// watch(
-//   () => useModalStore().confirmDelete,
-//   (confirm) => {
-//     if (confirm) {
-//       ServicesService.deleteService(selectedServiceId.value)
-//         .then(() => {
-//           notify.success({
-//             message: t('deletedService'),
-//           })
-//           ServicesService.getAllServices().then((res) => {
-//             useServicesStore().setServices(res)
-//           })
-//           selectedServiceId.value = ''
-//         })
-//         .catch(() => {
-//           notify.warning({
-//             message: t('errorDeletingService'),
-//           })
-//         })
-//     }
-//   }
-// )
 </script>
 
 <template>

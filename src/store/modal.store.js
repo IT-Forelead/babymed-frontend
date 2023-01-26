@@ -4,8 +4,6 @@ export const useModalStore = defineStore('modal', {
   state: () => ({
     isModalOpen: false,
     isOpenPaymentStatusChangerModal: false,
-    isDeleteAlert: false,
-    confirmDelete: false,
     isOpenAddVisitModal: false,
     isOpenAddServiceModal: false,
     isOpenEditServiceModal: false,
@@ -57,14 +55,6 @@ export const useModalStore = defineStore('modal', {
     },
     closeDeleteAlertModal() {
       this.isOpenDeleteAlertModal = false
-    },
-    allowDelete() {
-      this.confirmDelete = true
-      this.isDeleteAlert = false
-    },
-    denyDelete() {
-      this.confirmDelete = false
-      this.isDeleteAlert = false
     },
     openOperationExpenseInfoModal() {
       this.isOpenOperationExpenseInfo = true

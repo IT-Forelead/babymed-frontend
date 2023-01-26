@@ -5,6 +5,7 @@ export const useExpenseStore = defineStore('expense', {
     expenses: [],
     operations: [],
     operationServices: [],
+    selectedOperationService: {},
   }),
   actions: {
     setExpenses(data) {
@@ -15,6 +16,9 @@ export const useExpenseStore = defineStore('expense', {
     },
     setOperations(data) {
       this.operations.push(...data)
+    },
+    setSelectedOperationService(data) {
+      this.selectedOperationService = data
     },
     clearStore() {
       this.expenses = []

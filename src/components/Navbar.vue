@@ -4,7 +4,6 @@ import BellIcon from '../assets/icons/BellIcon.vue'
 import Registration from './Registration.vue'
 import { computed } from '@vue/reactivity'
 import { useRouter } from 'vue-router'
-import DeleteAlert from './DeleteAlert.vue'
 import ChangePaymentStatus from './Payments/ChangePaymentStatus.vue'
 import AddVisitModal from './AddVisitModal.vue'
 import { useI18n } from 'vue-i18n'
@@ -97,7 +96,6 @@ onMounted(() => {
     <!-- Payment Status Changer Modal -->
     <ChangePaymentStatus />
     <!-- Delete Alert -->
-    <DeleteAlert />
     <DeleteAlertModal />
     <!-- Add Visit Modal -->
     <AddVisitModal />

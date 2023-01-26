@@ -1,10 +1,7 @@
 <script setup>
 import 'v3-infinite-loading/lib/style.css'
-import { ref, toRefs, watch } from 'vue'
+import { toRefs } from 'vue'
 import TrashIcon from '../../assets/icons/TrashIcon.vue'
-import UserService from '../../services/user.service'
-import notify from 'izitoast'
-import 'izitoast/dist/css/iziToast.min.css'
 import { useModalStore } from '../../store/modal.store'
 import { useUserStore } from '../../store/user.store'
 import { useI18n } from 'vue-i18n'
@@ -17,36 +14,11 @@ const props = defineProps({
 })
 
 const { users } = toRefs(props)
-const selectedUserId = ref('')
 
 const deleteUser = (selectedService) => {
   useModalStore().openDeleteAlertModal()
   useUserStore().setSelectedUser(selectedService)
 }
-
-watch(
-  () => useModalStore().confirmDelete,
-  (confirm) => {
-    if (confirm) {
-      UserService.deleteUser(selectedUserId.value)
-        .then(() => {
-          notify.success({
-            message: t('deletedUser'),
-          })
-          UserService.getUsers({}).then((res) => {
-            useUserStore().clearStore()
-            useUserStore().setUsers(res?.data)
-          })
-          UserService.value = ''
-        })
-        .catch(() => {
-          notify.warning({
-            message: t('errorDeletingUser'),
-          })
-        })
-    }
-  }
-)
 </script>
 
 <template>

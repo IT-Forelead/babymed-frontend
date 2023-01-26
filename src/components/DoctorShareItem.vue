@@ -6,10 +6,7 @@ import 'v3-infinite-loading/lib/style.css'
 import useMoneyFormatter from '../mixins/currencyFormatter'
 import percentCalc from '../mixins/percentCalc'
 import { toRefs } from 'vue'
-import notify from 'izitoast'
-import 'izitoast/dist/css/iziToast.min.css'
 import { useCheckupExpenseStore } from '../store/checkupExpense.store'
-import CheckupExpenseService from '../services/checkupExpenses.service'
 import { useI18n } from 'vue-i18n'
 import { useModalStore } from '../store/modal.store'
 
@@ -20,24 +17,6 @@ const props = defineProps({
 })
 
 const { doctorShares } = toRefs(props)
-
-const deleteDoctorShare2 = (id) => {
-  CheckupExpenseService.deleteDoctorShare(id)
-    .then(() => {
-      notify.success({
-        message: t('deletedDoctorShare'),
-      })
-      CheckupExpenseService.getAllDocotrShares().then((res) => {
-        useCheckupExpenseStore().clearStore()
-        useCheckupExpenseStore().setDoctorShares(res)
-      })
-    })
-    .catch(() => {
-      notify.warning({
-        message: t('errorDeletingDoctorShare'),
-      })
-    })
-}
 
 const deleteDoctorShare = (selectedDoctorShare) => {
   useModalStore().openDeleteAlertModal()
