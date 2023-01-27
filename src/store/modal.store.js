@@ -8,6 +8,7 @@ export const useModalStore = defineStore('modal', {
     isOpenAddServiceModal: false,
     isOpenEditServiceModal: false,
     isOpenDeleteAlertModal: false,
+    isOpenDailyExpenseModal: false,
     isOpenFilterBy: false,
     isOpenOperationExpenseInfo: false,
     isOpenPrintModal: false,
@@ -55,6 +56,12 @@ export const useModalStore = defineStore('modal', {
     },
     closeDeleteAlertModal() {
       this.isOpenDeleteAlertModal = false
+    },
+    openDailyExpenseModal() {
+      this.isOpenDailyExpenseModal = true
+    },
+    closeDailyExpenseModal() {
+      this.isOpenDailyExpenseModal = false
     },
     openOperationExpenseInfoModal() {
       this.isOpenOperationExpenseInfo = true

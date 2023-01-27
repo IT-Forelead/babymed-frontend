@@ -209,5 +209,8 @@
   "ultrasoundTemplate":"Ultratovush shabloni",
   "dopplerUltrasoundTemplate":"Doppler ultratovush shabloni",
   "dailyExpenses":"Kunlik xarajatlar",
-  "deleteData":"Ma'lumotni o'chirish"
+  "deleteData":"Ma'lumotni o'chirish",
+  "report":"Hisobot",
+  "totalPrice":"Jami narx",
+  "visitcount":"Tashriflar soni"
 }

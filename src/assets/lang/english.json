@@ -209,5 +209,8 @@
   "ultrasoundTemplate":"Ultrasound template",
   "dopplerUltrasoundTemplate":"Doppler ultrasound template",
   "dailyExpenses":"Daily expenses",
-  "deleteData":"Delete data"
+  "deleteData":"Delete data",
+  "report":"Report",
+  "totalPrice":"Total price",
+  "visitcount":"Visit count"
 }

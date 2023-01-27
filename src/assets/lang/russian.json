@@ -208,5 +208,8 @@
   "ultrasoundTemplate":"Шаблон УЗИ",
   "dopplerUltrasoundTemplate":"Шаблон доплер УЗИ",
   "dailyExpenses":"Ежедневные расходы",
-  "deleteData":"Удалить данные"
+  "deleteData":"Удалить данные",
+  "отчет":"Отчет",
+  "totalPrice":"Общая цена",
+  "visitcount":"Количество посещений"
 }

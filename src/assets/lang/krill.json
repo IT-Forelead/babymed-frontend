@@ -209,5 +209,8 @@
   "ultrasoundTemplate":"Ултратовуш шаблони",
   "dopplerUltrasoundTemplate":"Допплер ултратовуш шаблони",
   "dailyExpenses":"Кунлик харажатлар",
-  "deleteData":"Маълумотни ўчириш"
+  "deleteData":"Маълумотни ўчириш",
+  "report":"Ҳисобот",
+  "totalPrice":"Умумий нарх",
+  "visitcount":"Ташрифлар сони"
 }
