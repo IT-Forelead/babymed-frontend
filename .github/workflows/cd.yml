@@ -35,8 +35,7 @@ jobs:
 
       - name: Publishing images ...
         run: |
-          pwd
-          ls
+          cd deployment/
           bash publish push -f babymed/frontend -t latest
 
   deploy:
