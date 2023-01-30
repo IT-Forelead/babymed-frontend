@@ -32,10 +32,9 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    
+
       - name: Publishing images ...
         run: |
-          cd deployment/
           bash publish push -f babymed/frontend -t latest
 
   deploy:
