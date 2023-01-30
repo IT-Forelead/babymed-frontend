@@ -9,7 +9,7 @@ jobs:
     runs-on: ubuntu-latest
     # strategy:
     #   matrix:
-    #     node-version: [14.x, 16.x, 18.x] <----- this line not working
+    #    node-version: [14.x, 16.x, 18.x] <----- this line not working
 
     steps:
       - name: Checkout current branch (fast)
