@@ -183,6 +183,7 @@
   "operations": "Operatsiyalar",
   "operationServices": "Operatsiya bo'limlari",
   "checkupExpensesReport":"Tekshirish xarajatlari hisoboti",
+  "checkupExpenses":"Tekshirish xarajatlari",
   "operationExpensesReport":"Operatsiya xarajatlari hisoboti",
   "cashier":"Kassir",
   "serviceNotFound":"Xizmat topilmadi",
@@ -212,5 +213,16 @@
   "deleteData":"Ma'lumotni o'chirish",
   "report":"Hisobot",
   "totalPrice":"Jami narx",
-  "visitcount":"Tashriflar soni"
+  "visitcount":"Tashriflar soni",
+  "all":"Barchasi",
+  "daily":"Kunlik",
+  "weekly":"Haftalik",
+  "monthly":"Oylik",
+  "yearly":"Yillik",
+  "today":"Bugun",
+  "yesterday":"Kecha",
+  "lastWeek":"O'tgan hafta",
+  "lastMonth":"O'tgan oy",
+  "lastYear":"O'tgan yil",
+  "anotherDate":"Boshqa sana"
 }

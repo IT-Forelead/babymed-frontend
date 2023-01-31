@@ -14,7 +14,6 @@ import PrintPdfModal from './PrintPdfModal.vue'
 import AddServiceModal from './AddServiceModal.vue'
 import EditServiceModal from './EditServiceModal.vue'
 import DeleteAlertModal from './DeleteAlertModal.vue'
-import DailyExpensesModal from './DailyExpensesModal.vue'
 
 const { t } = useI18n()
 
@@ -100,8 +99,6 @@ onMounted(() => {
     <DeleteAlertModal />
     <!-- Add Visit Modal -->
     <AddVisitModal />
-    <!-- Daily Expenses Modal -->
-    <DailyExpensesModal />
     <AddServiceModal />
     <EditServiceModal />
     <OperationInfoModal />

@@ -180,6 +180,7 @@
   "deletedDoctorShare": "Doctor share successfully deleted!",
   "errorDeletingDoctorShare": "Error while deleting doctor share!",
   "checkupExpensesReport":"Отчет о расходах на проверку",
+  "checkupExpenses":"Расходах на проверку",
   "operations": "Операции",
   "operationServices": "сервисная операция",
   "operationExpensesReport":"Отчет об операционных расходах",
@@ -211,5 +212,16 @@
   "deleteData":"Удалить данные",
   "отчет":"Отчет",
   "totalPrice":"Общая цена",
-  "visitcount":"Количество посещений"
+  "visitcount":"Количество посещений",
+  "all": "Все",
+  "daily":"Ежедневно",
+  "weekly":"Еженедельно",
+  "monthly":"Ежемесячно",
+  "yearly": "Ежегодно",
+  "today": "Сегодня",
+  "yesterday": "Вчера",
+  "lastWeek":"Прошлая неделя",
+  "lastMonth":"Прошлый месяц",
+  "lastYear":"Прошлый год",
+  "anotherDate":"Другое свидание"
 }

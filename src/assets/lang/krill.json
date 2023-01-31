@@ -183,6 +183,7 @@
   "operations": "Операциялар",
   "operationServices": "Операция бўлимлари",
   "checkupExpensesReport":"Текшириш харажатлари ҳисоботи",
+  "checkupExpenses":"Текшириш харажатлари",
   "operationExpensesReport":"Операция харажатлари ҳисоботи",
   "cashier":"Кассир",
   "serviceNotFound":"Хизмат топилмади",
@@ -212,5 +213,16 @@
   "deleteData":"Маълумотни ўчириш",
   "report":"Ҳисобот",
   "totalPrice":"Умумий нарх",
-  "visitcount":"Ташрифлар сони"
+  "visitcount":"Ташрифлар сони",
+  "all":"Барчаси",
+  "daily":"Кунлик",
+  "weekly":"Ҳафталик",
+  "monthly":"Ойлик",
+  "yearly":"Йиллик",
+  "today":"Бугун",
+  "yesterday":"Кеча",
+  "lastWeek":"Ўтган ҳафта",
+  "lastMonth":"Ўтган ой",
+  "lastYear":"Ўтган йил",
+  "anotherDate":"Бошқа сана"
 }

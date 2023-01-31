@@ -184,6 +184,7 @@
   "operationServices": "Operation Services",
   "operationExpensesReport":"Operation Expenses Report",
   "checkupExpensesReport":"Checkup Expenses Report",
+  "checkupExpenses":"Checkup Expenses",
   "cashier":"Cashier",
   "serviceNotFound":"Service not found",
   "close":"Close",
@@ -212,5 +213,16 @@
   "deleteData":"Delete data",
   "report":"Report",
   "totalPrice":"Total price",
-  "visitcount":"Visit count"
+  "visitcount":"Visit count",
+  "all":"All",
+  "daily":"Daily",
+  "weekly":"Weekly",
+  "monthly":"Monthly",
+  "yearly":"Yearly",
+  "today":"Today",
+  "yesterday":"Yesterday",
+  "lastWeek":"Last week",
+  "lastMonth":"Last month",
+  "lastYear":"Last year",
+  "anotherDate":"Another date"
 }
