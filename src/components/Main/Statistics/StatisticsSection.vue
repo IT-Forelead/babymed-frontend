@@ -18,7 +18,6 @@ onMounted(() => {
   PatientService.getAllPatients({}).then((res) => {
     patients.value = res?.total
   })
-
   UserService.getAllDoctors({
     role: 'doctor',
   }).then((res) => {
