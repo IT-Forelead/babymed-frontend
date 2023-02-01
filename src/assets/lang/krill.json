@@ -110,6 +110,7 @@
   "createdVisit": "Ташриф муваффақиятли яратилди!",
   "errorCreatingVisit": "Ташриф яратишда хатолик юз берди!",
   "doctor": "Шифокор",
+  "doctors": "Шифокорлар",
   "nothingChanged": "Ҳеч нима ўзгартирилмади!",
   "paymentStatusChanged": "Тўлов ҳолати муваффақиятли ўзгартирилди!",
   "errorUpdatingPaymentStatus": "Тўлов ҳолатини ўзгартиришда хатолик юз берди!",
@@ -225,5 +226,7 @@
   "lastMonth":"Ўтган ой",
   "lastYear":"Ўтган йил",
   "anotherDate":"Бошқа сана",
-  "chooseDate":"Санани танланг"
+  "chooseDate":"Санани танланг",
+  "numberOfRegisteredPatients":"Рўйҳатга олинган беморлар сони",
+  "numberOfAttendingDoctors":"Хизмат кўрсатаётган шифокорлар сони"
 }

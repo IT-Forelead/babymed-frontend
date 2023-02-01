@@ -110,6 +110,7 @@
   "createdVisit": "Visit successfully created!",
   "errorCreatingVisit": "Error while creating visit!",
   "doctor": "Doctor",
+  "doctors": "Doctors",
   "nothingChanged": "Nothing changed!",
   "paymentStatusChanged": "Payment status successfully changed!",
   "errorUpdatingPaymentStatus": "Error while payment status changing!",
@@ -225,5 +226,7 @@
   "lastMonth":"Last month",
   "lastYear":"Last year",
   "anotherDate":"Another date",
-  "chooseDate":"Choose date"
+  "chooseDate":"Choose date",
+  "numberOfRegisteredPatients":"Number of registered patients",
+  "numberOfAttendingDoctors":"Number of attending doctors"
 }

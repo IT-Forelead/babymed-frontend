@@ -1,6 +1,30 @@
 <script setup>
 import BigCard from './BigCard.vue'
 import PaymentIcon from '../../../assets/icons/PaymentIcon.vue'
+import RecentPatientOutlineIcon from '../../../assets/icons/RecentPatientOutlineIcon.vue';
+import MedicalDoctorIcon from '../../../assets/icons/MedicalDoctorIcon.vue';
+import { useI18n } from 'vue-i18n'
+import { onMounted } from 'vue';
+import PatientService from '../../../services/patient.service';
+import { ref } from '@vue/reactivity'
+import UserService from '../../../services/user.service';
+
+const { t } = useI18n()
+
+const patients = ref(0)
+const doctors = ref(0)
+
+onMounted(() => {
+  PatientService.getAllPatients({}).then((res) => {
+    patients.value = res?.total
+  })
+
+  UserService.getAllDoctors({
+    role: 'doctor',
+  }).then((res) => {
+    doctors.value = res?.total
+  })
+})
 </script>
 <template>
   <div class="grid grid-cols-2 gap-5 mb-5">
@@ -52,26 +76,26 @@ import PaymentIcon from '../../../assets/icons/PaymentIcon.vue'
         <div class="bg-white rounded-lg w-full p-5 space-y-7">
           <div class="flex justify-between mb-3">
             <div>
-              <p>Bill Due</p>
-              <p class="text-2xl font-bold">1,8M+ UZS</p>
+              <p>Bemorlar</p>
+              <p class="text-2xl font-bold">{{ patients }}</p>
             </div>
             <div class="rounded-xl p-3 bg-gray-100 flex items-center justify-center">
-              <PaymentIcon class="w-7 h-7" />
+              <RecentPatientOutlineIcon class="w-8 h-8" />
             </div>
           </div>
-          <p>Lorem, ipsum dolor.</p>
+          <p>{{ $t('numberOfRegisteredPatients') }}</p>
         </div>
         <div class="bg-white rounded-lg w-full p-5 space-y-7">
           <div class="flex justify-between mb-3">
             <div>
-              <p>Bill Due</p>
-              <p class="text-2xl font-bold">1,8M+ UZS</p>
+              <p>{{ $t('doctors') }}</p>
+              <p class="text-2xl font-bold">{{ doctors }}</p>
             </div>
             <div class="rounded-xl p-3 bg-gray-100 flex items-center justify-center">
-              <PaymentIcon class="w-7 h-7" />
+              <MedicalDoctorIcon class="w-7 h-7" />
             </div>
           </div>
-          <p>Lorem, ipsum dolor.</p>
+          <p>{{ $t('numberOfAttendingDoctors') }}</p>
         </div>
       </div>
     </div>

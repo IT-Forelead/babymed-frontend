@@ -110,6 +110,7 @@
   "createdVisit": "Tashrif muvaffaqiyatli yaratildi!",
   "errorCreatingVisit": "Tashrif yaratishda xatolik yuz berdi!",
   "doctor": "Shifokor",
+  "doctors": "Shifokorlar",
   "nothingChanged": "Hech nima o'zgartirilmadi!",
   "paymentStatusChanged": "To'lov holati muvaffaqiyatli o'zgartirildi!",
   "errorUpdatingPaymentStatus": "To'lov holatini o'zgartirishda xatolik yuz berdi!",
@@ -225,5 +226,7 @@
   "lastMonth":"O'tgan oy",
   "lastYear":"O'tgan yil",
   "anotherDate":"Boshqa sana",
-  "chooseDate":"Sanani tanlang"
+  "chooseDate":"Sanani tanlang",
+  "numberOfRegisteredPatients":"Ro'yhatga olingan bemorlar soni",
+  "numberOfAttendingDoctors":"Xizmat ko'rsatayotgan shifokorlar soni"
 }

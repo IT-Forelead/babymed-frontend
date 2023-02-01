@@ -110,6 +110,7 @@
   "createdVisit": "Посещение успешно создано!",
   "errorCreatingVisit": "Ошибка при создании визита!",
   "doctor": "Доктор",
+  "doctors": "Врачи",
   "nothingChanged": "Ничего не изменилось!",
   "paymentStatusChanged": "Статус платежа успешно изменен!",
   "errorUpdatingPaymentStatus": "Ошибка при изменении статуса платежа!",
@@ -224,5 +225,7 @@
   "lastMonth":"Прошлый месяц",
   "lastYear":"Прошлый год",
   "anotherDate":"Другое свидание",
-  "chooseDate":"Выберите дату"
+  "chooseDate":"Выберите дату",
+  "numberOfRegisteredPatients":"Количество зарегистрированных пациентов",
+  "numberOfAttendingDoctors":"Количетсво обслуживающих докторов"
 }
