@@ -7,6 +7,7 @@ export const useDropStore = defineStore('drop', {
     selectServiceTypeOption: '',
     selectServiceOption: '',
     selectPdfTypeOption: '',
+    selectDateRangeOption: '',
     selectedExpense: {},
     selectedExpenseItems: [],
     isOpenPatientDropDown: false,
@@ -14,6 +15,7 @@ export const useDropStore = defineStore('drop', {
     isOpenServiceTypeDropDown: false,
     isOpenServiceDropDown: false,
     isOpenPdfTemplateDropDown: false,
+    isOpenDateRangeDropDown: false,
     selectedCheque: []
   }),
   actions: {
@@ -40,6 +42,9 @@ export const useDropStore = defineStore('drop', {
     },
     setSelectPdfTypeOption(data) {
       this.selectPdfTypeOption = data
+    },
+    setSelectDateRangeOption(data) {
+      this.selectDateRangeOption = data
     },
     openPatientDropDown() {
       this.isOpenPatientDropDown = true
@@ -71,16 +76,24 @@ export const useDropStore = defineStore('drop', {
     closePdfTemplateDropDown() {
       this.isOpenPdfTemplateDropDown = false
     },
+    openDateRangeDropDown() {
+      this.isOpenDateRangeDropDown = true
+    },
+    closeDateRangeDropDown() {
+      this.isOpenDateRangeDropDown = false
+    },
     clearStore() {
       this.selectDoctorOption = ''
       this.selectServiceTypeOption = ''
       this.selectPatientOption = ''
       this.selectServiceOption = ''
       this.selectPdfTypeOption = ''
+      this.selectDateRangeOption = ''
       this.isOpenDoctorDropDown = false
       this.isOpenPatientDropDown = false
       this.isOpenServiceDropDown = false
       this.isOpenPdfTemplateDropDown = false
+      this.isOpenDateRangeDropDown = false
       this.isOpenServiceTypeDropDown = false
       this.selectedExpenseItems = []
       this.selectedCheque = []

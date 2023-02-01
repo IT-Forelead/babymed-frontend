@@ -1,36 +1,37 @@
 <script setup>
 import { ref } from '@vue/reactivity'
-import { watch } from 'vue'
+import { computed } from 'vue'
 import { onClickOutside } from '@vueuse/core'
 import { useDropStore } from '../store/drop.store'
 import TimesIcon from '../assets/icons/TimesIcon.vue'
 import ChevronRightIcon from '../assets/icons/ChevronRightIcon.vue'
+import { useI18n } from 'vue-i18n'
 
-const selectedOption = ref('')
+const { t } = useI18n()
+
+const selectedOption = computed(() => {
+  return useDropStore().selectPdfTypeOption
+})
 const dropdown = ref(null)
 
 const list = [
   {
     id: 'uzi',
-    name: 'Uzi namunasi'
+    name: t('ultrasoundTemplate')
   },
   {
     id: 'doppler',
-    name: 'Doppler namunasi'
+    name: t('dopplerUltrasoundTemplate')
   },
   {
     id: 'pediatr',
-    name: 'Pediatr namunasi'
+    name: t('pediatricianTemplate')
   },
   {
     id: 'ginekolog',
-    name: 'Ginekolog namunasi'
+    name: t('gynecologistTemplate')
   },
 ]
-
-watch(useDropStore(), () => {
-  selectedOption.value = useDropStore().selectPdfTypeOption
-})
 
 const clearSelectedOptionData = () => {
   useDropStore().setSelectPdfTypeOption('')

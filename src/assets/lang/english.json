@@ -224,5 +224,6 @@
   "lastWeek":"Last week",
   "lastMonth":"Last month",
   "lastYear":"Last year",
-  "anotherDate":"Another date"
+  "anotherDate":"Another date",
+  "chooseDate":"Choose date"
 }
