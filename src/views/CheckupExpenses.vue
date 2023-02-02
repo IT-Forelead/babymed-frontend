@@ -20,8 +20,6 @@ import {cleanObjectEmptyFields} from '../mixins/utils'
 import SelectOptionDoctor from '../components/SelectOptionDoctor.vue'
 import { useDropStore } from '../store/drop.store'
 import moment from 'moment'
-
-const API_URL = import.meta.env.VITE_BASE_URL
 import AxiosService from "../services/axios.service.js";
 
 const isLoading = ref(false)
@@ -54,41 +52,23 @@ const loadExpenses = async ($state) => {
 
 const loadDailyCheckupExpenses = async ($state) => {
   page++
-  let additional = total.value % 30 == 0 ? 0 : 1
+  let additional = total.value % 30 === 0 ? 0 : 1
   if (total.value !== 0 && total.value / 30 + additional >= page) {
-    try {
-      const response = await fetch(`${API_URL}/checkup-expense/report`, {
-        method: 'POST',
-        body: JSON.stringify({
-          startDate: moment().startOf('day').format().toString().slice(0, 19),
-          endDate: moment().endOf('day').format().toString().slice(0, 19),
-          page: page,
-          limit: 30,
-        }),
-        headers: authHeader(),
-      })
-      if (response?.headers.get('x-new-token')) {
-        localStorage.setItem('token', response?.headers.get('x-new-token'))
-        await fetch(`${API_URL}/checkup-expense/report`, {
-          method: 'POST',
-          body: JSON.stringify({
-            startDate: moment().startOf('day').format().toString().slice(0, 19),
-            endDate: moment().endOf('day').format().toString().slice(0, 19),
-            page: 1,
-            limit: 10,
-          }),
-          headers: authHeader(),
-        })
-      }
-      const json = await response.json()
-      total.value = json?.total
-      setTimeout(() => {
-        useCheckupExpenseStore().setDailyCheckupExpenses(json?.data)
+    AxiosService.post("/checkup-expense/report",
+      cleanObjectEmptyFields({
+        startDate: filterData.startDate,
+        endDate: filterData.endDate,
+        page: page,
+        limit: 30
+      }),
+      { headers: authHeader() })
+      .then((result) => {
+        total.value = result?.total
+        useCheckupExpenseStore().setDailyCheckupExpenses(result?.data)
         $state.loaded()
-      }, 500)
-    } catch (error) {
-      $state.error()
-    }
+      }).catch(() => {
+        $state.error()
+      })
   } else $state.loaded()
 }
 
