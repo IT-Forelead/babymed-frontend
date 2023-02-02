@@ -1,10 +1,7 @@
 <script setup>
 import 'v3-infinite-loading/lib/style.css'
-import { ref, toRefs, watch } from 'vue'
+import { toRefs } from 'vue'
 import TrashIcon from '../../assets/icons/TrashIcon.vue'
-import UserService from '../../services/user.service'
-import notify from 'izitoast'
-import 'izitoast/dist/css/iziToast.min.css'
 import { useModalStore } from '../../store/modal.store'
 import { useUserStore } from '../../store/user.store'
 import { useI18n } from 'vue-i18n'
@@ -17,36 +14,11 @@ const props = defineProps({
 })
 
 const { users } = toRefs(props)
-const selectedUserId = ref('')
 
-const deleteUser = (id) => {
-  selectedUserId.value = id
-  // useModalStore().openDeleteAlert()
+const deleteUser = (selectedService) => {
+  useModalStore().openDeleteAlertModal()
+  useUserStore().setSelectedUser(selectedService)
 }
-
-watch(
-  () => useModalStore().confirmDelete,
-  (confirm) => {
-    if (confirm) {
-      UserService.deleteUser(selectedUserId.value)
-        .then(() => {
-          notify.success({
-            message: t('deletedUser'),
-          })
-          UserService.getUsers({}).then((res) => {
-            useUserStore().clearStore()
-            useUserStore().setUsers(res?.data)
-          })
-          UserService.value = ''
-        })
-        .catch(() => {
-          notify.warning({
-            message: t('errorDeletingUser'),
-          })
-        })
-    }
-  }
-)
 </script>
 
 <template>
@@ -76,7 +48,7 @@ watch(
         <!-- <div class="w-4 mr-3 transform text-blue-500 hover:text-purple-500 hover:scale-110 cursor-pointer">
           <EditIcon class="w-6 h-6" />
         </div> -->
-        <div v-if="!user?.role?.includes('super')" @click="deleteUser(user?.id)" class="w-4 mr-3 transform text-red-500 hover:text-red-600 hover:scale-110 cursor-pointer">
+        <div v-if="!user?.role?.includes('super')" @click="deleteUser(user)" class="w-4 mr-3 transform text-red-500 hover:text-red-600 hover:scale-110 cursor-pointer">
           <TrashIcon class="w-6 h-6" />
         </div>
       </div>

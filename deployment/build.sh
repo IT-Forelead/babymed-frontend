@@ -14,5 +14,3 @@ echo 'Building Frontend image...'
 echo '--------------------------------------------------------------------'
 docker build -t babymed-frontend .
 echo '--------------------------------------------------------------------'
-echo 'Running container...'
-docker compose up -d

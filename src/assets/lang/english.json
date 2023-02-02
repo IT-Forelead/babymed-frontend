@@ -171,7 +171,7 @@
   "plsEnterServiceTypeName": "Please enter service type name?",
   "serviceTypeCreated": "Service type successfully created!",
   "servicesTypeReport": "Services Type Report",
-  "serviceTypeName": "Service Type Name",
+  "serviceTypeName": "Service type name",
   "doctorShare":"Doctor share",
   "doctorShares":"Doctor shares",
   "createDoctorShare":"Create doctor share",
@@ -207,5 +207,10 @@
   "pediatricianTemplate":"Pediatrician template",
   "gynecologistTemplate":"Gynecologist template",
   "ultrasoundTemplate":"Ultrasound template",
-  "dopplerUltrasoundTemplate":"Doppler ultrasound template"
+  "dopplerUltrasoundTemplate":"Doppler ultrasound template",
+  "dailyExpenses":"Daily expenses",
+  "deleteData":"Delete data",
+  "report":"Report",
+  "totalPrice":"Total price",
+  "visitcount":"Visit count"
 }

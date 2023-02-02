@@ -170,9 +170,9 @@
   "plsEnterServiceTypeName": "Пожалуйста, введите название типа услуг",
   "serviceTypeCreated": "Тип услуг успешно создан!",
   "servicesTypeReport": "Список типов услуг",
-  "serviceTypeName": "Название Типа услуг",
-  "doctorShare":"Доля Доктора",
-  "doctorShares":"Доли Докторов",
+  "serviceTypeName": "Название типа услуг",
+  "doctorShare":"Доля доктора",
+  "doctorShares":"Доли докторов",
   "createDoctorShare":"Создать долю доктора",
   "creatingDoctorShare":"Создание доли доктора",
   "errorCreatingDoctorShare": "Ошибка при создании общего доступа к врачу!",
@@ -206,5 +206,10 @@
   "pediatricianTemplate":"Шаблон педиатра",
   "gynecologistTemplate":"Шаблон гинеколога",
   "ultrasoundTemplate":"Шаблон УЗИ",
-  "dopplerUltrasoundTemplate":"Шаблон доплер УЗИ"
+  "dopplerUltrasoundTemplate":"Шаблон доплер УЗИ",
+  "dailyExpenses":"Ежедневные расходы",
+  "deleteData":"Удалить данные",
+  "отчет":"Отчет",
+  "totalPrice":"Общая цена",
+  "visitcount":"Количество посещений"
 }

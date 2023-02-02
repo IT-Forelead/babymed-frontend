@@ -4,7 +4,6 @@ import BellIcon from '../assets/icons/BellIcon.vue'
 import Registration from './Registration.vue'
 import { computed } from '@vue/reactivity'
 import { useRouter } from 'vue-router'
-import DeleteAlert from './DeleteAlert.vue'
 import ChangePaymentStatus from './Payments/ChangePaymentStatus.vue'
 import AddVisitModal from './AddVisitModal.vue'
 import { useI18n } from 'vue-i18n'
@@ -14,6 +13,8 @@ import { ref, onMounted } from 'vue'
 import PrintPdfModal from './PrintPdfModal.vue'
 import AddServiceModal from './AddServiceModal.vue'
 import EditServiceModal from './EditServiceModal.vue'
+import DeleteAlertModal from './DeleteAlertModal.vue'
+import DailyExpensesModal from './DailyExpensesModal.vue'
 import {parseJwt} from "../mixins/utils.js";
 
 const { t } = useI18n()
@@ -82,9 +83,11 @@ onMounted(() => {
     <!-- Payment Status Changer Modal -->
     <ChangePaymentStatus />
     <!-- Delete Alert -->
-    <DeleteAlert />
+    <DeleteAlertModal />
     <!-- Add Visit Modal -->
     <AddVisitModal />
+    <!-- Daily Expenses Modal -->
+    <DailyExpensesModal />
     <AddServiceModal />
     <EditServiceModal />
     <OperationInfoModal />

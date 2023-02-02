@@ -5,6 +5,7 @@ export const useUserStore = defineStore('user', {
     users: [],
     doctors: [],
     subRoles: [],
+    selectedUser: {},
   }),
   actions: {
     setUsers(data) {
@@ -15,6 +16,9 @@ export const useUserStore = defineStore('user', {
     },
     setSubRoles(data) {
       this.subRoles = data
+    },
+    setSelectedUser(data) {
+      this.selectedUser = data
     },
     clearStore() {
       this.users = []
