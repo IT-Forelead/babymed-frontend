@@ -86,8 +86,6 @@ onMounted(() => {
     <DeleteAlertModal />
     <!-- Add Visit Modal -->
     <AddVisitModal />
-    <!-- Daily Expenses Modal -->
-    <DailyExpensesModal />
     <AddServiceModal />
     <EditServiceModal />
     <OperationInfoModal />
