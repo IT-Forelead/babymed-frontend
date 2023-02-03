@@ -52,6 +52,7 @@ jobs:
             docker login -p ${{ secrets.DOCKER_PASSWORD }} -u ${{ secrets.DOCKER_USERNAME }}
             cd frontend
             docker compose down
+            docker rmi babymed/frontend
             docker pull babymed/frontend
             docker compose up -d
             docker restart nginx
