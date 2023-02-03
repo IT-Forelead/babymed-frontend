@@ -14,7 +14,6 @@ import PrintPdfModal from './PrintPdfModal.vue'
 import AddServiceModal from './AddServiceModal.vue'
 import EditServiceModal from './EditServiceModal.vue'
 import DeleteAlertModal from './DeleteAlertModal.vue'
-import DailyExpensesModal from './DailyExpensesModal.vue'
 import {parseJwt} from "../mixins/utils.js";
 
 const { t } = useI18n()
