@@ -3,7 +3,7 @@ FROM node:latest as builder
 
 WORKDIR /babymed-frontend
 
-COPY package*.json ./
+COPY ../package*.json ../
 RUN npm install
 
 COPY . .
