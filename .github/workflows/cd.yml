@@ -20,9 +20,11 @@ jobs:
       - name: "Publish local 🏗"
         run: |
           bash build.sh
+          docker images
 
       - name: Publishing images ...
         run: |
+          chmod a+x publish
           bash publish push -f babymed/frontend -t latest
 
   deploy:
@@ -48,7 +50,8 @@ jobs:
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           script: |
             docker login -p ${{ secrets.DOCKER_PASSWORD }} -u ${{ secrets.DOCKER_USERNAME }}
-            cd ~/fontend/deployment
-            chmod +x ./publish
-            bash run.sh
+            cd ~/fontend
+            docker compose down
+            docker pull babymed/frontend
+            docker compose up -d
             docker restart nginx
