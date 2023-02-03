@@ -14,27 +14,13 @@ import PrintPdfModal from './PrintPdfModal.vue'
 import AddServiceModal from './AddServiceModal.vue'
 import EditServiceModal from './EditServiceModal.vue'
 import DeleteAlertModal from './DeleteAlertModal.vue'
+import {parseJwt} from "../mixins/utils.js";
 
 const { t } = useI18n()
 
 const router = useRouter()
 const payload = ref({})
 
-function parseJwt(token) {
-  var base64Url = token.split('.')[1]
-  var base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/')
-  var jsonPayload = decodeURIComponent(
-    window
-      .atob(base64)
-      .split('')
-      .map(function (c) {
-        return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2)
-      })
-      .join('')
-  )
-
-  return JSON.parse(jsonPayload)
-}
 
 const currentLabel = computed(() => {
   if (router.currentRoute?.value?.path === '/visits') {
@@ -59,6 +45,8 @@ const currentLabel = computed(() => {
     return t('expenses')
   } else if (router.currentRoute?.value?.path === '/checkup-expenses') {
     return t('expenses')
+  } else if (router.currentRoute?.value?.path === '/sms-messages') {
+    return t('smsMessagesManagment')
   }
 })
 
@@ -67,7 +55,7 @@ const navigationGuard = (access) => {
 }
 
 onMounted(() => {
-  payload.value = parseJwt(localStorage.getItem('token'))
+  payload.value = parseJwt()
 })
 </script>
 

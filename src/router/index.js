@@ -1,4 +1,5 @@
 import {createRouter, createWebHistory} from 'vue-router'
+import {parseJwt} from "../mixins/utils.js";
 
 const routes = [
     {
@@ -16,7 +17,7 @@ const routes = [
     },
     {
         path: '/visits',
-        name: 'visits',
+        name: 'Visits',
         component: () => import('../views/Visits.vue'),
         meta: {layout: 'dashboard'},
         beforeEnter: navigationGuards(['admin', 'cashier', 'super_manager', 'tech_admin']),
@@ -30,14 +31,14 @@ const routes = [
     },
     {
         path: '/services',
-        name: 'services',
+        name: 'Services',
         component: () => import('../views/Services.vue'),
         meta: {layout: 'dashboard'},
         beforeEnter: navigationGuards(['super_manager', 'tech_admin']),
     },
     {
         path: '/service-types',
-        name: 'service-types',
+        name: 'Service types',
         component: () => import('../views/ServiceTypes.vue'),
         meta: {layout: 'dashboard'},
         beforeEnter: navigationGuards(['super_manager', 'tech_admin']),
@@ -50,15 +51,22 @@ const routes = [
         beforeEnter: navigationGuards(['super_manager', 'tech_admin']),
     },
     {
+        path: '/sms-messages',
+        name: 'SMS messages',
+        component: () => import('../views/SmsMessages.vue'),
+        meta: {layout: 'dashboard'},
+        beforeEnter: navigationGuards(['super_manager']),
+    },
+    {
         path: '/patient-visit',
-        name: 'PatientVisit',
+        name: 'Patient visits',
         component: () => import('../views/PatientVisit.vue'),
         meta: {layout: 'dashboard'},
         beforeEnter: navigationGuards(['admin', 'super_manager', 'tech_admin']),
     },
     {
         path: '/operation-expenses',
-        name: 'Operation Expenses',
+        name: 'Operation expenses',
         component: () => import('../views/OperationExpenses.vue'),
         meta: {layout: 'dashboard'},
         beforeEnter: navigationGuards(['cashier', 'super_manager', 'tech_admin']),
@@ -72,7 +80,7 @@ const routes = [
     },
     {
         path: '/checkup-expenses',
-        name: 'Checkup Expenses',
+        name: 'Checkup expenses',
         component: () => import('../views/CheckupExpenses.vue'),
         meta: {layout: 'dashboard'},
         beforeEnter: navigationGuards(['cashier', 'super_manager', 'tech_admin']),
@@ -105,29 +113,13 @@ router.beforeEach((to, from, next) => {
     }
 })
 
-function parseJwt(token) {
-    var base64Url = token.split('.')[1]
-    var base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/')
-    var jsonPayload = decodeURIComponent(
-        window
-            .atob(base64)
-            .split('')
-            .map(function (c) {
-                return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2)
-            })
-            .join('')
-    )
-
-    return JSON.parse(jsonPayload)
-}
-
 function navigationGuards(access) {
     return () => {
-        if (localStorage.getItem('token') && !access.includes(parseJwt(localStorage.getItem('token'))?.role)) {
+        if (localStorage.getItem('token') && !access.includes(parseJwt()?.role)) {
             router.push('/notfound')
             console.log("Oops!")
         }
-        return access.includes(parseJwt(localStorage.getItem('token'))?.role)
+        return access.includes(parseJwt()?.role)
     }
 }
 

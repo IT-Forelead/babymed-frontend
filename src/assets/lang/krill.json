@@ -228,5 +228,17 @@
   "anotherDate":"Бошқа сана",
   "chooseDate":"Санани танланг",
   "numberOfRegisteredPatients":"Рўйҳатга олинган беморлар сони",
-  "numberOfAttendingDoctors":"Хизмат кўрсатаётган шифокорлар сони"
+  "numberOfAttendingDoctors":"Хизмат кўрсатаётган шифокорлар сони",
+  "selectType":"Турини танланг",
+  "selectDeliveryStatus":"Йетказиш ҳолатини танланг",
+  "text":"Матни",
+  "type":"Тури",
+  "deleveryStatus":"Йетказиш ҳолати",
+  "sent":"Жўнатилди",
+  "delivered":"Йетказилди",
+  "failed":"Муваффақияциз",
+  "undefined":"Aниқланмаган",
+  "smsMessagesReport":"СМС хабарлар ҳисоботи",
+  "smsMessagesManagment":"СМС хабарларни бошқариш",
+  "registration":"Рўйхатдан ўтиш"
 }

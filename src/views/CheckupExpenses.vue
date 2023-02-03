@@ -19,10 +19,9 @@ import { cleanObjectEmptyFields } from '../mixins/utils'
 import SelectOptionDoctor from '../components/SelectOptionDoctor.vue'
 import { useDropStore } from '../store/drop.store'
 import moment from 'moment'
+import AxiosService from '../services/axios.service.js'
 import DailyExpenseReportItem from '../components/DailyExpenseReportItem.vue'
 import SelectOptionDataRange from '../components/SelectOptionDataRange.vue'
-
-const API_URL = import.meta.env.VITE_BASE_URL
 
 const isLoading = ref(false)
 
@@ -42,46 +41,26 @@ const distance = ref(200)
 let page = 0
 const loadExpenses = async ($state) => {
   page++
-  let additional = total.value % 30 == 0 ? 0 : 1
+  let additional = total.value % 30 === 0 ? 0 : 1
   if (total.value !== 0 && total.value / 30 + additional >= page) {
-    try {
-      const response = await fetch(`${API_URL}/checkup-expense/report`, {
-        method: 'POST',
-        body: JSON.stringify(
-          cleanObjectEmptyFields({
-            startDate: filterData.startDate,
-            endDate: filterData.endDate,
-            page: page,
-            limit: 30,
-          })
-        ),
-        headers: authHeader(),
-      })
-      if (response?.headers.get('x-new-token')) {
-        localStorage.setItem('token', response?.headers.get('x-new-token'))
-        await fetch(`${API_URL}/checkup-expense/report`, {
-          method: 'POST',
-          body: JSON.stringify(
-            cleanObjectEmptyFields({
-              startDate: filterData.startDate,
-              endDate: filterData.endDate,
-              page: 1,
-              limit: 10,
-            })
-          ),
-          headers: authHeader(),
-        })
-      }
-      const json = await response.json()
-      total.value = json?.total
-      setTimeout(() => {
-        // patients.value.push(...json?.data)
-        useCheckupExpenseStore().setCheckupExpenses(json?.data)
+    AxiosService.post(
+      '/checkup-expense/report',
+      cleanObjectEmptyFields({
+        startDate: filterData.startDate,
+        endDate: filterData.endDate,
+        page: page,
+        limit: 30,
+      }),
+      { headers: authHeader() }
+    )
+      .then((result) => {
+        total.value = result?.total
+        useCheckupExpenseStore().setCheckupExpenses(result?.data)
         $state.loaded()
-      }, 500)
-    } catch (error) {
-      $state.error()
-    }
+      })
+      .catch(() => {
+        $state.error()
+      })
   } else $state.loaded()
 }
 
@@ -264,7 +243,10 @@ onUnmounted(() => {
       <div class="flex items-center space-x-3">
         <!-- Filter for First tab -->
         <div v-if="useTabStore().isOpenFirstTab" class="relative" ref="dropdown">
-          <div @click="useModalStore().toggleFilterBy()" class="border-none select-none text-gray-500 bg-gray-100 rounded-lg w-full p-2 px-5 flex items-center hover:bg-gray-200 cursor-pointer"><FilterIcon class="w-5 h-5 text-gray-400" /> {{ $t('filter') }}</div>
+          <div @click="useModalStore().toggleFilterBy()" class="border-none select-none text-gray-500 bg-gray-100 rounded-lg w-full p-2 px-5 flex items-center hover:bg-gray-200 cursor-pointer">
+            <FilterIcon class="w-5 h-5 text-gray-400" />
+            {{ $t('filter') }}
+          </div>
           <div v-if="useModalStore().isOpenFilterBy" class="absolute bg-white shadow rounded-xl p-3 z-20 top-12 right-0 space-y-3 w-96">
             <div>
               <p>{{ $t('selectDoctor') }}</p>
@@ -342,7 +324,7 @@ onUnmounted(() => {
       </div>
     </div>
     <!-- First tab -->
-    <div v-if="useTabStore().isOpenFirstTab" class="max-h-[77vh] overflow-auto mt-3 expenses-wrapper">
+    <div v-if="useTabStore().isOpenFirstTab" class="max-h-[77vh] overflow-auto xxl:overflow-hidden mt-3 expenses-wrapper">
       <table class="min-w-max w-full table-auto">
         <thead class="sticky z-10 top-0 bg-white shadow">
           <tr class="text-gray-600 capitalize text-lg leading-normal">
@@ -385,7 +367,7 @@ onUnmounted(() => {
     </div>
     <!-- Third tab -->
     <div v-if="useTabStore().isOpenThirdTab" class="grid grid- grid-cols-3 mt-5 gap-8">
-      <div class="max-h-[75vh] col-span-2 overflow-auto">
+      <div class="max-h-[75vh] col-span-2 overflow-auto xxl:overflow-hidden">
         <div class="flex items-center p-3">
           <p class="text-3xl font-bold">{{ $t('servicesTypeReport') }}</p>
         </div>

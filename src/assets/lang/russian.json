@@ -227,5 +227,17 @@
   "anotherDate":"Другое свидание",
   "chooseDate":"Выберите дату",
   "numberOfRegisteredPatients":"Количество зарегистрированных пациентов",
-  "numberOfAttendingDoctors":"Количетсво обслуживающих докторов"
+  "numberOfAttendingDoctors":"Количетсво обслуживающих докторов",
+  "selectType":"Выберите тип",
+  "selectDeliveryStatus":"Выберите статус доставки",
+  "text":"Текст",
+  "type":"Тип",
+  "deleveryStatus":"Статус доставки",
+  "sent":"Отправлено",
+  "delivered":"Доставлено",
+  "failed": "Не удалось",
+  "undefined": "Не определено",
+  "smsMessagesReport":"Отчет о SMS-сообщениях",
+  "smsMessagesManagment":"Управление SMS-сообщениями",
+  "registration":"Регистрация"
 }

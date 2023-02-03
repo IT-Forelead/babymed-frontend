@@ -8,6 +8,8 @@ export const useDropStore = defineStore('drop', {
     selectServiceOption: '',
     selectPdfTypeOption: '',
     selectDateRangeOption: '',
+    selectDeliveryStatusOption: '',
+    selectSmsMessageTypeOption: '',
     selectedExpense: {},
     selectedExpenseItems: [],
     isOpenPatientDropDown: false,
@@ -16,6 +18,8 @@ export const useDropStore = defineStore('drop', {
     isOpenServiceDropDown: false,
     isOpenPdfTemplateDropDown: false,
     isOpenDateRangeDropDown: false,
+    isOpenDeliveryStatusDropDown: false,
+    isOpenSmsMessageTypeDropDown: false,
     selectedCheque: []
   }),
   actions: {
@@ -45,6 +49,12 @@ export const useDropStore = defineStore('drop', {
     },
     setSelectDateRangeOption(data) {
       this.selectDateRangeOption = data
+    },
+    setSelectDeliveryStatusOption(data) {
+      this.selectDeliveryStatusOption = data
+    },
+    setSelectSmsMessageTypeOption(data) {
+      this.selectSmsMessageTypeOption = data
     },
     openPatientDropDown() {
       this.isOpenPatientDropDown = true
@@ -82,6 +92,18 @@ export const useDropStore = defineStore('drop', {
     closeDateRangeDropDown() {
       this.isOpenDateRangeDropDown = false
     },
+    openDeliveryStatusDropDown() {
+      this.isOpenDeliveryStatusDropDown = true
+    },
+    closeDeliveryStatusDropDown() {
+      this.isOpenDeliveryStatusDropDown = false
+    },
+    openSmsMessageTypeDropDown() {
+      this.isOpenSmsMessageTypeDropDown = true
+    },
+    closeSmsMessageTypeDropDown() {
+      this.isOpenSmsMessageTypeDropDown = false
+    },
     clearStore() {
       this.selectDoctorOption = ''
       this.selectServiceTypeOption = ''
@@ -89,11 +111,15 @@ export const useDropStore = defineStore('drop', {
       this.selectServiceOption = ''
       this.selectPdfTypeOption = ''
       this.selectDateRangeOption = ''
+      this.selectDeliveryStatusOption = ''
+      this.selectSmsMessageTypeOption = ''
       this.isOpenDoctorDropDown = false
       this.isOpenPatientDropDown = false
       this.isOpenServiceDropDown = false
       this.isOpenPdfTemplateDropDown = false
       this.isOpenDateRangeDropDown = false
+      this.isOpenDeliveryStatusDropDown = false
+      this.isOpenSmsMessageTypeDropDown = false
       this.isOpenServiceTypeDropDown = false
       this.selectedExpenseItems = []
       this.selectedCheque = []

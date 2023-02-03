@@ -228,5 +228,17 @@
   "anotherDate":"Boshqa sana",
   "chooseDate":"Sanani tanlang",
   "numberOfRegisteredPatients":"Ro'yhatga olingan bemorlar soni",
-  "numberOfAttendingDoctors":"Xizmat ko'rsatayotgan shifokorlar soni"
+  "numberOfAttendingDoctors":"Xizmat ko'rsatayotgan shifokorlar soni",
+  "selectType":"Turini tanlang",
+  "selectDeliveryStatus":"Yetkazish holatini tanlang",
+  "text":"Matni",
+  "type":"Turi",
+  "deleveryStatus":"Yetkazish holati",
+  "sent":"Jo'natildi",
+  "delivered":"Yetkazildi",
+  "failed":"Muvaffaqiyatsiz",
+  "undefined":"Aniqlanmagan",
+  "smsMessagesReport":"SMS xabarlar hisoboti",
+  "smsMessagesManagment":"SMS xabarlarni boshqarish",
+  "registration":"Ro'yxatdan o'tish"
 }

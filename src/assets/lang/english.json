@@ -228,5 +228,17 @@
   "anotherDate":"Another date",
   "chooseDate":"Choose date",
   "numberOfRegisteredPatients":"Number of registered patients",
-  "numberOfAttendingDoctors":"Number of attending doctors"
+  "numberOfAttendingDoctors":"Number of attending doctors",
+  "selectType":"Select type",
+  "selectDeliveryStatus":"Select delivery status",
+  "text":"Text",
+  "type":"Type",
+  "deleveryStatus":"Delevery status",
+  "sent":"Sent",
+  "delivered":"Delivered",
+  "failed":"Failed",
+  "undefined":"Undefined",
+  "smsMessagesReport":"SMS messages report",
+  "smsMessagesManagment":"SMS messages managment",
+  "registration":"Registration"
 }

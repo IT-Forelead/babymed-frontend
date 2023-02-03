@@ -12,13 +12,14 @@ import UserPlusIcon from '../assets/icons/UserPlusIcon.vue'
 import AuthService from '../services/auth.service'
 import PaymentIcon from '../assets/icons/PaymentIcon.vue'
 import i18n from '../i18n.js'
-import decodeJwt from '../mixins/utils'
+import decodeJwt, {parseJwt} from '../mixins/utils'
 import UsersIcon from '../assets/icons/UsersIcon.vue'
 import { useI18n } from 'vue-i18n'
 import ServicesIcon from '../assets/icons/ServicesIcon.vue'
 import ChevronRightIcon from '../assets/icons/ChevronRightIcon.vue'
 import MedicalInformationOutlineIcon from '../assets/icons/MedicalInformationOutlineIcon.vue'
 import UserIcon from '../assets/icons/UserIcon.vue'
+import EnvelopeIcon from '../assets/icons/EnvelopeIcon.vue'
 
 const { t } = useI18n()
 
@@ -28,22 +29,6 @@ const isOpenExpense = computed(() => useSidebarStore().isOpenExpenseMenu)
 const isOpenSubMenu = computed(() => useSidebarStore().isOpenSubMenu)
 
 const payload = ref({})
-
-function parseJwt(token) {
-  var base64Url = token.split('.')[1]
-  var base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/')
-  var jsonPayload = decodeURIComponent(
-    window
-      .atob(base64)
-      .split('')
-      .map(function (c) {
-        return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2)
-      })
-      .join('')
-  )
-
-  return JSON.parse(jsonPayload)
-}
 
 const logout = () => {
   AuthService.logout()
@@ -72,7 +57,7 @@ onMounted(() => {
   currentLang.value = localStorage.getItem('lang') || 'uz'
   document.getElementsByTagName('title')[0].innerHTML = t('title')
   useAuthStore().setUser(decodeJwt(localStorage.getItem('token')))
-  payload.value = parseJwt(localStorage.getItem('token'))
+  payload.value = parseJwt()
 })
 </script>
 
@@ -182,6 +167,16 @@ onMounted(() => {
         <div class="flex items-center space-x-2">
           <UserPlusIcon class="w-7 h-7" />
           <p v-if="isOpen">{{ $t('users') }}</p>
+        </div>
+      </router-link>
+      <!-- Menus for admin panel -->
+      <div v-if="navigationGuard(['super_manager'])" class="p-3 text-lg font-semibold text-gray-500">Admin Panel</div>
+      <router-link to="/sms-messages" v-if="navigationGuard(['super_manager'])"
+        class="flex items-center justify-between hover:bg-gray-800 hover:text-gray-100 p-3 rounded-lg cursor-pointer"
+        :class="useSidebarStore().isOpenSidebar && router?.currentRoute?.value?.path === '/sms-messages' ? 'justify-between bg-gray-800 text-gray-100' : !useSidebarStore().isOpenSidebar && router?.currentRoute?.value?.path === '/sms-messages' ? 'bg-gray-800 text-gray-100 justify-center' : ''">
+        <div class="flex items-center space-x-2">
+          <EnvelopeIcon class="w-7 h-7" />
+          <p v-if="isOpen">SMS messages</p>
         </div>
       </router-link>
     </div>

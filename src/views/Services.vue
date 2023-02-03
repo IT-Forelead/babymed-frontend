@@ -7,6 +7,7 @@ import ServiceItem from '../components/Service/ServiceItem.vue'
 import 'izitoast/dist/css/iziToast.min.css'
 import ServicesService from '../services/services.service'
 import { useI18n } from 'vue-i18n'
+import {parseJwt} from "../mixins/utils.js";
 
 const { t } = useI18n()
 
@@ -15,21 +16,6 @@ const services = computed(() => {
 })
 const payload = ref({})
 
-function parseJwt(token) {
-  var base64Url = token.split('.')[1]
-  var base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/')
-  var jsonPayload = decodeURIComponent(
-    window
-      .atob(base64)
-      .split('')
-      .map(function (c) {
-        return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2)
-      })
-      .join('')
-  )
-
-  return JSON.parse(jsonPayload)
-}
 
 const navigationGuard = (access) => {
   return access.includes(payload.value?.role)
@@ -45,7 +31,7 @@ const getServices = () => {
 }
 
 onMounted(() => {
-  payload.value = parseJwt(localStorage.getItem('token'))
+  payload.value = parseJwt()
   getServices()
 })
 </script>
@@ -60,7 +46,7 @@ onMounted(() => {
         </div>
       </div>
     </div>
-    <div class="max-h-[77vh] overflow-auto mt-3 patients-wrapper">
+    <div class="max-h-[77vh] overflow-auto xxl:overflow-hidden mt-3 patients-wrapper">
       <table class="min-w-max w-full table-auto">
         <thead class="sticky z-10 top-0 bg-white shadow">
           <tr class="text-gray-600 capitalize text-lg leading-normal">

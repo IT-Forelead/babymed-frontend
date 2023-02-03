@@ -12,8 +12,7 @@ import PatientService from '../services/patient.service'
 import { useAddressStore } from '../store/address.store'
 import { onClickOutside } from '@vueuse/core'
 import { cleanObjectEmptyFields } from '../mixins/utils'
-
-const API_URL = import.meta.env.VITE_BASE_URL
+import AxiosService from "../services/axios.service.js";
 
 const isLoading = ref(false)
 
@@ -27,38 +26,16 @@ const distance = ref(200)
 let page = 0
 const loadPatients = async ($state) => {
   page++
-  let additional = total.value % 30 == 0 ? 0 : 1
+  let additional = total.value % 30 === 0 ? 0 : 1
   if (total.value !== 0 && total.value / 30 + additional >= page) {
-    try {
-      const response = await fetch(`${API_URL}/patient/report`, {
-        method: 'POST',
-        body: JSON.stringify({
-          page: page,
-          limit: 30,
-        }),
-        headers: authHeader(),
-      })
-      if (response?.headers.get('x-new-token')) {
-        localStorage.setItem('token', response?.headers.get('x-new-token'))
-        await fetch(`${API_URL}/patient/report`, {
-          method: 'POST',
-          body: JSON.stringify({
-            page: 1,
-            limit: 30,
-          }),
-          headers: authHeader(),
-        })
-      }
-      const json = await response.json()
-      total.value = json?.total
-      setTimeout(() => {
-        // patients.value.push(...json?.data)
-        usePatientStore().setPatients(json?.data)
-        $state.loaded()
-      }, 500)
-    } catch (error) {
+    AxiosService.post("/patient/report", {page: page, limit: 30}, {headers: authHeader()})
+        .then((result) => {
+          total.value = result?.total
+          usePatientStore().setPatients(result?.data)
+          $state.loaded()
+        }).catch(() => {
       $state.error()
-    }
+    })
   } else $state.loaded()
 }
 
@@ -67,9 +44,12 @@ onMounted(() => {
 })
 
 onMounted(() => {
-  AddressService.getAllRegions().then((res) => {
-    useAddressStore().setRegions(res)
-  })
+  setTimeout(() => {
+        AddressService.getAllRegions().then((res) => {
+          useAddressStore().setRegions(res)
+        })
+      }, 1000
+  )
 })
 
 const regions = computed(() => {
@@ -159,7 +139,7 @@ const submitFilterData = () => {
         </div>
       </div>
     </div>
-    <div class="max-h-[77vh] overflow-auto mt-3 patients-wrapper">
+    <div class="max-h-[77vh] overflow-auto xxl:overflow-hidden mt-3 patients-wrapper">
       <table class="min-w-max w-full table-auto">
         <thead class="sticky z-10 top-0 bg-white shadow">
           <tr class="text-gray-600 capitalize text-lg leading-normal">

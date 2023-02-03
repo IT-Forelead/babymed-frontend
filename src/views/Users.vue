@@ -26,7 +26,7 @@ onMounted(() => {
   <div class="w-full">
     <div class="grid grid-cols-3 gap-3">
       <AddUser />
-      <div class="max-h-[77vh] overflow-auto mt-3 col-span-2 bg-white rounded-lg">
+      <div class="max-h-[77vh] overflow-auto xxl:overflow-hidden mt-3 col-span-2 bg-white rounded-lg">
         <div class="flex items-center p-3">
           <p class="text-3xl font-bold">{{ $t('usersReport') }}</p>
         </div>

@@ -17,11 +17,11 @@ const doctors = ref(0)
 onMounted(() => {
   PatientService.getAllPatients({}).then((res) => {
     patients.value = res?.total
-  })
-  UserService.getAllDoctors({
-    role: 'doctor',
-  }).then((res) => {
-    doctors.value = res?.total
+    UserService.getAllDoctors({
+      role: 'doctor',
+    }).then((res) => {
+      doctors.value = res?.total
+    })
   })
 })
 </script>

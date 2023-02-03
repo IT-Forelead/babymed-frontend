@@ -7,12 +7,6 @@ import { onMounted } from 'vue'
 import AddressService from '../services/address.service'
 import { computed } from '@vue/reactivity'
 
-onMounted(() => {
-  AddressService.getAllRegions().then((res) => {
-    useAddressStore().setRegions(res)
-  })
-})
-
 const regions = computed(() => {
   return useAddressStore().regions
 })
@@ -28,7 +22,7 @@ const regions = computed(() => {
           </button>
         </div>
         <div class="p-6">
-          <AddPatient :regions="regions" />
+          <AddPatient />
         </div>
       </div>
     </div>
