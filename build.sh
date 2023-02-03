@@ -8,9 +8,9 @@ docker container rm babymed-frontend
 echo '--------------------------------------------------------------------'
 echo 'Removing Frontend image...'
 echo '--------------------------------------------------------------------'
-docker rmi -f babymed-frontend:latest
+docker rmi -f babymed/frontend:latest
 echo '===================================================================='
 echo 'Building Frontend image...'
 echo '--------------------------------------------------------------------'
-docker build -t babymed-frontend .
+docker build -t babymed/frontend .
 echo '--------------------------------------------------------------------'
