@@ -2,7 +2,7 @@ version: "3.9"
 services:
   babymed-frontend:
     restart: always
-    image: babymed-frontend:latest
+    image: babymed/frontend:latest
     hostname: babymed-frontend
     container_name: babymed-frontend
     networks:

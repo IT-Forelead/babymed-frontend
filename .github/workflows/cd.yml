@@ -28,6 +28,8 @@ jobs:
     steps:
       - name: Publishing images ...
         run: |
+          pwd
+          ls
           bash publish push -f babymed/frontend -t latest
 
   deploy:
@@ -42,7 +44,7 @@ jobs:
           host: ${{ secrets.HOST }}
           username: ${{ secrets.USERNAME }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
-          source: "./deployment/*"
+          source: "docker-compose.yml"
           target: "frontend"
 
       - name: Install SSH key of timeweb
