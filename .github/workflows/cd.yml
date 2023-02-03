@@ -17,12 +17,11 @@ jobs:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
 
-      - name: "Publish local 🏗"
+      - name: "Building image 🏗"
         run: |
           bash build.sh
-          docker images
 
-      - name: Publishing images ...
+      - name: Publishing image ...
         run: |
           chmod a+x publish
           bash publish push -f babymed/frontend -t latest
