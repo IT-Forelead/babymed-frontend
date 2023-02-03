@@ -50,9 +50,7 @@ jobs:
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           script: |
             docker login -p ${{ secrets.DOCKER_PASSWORD }} -u ${{ secrets.DOCKER_USERNAME }}
-            pwd
-            ls
-            cd /home/admin/fontend
+            cd frontend
             docker compose down
             docker pull babymed/frontend
             docker compose up -d
