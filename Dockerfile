@@ -1,9 +1,9 @@
 # stage as builder
-FROM node:latest as builder
+FROM node:lts-slim as builder
 
 WORKDIR /babymed-frontend
 
-COPY ../package*.json ../
+COPY package*.json ./
 RUN npm install
 
 COPY . .

@@ -7,10 +7,6 @@ jobs:
   build:
     name: BUILD
     runs-on: ubuntu-latest
-    # strategy:
-    #   matrix:
-    #    node-version: [14.x, 16.x, 18.x] <----- this line not working
-
     steps:
       - name: Checkout current branch (fast)
         uses: actions/checkout@v3
@@ -23,19 +19,15 @@ jobs:
 
       - name: "Publish local 🏗"
         run: |
-          cd deployment/ 
           bash build.sh
 
   publish:
     name: PUBLISH
     needs: [ build ]
     runs-on: ubuntu-latest
-
     steps:
-
       - name: Publishing images ...
         run: |
-          cd deployment/
           bash publish push -f babymed/frontend -t latest
 
   deploy:
