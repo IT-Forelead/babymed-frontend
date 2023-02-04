@@ -150,7 +150,7 @@ onUnmounted(() => {
         </div>
       </div>
     </div>
-    <div v-if="useTabStore().isOpenFirstTab" class="max-h-[77vh] overflow-auto xxl:overflow-hidden mt-3 expenses-wrapper">
+    <div v-if="useTabStore().isOpenFirstTab" class="max-h-[77vh] overflow-auto xxl:overflow-x-hidden mt-3 expenses-wrapper">
       <table class="min-w-max w-full table-auto">
         <thead class="sticky z-10 top-0 bg-white shadow">
         <tr class="text-gray-600 capitalize text-lg leading-normal">
