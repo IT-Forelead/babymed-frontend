@@ -57,6 +57,20 @@ const chartOptions = {
       enabled: true,
     },
   },
+  yaxis: {
+    axisBorder: {
+      show: false,
+    },
+    axisTicks: {
+      show: false,
+    },
+    labels: {
+      show: false,
+      formatter: function (val) {
+        return val + ' ta'
+      },
+    },
+  },
 }
 
 onMounted(() => {
