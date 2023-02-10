@@ -11,6 +11,9 @@ class CheckupExpenseService {
   async getCheckupExpensesSummary(data) {
     return AxiosService.post('/checkup-expense/summary', data, { headers: authHeader() })
   }
+  async getDailyCheckupExpenses(data) {
+    return AxiosService.post('/checkup-expense/daily-expenses', data, { headers: authHeader() })
+  }
   async getAllDocotrShares() {
     return AxiosService.get('/checkup-expense/doctor-shares', { headers: authHeader() })
   }
