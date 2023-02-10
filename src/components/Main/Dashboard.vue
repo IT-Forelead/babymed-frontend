@@ -8,6 +8,7 @@ import { useCheckupExpenseStore } from '../../store/checkupExpense.store'
 import { useExpenseStore } from '../../store/expense.store'
 import { useVisitStore } from '../../store/visit.store'
 import moment from 'moment'
+import useMoneyFormatter from '../../mixins/currencyFormatter'
 
 const series = computed(() => [
   {
@@ -58,6 +59,10 @@ const chartOptions = {
     tickAmount: 6,
     floating: false,
     labels: {
+      show: false,
+      formatter: function (val) {
+        return useMoneyFormatter(val)
+      },
       style: {
         colors: '#8e8da4',
       },
