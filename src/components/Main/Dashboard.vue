@@ -12,7 +12,7 @@ import moment from 'moment'
 const series = computed(() => [
   {
     name: 'Incoming profit',
-    data: useVisitStore().dailyProfit.sort((a, b) => a.x - b.x),
+    data: useVisitStore().dailyProfit,
   },
   {
     name: 'Operation expense',
