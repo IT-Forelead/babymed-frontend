@@ -240,5 +240,13 @@
   "undefined":"Aniqlanmagan",
   "smsMessagesReport":"SMS xabarlar hisoboti",
   "smsMessagesManagment":"SMS xabarlarni boshqarish",
-  "registration":"Ro'yxatdan o'tish"
+  "registration":"Ro'yxatdan o'tish",
+  "numberOfVisits":"Tashriflar soni",
+  "inputAndOutputCostStatistics":"Kirim va chiqim xarajatlari statistikasi",
+  "incomingProfit":"Kiruvchi foyda",
+  "operationExpense":"Operatsiya xarajatlari",
+  "checkupExpense":"Tekshiruv xarajatlari",
+  "visitsStatistics":"Tashriflar statistikasi",
+  "operationsStatistics":"Operatsiyalar statistikasi",
+  "sevenBusinessDayStatistics":"Yetti ish kuni statistikasi"
 }

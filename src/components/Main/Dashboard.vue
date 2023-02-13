@@ -9,18 +9,21 @@ import { useExpenseStore } from '../../store/expense.store'
 import { useVisitStore } from '../../store/visit.store'
 import moment from 'moment'
 import useMoneyFormatter from '../../mixins/currencyFormatter'
+import { useI18n } from 'vue-i18n'
+
+const { t } = useI18n()
 
 const series = computed(() => [
   {
-    name: 'Incoming profit',
+    name: t('incomingProfit'),
     data: useVisitStore().dailyProfit,
   },
   {
-    name: 'Operation expense',
+    name: t('operationExpense'),
     data: useExpenseStore().dailyOperationExpenses,
   },
   {
-    name: 'Checkup expense',
+    name: t('checkupExpense'),
     data: useCheckupExpenseStore().dailyCheckupExpenses,
   },
 ])
@@ -40,7 +43,7 @@ const chartOptions = {
     curve: 'straight',
   },
   title: {
-    text: 'Input and output cost statistics',
+    text: t('inputAndOutputCostStatistics'),
     align: 'left',
     style: {
       fontSize: '14px',
@@ -59,7 +62,7 @@ const chartOptions = {
     tickAmount: 6,
     floating: false,
     labels: {
-      show: false,
+      show: true,
       formatter: function (val) {
         return useMoneyFormatter(val)
       },
@@ -113,7 +116,7 @@ onMounted(() => {
     // endDate: moment().endOf('isoWeek').format().toString().slice(0, 19),
   }).then((res) => {
     useExpenseStore().clearStore()
-    useExpenseStore().setOperationExpenses(res)
+    useExpenseStore().setDailyOperationExpenses(res)
   })
   VisitService.getDailyProfit({
     startDate: moment().subtract(30, 'days').startOf('day').format().toString().slice(0, 19),

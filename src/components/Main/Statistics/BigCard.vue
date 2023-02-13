@@ -1,13 +1,22 @@
 <script setup>
 import VisitService from '../../../services/visit.service'
-import { onMounted } from 'vue'
+import { computed, onMounted } from 'vue'
 import { useVisitStore } from '../../../store/visit.store'
 import moment from 'moment'
+import { useI18n } from 'vue-i18n'
+
+const { t } = useI18n()
+
+const numberOfDailyVisits = computed(() => {
+  return useVisitStore().numberOfDailyVisits
+})
+
+// const totalOfDailyVisits = numberOfDailyVisits.value?.map((a) => a.y).reduce((total, currentValue) => total + currentValue)
 
 const series = [
   {
-    name: 'Tasgriflar soni',
-    data: [121, 32, 70, 126, 116, 121, 113],
+    name: t('numberOfVisits'),
+    data: numberOfDailyVisits.value?.map((a) => a.y),
   },
 ]
 
@@ -15,10 +24,16 @@ const chartOptions = {
   chart: {
     height: 350,
     type: 'bar',
+    zoom: {
+      enabled: false,
+    },
     events: {
       click: function (chart, w, e) {
         // console.log(chart, w, e)
       },
+    },
+    toolbar: {
+      show: false,
     },
   },
   colors: ['#A3E635', '#A3E635', '#111827'],
@@ -47,7 +62,8 @@ const chartOptions = {
     show: false,
   },
   xaxis: {
-    categories: ['Dushanba', 'Seshanba', 'Choranba', 'Payanba', 'Juma', 'Shanba', 'Yakshanba'],
+    type: 'datetime',
+    categories: numberOfDailyVisits.value?.map((a) => a.x),
     labels: {
       style: {
         fontSize: '12px',
@@ -55,6 +71,12 @@ const chartOptions = {
     },
     tooltip: {
       enabled: true,
+    },
+    axisBorder: {
+      show: false,
+    },
+    axisTicks: {
+      show: false,
     },
   },
   yaxis: {
@@ -71,6 +93,9 @@ const chartOptions = {
       },
     },
   },
+  grid: {
+    show: false,
+  },
 }
 
 onMounted(() => {
@@ -80,6 +105,9 @@ onMounted(() => {
   }).then((res) => {
     useVisitStore().clearStore()
     useVisitStore().setPatients(res?.data)
+    VisitService.getNumberOfDailyVisits().then((res) => {
+      useVisitStore().setNumberOfDailyVisits(res)
+    })
   })
 })
 </script>
@@ -87,11 +115,11 @@ onMounted(() => {
   <div class="bg-white rounded-lg w-full">
     <div class="flex items-center justify-between p-5">
       <div>
-        <h1 class="text-3xl font-bold">Haftalik tashriflar</h1>
-        <p class="font-medium text-lg">Har bir kungi statistikasi</p>
+        <h1 class="text-3xl font-bold">{{ $t('visitsStatistics') }}</h1>
+        <p class="font-medium text-lg">{{ $t('sevenBusinessDayStatistics') }}</p>
       </div>
       <div class="flex items-end space-x-2">
-        <div class="text-4xl font-bold">817</div>
+        <div class="text-4xl font-bold">715</div>
         <div class="text-xl font-medium text-gray-700">ta</div>
       </div>
     </div>

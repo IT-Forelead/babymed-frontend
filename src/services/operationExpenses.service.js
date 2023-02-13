@@ -26,6 +26,9 @@ class ExpenseService {
   async deleteOperationService(id) {
     return AxiosService.get(`/operation-expense/delete/operation-service/${id}`, { headers: authHeader() })
   }
+  async getNumberOfDailyOperations() {
+    return AxiosService.get('/operation-expense/daily-operations', { headers: authHeader() })
+  }
 }
 
 export default new ExpenseService()

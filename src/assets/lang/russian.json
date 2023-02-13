@@ -239,5 +239,13 @@
   "undefined": "Не определено",
   "smsMessagesReport":"Отчет о SMS-сообщениях",
   "smsMessagesManagment":"Управление SMS-сообщениями",
-  "registration":"Регистрация"
+  "registration":"Регистрация",
+  "numberOfVisits":"Количество посещений",
+  "inputAndOutputCostStatistics":"Статистика входных и выходных затрат",
+  "incomingProfit":"Поступающая прибыль",
+  "operationExpense":"Операционные расходы",
+  "checkupExpense":"Расходы на проверку",
+  "visitsStatistics":"Статистика посещений",
+  "operationsStatistics":"Статистика операций",
+  "sevenBusinessDayStatistics":"Статистика семи рабочих дней"
 }

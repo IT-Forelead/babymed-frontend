@@ -240,5 +240,13 @@
   "undefined":"Aниқланмаган",
   "smsMessagesReport":"СМС хабарлар ҳисоботи",
   "smsMessagesManagment":"СМС хабарларни бошқариш",
-  "registration":"Рўйхатдан ўтиш"
+  "registration":"Рўйхатдан ўтиш",
+  "numberOfVisits":"Ташрифлар сони",
+  "inputAndOutputCostStatistics":"Кирим ва чиқим харажатлари статистикаси",
+  "incomingProfit":"Кирувчи фойда",
+  "operationExpense":"Операция харажатлари",
+  "checkupExpense":"Текширув харажатлари",
+  "visitsStatistics":"Ташрифлар статистикаси",
+  "operationsStatistics":"Операциялар статистикаси",
+  "sevenBusinessDayStatistics":"Йетти иш куни статистикаси"
 }
