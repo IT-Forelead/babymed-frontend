@@ -35,6 +35,9 @@ const chartOptions = {
     zoom: {
       enabled: false,
     },
+    toolbar: {
+      show: false,
+    },
   },
   dataLabels: {
     enabled: false,
@@ -46,7 +49,7 @@ const chartOptions = {
     text: t('inputAndOutputCostStatistics'),
     align: 'left',
     style: {
-      fontSize: '14px',
+      fontSize: '18px',
     },
   },
   xaxis: {
@@ -130,7 +133,7 @@ onMounted(() => {
 
 <template>
   <StatisticsSection />
-  <div class="bg-white rounded-lg w-full p-5">
+  <div class="bg-white rounded-lg w-full p-3">
     <apexchart type="area" height="320" :options="chartOptions" :series="series"></apexchart>
   </div>
 </template>

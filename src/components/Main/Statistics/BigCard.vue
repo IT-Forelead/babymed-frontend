@@ -13,90 +13,94 @@ const numberOfDailyVisits = computed(() => {
 
 // const totalOfDailyVisits = numberOfDailyVisits.value?.map((a) => a.y).reduce((total, currentValue) => total + currentValue)
 
-const series = [
+const series = computed(() => [
   {
     name: t('numberOfVisits'),
     data: numberOfDailyVisits.value?.map((a) => a.y),
   },
-]
+])
 
-const chartOptions = {
-  chart: {
-    height: 350,
-    type: 'bar',
-    zoom: {
-      enabled: false,
-    },
-    events: {
-      click: function (chart, w, e) {
-        // console.log(chart, w, e)
+const chartOptions = computed(() => {
+  return {
+    chart: {
+      height: 350,
+      type: 'bar',
+      zoom: {
+        enabled: false,
+      },
+      events: {
+        click: function (chart, w, e) {
+          // console.log(chart, w, e)
+        },
+      },
+      toolbar: {
+        show: false,
       },
     },
-    toolbar: {
-      show: false,
-    },
-  },
-  colors: ['#A3E635', '#A3E635', '#111827'],
-  plotOptions: {
-    bar: {
-      borderRadius: 5,
-      columnWidth: '45%',
-      distributed: true,
-      dataLabels: {
-        position: 'top', // top, center, bottom
+    colors: ['#A3E635', '#A3E635', '#111827'],
+    plotOptions: {
+      bar: {
+        borderRadius: 5,
+        columnWidth: '45%',
+        distributed: true,
+        dataLabels: {
+          position: 'top', // top, center, bottom
+        },
       },
     },
-  },
-  dataLabels: {
-    enabled: true,
-    formatter: function (val) {
-      return val
-    },
-    offsetY: -20,
-    style: {
-      fontSize: '14px',
-      colors: ['#304758'],
-    },
-  },
-  legend: {
-    show: false,
-  },
-  xaxis: {
-    type: 'datetime',
-    categories: numberOfDailyVisits.value?.map((a) => a.x),
-    labels: {
-      style: {
-        fontSize: '12px',
-      },
-    },
-    tooltip: {
+    dataLabels: {
       enabled: true,
-    },
-    axisBorder: {
-      show: false,
-    },
-    axisTicks: {
-      show: false,
-    },
-  },
-  yaxis: {
-    axisBorder: {
-      show: false,
-    },
-    axisTicks: {
-      show: false,
-    },
-    labels: {
-      show: false,
       formatter: function (val) {
-        return val + ' ta'
+        return val
+      },
+      offsetY: -20,
+      style: {
+        fontSize: '14px',
+        colors: ['#304758'],
       },
     },
-  },
-  grid: {
-    show: false,
-  },
-}
+    legend: {
+      show: false,
+    },
+    xaxis: {
+      categories: numberOfDailyVisits.value?.map((a) => a.x),
+      labels: {
+        style: {
+          fontSize: '12px',
+        },
+        formatter: function (val) {
+          return moment(val).format('D-MMMM')
+        },
+      },
+      tooltip: {
+        enabled: true,
+      },
+      axisBorder: {
+        show: false,
+      },
+      axisTicks: {
+        show: false,
+      },
+    },
+    yaxis: {
+      axisBorder: {
+        show: false,
+      },
+      axisTicks: {
+        show: false,
+      },
+      labels: {
+        show: false,
+        formatter: function (val) {
+          return val
+        },
+      },
+    },
+    grid: {
+      show: false,
+    },
+  }
+})
 
 onMounted(() => {
   VisitService.getVisits({
@@ -118,10 +122,7 @@ onMounted(() => {
         <h1 class="text-3xl font-bold">{{ $t('visitsStatistics') }}</h1>
         <p class="font-medium text-lg">{{ $t('sevenBusinessDayStatistics') }}</p>
       </div>
-      <div class="flex items-end space-x-2">
-        <div class="text-4xl font-bold">715</div>
-        <div class="text-xl font-medium text-gray-700">ta</div>
-      </div>
+      <div class="rounded-xl p-3 bg-lime-300 text-3xl font-bold text-gray-900">715</div>
     </div>
     <apexchart type="bar" height="320" :options="chartOptions" :series="series"></apexchart>
   </div>

@@ -248,5 +248,7 @@
   "checkupExpense":"Checkup expense",
   "visitsStatistics":"Visits statistics",
   "operationsStatistics":"Operations statistics",
-  "sevenBusinessDayStatistics":"Seven business day statistics"
+  "sevenBusinessDayStatistics":"Seven business day statistics",
+  "numberOfOperations":"Number of operations",
+  "thirtyDayStatistics":"Thirty day statistics"
 }

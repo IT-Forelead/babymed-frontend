@@ -7,6 +7,7 @@ export const useExpenseStore = defineStore('expense', {
     operationServices: [],
     dailyOperationExpenses: [],
     numberOfDailyOperations: [],
+    numberOfMonthlyOperations: [],
     selectedOperationService: {},
   }),
   actions: {
@@ -25,6 +26,9 @@ export const useExpenseStore = defineStore('expense', {
     setNumberOfDailyOperations(data) {
       this.numberOfDailyOperations.push(...data)
     },
+    setNumberOfMonthlyOperations(data) {
+      this.numberOfMonthlyOperations.push(...data)
+    },
     setSelectedOperationService(data) {
       this.selectedOperationService = data
     },
@@ -34,6 +38,7 @@ export const useExpenseStore = defineStore('expense', {
       this.operationServices = []
       this.dailyOperationExpenses = []
       this.numberOfDailyOperations = []
+      this.numberOfMonthlyOperations = []
     },
   },
 })

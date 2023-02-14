@@ -248,5 +248,7 @@
   "checkupExpense":"Текширув харажатлари",
   "visitsStatistics":"Ташрифлар статистикаси",
   "operationsStatistics":"Операциялар статистикаси",
-  "sevenBusinessDayStatistics":"Йетти иш куни статистикаси"
+  "sevenBusinessDayStatistics":"Йетти иш куни статистикаси",
+  "numberOfOperations":"Операциялар сони",
+  "thirtyDayStatistics":"Ўттиз кунлик статистика"
 }

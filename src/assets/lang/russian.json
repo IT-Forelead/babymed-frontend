@@ -247,5 +247,7 @@
   "checkupExpense":"Расходы на проверку",
   "visitsStatistics":"Статистика посещений",
   "operationsStatistics":"Статистика операций",
-  "sevenBusinessDayStatistics":"Статистика семи рабочих дней"
+  "sevenBusinessDayStatistics":"Статистика семи рабочих дней",
+  "numberOfOperations":"Количество операций",
+  "thirtyDayStatistics":"Статистика за тридцать дней"
 }
