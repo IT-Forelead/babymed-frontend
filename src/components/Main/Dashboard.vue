@@ -1,21 +1,22 @@
 <script setup>
-import StatisticsSection from './Statistics/StatisticsSection.vue'
 import { ref } from '@vue/reactivity'
+import moment from 'moment'
+import { computed, onMounted } from 'vue'
+import { useI18n } from 'vue-i18n'
+import ChartBarHorizontalIcon from '../../assets/icons/ChartBarHorizontalIcon.vue'
+import ChartBarIcon from '../../assets/icons/ChartBarIcon.vue'
+import MedicalDoctorIcon from '../../assets/icons/MedicalDoctorIcon.vue'
+import RecentPatientOutlineIcon from '../../assets/icons/RecentPatientOutlineIcon.vue'
+import useMoneyFormatter from '../../mixins/currencyFormatter'
 import CheckupExpenseService from '../../services/checkupExpenses.service'
 import ExpenseService from '../../services/operationExpenses.service'
-import VisitService from '../../services/visit.service'
 import PatientService from '../../services/patient.service'
 import UserService from '../../services/user.service'
-import { onMounted, computed } from 'vue'
+import VisitService from '../../services/visit.service'
 import { useCheckupExpenseStore } from '../../store/checkupExpense.store'
 import { useExpenseStore } from '../../store/expense.store'
 import { useVisitStore } from '../../store/visit.store'
-import moment from 'moment'
-import useMoneyFormatter from '../../mixins/currencyFormatter'
-import { useI18n } from 'vue-i18n'
 import BigCard from './Statistics/BigCard.vue'
-import RecentPatientOutlineIcon from '../../assets/icons/RecentPatientOutlineIcon.vue'
-import MedicalDoctorIcon from '../../assets/icons/MedicalDoctorIcon.vue'
 
 const { t } = useI18n()
 
@@ -30,6 +31,7 @@ const numberOfMonthlyOperations = computed(() => {
   return useExpenseStore().numberOfMonthlyOperations
 })
 
+//Expenses Chart
 const series = computed(() => [
   {
     name: t('incomingProfit'),
@@ -119,22 +121,19 @@ const chartOptions = {
     },
   },
 }
-const series2 = computed(() => [
+
+// Daily Operations Chart
+const numberOfDailyOperationsSeries = computed(() => [
   {
     name: 'Operatsiyalar soni',
     data: numberOfDailyOperations.value?.map((a) => a.y),
   },
 ])
 
-const chartOptions2 = computed(() => {
+const numberOfDailyOperationsChartOptions = computed(() => {
   return {
     chart: {
       type: 'bar',
-      events: {
-        click: function (chart, w, e) {
-          // console.log(chart, w, e)
-        },
-      },
       toolbar: {
         show: false,
       },
@@ -146,7 +145,7 @@ const chartOptions2 = computed(() => {
         columnWidth: '45%',
         distributed: true,
         dataLabels: {
-          position: 'top', // top, center, bottom
+          position: 'top',
         },
       },
     },
@@ -204,14 +203,14 @@ const chartOptions2 = computed(() => {
   }
 })
 
-// second chart
-const series3 = computed(() => [
+// Monthly Operations Chart
+const numberOfMonthlyOperationsSeries = computed(() => [
   {
     data: numberOfMonthlyOperations.value?.map((a) => a.count),
   },
 ])
 
-const chartOptions3 = computed(() => {
+const numberOfMonthlyOperationsChartOptions = computed(() => {
   return {
     chart: {
       type: 'bar',
@@ -223,19 +222,19 @@ const chartOptions3 = computed(() => {
       bar: {
         borderRadius: 5,
         barHeight: '100%',
-        distributed: false,
+        distributed: true,
         horizontal: true,
         dataLabels: {
           position: 'bottom',
         },
       },
     },
-    colors: ['#A3E635'],
+    colors: ['#A3E635', '#111827', '#A3E635', '#A3E635'],
     dataLabels: {
       enabled: true,
       textAnchor: 'start',
       style: {
-        colors: ['#304758'],
+        colors: ['#111827', '#fff', '#111827', '#111827'],
       },
       formatter: function (val) {
         return val
@@ -248,7 +247,6 @@ const chartOptions3 = computed(() => {
     },
     xaxis: {
       categories: numberOfMonthlyOperations.value?.map((a) => a.serviceName),
-      // categories: ['Кесарево бирламчи', 'Кесарево иккиламчи', 'Киста', 'Лапоротомия', 'Пластика', 'Табиий тугрук', 'Экстрипация'],
       labels: {
         show: false,
       },
@@ -329,10 +327,12 @@ onMounted(() => {
               <div class="text-lg font-bold">{{ $t('operationsStatistics') }}</div>
               <div class="text-sm">{{ $t('sevenBusinessDayStatistics') }}</div>
             </div>
-            <div class="rounded-xl py-2 px-3 bg-white text-2xl font-bold text-gray-900">27</div>
+            <div class="rounded-xl p-3 bg-white flex items-center justify-center">
+              <ChartBarIcon class="w-7 h-7 text-gray-900" />
+            </div>
           </div>
           <div class="px-1">
-            <apexchart type="bar" height="180" :options="chartOptions2" :series="series2"></apexchart>
+            <apexchart type="bar" height="180" :options="numberOfDailyOperationsChartOptions" :series="numberOfDailyOperationsSeries"></apexchart>
           </div>
         </div>
         <div class="bg-white rounded-lg w-full">
@@ -341,10 +341,12 @@ onMounted(() => {
               <div class="text-lg font-bold">{{ $t('operationsStatistics') }}</div>
               <div class="text-sm">{{ $t('thirtyDayStatistics') }}</div>
             </div>
-            <div class="rounded-xl py-2 px-3 bg-lime-300 text-2xl font-bold text-gray-900">327</div>
+            <div class="rounded-xl p-3 bg-lime-300 flex items-center justify-center">
+              <ChartBarHorizontalIcon class="w-7 h-7 text-gray-900" />
+            </div>
           </div>
           <div class="px-1">
-            <apexchart type="bar" height="180" :options="chartOptions3" :series="series3"></apexchart>
+            <apexchart type="bar" height="180" :options="numberOfMonthlyOperationsChartOptions" :series="numberOfMonthlyOperationsSeries"></apexchart>
           </div>
         </div>
       </div>

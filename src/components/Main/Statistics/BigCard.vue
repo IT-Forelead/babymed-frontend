@@ -4,6 +4,7 @@ import { computed, onMounted, ref } from 'vue'
 import { useVisitStore } from '../../../store/visit.store'
 import moment from 'moment'
 import { useI18n } from 'vue-i18n'
+import ChartBarIcon from '../../../assets/icons/ChartBarIcon.vue'
 
 const { t } = useI18n()
 
@@ -11,7 +12,6 @@ const numberOfDailyVisits = computed(() => {
   return useVisitStore().numberOfDailyVisits
 })
 
-// const totalOfDailyVisits = ref(0)
 const series = computed(() => [
   {
     name: t('numberOfVisits'),
@@ -37,7 +37,7 @@ const chartOptions = computed(() => {
         columnWidth: '60%',
         distributed: true,
         dataLabels: {
-          position: 'top', // top, center, bottom
+          position: 'top',
         },
       },
     },
@@ -99,7 +99,6 @@ onMounted(() => {
     VisitService.getNumberOfDailyVisits().then((res) => {
       useVisitStore().setNumberOfDailyVisits(res)
     })
-    // totalOfDailyVisits.value = useVisitStore().numberOfDailyVisits?.map((a) => a.y)?.reduce((total, currentValue) => total + currentValue)
   })
 })
 </script>
@@ -110,7 +109,9 @@ onMounted(() => {
         <h1 class="text-3xl font-bold">{{ $t('visitsStatistics') }}</h1>
         <p class="font-medium text-lg">{{ $t('sevenBusinessDayStatistics') }}</p>
       </div>
-      <div class="rounded-xl p-3 bg-lime-300 text-3xl font-bold text-gray-900">{{ totalOfDailyVisits }}</div>
+      <div class="rounded-xl p-3 bg-lime-300 flex items-center justify-center">
+        <ChartBarIcon class="w-9 h-9 text-gray-900" />
+      </div>
     </div>
     <apexchart type="bar" height="300" :options="chartOptions" :series="series"></apexchart>
   </div>
