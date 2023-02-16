@@ -6,7 +6,7 @@ class CheckupExpenseService {
     return AxiosService.post('/checkup-expense/create/doctor-share', data, { headers: authHeader() })
   }
   async getCheckupExpenses(data) {
-    return AxiosService.post('/checkup-expense/report?page=1&limit=10', data, { headers: authHeader() })
+    return AxiosService.post('/checkup-expense/report', data, { headers: authHeader() })
   }
   async getCheckupExpensesSummary(data) {
     return AxiosService.post('/checkup-expense/summary', data, { headers: authHeader() })

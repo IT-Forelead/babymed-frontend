@@ -83,6 +83,13 @@ const routes = [
         name: 'Checkup expenses',
         component: () => import('../views/CheckupExpenses.vue'),
         meta: {layout: 'dashboard'},
+        children: [
+            {
+                path: 'tab1',
+                name: "Tab 1",
+                component: () => import('../components/checkupTabs/Tab1.vue')
+            }
+        ],
         beforeEnter: navigationGuards(['cashier', 'super_manager', 'tech_admin']),
     },
     {

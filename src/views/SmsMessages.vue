@@ -1,6 +1,7 @@
 <script setup>
 import { computed, ref, reactive } from '@vue/reactivity'
 import authHeader from '../mixins/auth-header'
+import {onMounted} from 'vue'
 import { useSmsMessagesStore } from '../store/smsMessage.store'
 import { useModalStore } from '../store/modal.store'
 import { useDropStore } from '../store/drop.store'
@@ -34,7 +35,6 @@ const loadSmsMessages = async ($state) => {
     AxiosService.post('/message/report', { page: page, limit: 30 }, { headers: authHeader() })
       .then((result) => {
         total.value = result?.total
-        useSmsMessagesStore().clearStore()
         useSmsMessagesStore().setSmsMessages(result?.data)
         $state.loaded()
       })
@@ -84,6 +84,10 @@ const selectSmsMessageTypeOption = computed(() => {
 
 const selectDeliveryStatusOption = computed(() => {
   return useDropStore().selectDeliveryStatusOption
+})
+
+onMounted(() => {
+  useSmsMessagesStore().clearStore()
 })
 </script>
 

@@ -18,6 +18,7 @@ const patients = ref(0)
 const doctors = ref(0)
 
 const numberOfDailyOperations = computed(() => {
+  console.log('saas' + useExpenseStore().numberOfDailyOperations);
   return useExpenseStore().numberOfDailyOperations
 })
 
@@ -80,7 +81,7 @@ const chartOptions = computed(() => {
           fontSize: '12px',
         },
         formatter: function (val) {
-          return moment(val).format('D-MMM, YYYY')
+          return moment(val).format('D-MMM')
         },
       },
       tooltip: {
@@ -103,7 +104,7 @@ const chartOptions = computed(() => {
       labels: {
         show: false,
         formatter: function (val) {
-          return val + ' ta'
+          return val
         },
       },
     },
@@ -202,7 +203,8 @@ onMounted(() => {
     })
   })
   ExpenseService.getNumberOfDailyOperations().then((res) => {
-    useExpenseStore().clearStore()
+    // useExpenseStore().clearStore()
+    console.log('do '+res);
     useExpenseStore().setNumberOfDailyOperations(res)
     ExpenseService.getNumberOfMonthlyOperations().then((res) => {
       useExpenseStore().setNumberOfMonthlyOperations(res)
@@ -224,7 +226,7 @@ onMounted(() => {
             <div class="rounded-xl py-2 px-3 bg-white text-2xl font-bold text-gray-900">27</div>
           </div>
           <div class="px-1">
-            <apexchart type="bar" height="180" :options="chartOptions" :series="series"></apexchart>
+            <!-- <apexchart type="bar" height="180" :options="chartOptions" :series="series"></apexchart> -->
           </div>
         </div>
         <div class="bg-white rounded-lg w-full">
@@ -236,7 +238,7 @@ onMounted(() => {
             <div class="rounded-xl py-2 px-3 bg-lime-300 text-2xl font-bold text-gray-900">327</div>
           </div>
           <div class="px-1">
-            <apexchart type="bar" height="180" :options="chartOptions2" :series="series2"></apexchart>
+            <!-- <apexchart type="bar" height="180" :options="chartOptions2" :series="series2"></apexchart> -->
           </div>
         </div>
       </div>

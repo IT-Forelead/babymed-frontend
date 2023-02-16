@@ -29,9 +29,7 @@ const total = ref(1)
 const checkupExpenses = computed(() => {
   return useCheckupExpenseStore().checkupExpenses
 })
-const dailyCheckupExpenses = computed(() => {
-  return useCheckupExpenseStore().dailyCheckupExpenses
-})
+
 const checkupExpensesSummary = computed(() => {
   return useCheckupExpenseStore().checkupExpensesSummary
 })
@@ -43,15 +41,13 @@ const loadExpenses = async ($state) => {
   page++
   let additional = total.value % 30 === 0 ? 0 : 1
   if (total.value !== 0 && total.value / 30 + additional >= page) {
-    AxiosService.post(
-      '/checkup-expense/report',
+    CheckupExpenseService.getCheckupExpenses(
       cleanObjectEmptyFields({
         startDate: filterData.startDate,
         endDate: filterData.endDate,
         page: page,
         limit: 30,
-      }),
-      { headers: authHeader() }
+      })
     )
       .then((result) => {
         total.value = result?.total
@@ -162,9 +158,13 @@ const submitFilterDataForSecondTab = () => {
 const openFirstTab = () => {
   useTabStore().openFirstTab()
   useDropStore().setSelectDateRangeOption('')
-  CheckupExpenseService.getCheckupExpenses({}).then((res) => {
+  CheckupExpenseService.getCheckupExpenses({
+    page: 1,
+    limit: 30,
+  }).then((res) => {
     useCheckupExpenseStore().clearStore()
     useCheckupExpenseStore().setCheckupExpenses(res?.data)
+    page.value = 1
   })
   UserService.getAllDoctors({
     role: 'doctor',

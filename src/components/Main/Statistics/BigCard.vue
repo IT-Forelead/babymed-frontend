@@ -1,6 +1,6 @@
 <script setup>
 import VisitService from '../../../services/visit.service'
-import { computed, onMounted } from 'vue'
+import { computed, onMounted, ref } from 'vue'
 import { useVisitStore } from '../../../store/visit.store'
 import moment from 'moment'
 import { useI18n } from 'vue-i18n'
@@ -11,8 +11,7 @@ const numberOfDailyVisits = computed(() => {
   return useVisitStore().numberOfDailyVisits
 })
 
-// const totalOfDailyVisits = numberOfDailyVisits.value?.map((a) => a.y).reduce((total, currentValue) => total + currentValue)
-
+// const totalOfDailyVisits = ref(0)
 const series = computed(() => [
   {
     name: t('numberOfVisits'),
@@ -23,15 +22,9 @@ const series = computed(() => [
 const chartOptions = computed(() => {
   return {
     chart: {
-      height: 350,
       type: 'bar',
       zoom: {
         enabled: false,
-      },
-      events: {
-        click: function (chart, w, e) {
-          // console.log(chart, w, e)
-        },
       },
       toolbar: {
         show: false,
@@ -41,7 +34,7 @@ const chartOptions = computed(() => {
     plotOptions: {
       bar: {
         borderRadius: 5,
-        columnWidth: '45%',
+        columnWidth: '60%',
         distributed: true,
         dataLabels: {
           position: 'top', // top, center, bottom
@@ -50,9 +43,6 @@ const chartOptions = computed(() => {
     },
     dataLabels: {
       enabled: true,
-      formatter: function (val) {
-        return val
-      },
       offsetY: -20,
       style: {
         fontSize: '14px',
@@ -91,9 +81,6 @@ const chartOptions = computed(() => {
       },
       labels: {
         show: false,
-        formatter: function (val) {
-          return val
-        },
       },
     },
     grid: {
@@ -112,6 +99,7 @@ onMounted(() => {
     VisitService.getNumberOfDailyVisits().then((res) => {
       useVisitStore().setNumberOfDailyVisits(res)
     })
+    // totalOfDailyVisits.value = useVisitStore().numberOfDailyVisits?.map((a) => a.y)?.reduce((total, currentValue) => total + currentValue)
   })
 })
 </script>
@@ -122,8 +110,8 @@ onMounted(() => {
         <h1 class="text-3xl font-bold">{{ $t('visitsStatistics') }}</h1>
         <p class="font-medium text-lg">{{ $t('sevenBusinessDayStatistics') }}</p>
       </div>
-      <div class="rounded-xl p-3 bg-lime-300 text-3xl font-bold text-gray-900">715</div>
+      <div class="rounded-xl p-3 bg-lime-300 text-3xl font-bold text-gray-900">{{ totalOfDailyVisits }}</div>
     </div>
-    <apexchart type="bar" height="320" :options="chartOptions" :series="series"></apexchart>
+    <apexchart type="bar" height="300" :options="chartOptions" :series="series"></apexchart>
   </div>
 </template>
