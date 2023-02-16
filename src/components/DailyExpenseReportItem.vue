@@ -9,12 +9,6 @@ const props = defineProps({
   checkupExpensesSummary: { type: Array, required: true },
 })
 
-// const res = computed(() => {
-//   let test = checkupExpensesSummary.value
-//   let distinct = Array.from(new Set(test.map(el => el?.user?.id)))
-//   return distinct.map(distinctEl => checkupExpensesSummary.value.filter(dce => dce?.user?.id === distinctEl))
-// })
-
 const { checkupExpensesSummary } = toRefs(props)
 </script>
 
@@ -23,13 +17,7 @@ const { checkupExpensesSummary } = toRefs(props)
     <td v-motion-pop class="text-center">{{ idx + 1 }}</td>
     <td v-motion-pop class="py-2 px-4 text-left">
       <div class="flex items-center">
-        <div class="mr-2">
-          <UserIcon class="w-8 h-8 rounded-full border p-1" />
-        </div>
-        <!-- <div v-for="(user, idx) in expense" :key="idx" class="text-base leading-5">
-          <div>{{ user?.user }}</div>
-          <span class="font-medium capitalize">{{ user?.firstname }}</span>
-        </div> -->
+        <UserIcon class="w-8 h-8 rounded-full border p-1 mr-2" />
         {{ expense?.user?.firstname + " " + expense?.user?.lastname }}
       </div>
     </td>

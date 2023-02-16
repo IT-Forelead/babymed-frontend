@@ -144,6 +144,7 @@
   "selectServiceType": "Select Service Type",
   "serviceError": "This service type not attached service!",
   "expenses": "Expenses",
+  "operationExpenses": "Operation expenses",
   "expenseReports": "Expense reports",
   "addExpenses": "Add expenses",
   "filter": "Filter",

@@ -44,7 +44,11 @@ const currentLabel = computed(() => {
   } else if (router.currentRoute?.value?.path === '/operation-expenses') {
     return t('expenses')
   } else if (router.currentRoute?.value?.path === '/checkup-expenses') {
-    return t('expenses')
+    return t('checkupExpenses')
+  } else if (router.currentRoute?.value?.path === '/checkup-expenses/summary') {
+    return t('checkupExpensesReport')
+  } else if (router.currentRoute?.value?.path === '/checkup-expenses/doctor-shares') {
+    return t('doctorShares')
   } else if (router.currentRoute?.value?.path === '/sms-messages') {
     return t('smsMessagesManagment')
   }

@@ -144,6 +144,7 @@
   "selectServiceType": "Xizmat turini tanlang",
   "serviceError": "Ushbu xizmatga turi biriktirilmagan!",
   "expenses": "Xarajatlar",
+  "operationExpenses": "Operatsiya xarajatlari",
   "expenseReports": "Xarajatlar hisoboti",
   "addExpenses": "Xarajatlarni qo'shing",
   "filter": "Filtr",

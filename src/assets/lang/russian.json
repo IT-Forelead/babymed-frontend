@@ -143,6 +143,7 @@
   "selectServiceType": "Выберите тип услуг",
   "serviceError": "Этот тип услуги не привязан к сервису!",
   "expenses": "Затраты",
+  "operationExpenses": "Операционные расходы",
   "expenseReports": "Отчеты о расходах",
   "addExpenses": "Добавить расходы",
   "filter": "Фильтр",
