@@ -14,6 +14,12 @@ class VisitService {
   async changePaymentStatus(id) {
     return AxiosService.get(`/visit/update-payment-status/${id}`, { headers: authHeader() })
   }
+  async getDailyProfit(data) {
+    return AxiosService.post('/visit/daily-profit', data, { headers: authHeader() })
+  }
+  async getNumberOfDailyVisits() {
+    return AxiosService.get('/visit/daily-visits', { headers: authHeader() })
+  }
 }
 
 export default new VisitService()

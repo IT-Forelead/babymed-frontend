@@ -5,6 +5,7 @@ export const useCheckupExpenseStore = defineStore('checkupExpense', {
     checkupExpenses: [],
     dailyCheckupExpenses: [],
     checkupExpensesSummary: [],
+    dailyCheckupExpenses: [],
     doctorShares: [],
     selectedDoctorShare: {},
   }),
@@ -18,6 +19,9 @@ export const useCheckupExpenseStore = defineStore('checkupExpense', {
     setCheckupExpensesSummary(data) {
       this.checkupExpensesSummary.push(...data)
     },
+    setDailyCheckupExpenses(data) {
+      this.dailyCheckupExpenses.push(...data)
+    },
     setDoctorShares(data) {
       this.doctorShares.push(...data)
     },
@@ -28,6 +32,7 @@ export const useCheckupExpenseStore = defineStore('checkupExpense', {
       this.checkupExpenses = []
       this.dailyCheckupExpenses = []
       this.checkupExpensesSummary = []
+      this.dailyCheckupExpenses = []
       this.doctorShares = []
     },
   },

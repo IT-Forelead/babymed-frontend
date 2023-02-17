@@ -23,7 +23,7 @@ const expenses = computed(() => {
   return useExpenseStore().expenses
 })
 const target = ref('.expenses-wrapper')
-const distance = ref(200)
+const distance = ref(0)
 
 let page = 0
 const loadExpenses = async ($state) => {

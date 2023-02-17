@@ -143,6 +143,7 @@
   "selectServiceType": "Выберите тип услуг",
   "serviceError": "Этот тип услуги не привязан к сервису!",
   "expenses": "Затраты",
+  "operationExpenses": "Операционные расходы",
   "expenseReports": "Отчеты о расходах",
   "addExpenses": "Добавить расходы",
   "filter": "Фильтр",
@@ -239,5 +240,15 @@
   "undefined": "Не определено",
   "smsMessagesReport":"Отчет о SMS-сообщениях",
   "smsMessagesManagment":"Управление SMS-сообщениями",
-  "registration":"Регистрация"
+  "registration":"Регистрация",
+  "numberOfVisits":"Количество посещений",
+  "inputAndOutputCostStatistics":"Статистика входных и выходных затрат",
+  "incomingProfit":"Поступающая прибыль",
+  "operationExpense":"Операционные расходы",
+  "checkupExpense":"Расходы на проверку",
+  "visitsStatistics":"Статистика посещений",
+  "operationsStatistics":"Статистика операций",
+  "sevenBusinessDayStatistics":"Статистика семи рабочих дней",
+  "numberOfOperations":"Количество операций",
+  "thirtyDayStatistics":"Статистика за тридцать дней"
 }

@@ -11,7 +11,9 @@ class ExpenseService {
   async getAllExpenses(data) {
     return AxiosService.post('/operation-expense/report?page=1&limit=10', data, { headers: authHeader() })
   }
-
+  async getDailyOperationExpenses(data) {
+    return AxiosService.post('/operation-expense/daily-expenses', data, { headers: authHeader() })
+  }
   async getOperations(data) {
     return AxiosService.post('/operation-expense/operations?page=1&limit=10', data, { headers: authHeader() })
   }
@@ -23,6 +25,12 @@ class ExpenseService {
   }
   async deleteOperationService(id) {
     return AxiosService.get(`/operation-expense/delete/operation-service/${id}`, { headers: authHeader() })
+  }
+  async getNumberOfDailyOperations() {
+    return AxiosService.get('/operation-expense/daily-operations', { headers: authHeader() })
+  }
+  async getNumberOfMonthlyOperations() {
+    return AxiosService.get('/operation-expense/monthly-operations', { headers: authHeader() })
   }
 }
 

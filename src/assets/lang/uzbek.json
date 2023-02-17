@@ -144,6 +144,7 @@
   "selectServiceType": "Xizmat turini tanlang",
   "serviceError": "Ushbu xizmatga turi biriktirilmagan!",
   "expenses": "Xarajatlar",
+  "operationExpenses": "Operatsiya xarajatlari",
   "expenseReports": "Xarajatlar hisoboti",
   "addExpenses": "Xarajatlarni qo'shing",
   "filter": "Filtr",
@@ -240,5 +241,15 @@
   "undefined":"Aniqlanmagan",
   "smsMessagesReport":"SMS xabarlar hisoboti",
   "smsMessagesManagment":"SMS xabarlarni boshqarish",
-  "registration":"Ro'yxatdan o'tish"
+  "registration":"Ro'yxatdan o'tish",
+  "numberOfVisits":"Tashriflar soni",
+  "inputAndOutputCostStatistics":"Kirim va chiqim xarajatlari statistikasi",
+  "incomingProfit":"Kiruvchi foyda",
+  "operationExpense":"Operatsiya xarajatlari",
+  "checkupExpense":"Tekshiruv xarajatlari",
+  "visitsStatistics":"Tashriflar statistikasi",
+  "operationsStatistics":"Operatsiyalar statistikasi",
+  "sevenBusinessDayStatistics":"Yetti ish kuni statistikasi",
+  "numberOfOperations":"Operatsiyalar soni",
+  "thirtyDayStatistics":"O'ttiz kunlik statistika"
 }

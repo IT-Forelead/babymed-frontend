@@ -21,7 +21,7 @@ const patients = computed(() => {
   return usePatientStore().patients
 })
 const target = ref('.patients-wrapper')
-const distance = ref(200)
+const distance = ref(0)
 
 let page = 0
 const loadPatients = async ($state) => {

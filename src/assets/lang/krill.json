@@ -144,6 +144,7 @@
   "selectServiceType": "Хизмат турини танланг",
   "serviceError": "Ушбу хизматга тури бириктирилмаган!",
   "expenses": "Харажатлар",
+  "operationExpenses": "Операция харажатлари",
   "expenseReports": "Харажатлар ҳисоботи",
   "addExpenses": "Харажатларни қўшинг",
   "filter": "Филтр",
@@ -240,5 +241,15 @@
   "undefined":"Aниқланмаган",
   "smsMessagesReport":"СМС хабарлар ҳисоботи",
   "smsMessagesManagment":"СМС хабарларни бошқариш",
-  "registration":"Рўйхатдан ўтиш"
+  "registration":"Рўйхатдан ўтиш",
+  "numberOfVisits":"Ташрифлар сони",
+  "inputAndOutputCostStatistics":"Кирим ва чиқим харажатлари статистикаси",
+  "incomingProfit":"Кирувчи фойда",
+  "operationExpense":"Операция харажатлари",
+  "checkupExpense":"Текширув харажатлари",
+  "visitsStatistics":"Ташрифлар статистикаси",
+  "operationsStatistics":"Операциялар статистикаси",
+  "sevenBusinessDayStatistics":"Йетти иш куни статистикаси",
+  "numberOfOperations":"Операциялар сони",
+  "thirtyDayStatistics":"Ўттиз кунлик статистика"
 }
