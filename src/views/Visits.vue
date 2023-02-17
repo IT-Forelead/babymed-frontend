@@ -13,7 +13,7 @@ const visits = computed(() => {
   return useVisitStore().patients
 })
 const target = ref('.patients-wrapper')
-const distance = ref(10)
+const distance = ref(0)
 const payload = ref({})
 
 let page = 0

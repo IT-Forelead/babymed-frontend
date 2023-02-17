@@ -25,7 +25,7 @@ const smsMessages = computed(() => {
   return useSmsMessagesStore().smsMessages
 })
 const target = ref('.sms-messages-wrapper')
-const distance = ref(200)
+const distance = ref(0)
 
 let page = 0
 const loadSmsMessages = async ($state) => {
