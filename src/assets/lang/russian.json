@@ -146,6 +146,7 @@
   "operationExpenses": "Операционные расходы",
   "expenseReports": "Отчеты о расходах",
   "addExpenses": "Добавить расходы",
+  "addOperationExpense": "Добавить расходы на операцию",
   "filter": "Фильтр",
   "serviceType": "Тип Услуги",
   "serviceTypes": "Типы Услуг",

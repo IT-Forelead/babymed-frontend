@@ -11,7 +11,7 @@ import MoneyBagIconm from '../assets/icons/MoneyBagIcon.vue'
 import MoneyExchangeIcon from '../assets/icons/MoneyExchangeIcon.vue'
 import ExpenseReportItem from '../components/ExpenseReportItem.vue'
 import {useTabStore} from '../store/tab.store'
-import AddExpense from '../components/Registration/AddExpense.vue'
+import AddExpense from '../components/Registration/AddExpense2.vue'
 import OperationExpenseService from '../services/operationExpenses.service'
 import {cleanObjectEmptyFields} from '../mixins/utils'
 import AxiosService from "../services/axios.service.js";

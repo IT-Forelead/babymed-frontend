@@ -21,7 +21,6 @@ const { t } = useI18n()
 const router = useRouter()
 const payload = ref({})
 
-
 const currentLabel = computed(() => {
   if (router.currentRoute?.value?.path === '/visits') {
     return t('visitsManagment')
@@ -39,10 +38,10 @@ const currentLabel = computed(() => {
     return t('serviceTypes')
   } else if (router.currentRoute?.value?.path === '/operations') {
     return t('operationManagment')
-  } else if (router.currentRoute?.value?.path === '/expenses') {
-    return t('expenses')
   } else if (router.currentRoute?.value?.path === '/operation-expenses') {
-    return t('expenses')
+    return t('operationExpenses')
+  } else if (router.currentRoute?.value?.path === '/operation-expenses/add') {
+    return t('addOperationExpense')
   } else if (router.currentRoute?.value?.path === '/checkup-expenses') {
     return t('checkupExpenses')
   } else if (router.currentRoute?.value?.path === '/checkup-expenses/summary') {

@@ -147,6 +147,7 @@
   "operationExpenses": "Operation expenses",
   "expenseReports": "Expense reports",
   "addExpenses": "Add expenses",
+  "addOperationExpense": "Add Operation expense",
   "filter": "Filter",
   "serviceType": "Service type",
   "serviceTypes": "Service types",

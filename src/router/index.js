@@ -67,8 +67,20 @@ const routes = [
   {
     path: '/operation-expenses',
     name: 'Operation expenses',
-    component: () => import('../views/OperationExpenses.vue'),
+    // component: () => import('../views/OperationExpenses.vue'),
     meta: { layout: 'dashboard' },
+    children: [
+      {
+        path: '',
+        name: 'Operation Expenses',
+        component: () => import('../components/OperationExpenseTabs/OperationExpenses.vue'),
+      },
+      {
+        path: 'add',
+        name: 'Add Operation Expenses',
+        component: () => import('../components/OperationExpenseTabs/AddOperationExpense.vue'),
+      },
+    ],
     beforeEnter: navigationGuards(['cashier', 'super_manager', 'tech_admin']),
   },
   {
@@ -81,12 +93,11 @@ const routes = [
   {
     path: '/checkup-expenses',
     name: 'Checkup expenses',
-    // component: () => import('../views/CheckupExpenses.vue'),
     meta: { layout: 'dashboard' },
     children: [
       {
         path: '',
-        name: 'Tab 1',
+        name: 'Checkup expenses',
         component: () => import('../components/CheckupExpenseTabs/CheckupExpenses.vue'),
       },
       {

@@ -74,7 +74,7 @@ const filterData = reactive({
 
 const submitFilterData = () => {
   isLoading.value = true
-  PatientService.getAllPatients(cleanObjectEmptyFields(filterData)).then((res) => {
+  PatientService.getPatients(cleanObjectEmptyFields(filterData)).then((res) => {
     usePatientStore().clearStore()
     usePatientStore().setPatients(res?.data)
     isLoading.value = false

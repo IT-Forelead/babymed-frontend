@@ -394,7 +394,7 @@ onMounted(() => {
       useVisitStore().setDailyProfit(res)
     })
   })
-  PatientService.getAllPatients({}).then((res) => {
+  PatientService.getPatients({}).then((res) => {
     patients.value = res?.total
     UserService.getAllDoctors({
       role: 'doctor',

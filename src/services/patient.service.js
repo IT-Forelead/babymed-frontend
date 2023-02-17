@@ -8,9 +8,6 @@ class PatientService {
   async getPatients(filter) {
     return AxiosService.post('/patient/report', filter, { headers: authHeader() })
   }
-  async getAllPatients(data) {
-    return AxiosService.post('/patient/report', data, { headers: authHeader() })
-  }
   async getPatientsByFullname(data) {
     return AxiosService.get('/patient/search?full_name=' + data, { headers: authHeader() })
   }
