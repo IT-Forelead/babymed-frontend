@@ -10,7 +10,7 @@ import { useDropStore } from '../../store/drop.store'
 import { useServicesStore } from '../../store/services.store'
 import ServicesService from '../../services/services.service'
 import { cleanObjectEmptyFields } from '../../mixins/utils'
-import SelectOptionServiceType from '../SelectOptionServiceType.vue'
+import SelectOptionServiceType from '../Inputs/SelectOptionServiceType.vue'
 
 const { t } = useI18n()
 

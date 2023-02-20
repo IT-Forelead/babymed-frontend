@@ -12,8 +12,8 @@ import SmsMessageService from '../services/smsMessage.service'
 import { useI18n } from 'vue-i18n'
 import AxiosService from '../services/axios.service'
 import { cleanObjectEmptyFields } from '../mixins/utils'
-import SelectOptionDeliveryStatus from '../components/SelectOptionDeliveryStatus.vue'
-import SelectOptionSmsMessageType from '../components/SelectOptionSmsMessageType.vue'
+import SelectOptionDeliveryStatus from '../components/Inputs/SelectOptionDeliveryStatus.vue'
+import SelectOptionSmsMessageType from '../components/Inputs/SelectOptionSmsMessageType.vue'
 import { onClickOutside } from '@vueuse/core'
 
 const { t } = useI18n()

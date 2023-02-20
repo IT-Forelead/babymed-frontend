@@ -1,6 +1,6 @@
 <script setup>
 import {computed, reactive, ref} from '@vue/reactivity'
-import {onMounted, toRefs, watch} from 'vue'
+import {onMounted, watch} from 'vue'
 import AddressService from '../../services/address.service'
 import PatientService from '../../services/patient.service'
 import { usePatientStore } from '../../store/patient.store'

@@ -2,10 +2,10 @@
 import { ref } from '@vue/reactivity'
 import {computed, toRefs, onMounted} from 'vue'
 import { onClickOutside } from '@vueuse/core'
-import { useDropStore } from '../store/drop.store'
-import TimesIcon from '../assets/icons/TimesIcon.vue'
-import ChevronRightIcon from '../assets/icons/ChevronRightIcon.vue'
-import { useServicesStore } from '../store/services.store'
+import { useDropStore } from '../../store/drop.store'
+import TimesIcon from '../../assets/icons/TimesIcon.vue'
+import ChevronRightIcon from '../../assets/icons/ChevronRightIcon.vue'
+import { useServicesStore } from '../../store/services.store'
 import {useRouter} from "vue-router";
 
 const props = defineProps({

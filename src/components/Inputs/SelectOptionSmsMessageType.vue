@@ -2,9 +2,9 @@
 import { ref } from '@vue/reactivity'
 import { computed } from 'vue'
 import { onClickOutside } from '@vueuse/core'
-import { useDropStore } from '../store/drop.store'
-import TimesIcon from '../assets/icons/TimesIcon.vue'
-import ChevronRightIcon from '../assets/icons/ChevronRightIcon.vue'
+import { useDropStore } from '../../store/drop.store'
+import TimesIcon from '../../assets/icons/TimesIcon.vue'
+import ChevronRightIcon from '../../assets/icons/ChevronRightIcon.vue'
 import { useI18n } from 'vue-i18n'
 
 const { t } = useI18n()

@@ -1,9 +1,9 @@
 <script setup>
 import {onMounted, ref, toRefs} from 'vue'
-import MdiCheck from '../assets/icons/MdiCheck.vue'
-import { useMultiSelectStore } from '../store/multiselect.store'
+import MdiCheck from '../../assets/icons/MdiCheck.vue'
+import { useMultiSelectStore } from '../../store/multiselect.store'
 import { onClickOutside } from '@vueuse/core'
-import { useDropStore } from '../store/drop.store';
+import { useDropStore } from '../../store/drop.store';
 
 const store = useMultiSelectStore()
 

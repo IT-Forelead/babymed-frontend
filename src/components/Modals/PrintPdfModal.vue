@@ -1,7 +1,7 @@
 <script setup>
 import { useModalStore } from '../../store/modal.store'
 import TimesIcon from '../../assets/icons/TimesIcon.vue'
-import SelectOptionPdfTemplate from '../SelectOptionPdfTemplate.vue'
+import SelectOptionPdfTemplate from '../Inputs/SelectOptionPdfTemplate.vue'
 import { useI18n } from 'vue-i18n'
 import { useDropStore } from '../../store/drop.store'
 
