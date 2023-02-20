@@ -1,8 +1,8 @@
 <script setup>
-import UserIcon from '../assets/icons/UserIcon.vue'
+import UserIcon from '../../assets/icons/UserIcon.vue'
 import 'v3-infinite-loading/lib/style.css'
-import useMoneyFormatter from '../mixins/currencyFormatter'
-import percentCalc from '../mixins/percentCalc'
+import useMoneyFormatter from '../../mixins/currencyFormatter'
+import percentCalc from '../../mixins/percentCalc'
 import { toRefs } from 'vue'
 
 const props = defineProps({

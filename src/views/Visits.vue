@@ -4,7 +4,7 @@ import {computed, ref} from '@vue/reactivity'
 import {useVisitStore} from '../store/visit.store'
 import {useModalStore} from '../store/modal.store'
 import {onMounted} from 'vue'
-import VisitsReportItem from '../components/VisitsReportItem.vue'
+import VisitsReportItem from '../components/Items/VisitsReportItem.vue'
 import AxiosService from "../services/axios.service.js";
 import {parseJwt} from "../mixins/utils.js";
 

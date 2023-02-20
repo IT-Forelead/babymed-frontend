@@ -1,14 +1,14 @@
 <script setup>
-import UserIcon from '../assets/icons/UserIcon.vue'
-import TrashIcon from '../assets/icons/TrashIcon.vue'
+import UserIcon from '../../assets/icons/UserIcon.vue'
+import TrashIcon from '../../assets/icons/TrashIcon.vue'
 import InfiniteLoading from 'v3-infinite-loading'
 import 'v3-infinite-loading/lib/style.css'
-import useMoneyFormatter from '../mixins/currencyFormatter'
-import percentCalc from '../mixins/percentCalc'
+import useMoneyFormatter from '../../mixins/currencyFormatter'
+import percentCalc from '../../mixins/percentCalc'
 import { toRefs } from 'vue'
-import { useCheckupExpenseStore } from '../store/checkupExpense.store'
+import { useCheckupExpenseStore } from '../../store/checkupExpense.store'
 import { useI18n } from 'vue-i18n'
-import { useModalStore } from '../store/modal.store'
+import { useModalStore } from '../../store/modal.store'
 
 const { t } = useI18n()
 

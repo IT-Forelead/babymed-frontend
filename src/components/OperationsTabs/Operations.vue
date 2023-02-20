@@ -6,14 +6,11 @@ import ArrowDownIcon from '../../assets/icons/ArrowDownIcon.vue'
 import FilterIcon from '../../assets/icons/FilterIcon.vue'
 import MedicalInformationOutlineIcon from '../../assets/icons/MedicalInformationOutlineIcon.vue'
 import ServicesIcon from '../../assets/icons/ServicesIcon.vue'
-import OperationReportItem from '../../components/OperationReportItem.vue'
-import authHeader from '../../mixins/auth-header'
+import OperationReportItem from '../../components/Items/OperationReportItem.vue'
 import { cleanObjectEmptyFields } from '../../mixins/utils'
-import AxiosService from '../../services/axios.service.js'
 import ExpenseService from '../../services/operationExpenses.service'
 import { useExpenseStore } from '../../store/expense.store'
 import { useModalStore } from '../../store/modal.store'
-import { useTabStore } from '../../store/tab.store'
 
 const isLoading = ref(false)
 

@@ -1,14 +1,14 @@
 <script setup>
-import EditIcon from '../assets/icons/EditIcon.vue'
-import UserIcon from '../assets/icons/UserIcon.vue'
-import PlusIcon from '../assets/icons/PlusIcon.vue'
+import EditIcon from '../../assets/icons/EditIcon.vue'
+import UserIcon from '../../assets/icons/UserIcon.vue'
+import PlusIcon from '../../assets/icons/PlusIcon.vue'
 import InfiniteLoading from 'v3-infinite-loading'
 import 'v3-infinite-loading/lib/style.css'
 import { toRefs } from 'vue'
 import moment from 'moment'
 import { useRouter } from 'vue-router'
-import { useModalStore } from '../store/modal.store'
-import { useDropStore } from '../store/drop.store'
+import { useModalStore } from '../../store/modal.store'
+import { useDropStore } from '../../store/drop.store'
 
 const router = useRouter()
 

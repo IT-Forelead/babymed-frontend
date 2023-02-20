@@ -5,7 +5,7 @@ import { onMounted } from 'vue'
 import ServicesService from '../services/services.service'
 import notify from 'izitoast'
 import 'izitoast/dist/css/iziToast.min.css'
-import ServiceTypeItem from '../components/Service/ServiceTypeItem.vue'
+import ServiceTypeItem from '../components/Items/ServiceTypeItem.vue'
 import { useI18n } from 'vue-i18n'
 
 const { t } = useI18n()

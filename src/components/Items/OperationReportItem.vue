@@ -1,8 +1,8 @@
 <script setup>
-import UserIcon from '../assets/icons/UserIcon.vue'
+import UserIcon from '../../assets/icons/UserIcon.vue'
 import InfiniteLoading from 'v3-infinite-loading'
 import 'v3-infinite-loading/lib/style.css'
-import useMoneyFormatter from '../mixins/currencyFormatter'
+import useMoneyFormatter from '../../mixins/currencyFormatter'
 import { toRefs } from 'vue'
 import moment from 'moment'
 

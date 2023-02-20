@@ -4,7 +4,7 @@ import { onMounted } from 'vue'
 import MedicalInformationOutlineIcon from '../../assets/icons/MedicalInformationOutlineIcon.vue'
 import ServicesIcon from '../../assets/icons/ServicesIcon.vue'
 import AddOperationService from '../../components/Registration/AddOperationService.vue'
-import OperationServiceItem from '../../components/Service/OperationServiceItem.vue'
+import OperationServiceItem from '../../components/Items/OperationServiceItem.vue'
 import ExpenseService from '../../services/operationExpenses.service'
 import { useExpenseStore } from '../../store/expense.store'
 

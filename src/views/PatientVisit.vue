@@ -2,7 +2,7 @@
 import authHeader from '../mixins/auth-header'
 import {computed, ref} from '@vue/reactivity'
 import {useVisitStore} from '../store/visit.store'
-import VisitsReportItem from '../components/VisitsReportItem.vue'
+import VisitsReportItem from '../components/Items/VisitsReportItem.vue'
 import AddVisit from '../components/Registration/AddVisit.vue'
 import {useModalStore} from '../store/modal.store'
 import {onMounted, watch} from 'vue'

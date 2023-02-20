@@ -1,20 +1,20 @@
 <script setup>
-import PrinterIcon from '../assets/icons/PrinterIcon.vue'
-import UserIcon from '../assets/icons/UserIcon.vue'
-import MoneyPlusIcon from '../assets/icons/MoneyPlusIcon.vue'
+import PrinterIcon from '../../assets/icons/PrinterIcon.vue'
+import UserIcon from '../../assets/icons/UserIcon.vue'
+import MoneyPlusIcon from '../../assets/icons/MoneyPlusIcon.vue'
 import InfiniteLoading from 'v3-infinite-loading'
 import 'v3-infinite-loading/lib/style.css'
 import { ref, toRefs, onMounted } from 'vue'
 import moment from 'moment'
 import { useRouter } from 'vue-router'
-import { useModalStore } from '../store/modal.store'
-import { useDropStore } from '../store/drop.store'
-import { useVisitStore } from '../store/visit.store'
-import { useTabStore } from '../store/tab.store'
-import useMoneyFormatter from '../mixins/currencyFormatter'
+import { useModalStore } from '../../store/modal.store'
+import { useDropStore } from '../../store/drop.store'
+import { useVisitStore } from '../../store/visit.store'
+import { useTabStore } from '../../store/tab.store'
+import useMoneyFormatter from '../../mixins/currencyFormatter'
 import { useI18n } from 'vue-i18n'
-import PdfFileIcon from '../assets/icons/PdfFileIcon.vue'
-import {parseJwt} from "../mixins/utils.js";
+import PdfFileIcon from '../../assets/icons/PdfFileIcon.vue'
+import {parseJwt} from "../../mixins/utils.js";
 
 const { t } = useI18n()
 

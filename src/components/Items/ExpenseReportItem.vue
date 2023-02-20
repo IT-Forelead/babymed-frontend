@@ -1,14 +1,14 @@
 <script setup>
-import UserIcon from '../assets/icons/UserIcon.vue'
+import UserIcon from '../../assets/icons/UserIcon.vue'
 import InfiniteLoading from 'v3-infinite-loading'
 import 'v3-infinite-loading/lib/style.css'
-import useMoneyFormatter from '../mixins/currencyFormatter'
+import useMoneyFormatter from '../../mixins/currencyFormatter'
 import { toRefs } from 'vue'
 import moment from 'moment'
 import { useRouter } from 'vue-router'
-import { useModalStore } from '../store/modal.store'
-import { useDropStore } from '../store/drop.store'
-import OperationExpenseService from '../services/operationExpenses.service'
+import { useModalStore } from '../../store/modal.store'
+import { useDropStore } from '../../store/drop.store'
+import OperationExpenseService from '../../services/operationExpenses.service'
 import { useI18n } from 'vue-i18n'
 
 const { t } = useI18n()
