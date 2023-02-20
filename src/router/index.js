@@ -86,8 +86,20 @@ const routes = [
   {
     path: '/operations',
     name: 'Operations',
-    component: () => import('../views/Operations.vue'),
+    // component: () => import('../views/Operations.vue'),
     meta: { layout: 'dashboard' },
+    children: [
+      {
+        path: '',
+        name: 'Operations',
+        component: () => import('../components/Operations/Operations.vue'),
+      },
+      {
+        path: 'services',
+        name: 'Operation Services',
+        component: () => import('../components/Operations/OperationServices.vue'),
+      },
+    ],
     beforeEnter: navigationGuards(['cashier', 'super_manager', 'tech_admin']),
   },
   {

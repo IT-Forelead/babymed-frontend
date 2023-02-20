@@ -38,6 +38,8 @@ const currentLabel = computed(() => {
     return t('serviceTypes')
   } else if (router.currentRoute?.value?.path === '/operations') {
     return t('operationManagment')
+  } else if (router.currentRoute?.value?.path === '/operations/services') {
+    return t('operationServices')
   } else if (router.currentRoute?.value?.path === '/operation-expenses') {
     return t('operationExpenses')
   } else if (router.currentRoute?.value?.path === '/operation-expenses/add') {
