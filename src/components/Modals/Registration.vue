@@ -1,10 +1,10 @@
 <script setup>
-import { useModalStore } from '../store/modal.store'
-import { useAddressStore } from '../store/address.store'
-import TimesIcon from '../assets/icons/TimesIcon.vue'
-import AddPatient from './Registration/AddPatient.vue'
+import { useModalStore } from '../../store/modal.store'
+import { useAddressStore } from '../../store/address.store'
+import TimesIcon from '../../assets/icons/TimesIcon.vue'
+import AddPatient from '../Registration/AddPatient.vue'
 import { onMounted } from 'vue'
-import AddressService from '../services/address.service'
+import AddressService from '../../services/address.service'
 import { computed } from '@vue/reactivity'
 
 const regions = computed(() => {

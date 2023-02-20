@@ -1,7 +1,7 @@
 <script setup>
-import { useModalStore } from '../store/modal.store'
-import TimesIcon from '../assets/icons/TimesIcon.vue'
-import AddVisit from './Registration/AddVisit.vue'
+import { useModalStore } from '../../store/modal.store'
+import TimesIcon from '../../assets/icons/TimesIcon.vue'
+import AddVisit from '../Registration/AddVisit.vue'
 import { useI18n } from 'vue-i18n'
 
 const { t } = useI18n()

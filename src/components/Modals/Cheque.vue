@@ -1,10 +1,10 @@
 <script setup>
 import { computed } from '@vue/reactivity'
-import useMoneyFormatter from '../mixins/currencyFormatter'
-import { useModalStore } from '../store/modal.store'
+import useMoneyFormatter from '../../mixins/currencyFormatter'
+import { useModalStore } from '../../store/modal.store'
 import print from 'print-js'
 import moment from 'moment'
-import { useDropStore } from '../store/drop.store'
+import { useDropStore } from '../../store/drop.store'
 import { useI18n } from 'vue-i18n'
 
 const { t } = useI18n()

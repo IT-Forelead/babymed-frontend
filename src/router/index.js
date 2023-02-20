@@ -92,12 +92,12 @@ const routes = [
       {
         path: '',
         name: 'Operations',
-        component: () => import('../components/Operations/Operations.vue'),
+        component: () => import('../components/OperationsTabs/Operations.vue'),
       },
       {
         path: 'services',
         name: 'Operation Services',
-        component: () => import('../components/Operations/OperationServices.vue'),
+        component: () => import('../components/OperationsTabs/OperationServices.vue'),
       },
     ],
     beforeEnter: navigationGuards(['cashier', 'super_manager', 'tech_admin']),
