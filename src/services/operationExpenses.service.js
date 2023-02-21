@@ -14,6 +14,9 @@ class ExpenseService {
   async getDailyOperationExpenses(data) {
     return AxiosService.post('/operation-expense/daily-expenses', data, { headers: authHeader() })
   }
+  async getOperationExpenseItemsSummary(data) {
+    return AxiosService.post('/operation-expense/daily-doctor-shares', data, { headers: authHeader() })
+  }
   async getOperations(data) {
     return AxiosService.post('/operation-expense/operations', data, { headers: authHeader() })
   }

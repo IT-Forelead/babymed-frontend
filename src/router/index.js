@@ -67,13 +67,17 @@ const routes = [
   {
     path: '/operation-expenses',
     name: 'Operation expenses',
-    // component: () => import('../views/OperationExpenses.vue'),
     meta: { layout: 'dashboard' },
     children: [
       {
         path: '',
         name: 'Operation Expenses',
         component: () => import('../components/OperationExpenseTabs/OperationExpenses.vue'),
+      },
+      {
+        path: 'summary',
+        name: 'Operation Expense Items Summary',
+        component: () => import('../components/OperationExpenseTabs/OperationExpenseItemsSummary.vue'),
       },
       {
         path: 'add',
@@ -86,7 +90,6 @@ const routes = [
   {
     path: '/operations',
     name: 'Operations',
-    // component: () => import('../views/Operations.vue'),
     meta: { layout: 'dashboard' },
     children: [
       {
