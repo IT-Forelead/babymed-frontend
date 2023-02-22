@@ -5,7 +5,6 @@ import moment from 'moment'
 import { onMounted, watch } from 'vue'
 import FilterIcon from '../../assets/icons/FilterIcon.vue'
 import MoneyBagIconm from '../../assets/icons/MoneyBagIcon.vue'
-import MoneyExchangeIcon from '../../assets/icons/MoneyExchangeIcon.vue'
 import DailyOperationExpenseitemsReportItem from '../Items/DailyOperationExpenseitemsReportItem.vue'
 import SelectOptionDataRange from '../Inputs/SelectOptionDataRange.vue'
 import { cleanObjectEmptyFields } from '../../mixins/utils'
@@ -112,7 +111,7 @@ onMounted(() => {
         <div>|</div>
         <div class="bg-lime-400 rounded-lg p-1.5 px-3 flex items-center">
           <MoneyBagIconm class="w-6 h-6 mr-1" />
-          Summary
+          {{ $t('operationExpensesReport') }}
         </div>
         <div>|</div>
         <router-link to="/operation-expenses/add" class="bg-gray-200 hover:bg-gray-400 cursor-pointer transition-all duration-300 hover:scale-105 rounded-lg p-1.5 px-3 flex items-center">

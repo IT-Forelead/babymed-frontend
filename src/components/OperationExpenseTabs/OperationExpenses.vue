@@ -85,7 +85,7 @@ onMounted(() => {
         <div>|</div>
         <router-link to="/operation-expenses/summary" class="bg-gray-200 hover:bg-gray-400 cursor-pointer transition-all duration-300 hover:scale-105 rounded-lg p-1.5 px-3 flex items-center">
           <MoneyBagIconm class="w-6 h-6 mr-1" />
-          Summary
+          {{ $t('operationExpensesReport') }}
         </router-link>
         <div>|</div>
         <router-link to="/operation-expenses/add" class="bg-gray-200 hover:bg-gray-400 cursor-pointer transition-all duration-300 hover:scale-105 rounded-lg p-1.5 px-3 flex items-center">

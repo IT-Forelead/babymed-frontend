@@ -42,6 +42,8 @@ const currentLabel = computed(() => {
     return t('operationServices')
   } else if (router.currentRoute?.value?.path === '/operation-expenses') {
     return t('operationExpenses')
+  } else if (router.currentRoute?.value?.path === '/operation-expenses/summary') {
+    return t('operationExpensesReport')
   } else if (router.currentRoute?.value?.path === '/operation-expenses/add') {
     return t('addOperationExpense')
   } else if (router.currentRoute?.value?.path === '/checkup-expenses') {
