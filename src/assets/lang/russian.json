@@ -251,5 +251,6 @@
   "operationsStatistics":"Статистика операций",
   "sevenBusinessDayStatistics":"Статистика семи рабочих дней",
   "numberOfOperations":"Количество операций",
-  "thirtyDayStatistics":"Статистика за тридцать дней"
+  "thirtyDayStatistics":"Статистика за тридцать дней",
+  "selectPaymentStatus":"Выберите статус платежа"
 }

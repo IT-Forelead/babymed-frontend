@@ -252,5 +252,6 @@
   "operationsStatistics":"Operatsiyalar statistikasi",
   "sevenBusinessDayStatistics":"Yetti ish kuni statistikasi",
   "numberOfOperations":"Operatsiyalar soni",
-  "thirtyDayStatistics":"O'ttiz kunlik statistika"
+  "thirtyDayStatistics":"O'ttiz kunlik statistika",
+  "selectPaymentStatus":"To'lov holatini tanlang"
 }

@@ -252,5 +252,6 @@
   "operationsStatistics":"Операциялар статистикаси",
   "sevenBusinessDayStatistics":"Йетти иш куни статистикаси",
   "numberOfOperations":"Операциялар сони",
-  "thirtyDayStatistics":"Ўттиз кунлик статистика"
+  "thirtyDayStatistics":"Ўттиз кунлик статистика",
+  "selectPaymentStatus":"Тўлов ҳолатини танланг"
 }

@@ -9,6 +9,7 @@ export const useDropStore = defineStore('drop', {
     selectPdfTypeOption: '',
     selectDateRangeOption: '',
     selectDeliveryStatusOption: '',
+    selectPaymentStatusOption: '',
     selectSmsMessageTypeOption: '',
     selectedExpense: {},
     selectedExpenseItems: [],
@@ -19,6 +20,7 @@ export const useDropStore = defineStore('drop', {
     isOpenPdfTemplateDropDown: false,
     isOpenDateRangeDropDown: false,
     isOpenDeliveryStatusDropDown: false,
+    isOpenPaymentStatusDropDown: false,
     isOpenSmsMessageTypeDropDown: false,
     selectedCheque: []
   }),
@@ -53,6 +55,9 @@ export const useDropStore = defineStore('drop', {
     setSelectDeliveryStatusOption(data) {
       this.selectDeliveryStatusOption = data
     },
+    setSelectPaymentStatusOption(data) {
+      this.selectPaymentStatusOption = data
+    },
     setSelectSmsMessageTypeOption(data) {
       this.selectSmsMessageTypeOption = data
     },
@@ -86,6 +91,12 @@ export const useDropStore = defineStore('drop', {
     closePdfTemplateDropDown() {
       this.isOpenPdfTemplateDropDown = false
     },
+    openPaymentStatusDropDown() {
+      this.isOpenPaymentStatusDropDown = true
+    },
+    closePaymentStatusDropDown() {
+      this.isOpenPaymentStatusDropDown = false
+    },
     openDateRangeDropDown() {
       this.isOpenDateRangeDropDown = true
     },
@@ -112,6 +123,7 @@ export const useDropStore = defineStore('drop', {
       this.selectPdfTypeOption = ''
       this.selectDateRangeOption = ''
       this.selectDeliveryStatusOption = ''
+      this.selectPaymentStatusOption = ''
       this.selectSmsMessageTypeOption = ''
       this.isOpenDoctorDropDown = false
       this.isOpenPatientDropDown = false
@@ -119,6 +131,7 @@ export const useDropStore = defineStore('drop', {
       this.isOpenPdfTemplateDropDown = false
       this.isOpenDateRangeDropDown = false
       this.isOpenDeliveryStatusDropDown = false
+      this.isOpenPaymentStatusDropDown = false
       this.isOpenSmsMessageTypeDropDown = false
       this.isOpenServiceTypeDropDown = false
       this.selectedExpenseItems = []

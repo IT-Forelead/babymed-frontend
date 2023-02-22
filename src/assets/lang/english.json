@@ -252,5 +252,6 @@
   "operationsStatistics":"Operations statistics",
   "sevenBusinessDayStatistics":"Seven business day statistics",
   "numberOfOperations":"Number of operations",
-  "thirtyDayStatistics":"Thirty day statistics"
+  "thirtyDayStatistics":"Thirty day statistics",
+  "selectPaymentStatus":"Select payment status"
 }
