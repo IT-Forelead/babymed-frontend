@@ -34,6 +34,8 @@ const numberOfDailyVisits = computed(() => {
   return useVisitStore().numberOfDailyVisits
 })
 
+
+// daily visits chart
 const numberOfDailyVisitsSeries = computed(() => [
   {
     name: t('numberOfVisits'),
@@ -52,7 +54,6 @@ const numberOfDailyVisitsChartOptions = computed(() => {
         show: false,
       },
     },
-    colors: ['#A3E635', '#A3E635', '#111827'],
     plotOptions: {
       bar: {
         borderRadius: 5,
@@ -61,6 +62,29 @@ const numberOfDailyVisitsChartOptions = computed(() => {
         dataLabels: {
           position: 'top',
         },
+        colors: {
+          ranges: [{
+            from: 0,
+            to: 10,
+            color: '#161b22'
+          }, {
+            from: 11,
+            to: 20,
+            color: '#0e4429'
+          }, {
+            from: 21,
+            to: 30,
+            color: '#006d32'
+          }, {
+            from: 31,
+            to: 40,
+            color: '#26a641'
+          }, {
+            from: 41,
+            to: 200,
+            color: '#39d353'
+          }]
+        }
       },
     },
     dataLabels: {
@@ -218,7 +242,6 @@ const numberOfDailyOperationsChartOptions = computed(() => {
         show: false,
       },
     },
-    colors: ['#FFF', '#111827', '#FFF', '#FFF'],
     plotOptions: {
       bar: {
         borderRadius: 5,
@@ -227,6 +250,29 @@ const numberOfDailyOperationsChartOptions = computed(() => {
         dataLabels: {
           position: 'top',
         },
+        colors: {
+          ranges: [{
+            from: 0,
+            to: 10,
+            color: '#161b22'
+          }, {
+            from: 11,
+            to: 20,
+            color: '#0e4429'
+          }, {
+            from: 21,
+            to: 30,
+            color: '#006d32'
+          }, {
+            from: 31,
+            to: 40,
+            color: '#26a641'
+          }, {
+            from: 41,
+            to: 200,
+            color: '#39d353'
+          }]
+        }
       },
     },
     dataLabels: {
@@ -309,12 +355,12 @@ const numberOfMonthlyOperationsChartOptions = computed(() => {
         },
       },
     },
-    colors: ['#A3E635', '#111827', '#A3E635', '#A3E635'],
+    colors: ['#161b22', '#0e4429', '#006d32', '#26a641', '#39d353'],
     dataLabels: {
       enabled: true,
       textAnchor: 'start',
       style: {
-        colors: ['#111827', '#fff', '#111827', '#111827'],
+        colors: ['#fff'],
       },
       formatter: function (val) {
         return val
