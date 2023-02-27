@@ -93,16 +93,16 @@ const totalPrice = () => {
               </tr>
             </table>
             <hr class="margin-y">
-            <p class="text-center px-3 total text-lg">Умумий нарх:</p>
-            <h1 class="text-center px-3 total total-price">
+            <p class="text-center px-3 text-lg">Умумий нарх:</p>
+            <h1 class="text-center px-3">
               *** {{ useMoneyFormatter(totalPrice()) }} ***
             </h1>
-            <p class="text-center px-3 total">Руйхатга олди: {{
-              report?.userFirstName + ' ' + report?.userLastName
-            }}</p>
-            <p class="text-center px-3 total">Сана: {{
-              moment(report?.patientVisit?.createdAt).format('DD/MM/YYYY H:mm')
-            }}</p>
+            <p class="text-center px-3 text-lg">Шифохонамизда чекдаги умумий нархдан ташқари тўловлар амалга оширилмайди!</p>
+            <p class="text-center">
+              Руйхатга олди: {{ report?.userFirstName + ' ' + report?.userLastName }}
+            <br>
+              Сана: {{ moment(report?.patientVisit?.createdAt).format('DD/MM/YYYY H:mm') }}
+            </p>
           </div>
         </div>
         <div class="p-3 flex justify-end space-x-2">
