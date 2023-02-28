@@ -452,8 +452,8 @@ onMounted(() => {
 </script>
 
 <template>
-    <div class="grid grid-cols-2 gap-5 mb-5">
-    <div class="bg-white rounded-lg w-full">
+    <div class="grid grid-cols-2 gap-x-5 mb-6 overflow-hidden">
+    <div class="bg-white rounded-lg">
       <div class="flex items-center justify-between p-5">
         <div>
           <h1 class="text-3xl font-bold">{{ $t('visitsStatistics') }}</h1>
@@ -466,8 +466,8 @@ onMounted(() => {
       <apexchart type="bar" height="300" :options="numberOfDailyVisitsChartOptions" :series="numberOfDailyVisitsSeries"></apexchart>
     </div>
     <div class="space-y-5">
-      <div class="grid grid-cols-2 gap-5">
-        <div class="bg-lime-300 rounded-lg w-full">
+      <div class="grid grid-cols-2 gap-x-5">
+        <div class="bg-lime-300 rounded-lg">
           <div class="flex items-center justify-between p-5">
             <div>
               <div class="text-lg font-bold">{{ $t('operationsStatistics') }}</div>
