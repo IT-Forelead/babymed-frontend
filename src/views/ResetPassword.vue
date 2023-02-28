@@ -9,13 +9,13 @@ import notify from 'izitoast'
 import 'izitoast/dist/css/iziToast.min.css'
 import i18n from '../i18n.js'
 import { useI18n } from 'vue-i18n'
-import { useSidebarStore } from '../store/sidebar.store.js'
 
 const { t } = useI18n()
 const lang = ref('')
 const isLoading = ref(false)
 const hidePassword = ref(true)
 const hideConfirmPassword = ref(true)
+const validCode = ref(false)
 const router = useRouter()
 const strongRegex = new RegExp('^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.{6,})')
 const togglePassword = () => (hidePassword.value = !hidePassword.value)
@@ -78,12 +78,18 @@ const changeLang = () => {
 onMounted(() => {
   lang.value = localStorage.getItem('lang') || 'uz'
   document.getElementsByTagName('title')[0].innerHTML = t('title')
-  useSidebarStore().clearStore()
+  AuthService.linkValidation(router.currentRoute.value.path.split('/')[2])
+    .then((res) => {
+      validCode.value = true
+    })
+    .catch((error) => {
+      router.push('/notfound')
+    })
 })
 </script>
 
 <template>
-  <div class="flex w-full h-screen overflow-hidden">
+  <div v-if="validCode" class="flex w-full h-screen overflow-hidden">
     <div class="relative w-full xl:basis-1/3 max-h-screen p-4 md:p-8">
       <div class="flex items-center justify-between">
         <img src="/images/logo.png" class="p-2 border border-gray-300 rounded-lg w-14" alt="Logo" />

@@ -102,6 +102,9 @@ onMounted(() => {
           <div v-else @click="resetPassword()" class="w-full select-none bg-gray-900 hover:bg-gray-800 cursor-pointer py-3 font-light text-white rounded flex items-center justify-center">
             <span>{{ $t('send') }}</span>
           </div>
+          <router-link to="/" class="text-center font-medium text-indigo-600 cursor-pointer hover:text-indigo-900">
+            {{ $t('backToHome') }}
+          </router-link>
         </div>
       </div>
     </div>

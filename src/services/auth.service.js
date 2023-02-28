@@ -21,6 +21,9 @@ class AuthService {
   async linkValidationAndUpdatePassword(data) {
     await axios.post(API_URL + '/auth/link-validation-and-update-password', data)
   }
+  async linkValidation(linkCode) {
+    await axios.get(`${API_URL}/auth/link-validation/${linkCode}`)
+  }
   async logout() {
     await axios.get(API_URL + '/auth/logout', { headers: authHeader() }).then(() => {
       localStorage.clear()

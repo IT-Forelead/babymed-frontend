@@ -24,13 +24,13 @@ const loginFormData = reactive({
 const togglePassword = () => (hidePassword.value = !hidePassword.value)
 
 const login = () => {
-  isLoading.value = true
   localStorage.removeItem('token')
   if (!loginFormData.phone || !loginFormData.password) {
     notify.warning({
       message: t('phoneOrPasswordIncorrect'),
     })
   } else {
+    isLoading.value = true
     AuthService.login({
       phone: loginFormData.phone,
       password: loginFormData.password,
