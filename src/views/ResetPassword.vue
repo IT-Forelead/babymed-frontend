@@ -1,7 +1,6 @@
 <script setup>
 import { ref, reactive } from '@vue/reactivity'
 import { useRouter } from 'vue-router'
-import { useAuthStore } from '../store/auth.store'
 import EyeIcon from '../assets/icons/EyeIcon.vue'
 import EyeSlashIcon from '../assets/icons/EyeSlashIcon.vue'
 import AuthService from '../services/auth.service'
@@ -10,46 +9,58 @@ import notify from 'izitoast'
 import 'izitoast/dist/css/iziToast.min.css'
 import i18n from '../i18n.js'
 import { useI18n } from 'vue-i18n'
-import decodeJwt from '../mixins/utils'
 import { useSidebarStore } from '../store/sidebar.store.js'
 
 const { t } = useI18n()
+const lang = ref('')
 const isLoading = ref(false)
 const hidePassword = ref(true)
+const hideConfirmPassword = ref(true)
 const router = useRouter()
-const loginFormData = reactive({
-  phone: '',
-  password: '',
-})
+const strongRegex = new RegExp('^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.{6,})')
 const togglePassword = () => (hidePassword.value = !hidePassword.value)
+const toggleConfirmPassword = () => (hideConfirmPassword.value = !hideConfirmPassword.value)
 
-const login = () => {
-  isLoading.value = true
-  localStorage.removeItem('token')
-  if (!loginFormData.phone || !loginFormData.password) {
+const changePasswordData = reactive({
+  password: '',
+  confirmPassword: '',
+})
+
+const changePassword = () => {
+  if (!changePasswordData.password) {
     notify.warning({
-      message: t('phoneOrPasswordIncorrect'),
+      message: t('plsEnterPassword'),
+    })
+  } else if (!changePasswordData.confirmPassword) {
+    notify.warning({
+      message: t('plsConfirmPassword'),
+    })
+  } else if (!strongRegex.test(changePasswordData.password)) {
+    notify.warning({
+      message: t('passwordComplexity'),
+    })
+  } else if (changePasswordData.password !== changePasswordData.confirmPassword) {
+    notify.warning({
+      message: t('plsConfirmPasswordCorrectly'),
     })
   } else {
-    AuthService.login({
-      phone: loginFormData.phone,
-      password: loginFormData.password,
+    isLoading.value = true
+    AuthService.linkValidationAndUpdatePassword({
+      linkCode: router.currentRoute.value.path.split('/')[2],
+      password: changePasswordData.password,
     })
       .then((res) => {
-        if (res) {
-          useAuthStore().setToken(res)
-          useAuthStore().setUser(decodeJwt(res))
-          isLoading.value = false
-          if (localStorage.getItem('token')) {
-            setTimeout(() => {
-              router.push('/dashboard')
-            }, 200)
-          }
-        }
+        isLoading.value = false
+        notify.success({
+          message: t('passwordEdited'),
+        })
+        setTimeout(() => {
+          router.push('/')
+        }, 200)
       })
       .catch((err) => {
         notify.warning({
-          message: t('phoneOrPasswordIncorrect'),
+          message: t('errorEditingPassword'),
         })
         setTimeout(() => {
           isLoading.value = false
@@ -57,8 +68,6 @@ const login = () => {
       })
   }
 }
-
-const lang = ref('')
 
 const changeLang = () => {
   localStorage.setItem('lang', lang.value)
@@ -88,24 +97,25 @@ onMounted(() => {
         </div>
       </div>
       <div class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-full md:w-2/3 px-8 md:px-4">
-        <h1 class="text-2xl font-bold mb-5">{{ $t('login') }}</h1>
+        <h1 class="text-2xl font-bold mb-5">{{ $t('changePassword') }}</h1>
         <div class="flex flex-col space-y-6">
-          <label for="phone">
-            <p class="font-medium text-gray-500 pb-2">{{ $t('mobilePhone') }}</p>
-            <input id="phone" v-mask="'+998(##) ###-##-##'" v-model="loginFormData.phone" type="text" class="w-full py-2 border border-gray-300 rounded focus:outline-none focus:border-slate-500 hover:shadow" placeholder="+998(00) 000-00-00" />
-          </label>
           <div>
-            <div class="flex flex-row items-center justify-between mb-2">
-              <p class="font-medium text-gray-500">{{ $t('password') }}</p>
-              <router-link to="/forgot-password" class="font-medium text-indigo-600 cursor-pointer hover:text-indigo-900">
-                {{ $t('forgotPassword') }}
-              </router-link>
-            </div>
+            <p class="font-medium text-gray-500">{{ $t('newPassword') }}</p>
             <label for="password">
               <div class="relative">
-                <input id="password" :type="hidePassword ? 'password' : 'text'" v-model="loginFormData.password" class="w-full py-2 border border-gray-300 rounded px-3 focus:outline-none focus:border-slate-500 hover:shadow" :placeholder="$t('enterYourPassword')" />
+                <input id="password" :type="hidePassword ? 'password' : 'text'" v-model="changePasswordData.password" class="w-full py-2 border border-gray-300 rounded px-3 focus:outline-none focus:border-slate-500 hover:shadow" :placeholder="$t('enterYourNewPassword')" />
                 <EyeIcon v-if="hidePassword" @click="togglePassword()" class="text-gray-500 absolute z-10 top-1/2 -translate-y-1/2 right-3 w-5 h-5 cursor-pointer" />
                 <EyeSlashIcon v-else @click="togglePassword()" class="text-gray-500 absolute z-10 top-1/2 -translate-y-1/2 right-3 w-5 h-5 cursor-pointer" />
+              </div>
+            </label>
+          </div>
+          <div>
+            <p class="font-medium text-gray-500">{{ $t('confirmPassword') }}</p>
+            <label for="confirmPassword">
+              <div class="relative">
+                <input id="confirmPassword" :type="hideConfirmPassword ? 'password' : 'text'" v-model="changePasswordData.confirmPassword" class="w-full py-2 border border-gray-300 rounded px-3 focus:outline-none focus:border-slate-500 hover:shadow" :placeholder="$t('reEnterYourPassword')" />
+                <EyeIcon v-if="hideConfirmPassword" @click="toggleConfirmPassword()" class="text-gray-500 absolute z-10 top-1/2 -translate-y-1/2 right-3 w-5 h-5 cursor-pointer" />
+                <EyeSlashIcon v-else @click="toggleConfirmPassword()" class="text-gray-500 absolute z-10 top-1/2 -translate-y-1/2 right-3 w-5 h-5 cursor-pointer" />
               </div>
             </label>
           </div>
@@ -117,10 +127,10 @@ onMounted(() => {
                 fill="currentFill"
               />
             </svg>
-            <span>{{ $t('loading') }}</span>
+            <span>{{ $t('saving') }}</span>
           </div>
-          <div v-else @click="login()" class="w-full select-none bg-gray-900 hover:bg-gray-800 cursor-pointer py-3 font-light text-white rounded flex items-center justify-center">
-            <span>{{ $t('login') }}</span>
+          <div v-else @click="changePassword()" class="w-full select-none bg-gray-900 hover:bg-gray-800 cursor-pointer py-3 font-light text-white rounded flex items-center justify-center">
+            <span>{{ $t('save') }}</span>
           </div>
         </div>
       </div>

@@ -1,55 +1,39 @@
 <script setup>
-import { ref, reactive } from '@vue/reactivity'
-import { useRouter } from 'vue-router'
-import { useAuthStore } from '../store/auth.store'
-import EyeIcon from '../assets/icons/EyeIcon.vue'
-import EyeSlashIcon from '../assets/icons/EyeSlashIcon.vue'
+import { ref } from '@vue/reactivity'
 import AuthService from '../services/auth.service'
 import { onMounted } from 'vue'
 import notify from 'izitoast'
 import 'izitoast/dist/css/iziToast.min.css'
 import i18n from '../i18n.js'
 import { useI18n } from 'vue-i18n'
-import decodeJwt from '../mixins/utils'
 import { useSidebarStore } from '../store/sidebar.store.js'
+import CheckIcon from '../assets/icons/EnvelopeIcon.vue'
 
 const { t } = useI18n()
+const lang = ref('')
 const isLoading = ref(false)
-const hidePassword = ref(true)
-const router = useRouter()
-const loginFormData = reactive({
-  phone: '',
-  password: '',
-})
-const togglePassword = () => (hidePassword.value = !hidePassword.value)
+const result = ref(false)
+const phone = ref('')
 
-const login = () => {
-  isLoading.value = true
-  localStorage.removeItem('token')
-  if (!loginFormData.phone || !loginFormData.password) {
+const resetPassword = () => {
+  if (!phone.value) {
     notify.warning({
-      message: t('phoneOrPasswordIncorrect'),
+      message: t('plsEnterYourPhone'),
+    })
+  } else if (phone.value.length !== 18) {
+    notify.warning({
+      message: t('plsEnterPhoneCorrectly'),
     })
   } else {
-    AuthService.login({
-      phone: loginFormData.phone,
-      password: loginFormData.password,
-    })
+    isLoading.value = true
+    AuthService.resetPassword(phone.value)
       .then((res) => {
-        if (res) {
-          useAuthStore().setToken(res)
-          useAuthStore().setUser(decodeJwt(res))
-          isLoading.value = false
-          if (localStorage.getItem('token')) {
-            setTimeout(() => {
-              router.push('/dashboard')
-            }, 200)
-          }
-        }
+        isLoading.value = false
+        result.value = true
       })
       .catch((err) => {
         notify.warning({
-          message: t('phoneOrPasswordIncorrect'),
+          message: t('userNotFoundWithThisPhoneNumber'),
         })
         setTimeout(() => {
           isLoading.value = false
@@ -57,8 +41,6 @@ const login = () => {
       })
   }
 }
-
-const lang = ref('')
 
 const changeLang = () => {
   localStorage.setItem('lang', lang.value)
@@ -87,28 +69,26 @@ onMounted(() => {
           </select>
         </div>
       </div>
-      <div class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-full md:w-2/3 px-8 md:px-4">
-        <h1 class="text-2xl font-bold mb-5">{{ $t('login') }}</h1>
+      <div v-if="result" class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-full md:w-2/3 px-8 md:px-4">
+        <div class="flex flex-col items-center space-y-6">
+          <div class="flex items-center justify-center w-24 h-24 bg-sky-50 rounded-lg">
+            <CheckIcon class="w-16 h-16 text-blue-500"/>
+          </div>
+          <h1 class="text-2xl font-bold mb-5">{{ $t('smsWasSentTo') + phone }}</h1>
+          <div class="text-gray-500">{{ $t('resetPasswordResult') }}</div>
+          <router-link to="/" class="w-full select-none bg-gray-900 hover:bg-gray-800 cursor-pointer py-3 font-light text-white rounded flex items-center justify-center">
+            {{ $t('backToHome') }}
+          </router-link>
+        </div>
+      </div>
+      <div v-else class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-full md:w-2/3 px-8 md:px-4">
+        <h1 class="text-2xl font-bold mb-5">{{ $t('resetPassword') }}</h1>
         <div class="flex flex-col space-y-6">
           <label for="phone">
-            <p class="font-medium text-gray-500 pb-2">{{ $t('mobilePhone') }}</p>
-            <input id="phone" v-mask="'+998(##) ###-##-##'" v-model="loginFormData.phone" type="text" class="w-full py-2 border border-gray-300 rounded focus:outline-none focus:border-slate-500 hover:shadow" placeholder="+998(00) 000-00-00" />
+            <p class="font-medium text-gray-700 pb-2">{{ $t('mobilePhone') }}</p>
+            <input id="phone" v-mask="'+998(##) ###-##-##'" v-model="phone" type="text" class="w-full py-2 border border-gray-300 rounded focus:outline-none focus:border-slate-500 hover:shadow" placeholder="+998(00) 000-00-00" />
           </label>
-          <div>
-            <div class="flex flex-row items-center justify-between mb-2">
-              <p class="font-medium text-gray-500">{{ $t('password') }}</p>
-              <router-link to="/forgot-password" class="font-medium text-indigo-600 cursor-pointer hover:text-indigo-900">
-                {{ $t('forgotPassword') }}
-              </router-link>
-            </div>
-            <label for="password">
-              <div class="relative">
-                <input id="password" :type="hidePassword ? 'password' : 'text'" v-model="loginFormData.password" class="w-full py-2 border border-gray-300 rounded px-3 focus:outline-none focus:border-slate-500 hover:shadow" :placeholder="$t('enterYourPassword')" />
-                <EyeIcon v-if="hidePassword" @click="togglePassword()" class="text-gray-500 absolute z-10 top-1/2 -translate-y-1/2 right-3 w-5 h-5 cursor-pointer" />
-                <EyeSlashIcon v-else @click="togglePassword()" class="text-gray-500 absolute z-10 top-1/2 -translate-y-1/2 right-3 w-5 h-5 cursor-pointer" />
-              </div>
-            </label>
-          </div>
+          <div class="text-gray-500">{{ $t('resetPasswordReference') }}</div>
           <div v-if="isLoading" class="w-full select-none bg-gray-600 py-3 font-light text-white rounded flex items-center justify-center">
             <svg class="mr-2 w-5 h-5 text-gray-200 animate-spin dark:text-gray-600 fill-gray-600 dark:fill-gray-300" viewBox="0 0 100 101" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path d="M100 50.5908C100 78.2051 77.6142 100.591 50 100.591C22.3858 100.591 0 78.2051 0 50.5908C0 22.9766 22.3858 0.59082 50 0.59082C77.6142 0.59082 100 22.9766 100 50.5908ZM9.08144 50.5908C9.08144 73.1895 27.4013 91.5094 50 91.5094C72.5987 91.5094 90.9186 73.1895 90.9186 50.5908C90.9186 27.9921 72.5987 9.67226 50 9.67226C27.4013 9.67226 9.08144 27.9921 9.08144 50.5908Z" fill="currentColor" />
@@ -119,8 +99,8 @@ onMounted(() => {
             </svg>
             <span>{{ $t('loading') }}</span>
           </div>
-          <div v-else @click="login()" class="w-full select-none bg-gray-900 hover:bg-gray-800 cursor-pointer py-3 font-light text-white rounded flex items-center justify-center">
-            <span>{{ $t('login') }}</span>
+          <div v-else @click="resetPassword()" class="w-full select-none bg-gray-900 hover:bg-gray-800 cursor-pointer py-3 font-light text-white rounded flex items-center justify-center">
+            <span>{{ $t('send') }}</span>
           </div>
         </div>
       </div>

@@ -1,6 +1,5 @@
 import axios from 'axios'
 import authHeader from '../mixins/auth-header'
-import decodeJwt from '../mixins/utils'
 
 const API_URL = import.meta.env.VITE_BASE_URL
 class AuthService {
@@ -15,12 +14,17 @@ class AuthService {
       })
     return localStorage.getItem('token')
   }
+  async resetPassword(phone) {
+    let parsedPhone = phone.replace(/([() -])/g, '')
+    await axios.get(`${API_URL}/auth/reset-password?phone=${encodeURIComponent(parsedPhone)}`)
+  }
+  async linkValidationAndUpdatePassword(data) {
+    await axios.post(API_URL + '/auth/link-validation-and-update-password', data)
+  }
   async logout() {
-    await axios
-      .get(API_URL + '/auth/logout', { headers: authHeader() })
-      .then(() => {
-        localStorage.clear()
-      })
+    await axios.get(API_URL + '/auth/logout', { headers: authHeader() }).then(() => {
+      localStorage.clear()
+    })
     localStorage.clear()
   }
 }
