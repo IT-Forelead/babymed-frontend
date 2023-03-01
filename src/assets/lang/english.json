@@ -128,6 +128,8 @@
   "creatingVisit": "Creating visit",
   "deletedUser": "User successfully deleted!",
   "errorDeletingUser": "Error while deleting user!",
+  "deletedPatient": "Patient successfully deleted!",
+  "errorDeletingPatient": "Error while deleting patient!",
   "deletedService": "Service successfully deleted!",
   "errorDeletingService": "Error while deleting service!",
   "service": "Service",

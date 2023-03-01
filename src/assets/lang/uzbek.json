@@ -128,6 +128,8 @@
   "creatingVisit": "Tashrif yaratilmoqda",
   "deletedUser": "Foydalanuvchi muvaffaqiyatli o'chirildi!",
   "errorDeletingUser": "Foydalanuvchini o'chirishda xatolik yuz berdi!",
+  "deletedPatient": "Bemor muvaffaqiyatli o'chirildi!",
+  "errorDeletingPatient": "Bemorni o'chirishda xatolik yuz berdi!",
   "deletedService": "Xizmat muvaffaqiyatli o'chirildi!",
   "errorDeletingService": "Xizmatni o'chirishda xatolik yuz berdi!",
   "service": "Xizmat",

@@ -15,9 +15,9 @@ const props = defineProps({
 
 const { users } = toRefs(props)
 
-const deleteUser = (selectedService) => {
+const deleteUser = (selectedUser) => {
   useModalStore().openDeleteAlertModal()
-  useUserStore().setSelectedUser(selectedService)
+  useUserStore().setSelectedUser(selectedUser)
 }
 </script>
 

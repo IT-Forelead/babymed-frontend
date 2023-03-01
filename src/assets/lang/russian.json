@@ -128,6 +128,8 @@
   "creatingVisit": "Создание визита",
   "deletedUser": "Пользователь успешно удален!",
   "errorDeletingUser": "Ошибка при удалении пользователя!",
+  "deletedPatient": "Пациент успешно удален!",
+  "errorDeletingPatient": "Ошибка при удалении пациента!",
   "deletedService": "Сервис успешно удален!",
   "errorDeletingService": "Ошибка при удалении сервиса!",
   "service": "Услуга",

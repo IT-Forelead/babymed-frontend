@@ -1,5 +1,5 @@
 <script setup>
-import RatientItem from '../components/Items/RatientItem.vue'
+import PatientItem from '../components/Items/PatientItem.vue'
 import authHeader from '../mixins/auth-header'
 import { computed, ref, reactive } from '@vue/reactivity'
 import { usePatientStore } from '../store/patient.store'
@@ -153,7 +153,7 @@ const submitFilterData = () => {
           </tr>
         </thead>
         <tbody class="text-gray-600 text-sm font-light">
-          <RatientItem :patients="patients" :distance="distance" :target="target" @infinite="loadPatients" />
+          <PatientItem :patients="patients" :distance="distance" :target="target" @infinite="loadPatients" />
         </tbody>
       </table>
       <div v-if="patients?.length === 0" class="w-full text-center text-red-500">{{ $t('empty') }}</div>
