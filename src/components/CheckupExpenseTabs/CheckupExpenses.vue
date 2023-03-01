@@ -8,14 +8,14 @@ import FilterIcon from '../../assets/icons/FilterIcon.vue'
 import { onClickOutside } from '@vueuse/core'
 import MoneyBagIconm from '../../assets/icons/MoneyBagIcon.vue'
 import MoneyExchangeIcon from '../../assets/icons/MoneyExchangeIcon.vue'
-import CheckupExpenseReportItem from '../CheckupExpenseReportItem.vue'
+import CheckupExpenseReportItem from '../Items/CheckupExpenseReportItem.vue'
 import CheckupExpenseService from '../../services/checkupExpenses.service'
 import UserService from '../../services/user.service'
 import { cleanObjectEmptyFields } from '../../mixins/utils'
-import SelectOptionDoctor from '../SelectOptionDoctor.vue'
+import SelectOptionDoctor from '../Inputs/SelectOptionDoctor.vue'
 import { useDropStore } from '../../store/drop.store'
 import moment from 'moment'
-import SelectOptionDataRange from '../SelectOptionDataRange.vue'
+import SelectOptionDataRange from '../Inputs/SelectOptionDataRange.vue'
 
 const isLoading = ref(false)
 const total = ref(1)

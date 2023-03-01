@@ -9,13 +9,16 @@ class ExpenseService {
     return AxiosService.post('/operation-expense/create/operation-service', `"${data}"`, { headers: authHeader() })
   }
   async getAllExpenses(data) {
-    return AxiosService.post('/operation-expense/report?page=1&limit=10', data, { headers: authHeader() })
+    return AxiosService.post('/operation-expense/report', data, { headers: authHeader() })
   }
   async getDailyOperationExpenses(data) {
     return AxiosService.post('/operation-expense/daily-expenses', data, { headers: authHeader() })
   }
+  async getOperationExpenseItemsSummary(data) {
+    return AxiosService.post('/operation-expense/daily-doctor-shares', data, { headers: authHeader() })
+  }
   async getOperations(data) {
-    return AxiosService.post('/operation-expense/operations?page=1&limit=10', data, { headers: authHeader() })
+    return AxiosService.post('/operation-expense/operations', data, { headers: authHeader() })
   }
   async getAllOperationServices() {
     return AxiosService.get('/operation-expense/operation-services', { headers: authHeader() })

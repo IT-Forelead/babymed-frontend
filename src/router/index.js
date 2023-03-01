@@ -9,6 +9,18 @@ const routes = [
     meta: { layout: 'login' },
   },
   {
+    path: '/forgot-password',
+    name: 'Forgot password',
+    component: () => import('../views/ForgotPassword.vue'),
+    meta: { layout: 'login' },
+  },
+  {
+    path: '/reset-password/:link',
+    name: 'Reset password',
+    component: () => import('../views/ResetPassword.vue'),
+    meta: { layout: 'login' },
+  },
+  {
     path: '/dashboard',
     name: 'Index',
     component: () => import('../views/Home.vue'),
@@ -67,26 +79,52 @@ const routes = [
   {
     path: '/operation-expenses',
     name: 'Operation expenses',
-    component: () => import('../views/OperationExpenses.vue'),
     meta: { layout: 'dashboard' },
+    children: [
+      {
+        path: '',
+        name: 'Operation Expenses',
+        component: () => import('../components/OperationExpenseTabs/OperationExpenses.vue'),
+      },
+      {
+        path: 'summary',
+        name: 'Operation Expense Items Summary',
+        component: () => import('../components/OperationExpenseTabs/OperationExpenseItemsSummary.vue'),
+      },
+      {
+        path: 'add',
+        name: 'Add Operation Expenses',
+        component: () => import('../components/OperationExpenseTabs/AddOperationExpense.vue'),
+      },
+    ],
     beforeEnter: navigationGuards(['cashier', 'super_manager', 'tech_admin']),
   },
   {
     path: '/operations',
     name: 'Operations',
-    component: () => import('../views/Operations.vue'),
     meta: { layout: 'dashboard' },
+    children: [
+      {
+        path: '',
+        name: 'Operations',
+        component: () => import('../components/OperationsTabs/Operations.vue'),
+      },
+      {
+        path: 'services',
+        name: 'Operation Services',
+        component: () => import('../components/OperationsTabs/OperationServices.vue'),
+      },
+    ],
     beforeEnter: navigationGuards(['cashier', 'super_manager', 'tech_admin']),
   },
   {
     path: '/checkup-expenses',
     name: 'Checkup expenses',
-    // component: () => import('../views/CheckupExpenses.vue'),
     meta: { layout: 'dashboard' },
     children: [
       {
         path: '',
-        name: 'Tab 1',
+        name: 'Checkup expenses',
         component: () => import('../components/CheckupExpenseTabs/CheckupExpenses.vue'),
       },
       {
@@ -120,7 +158,7 @@ const router = createRouter({
 })
 
 router.beforeEach((to, from, next) => {
-  const publicPages = ['/']
+  const publicPages = ['/', '/forgot-password', '/reset-password']
   const authNotRequired = !publicPages.includes(to.path)
   const notLoggedIn = localStorage.getItem('token')
   if ((authNotRequired && notLoggedIn) || publicPages.includes(`/${to.path.split('/')[1]}`)) {

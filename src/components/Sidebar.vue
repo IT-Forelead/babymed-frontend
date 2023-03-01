@@ -69,7 +69,7 @@ onMounted(() => {
       </div>
       <p v-if="isOpen" class="text-xl font-bold capitalize">Baby med</p>
     </div>
-    <div class="mt-5 h-[500px] overflow-auto py-5 px-2 text-gray-400 space-y-3">
+    <div class="mt-5 h-[620px] overflow-auto py-5 px-2 text-gray-400 space-y-3">
       <router-link to="/dashboard"
         :class="useSidebarStore().isOpenSidebar && router?.currentRoute?.value?.path === '/dashboard' ? 'justify-between bg-gray-800 text-gray-100' : !useSidebarStore().isOpenSidebar && router?.currentRoute?.value?.path === '/dashboard' ? 'bg-gray-800 text-gray-100 justify-center' : ''"
         class="flex items-center hover:bg-gray-800 hover:text-gray-100 p-3 rounded-lg cursor-pointer">
@@ -170,7 +170,6 @@ onMounted(() => {
         </div>
       </router-link>
       <!-- Menus for admin panel -->
-      <div v-if="navigationGuard(['super_manager'])" class="p-3 text-lg font-semibold text-gray-500">Admin Panel</div>
       <router-link to="/sms-messages" v-if="navigationGuard(['super_manager'])"
         class="flex items-center justify-between hover:bg-gray-800 hover:text-gray-100 p-3 rounded-lg cursor-pointer"
         :class="useSidebarStore().isOpenSidebar && router?.currentRoute?.value?.path === '/sms-messages' ? 'justify-between bg-gray-800 text-gray-100' : !useSidebarStore().isOpenSidebar && router?.currentRoute?.value?.path === '/sms-messages' ? 'bg-gray-800 text-gray-100 justify-center' : ''">

@@ -1,5 +1,5 @@
 <script setup>
-import ReportItem from '../components/ReportItem.vue'
+import PatientItem from '../components/Items/PatientItem.vue'
 import authHeader from '../mixins/auth-header'
 import { computed, ref, reactive } from '@vue/reactivity'
 import { usePatientStore } from '../store/patient.store'
@@ -74,7 +74,7 @@ const filterData = reactive({
 
 const submitFilterData = () => {
   isLoading.value = true
-  PatientService.getAllPatients(cleanObjectEmptyFields(filterData)).then((res) => {
+  PatientService.getPatients(cleanObjectEmptyFields(filterData)).then((res) => {
     usePatientStore().clearStore()
     usePatientStore().setPatients(res?.data)
     isLoading.value = false
@@ -153,15 +153,11 @@ const submitFilterData = () => {
           </tr>
         </thead>
         <tbody class="text-gray-600 text-sm font-light">
-          <ReportItem :patients="patients" :distance="distance" :target="target" @infinite="loadPatients" />
+          <PatientItem :patients="patients" :distance="distance" :target="target" @infinite="loadPatients" />
         </tbody>
       </table>
       <div v-if="patients?.length === 0" class="w-full text-center text-red-500">{{ $t('empty') }}</div>
     </div>
   </div>
 </template>
-<style scoped>
-.patients-table-h {
-  max-height: 75vh;
-}
-</style>
+<style scoped></style>

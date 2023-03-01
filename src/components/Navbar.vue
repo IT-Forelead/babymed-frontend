@@ -1,26 +1,25 @@
 <script setup>
 import SearchIcon from '../assets/icons/SearchIcon.vue'
 import BellIcon from '../assets/icons/BellIcon.vue'
-import Registration from './Registration.vue'
 import { computed } from '@vue/reactivity'
 import { useRouter } from 'vue-router'
-import ChangePaymentStatus from './Payments/ChangePaymentStatus.vue'
-import AddVisitModal from './AddVisitModal.vue'
 import { useI18n } from 'vue-i18n'
-import OperationInfoModal from './Operations/OperationInfoModal.vue'
-import Cheque from './Cheque.vue'
 import { ref, onMounted } from 'vue'
-import PrintPdfModal from './PrintPdfModal.vue'
-import AddServiceModal from './AddServiceModal.vue'
-import EditServiceModal from './EditServiceModal.vue'
-import DeleteAlertModal from './DeleteAlertModal.vue'
-import {parseJwt} from "../mixins/utils.js";
+import { parseJwt } from '../mixins/utils.js'
+import Registration from './Modals/Registration.vue'
+import ChangePaymentStatus from './Modals/ChangePaymentStatus.vue'
+import AddVisitModal from './Modals/AddVisitModal.vue'
+import OperationInfoModal from './Modals/OperationInfoModal.vue'
+import Cheque from './Modals/Cheque.vue'
+import PrintPdfModal from './Modals/PrintPdfModal.vue'
+import AddServiceModal from './Modals/AddServiceModal.vue'
+import EditServiceModal from './Modals/EditServiceModal.vue'
+import DeleteAlertModal from './Modals/DeleteAlertModal.vue'
 
 const { t } = useI18n()
 
 const router = useRouter()
 const payload = ref({})
-
 
 const currentLabel = computed(() => {
   if (router.currentRoute?.value?.path === '/visits') {
@@ -39,10 +38,14 @@ const currentLabel = computed(() => {
     return t('serviceTypes')
   } else if (router.currentRoute?.value?.path === '/operations') {
     return t('operationManagment')
-  } else if (router.currentRoute?.value?.path === '/expenses') {
-    return t('expenses')
+  } else if (router.currentRoute?.value?.path === '/operations/services') {
+    return t('operationServices')
   } else if (router.currentRoute?.value?.path === '/operation-expenses') {
-    return t('expenses')
+    return t('operationExpenses')
+  } else if (router.currentRoute?.value?.path === '/operation-expenses/summary') {
+    return t('operationExpensesReport')
+  } else if (router.currentRoute?.value?.path === '/operation-expenses/add') {
+    return t('addOperationExpense')
   } else if (router.currentRoute?.value?.path === '/checkup-expenses') {
     return t('checkupExpenses')
   } else if (router.currentRoute?.value?.path === '/checkup-expenses/summary') {

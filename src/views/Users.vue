@@ -5,7 +5,7 @@ import AddUser from '../components/Registration/AddUser.vue'
 import 'izitoast/dist/css/iziToast.min.css'
 import UserService from '../services/user.service'
 import { useUserStore } from '../store/user.store'
-import UsersItem from '../components/Users/UsersItem.vue'
+import UsersItem from '../components/Items/UsersItem.vue'
 
 const users = computed(() => {
   return useUserStore().users

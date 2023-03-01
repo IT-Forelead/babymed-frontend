@@ -3,7 +3,7 @@ import { computed, ref } from '@vue/reactivity'
 import { onMounted } from 'vue'
 import { useServicesStore } from '../store/services.store'
 import { useModalStore } from '../store/modal.store'
-import ServiceItem from '../components/Service/ServiceItem.vue'
+import ServiceItem from '../components/Items/ServiceItem.vue'
 import 'izitoast/dist/css/iziToast.min.css'
 import ServicesService from '../services/services.service'
 import { useI18n } from 'vue-i18n'
@@ -66,6 +66,4 @@ onMounted(() => {
   </div>
 </template>
 
-<style scoped>
-
-</style>
+<style scoped></style>
