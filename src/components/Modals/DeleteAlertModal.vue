@@ -25,6 +25,7 @@ const closeModal = () => {
   useServicesStore().setSelectedService({})
   useServicesStore().setSelectedServiceType({})
   useUserStore().setSelectedUser({})
+  usePatientStore().setSelectedPatient({})
   useCheckupExpenseStore().setSelectedDoctorShare({})
   useModalStore().closeDeleteAlertModal()
 }
