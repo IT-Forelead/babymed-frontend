@@ -19,6 +19,10 @@ const list = [
     id: 'registration',
     name: t('registration')
   },
+  {
+    id: 'reset_password',
+    name: t('resetPassword')
+  },
 ]
 
 const clearSelectedOptionData = () => {

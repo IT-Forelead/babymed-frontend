@@ -40,9 +40,10 @@ const deliveryStatusColor = (status) => {
 const translateSmsMessageType = (type) => {
   if (type === 'registration') {
     return t('registration')
+  } else if (type === 'reset_password') {
+    return t('resetPassword')
   }
 }
-
 </script>
 
 <template>
@@ -50,7 +51,7 @@ const translateSmsMessageType = (type) => {
     <td v-motion-pop class="text-center">{{ idx + 1 }}</td>
     <td v-motion-pop class="py-2 px-4 text-left">{{ moment(sms?.sentDate).format('DD/MM/YYYY H:mm') }}</td>
     <td v-motion-pop class="py-2 px-4 text-left">{{ sms?.phone }}</td>
-    <td v-motion-pop class="py-2 px-4 text-left">{{ sms?.text }}</td>
+    <td v-motion-pop class="py-2 px-4 text-left" :title="sms?.text">{{ sms?.text.substring(0, 40) + '...' }}</td>
     <td v-motion-pop class="py-2 px-4 text-center text-sm font-semibold italic">
       {{ translateSmsMessageType(sms?.messageType) }}
     </td>
