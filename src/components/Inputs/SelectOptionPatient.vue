@@ -2,7 +2,6 @@
 import { ref } from '@vue/reactivity'
 import UserBoldIcon from '../../assets/icons/UserBoldIcon.vue'
 import { useDropStore } from '../../store/drop.store'
-import { computed } from 'vue'
 import TimesIcon from '../../assets/icons/TimesIcon.vue'
 import { onClickOutside } from '@vueuse/core'
 import ChevronRightIcon from '../../assets/icons/ChevronRightIcon.vue'
@@ -17,7 +16,6 @@ import { cleanObjectEmptyFields } from '../../mixins/utils'
 import { useI18n } from 'vue-i18n'
 
 const { t } = useI18n()
-
 const router = useRouter()
 
 const props = defineProps({
@@ -25,7 +23,6 @@ const props = defineProps({
 })
 
 const { options } = toRefs(props)
-
 const dropdown = ref(null)
 
 const clearSelectedOptionData = () => {
@@ -40,10 +37,6 @@ const optionClicked = (data) => {
   useDropStore().setSelectPatientOption(data)
   useDropStore().closePatientDropDown()
 }
-
-const patients = computed(() => {
-  return usePatientStore().patients
-})
 
 const searchPatient = ref('')
 
