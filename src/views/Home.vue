@@ -35,7 +35,7 @@ const numberOfDailyVisits = computed(() => {
 })
 
 
-// daily visits chart
+// Daily visits chart
 const numberOfDailyVisitsSeries = computed(() => [
   {
     name: t('numberOfVisits'),
@@ -81,7 +81,7 @@ const numberOfDailyVisitsChartOptions = computed(() => {
             color: '#26a641'
           }, {
             from: 41,
-            to: 200,
+            to: 2000,
             color: '#39d353'
           }]
         }
@@ -135,7 +135,7 @@ const numberOfDailyVisitsChartOptions = computed(() => {
   }
 })
 
-//Expenses Chart
+// Expenses Chart
 const expensesChartSeries = computed(() => [
   {
     name: t('incomingProfit'),
@@ -253,22 +253,22 @@ const numberOfDailyOperationsChartOptions = computed(() => {
         colors: {
           ranges: [{
             from: 0,
-            to: 10,
+            to: 2,
             color: '#161b22'
           }, {
-            from: 11,
-            to: 20,
+            from: 3,
+            to: 4,
             color: '#0e4429'
           }, {
-            from: 21,
-            to: 30,
+            from: 5,
+            to: 6,
             color: '#006d32'
           }, {
-            from: 31,
-            to: 40,
+            from: 7,
+            to: 8,
             color: '#26a641'
           }, {
-            from: 41,
+            from: 9,
             to: 200,
             color: '#39d353'
           }]

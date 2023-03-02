@@ -6,9 +6,10 @@ import { useRouter } from 'vue-router'
 import { useI18n } from 'vue-i18n'
 import { ref, onMounted } from 'vue'
 import { parseJwt } from '../mixins/utils.js'
-import Registration from './Modals/Registration.vue'
+import AddPatientModal from './Modals/AddPatientModal.vue'
 import ChangePaymentStatus from './Modals/ChangePaymentStatus.vue'
 import AddVisitModal from './Modals/AddVisitModal.vue'
+import AddUserModal from './Modals/AddUserModal.vue'
 import OperationInfoModal from './Modals/OperationInfoModal.vue'
 import Cheque from './Modals/Cheque.vue'
 import PrintPdfModal from './Modals/PrintPdfModal.vue'
@@ -86,8 +87,10 @@ onMounted(() => {
         <p class="text-base">+ {{ $t('addRecord') }}</p>
       </router-link>
     </div>
-    <!-- Registration Modal (Payment & Patient) -->
-    <Registration />
+    <!-- Add Patient Modal -->
+    <AddPatientModal />
+    <!-- Add User Modal -->
+    <AddUserModal />
     <!-- Payment Status Changer Modal -->
     <ChangePaymentStatus />
     <!-- Delete Alert -->

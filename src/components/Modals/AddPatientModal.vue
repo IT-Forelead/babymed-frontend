@@ -1,15 +1,7 @@
 <script setup>
 import { useModalStore } from '../../store/modal.store'
-import { useAddressStore } from '../../store/address.store'
 import TimesIcon from '../../assets/icons/TimesIcon.vue'
 import AddPatient from '../Registration/AddPatient.vue'
-import { onMounted } from 'vue'
-import AddressService from '../../services/address.service'
-import { computed } from '@vue/reactivity'
-
-const regions = computed(() => {
-  return useAddressStore().regions
-})
 </script>
 <template>
   <div v-if="useModalStore().isModalOpen" class="overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 backdrop-blur bg-gray-900/75 w-full max-h-screen md:inset-0 md:h-full">
