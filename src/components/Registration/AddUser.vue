@@ -114,8 +114,7 @@ watch(
 </script>
 
 <template>
-  <div class="bg-white rounded-lg mt-3 p-3 space-y-5">
-    <p class="text-3xl font-bold mb-3">{{ $t('createUser') }}</p>
+  <div class="space-y-5">
     <label for="firstname">
       {{ $t('firstname') }}
       <input v-model="userForm.firstname" class="text-gray-500 mb-3 border-none bg-gray-100 rounded-lg w-full text-lg" type="text" id="firstname" :placeholder="$t('enterFirstname')" />

@@ -4,6 +4,7 @@ export const useModalStore = defineStore('modal', {
   state: () => ({
     isModalOpen: false,
     isOpenPaymentStatusChangerModal: false,
+    isOpenAddUserModal: false,
     isOpenAddVisitModal: false,
     isOpenAddServiceModal: false,
     isOpenEditServiceModal: false,
@@ -37,6 +38,12 @@ export const useModalStore = defineStore('modal', {
     },
     closeAddVisitModal() {
       this.isOpenAddVisitModal = false
+    },
+    openAddUserModal() {
+      this.isOpenAddUserModal = true
+    },
+    closeAddUserModal() {
+      this.isOpenAddUserModal = false
     },
     openAddServiceModal() {
       this.isOpenAddServiceModal = true

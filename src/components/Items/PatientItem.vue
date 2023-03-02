@@ -44,10 +44,8 @@ onMounted(() => {
     <td v-motion-pop class="text-center">{{ idx + 1 }}</td>
     <td v-motion-pop class="py-2 px-4 text-left">
       <div class="flex items-center">
-        <div class="mr-2">
-          <UserIcon class="w-10 h-10 rounded-full border p-2" />
-        </div>
-        <span class="text-lg font-medium capitalize">{{ patient?.patient?.firstname + ' ' + patient?.patient?.lastname }}</span>
+        <UserIcon class="w-10 h-10 rounded-full border p-2 mr-2" />
+        <div class="text-lg font-medium capitalize">{{ patient?.patient?.firstname + ' ' + patient?.patient?.lastname }}</div>
       </div>
     </td>
     <td v-motion-pop class="py-2 px-4 text-left">{{ patient?.patient?.phone }}</td>
