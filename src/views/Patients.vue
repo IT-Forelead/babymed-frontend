@@ -1,6 +1,5 @@
 <script setup>
 import PatientItem from '../components/Items/PatientItem.vue'
-import authHeader from '../mixins/auth-header'
 import { computed, ref, reactive } from '@vue/reactivity'
 import { usePatientStore } from '../store/patient.store'
 import { useModalStore } from '../store/modal.store'
@@ -12,7 +11,6 @@ import PatientService from '../services/patient.service'
 import { useAddressStore } from '../store/address.store'
 import { onClickOutside } from '@vueuse/core'
 import { cleanObjectEmptyFields } from '../mixins/utils'
-import AxiosService from "../services/axios.service.js";
 
 const isLoading = ref(false)
 
@@ -28,14 +26,25 @@ const loadPatients = async ($state) => {
   page++
   let additional = total.value % 30 === 0 ? 0 : 1
   if (total.value !== 0 && total.value / 30 + additional >= page) {
-    AxiosService.post("/patient/report", {page: page, limit: 30}, {headers: authHeader()})
-        .then((result) => {
-          total.value = result?.total
-          usePatientStore().setPatients(result?.data)
-          $state.loaded()
-        }).catch(() => {
-      $state.error()
-    })
+    PatientService.getPatients(
+      cleanObjectEmptyFields({
+        patientFirstName: '%' + filterData.patientFirstName + '%',
+        patientLastName: '%' + filterData.patientLastName + '%',
+        regionId: filterData.regionId,
+        startDate: filterData.startDate,
+        endDate: filterData.endDate,
+        page: page,
+        limit: 30,
+      })
+    )
+      .then((result) => {
+        total.value = result?.total
+        usePatientStore().setPatients(result?.data)
+        $state.loaded()
+      })
+      .catch(() => {
+        $state.error()
+      })
   } else $state.loaded()
 }
 
@@ -45,11 +54,10 @@ onMounted(() => {
 
 onMounted(() => {
   setTimeout(() => {
-        AddressService.getAllRegions().then((res) => {
-          useAddressStore().setRegions(res)
-        })
-      }, 1000
-  )
+    AddressService.getAllRegions().then((res) => {
+      useAddressStore().setRegions(res)
+    })
+  }, 1000)
 })
 
 const regions = computed(() => {
@@ -74,7 +82,17 @@ const filterData = reactive({
 
 const submitFilterData = () => {
   isLoading.value = true
-  PatientService.getPatients(cleanObjectEmptyFields(filterData)).then((res) => {
+  PatientService.getPatients(
+    cleanObjectEmptyFields({
+      patientFirstName: '%' + filterData.patientFirstName + '%',
+      patientLastName: '%' + filterData.patientLastName + '%',
+      regionId: filterData.regionId,
+      startDate: filterData.startDate,
+      endDate: filterData.endDate,
+      page: 1,
+      limit: 30,
+    })
+  ).then((res) => {
     usePatientStore().clearStore()
     usePatientStore().setPatients(res?.data)
     isLoading.value = false

@@ -17,6 +17,7 @@ const getUsers = () => {
     useUserStore().setUsers(res?.data)
   })
 }
+
 onMounted(() => {
   getUsers()
 })

@@ -11,9 +11,6 @@ class PatientService {
   async deletePatient(id) {
     return AxiosService.get(`/patient/delete/${id}`, { headers: authHeader() })
   }
-  async getPatientsByFullname(data) {
-    return AxiosService.get('/patient/search?full_name=' + data, { headers: authHeader() })
-  }
 }
 
 export default new PatientService()

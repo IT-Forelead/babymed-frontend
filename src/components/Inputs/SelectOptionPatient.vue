@@ -13,6 +13,7 @@ import notify from 'izitoast'
 import 'izitoast/dist/css/iziToast.min.css'
 import PatientService from '../../services/patient.service'
 import { usePatientStore } from '../../store/patient.store'
+import { cleanObjectEmptyFields } from '../../mixins/utils'
 import { useI18n } from 'vue-i18n'
 
 const { t } = useI18n()
@@ -44,22 +45,20 @@ const patients = computed(() => {
   return usePatientStore().patients
 })
 
-const searchOptionClicked = (phone) => {
-  let data = patients.value?.filter((p) => p?.patient?.phone === phone)[0]
-  useDropStore().setSelectPatientOption(data)
-  useDropStore().closePatientDropDown()
-}
-
 const searchPatient = ref('')
-const searchResults = ref([])
 
 const getSearchResult = () => {
   if (searchPatient.value) {
-    PatientService.getPatientsByFullname(searchPatient.value).then((res) => {
-      // usePatientStore().clearStore()
-      // usePatientStore().setPatients(res)
-      searchResults.value = res
-      if (!res?.length) {
+    PatientService.getPatients(
+      cleanObjectEmptyFields({
+        patientFirstName: '%' + searchPatient.value + '%',
+        page: 1,
+        limit: 1000,
+      })
+    ).then((res) => {
+      usePatientStore().clearStore()
+      usePatientStore().setPatients(res?.data)
+      if (!res?.total) {
         notify.info({
           title: searchPatient.value,
           message: t('patientNotFound'),
@@ -86,14 +85,9 @@ const getSearchResult = () => {
       <div @click="useDropStore().openPatientDropDown()" v-if="!useDropStore().isOpenPatientDropDown && !useDropStore().selectPatientOption && !(router.currentRoute.value.path === '/patients' || router.currentRoute.value.path === '/dashboard')" class="border-none bg-gray-100 py-2 w-full text-lg rounded-r-lg cursor-pointer text-gray-500 pl-2">{{ $t('select') }}</div>
       <ChevronRightIcon @click="useDropStore().openPatientDropDown()" v-if="!useDropStore().isOpenPatientDropDown && !useDropStore().selectPatientOption && !(router.currentRoute.value.path === '/patients' || router.currentRoute.value.path === '/dashboard')" class="absolute right-2.5 z-10 rotate-90 cursor-pointer text-gray-600" />
       <TimesIcon @click="clearSelectedOptionData()" v-if="useDropStore().selectPatientOption && !(router.currentRoute.value.path === '/patients' || router.currentRoute.value.path === '/dashboard')" class="absolute right-2.5 z-10 cursor-pointer bg-gray-500 hover:bg-gray-600 text-white rounded-full p-1" />
-      <div v-if="searchResults.length === 0 && useDropStore().isOpenPatientDropDown && !(router.currentRoute.value.path === '/patients' || router.currentRoute.value.path === '/dashboard')" class="absolute p-2 z-20 top-12 shadow max-h-56 overflow-auto w-full bg-gray-100 rounded-lg divide-y">
+      <div v-if="useDropStore().isOpenPatientDropDown && !(router.currentRoute.value.path === '/patients' || router.currentRoute.value.path === '/dashboard')" class="absolute p-2 z-20 top-12 shadow max-h-56 overflow-auto w-full bg-gray-100 rounded-lg divide-y">
         <div class="hover:bg-gray-200 cursor-pointer p-2 rounded-lg capitalize" v-for="(option, idx) in options" :key="idx" @click="optionClicked(option)">
           {{ option?.patient?.firstname + ' ' + option?.patient?.lastname }}
-        </div>
-      </div>
-      <div v-if="searchResults.length !== 0 && useDropStore().isOpenPatientDropDown" class="absolute p-2 z-20 top-12 shadow max-h-56 overflow-auto w-full bg-gray-100 rounded-lg divide-y">
-        <div class="hover:bg-gray-200 cursor-pointer p-2 rounded-lg capitalize" v-for="(option, idx) in searchResults" :key="idx" @click="searchOptionClicked(option?.phone)">
-          {{ option?.firstName + ' ' + option?.lastName }}
         </div>
       </div>
     </label>

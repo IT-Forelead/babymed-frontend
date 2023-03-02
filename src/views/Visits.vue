@@ -4,9 +4,7 @@ import { onMounted } from 'vue'
 import FilterIcon from '../assets/icons/FilterIcon.vue'
 import ArrowDownIcon from '../assets/icons/ArrowDownIcon.vue'
 import VisitsReportItem from '../components/Items/VisitsReportItem.vue'
-import authHeader from '../mixins/auth-header'
 import { parseJwt } from '../mixins/utils.js'
-import AxiosService from '../services/axios.service.js'
 import { useModalStore } from '../store/modal.store'
 import { useVisitStore } from '../store/visit.store'
 import { useDropStore } from '../store/drop.store'
@@ -45,8 +43,7 @@ const loadPatients = async ($state) => {
   page++
   let additional = total.value % 10 === 0 ? 0 : 1
   if (total.value !== 0 && total.value / 10 + additional >= page) {
-    AxiosService.post(
-      '/visit/report',
+    VisitService.getVisits(
       cleanObjectEmptyFields({
         patientId: selectedPatient.value?.patient?.id,
         paymentStatus: selectPaymentStatus.value?.id,
@@ -54,8 +51,7 @@ const loadPatients = async ($state) => {
         endDate: filterData.endDate,
         page: page,
         limit: 30,
-      }),
-      { headers: authHeader() }
+      })
     )
       .then((result) => {
         total.value = result?.total

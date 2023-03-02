@@ -1,7 +1,6 @@
 <script setup>
 import { computed, ref, reactive } from '@vue/reactivity'
-import authHeader from '../mixins/auth-header'
-import {onMounted} from 'vue'
+import { onMounted } from 'vue'
 import { useSmsMessagesStore } from '../store/smsMessage.store'
 import { useModalStore } from '../store/modal.store'
 import { useDropStore } from '../store/drop.store'
@@ -10,7 +9,6 @@ import FilterIcon from '../assets/icons/FilterIcon.vue'
 import SmsMessageItem from '../components/Items/SmsMessageItem.vue'
 import SmsMessageService from '../services/smsMessage.service'
 import { useI18n } from 'vue-i18n'
-import AxiosService from '../services/axios.service'
 import { cleanObjectEmptyFields } from '../mixins/utils'
 import SelectOptionDeliveryStatus from '../components/Inputs/SelectOptionDeliveryStatus.vue'
 import SelectOptionSmsMessageType from '../components/Inputs/SelectOptionSmsMessageType.vue'
@@ -32,7 +30,17 @@ const loadSmsMessages = async ($state) => {
   page++
   let additional = total.value % 30 === 0 ? 0 : 1
   if (total.value !== 0 && total.value / 30 + additional >= page) {
-    AxiosService.post('/message/report', { page: page, limit: 30 }, { headers: authHeader() })
+    SmsMessageService.getSmsMessages(
+      cleanObjectEmptyFields({
+        phone: filterData.phone.replace(/([() -])/g, ''),
+        messageType: selectSmsMessageTypeOption?.value?.id,
+        deliveryStatus: selectDeliveryStatusOption?.value?.id,
+        startDate: filterData.startDate,
+        endDate: filterData.endDate,
+        page: page,
+        limit: 30,
+      })
+    )
       .then((result) => {
         total.value = result?.total
         useSmsMessagesStore().setSmsMessages(result?.data)
@@ -61,8 +69,10 @@ const submitFilterData = () => {
       deliveryStatus: selectDeliveryStatusOption?.value?.id,
       startDate: filterData.startDate,
       endDate: filterData.endDate,
+      page: 1,
+      limit: 30,
     })
-    ).then((res) => {
+  ).then((res) => {
     useSmsMessagesStore().clearStore()
     useSmsMessagesStore().setSmsMessages(res?.data)
     isLoading.value = false
