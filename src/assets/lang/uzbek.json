@@ -15,7 +15,7 @@
   "plsConfirmPassword": "Iltimos, parolni tasdiqlang",
   "plsConfirmPasswordCorrectly": "Iltimos, parolni to'g'ri tasdiqlang",
   "plsEnterPhoneCorrectly": "Iltimos, telefon raqamni to'g'ri kiriting",
-  "passwordComplexity":"Parol kamida 6 ta belgidan hamda, katta va kichik lotin harflaridan va raqamlardan iborat bo'lishi kerak",
+  "passwordComplexity":"Parol kamida 6 va ko'pi bilan 32 ta belgidan iborat bo'lishi kerak va quyidagi belgilardan foydalanish kerak:\nkamida bitta kichik lotin harfi\nkamida bitta bosh lotin harfi\nkamida bitta raqam\nsymvollardan biri !@#$%^&*",
   "forgotPassword": "Parolni unutdingizmi?",
   "phoneOrPasswordIncorrect": "Telefon yoki parol noto'g'ri. Iltimos, yana bir bor urinib ko'ring!",
   "loading": "Yuklanmoqda",

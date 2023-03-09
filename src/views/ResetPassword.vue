@@ -17,7 +17,7 @@ const hidePassword = ref(true)
 const hideConfirmPassword = ref(true)
 const validCode = ref(false)
 const router = useRouter()
-const strongRegex = new RegExp('^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.{6,})')
+const strongRegex = new RegExp('^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{6,32}$')
 const togglePassword = () => (hidePassword.value = !hidePassword.value)
 const toggleConfirmPassword = () => (hideConfirmPassword.value = !hideConfirmPassword.value)
 
