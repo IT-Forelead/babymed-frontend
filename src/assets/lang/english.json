@@ -14,7 +14,7 @@
   "plsEnterPassword": "Please enter a password",
   "plsConfirmPassword": "Please confirm password",
   "plsConfirmPasswordCorrectly": "Please confirm the password correctly",
-  "passwordComplexity":"The password must contain at least 6 characters, uppercase and lowercase Latin letters and numbers",
+  "passwordComplexity":"The password must be at least 6 and at most 32 characters long, and the following characters must be used:\nat least one lowercase Latin letter\nat least one capital Latin letter\nat least one number\none of the characters !@#$%^&*",
   "plsEnterPhoneCorrectly": "Please enter the correct phone number",
   "forgotPassword": "Forgot password?",
   "phoneOrPasswordIncorrect": "Phone or Password incorrect. Please try again!",
