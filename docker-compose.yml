@@ -7,11 +7,6 @@ services:
     container_name: babymed-frontend
     networks:
       - external-net
-    logging:
-      driver: fluentd
-      options:
-        fluentd-address: localhost:24224
-        tag: babymed
 networks:
   external-net:
     external:
