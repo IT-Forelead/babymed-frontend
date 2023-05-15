@@ -49,7 +49,7 @@ jobs:
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           script: |
             docker login -p ${{ secrets.DOCKER_PASSWORD }} -u ${{ secrets.DOCKER_USERNAME }}
-            cd frontend
+            cd babymed/ui
             docker compose down
             docker rmi babymed/frontend
             docker pull babymed/frontend

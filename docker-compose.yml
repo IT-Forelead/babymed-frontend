@@ -5,6 +5,8 @@ services:
     image: babymed/frontend:latest
     hostname: babymed-frontend
     container_name: babymed-frontend
+    ports:
+      - "3005:80"
     networks:
       - external-net
 networks:
