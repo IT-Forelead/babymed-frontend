@@ -65,9 +65,9 @@ onMounted(() => {
   <div class="relative text-white">
     <div :class="isOpen ? 'p-5' : 'py-3 p-2'" class="flex items-center space-x-3 transition-all duration-300">
       <div class="w-12 h-12 flex items-center justify-center">
-        <img src="/images/logo.png" alt="" />
+        <img src="/images/it-forelead.png" alt="" />
       </div>
-      <p v-if="isOpen" class="text-xl font-bold capitalize">Baby med</p>
+      <p v-if="isOpen" class="text-xl font-bold capitalize">Digital MED</p>
     </div>
     <div class="mt-5 h-[620px] overflow-auto py-5 px-2 text-gray-400 space-y-3">
       <router-link to="/dashboard"
