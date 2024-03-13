@@ -25,35 +25,30 @@ const distance = ref(0)
 let page = 0
 const loadPatients = async ($state) => {
   page++
-  let additional = total.value % 30 === 0 ? 0 : 1
-  if (total.value !== 0 && total.value / 30 + additional >= page) {
+  let additional = total.value % 10 === 0 ? 0 : 1
+  if (total.value !== 0 && total.value / 10 + additional >= page) {
     PatientService.getPatients(
       cleanObjectEmptyFields({
-        patientFirstName: '%' + filterData.patientFirstName + '%',
-        patientLastName: '%' + filterData.patientLastName + '%',
+        patientFirstName: filterData.patientFirstName ? `%${filterData.patientFirstName}%` : '',
+        patientLastName: filterData.patientLastName ? `%${filterData.patientLastName}%` : '',
         regionId: filterData.regionId,
         startDate: filterData.startDate,
         endDate: filterData.endDate,
         page: page,
-        limit: 30,
+        limit: 10,
       })
-    )
-      .then((result) => {
-        total.value = result?.total
-        usePatientStore().setPatients(result?.data)
-        $state.loaded()
-      })
-      .catch(() => {
-        $state.error()
-      })
+    ).then((result) => {
+      total.value = result?.total
+      usePatientStore().setPatients(result?.data)
+      $state.loaded()
+    }).catch(() => {
+      $state.error()
+    })
   } else $state.loaded()
 }
 
 onMounted(() => {
   usePatientStore().clearStore()
-})
-
-onMounted(() => {
   setTimeout(() => {
     AddressService.getAllRegions().then((res) => {
       useAddressStore().setRegions(res)
@@ -85,16 +80,17 @@ const submitFilterData = () => {
   isLoading.value = true
   PatientService.getPatients(
     cleanObjectEmptyFields({
-      patientFirstName: '%' + filterData.patientFirstName + '%',
-      patientLastName: '%' + filterData.patientLastName + '%',
+      patientFirstName: filterData.patientFirstName ? `%${filterData.patientFirstName}%` : '',
+      patientLastName: filterData.patientLastName ? `%${filterData.patientLastName}%` : '',
       regionId: filterData.regionId,
       startDate: filterData.startDate,
       endDate: filterData.endDate,
       page: 1,
-      limit: 30,
+      limit: 10,
     })
   ).then((res) => {
     usePatientStore().clearStore()
+    total.value = res?.total
     usePatientStore().setPatients(res?.data)
     isLoading.value = false
     if (useModalStore().isOpenFilterBy) {
@@ -110,15 +106,23 @@ const submitFilterData = () => {
       <p class="text-3xl font-bold">{{ $t('patientsReport') }}</p>
       <div class="flex items-center space-x-3">
         <div class="relative" ref="dropdown">
-          <div @click="useModalStore().toggleFilterBy()" class="border-none select-none text-gray-500 bg-gray-100 rounded-lg w-full p-2 px-5 flex items-center hover:bg-gray-200 cursor-pointer"><FilterIcon class="w-5 h-5 text-gray-400" /> {{ $t('filter') }}</div>
-          <div v-if="useModalStore().isOpenFilterBy" class="absolute bg-white shadow rounded-xl p-3 z-20 top-12 right-0 space-y-3">
+          <div @click="useModalStore().toggleFilterBy()"
+            class="border-none select-none text-gray-500 bg-gray-100 rounded-lg w-full p-2 px-5 flex items-center hover:bg-gray-200 cursor-pointer">
+            <FilterIcon class="w-5 h-5 text-gray-400" /> {{ $t('filter') }}
+          </div>
+          <div v-if="useModalStore().isOpenFilterBy"
+            class="absolute bg-white shadow rounded-xl p-3 z-20 top-12 right-0 space-y-3">
             <label for="firstname">
               {{ $t('firstname') }}
-              <input v-model="filterData.patientFirstName" class="border-none text-gray-500 bg-gray-100 rounded-lg w-full" type="text" id="firstname" :placeholder="$t('enterFirstname')" />
+              <input v-model="filterData.patientFirstName"
+                class="border-none text-gray-500 bg-gray-100 rounded-lg w-full" type="text" id="firstname"
+                :placeholder="$t('enterFirstname')" />
             </label>
             <label for="lastname">
               {{ $t('lastname') }}
-              <input v-model="filterData.patientLastName" class="border-none text-gray-500 bg-gray-100 rounded-lg w-full" type="text" id="lastname" :placeholder="$t('enterLastname')" />
+              <input v-model="filterData.patientLastName"
+                class="border-none text-gray-500 bg-gray-100 rounded-lg w-full" type="text" id="lastname"
+                :placeholder="$t('enterLastname')" />
             </label>
             <label for="">
               <p>{{ $t('region') }}</p>
@@ -130,24 +134,30 @@ const submitFilterData = () => {
             <div class="flex items-center space-x-1">
               <label for="">
                 {{ $t('from') }}
-                <input v-model="filterData.startDate" type="datetime-local" class="border-none text-gray-500 bg-gray-100 rounded-lg w-full" />
+                <input v-model="filterData.startDate" type="datetime-local"
+                  class="border-none text-gray-500 bg-gray-100 rounded-lg w-full" />
               </label>
               <ArrowDownIcon class="-rotate-90 text-gray-600 mt-6" />
               <label for="">
                 {{ $t('to') }}
-                <input v-model="filterData.endDate" type="datetime-local" class="border-none text-gray-500 bg-gray-100 rounded-lg w-full" />
+                <input v-model="filterData.endDate" type="datetime-local"
+                  class="border-none text-gray-500 bg-gray-100 rounded-lg w-full" />
               </label>
             </div>
-            <div v-if="isLoading" class="w-full bg-gray-600 py-3 select-none text-white rounded-lg flex items-center justify-center">
-              <LoadingIcon class="mr-2 w-5 h-5 text-gray-200 animate-spin dark:text-gray-600 fill-gray-600 dark:fill-gray-300" />
+            <div v-if="isLoading"
+              class="w-full bg-gray-600 py-3 select-none text-white rounded-lg flex items-center justify-center">
+              <LoadingIcon
+                class="mr-2 w-5 h-5 text-gray-200 animate-spin dark:text-gray-600 fill-gray-600 dark:fill-gray-300" />
               <span>{{ $t('loading') }}</span>
             </div>
-            <div v-else @click="submitFilterData()" class="w-full bg-gray-900 hover:bg-gray-800 cursor-pointer select-none py-3 text-white rounded-lg flex items-center justify-center">
+            <div v-else @click="submitFilterData()"
+              class="w-full bg-gray-900 hover:bg-gray-800 cursor-pointer select-none py-3 text-white rounded-lg flex items-center justify-center">
               <span>{{ $t('filter') }}</span>
             </div>
           </div>
         </div>
-        <div @click="useModalStore().openModal()" class="bg-black text-white rounded-xl p-2 px-4 cursor-pointer hover:bg-black/75">
+        <div @click="useModalStore().openModal()"
+          class="bg-black text-white rounded-xl p-2 px-4 cursor-pointer hover:bg-black/75">
           <p class="text-base">+ {{ $t('addPatient') }}</p>
         </div>
       </div>

@@ -52,13 +52,6 @@ onMounted(() => {
   ServicesService.getAllServiceTypes().then((res) => {
     useServicesStore().setServiceTypes(res)
   })
-  if (!(router.currentRoute?.value?.path === '/patients' || router.currentRoute?.value?.path === '/dashboard')) {
-    PatientService.getPatients({}).then((res) => {
-      useDropStore().clearStore()
-      usePatientStore().clearStore()
-      usePatientStore().setPatients(res?.data)
-    })
-  }
 })
 
 const selectedPatient = computed(() => {

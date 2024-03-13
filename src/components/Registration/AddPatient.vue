@@ -1,6 +1,6 @@
 <script setup>
-import {computed, reactive, ref} from '@vue/reactivity'
-import {onMounted, watch} from 'vue'
+import { computed, reactive, ref } from '@vue/reactivity'
+import { onMounted, watch } from 'vue'
 import AddressService from '../../services/address.service'
 import PatientService from '../../services/patient.service'
 import { usePatientStore } from '../../store/patient.store'
@@ -8,7 +8,7 @@ import notify from 'izitoast'
 import 'izitoast/dist/css/iziToast.min.css'
 import { useI18n } from 'vue-i18n'
 import { cleanObjectEmptyFields } from '../../mixins/utils'
-import {useAddressStore} from "../../store/address.store.js";
+import { useAddressStore } from "../../store/address.store.js";
 
 const { t } = useI18n()
 
@@ -93,30 +93,31 @@ const submitPatientData = () => {
         birthday: patientForm.birthday,
         phone: patientForm.phone.replace(/([() -])/g, ''),
       })
-    )
-      .then(() => {
-        clearForm()
-        notify.success({
-          message: t('patientCreated'),
-        })
-        PatientService.getPatients({})
-          .then((res) => {
-            usePatientStore().clearStore()
-            setTimeout(() => {
-              usePatientStore().setPatients(res?.data)
-            }, 500)
-          })
-          .catch(() => {
-            notify.error({
-              message: t('errorGettingPatients'),
-            })
-          })
+    ).then(() => {
+      clearForm()
+      notify.success({
+        message: t('patientCreated'),
       })
-      .catch((err) => {
+      PatientService.getPatients(
+        cleanObjectEmptyFields({
+          page: 1,
+          limit: 10,
+        })
+      ).then((res) => {
+        usePatientStore().clearStore()
+        setTimeout(() => {
+          usePatientStore().setPatients(res?.data)
+        }, 500)
+      }).catch(() => {
         notify.error({
-          message: t('errorCreatingPatient'),
+          message: t('errorGettingPatients'),
         })
       })
+    }).catch((err) => {
+      notify.error({
+        message: t('errorCreatingPatient'),
+      })
+    })
   }
 }
 </script>
@@ -125,43 +126,56 @@ const submitPatientData = () => {
     <div>
       <label for="firstname">
         {{ $t('firstname') }}
-        <input v-model="patientForm.firstname" class="border-none text-gray-500 bg-gray-100 rounded-lg w-full text-lg mb-5" type="text" id="firstname" :placeholder="$t('enterFirstname')" />
+        <input v-model="patientForm.firstname"
+          class="border-none text-gray-500 bg-gray-100 rounded-lg w-full text-lg mb-5" type="text" id="firstname"
+          :placeholder="$t('enterFirstname')" />
       </label>
       <label for="lastname">
         {{ $t('lastname') }}
-        <input v-model="patientForm.lastname" class="border-none text-gray-500 bg-gray-100 rounded-lg w-full text-lg mb-5" type="text" id="lastname" :placeholder="$t('enterLastname')" />
+        <input v-model="patientForm.lastname"
+          class="border-none text-gray-500 bg-gray-100 rounded-lg w-full text-lg mb-5" type="text" id="lastname"
+          :placeholder="$t('enterLastname')" />
       </label>
       <label for="birthday">
         {{ $t('birthday') }}
-        <input v-model="patientForm.birthday" class="border-none text-gray-500 bg-gray-100 rounded-lg w-full text-lg mb-5" type="date" id="birthday" :placeholder="$t('birthday')" />
+        <input v-model="patientForm.birthday"
+          class="border-none text-gray-500 bg-gray-100 rounded-lg w-full text-lg mb-5" type="date" id="birthday"
+          :placeholder="$t('birthday')" />
       </label>
       <label for="phone">
         {{ $t('phone') }}
-        <input v-model="patientForm.phone" class="border-none text-gray-500 bg-gray-100 rounded-lg w-full text-lg mb-5" type="text" v-mask="'+998(##) ###-##-##'" placeholder="+998(00) 000-00-00" />
+        <input v-model="patientForm.phone" class="border-none text-gray-500 bg-gray-100 rounded-lg w-full text-lg mb-5"
+          type="text" v-mask="'+998(##) ###-##-##'" placeholder="+998(00) 000-00-00" />
       </label>
     </div>
     <div>
       <p>{{ $t('region') }}</p>
-      <select v-model="patientForm.regionId" class="border-none text-gray-500 bg-gray-100 rounded-lg w-full text-lg mb-5">
+      <select v-model="patientForm.regionId"
+        class="border-none text-gray-500 bg-gray-100 rounded-lg w-full text-lg mb-5">
         <option value="" selected>{{ $t('selectRegion') }}</option>
         <option v-for="(region, idx) in regions" :key="idx" :value="region?.id">{{ region?.name }}</option>
       </select>
       <div v-if="patientForm.regionId !== ''">
         <p>{{ $t('town') }}</p>
-        <select v-model="patientForm.cityId" class="border-none text-gray-500 bg-gray-100 rounded-lg w-full text-lg mb-5">
+        <select v-model="patientForm.cityId"
+          class="border-none text-gray-500 bg-gray-100 rounded-lg w-full text-lg mb-5">
           <option value="" selected>{{ $t('selectTown') }}</option>
           <option v-for="(city, idx) in cities" :key="idx" :value="city?.id">{{ city?.name }}</option>
         </select>
       </div>
       <label v-if="patientForm.cityId !== ''" for="address">
         {{ $t('address') }}
-        <input v-model="patientForm.address" id="address" class="border-none text-gray-500 bg-gray-100 rounded-lg w-full text-lg mb-5" type="text" :placeholder="$t('enterAddress')" />
+        <input v-model="patientForm.address" id="address"
+          class="border-none text-gray-500 bg-gray-100 rounded-lg w-full text-lg mb-5" type="text"
+          :placeholder="$t('enterAddress')" />
       </label>
     </div>
   </div>
   <div class="grid grid-cols-2 gap-5">
-    <button @click="clearForm()" class="p-2.5 w-full rounded-lg text-white bg-gray-600 cursor-pointer hover:bg-gray-800">{{ $t('reset') }}</button>
-    <button @click="submitPatientData()" class="p-2.5 w-full rounded-lg text-white bg-blue-600 cursor-pointer hover:bg-blue-800">{{ $t('save') }}</button>
+    <button @click="clearForm()"
+      class="p-2.5 w-full rounded-lg text-white bg-gray-600 cursor-pointer hover:bg-gray-800">{{ $t('reset') }}</button>
+    <button @click="submitPatientData()"
+      class="p-2.5 w-full rounded-lg text-white bg-blue-600 cursor-pointer hover:bg-blue-800">{{ $t('save') }}</button>
   </div>
 </template>
 

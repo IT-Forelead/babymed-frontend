@@ -440,19 +440,20 @@ onMounted(() => {
       useVisitStore().setDailyProfit(res)
     })
   })
-  PatientService.getPatients({}).then((res) => {
-    patients.value = res?.total
-    UserService.getAllDoctors({
-      role: 'doctor',
-    }).then((res) => {
-      doctors.value = res?.total
+  PatientService.getPatients({})
+    .then((res) => {
+      patients.value = res?.total
+      UserService.getAllDoctors({
+        role: 'doctor',
+      }).then((res) => {
+        doctors.value = res?.total
+      })
     })
-  })
 })
 </script>
 
 <template>
-    <div class="grid grid-cols-2 gap-x-5 mb-6 overflow-hidden">
+  <div class="grid grid-cols-2 gap-x-5 mb-6 overflow-hidden">
     <div class="bg-white rounded-lg">
       <div class="flex items-center justify-between p-5">
         <div>
@@ -463,7 +464,8 @@ onMounted(() => {
           <ChartBarIcon class="w-9 h-9 text-gray-900" />
         </div>
       </div>
-      <apexchart type="bar" height="300" :options="numberOfDailyVisitsChartOptions" :series="numberOfDailyVisitsSeries"></apexchart>
+      <apexchart type="bar" height="300" :options="numberOfDailyVisitsChartOptions" :series="numberOfDailyVisitsSeries">
+      </apexchart>
     </div>
     <div class="space-y-5">
       <div class="grid grid-cols-2 gap-x-5">
@@ -478,7 +480,8 @@ onMounted(() => {
             </div>
           </div>
           <div class="px-1">
-            <apexchart type="bar" height="180" :options="numberOfDailyOperationsChartOptions" :series="numberOfDailyOperationsSeries"></apexchart>
+            <apexchart type="bar" height="180" :options="numberOfDailyOperationsChartOptions"
+              :series="numberOfDailyOperationsSeries"></apexchart>
           </div>
         </div>
         <div class="bg-white rounded-lg w-full">
@@ -492,7 +495,8 @@ onMounted(() => {
             </div>
           </div>
           <div class="px-1">
-            <apexchart type="bar" height="180" :options="numberOfMonthlyOperationsChartOptions" :series="numberOfMonthlyOperationsSeries"></apexchart>
+            <apexchart type="bar" height="180" :options="numberOfMonthlyOperationsChartOptions"
+              :series="numberOfMonthlyOperationsSeries"></apexchart>
           </div>
         </div>
       </div>

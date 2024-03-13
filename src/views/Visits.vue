@@ -85,10 +85,6 @@ onClickOutside(dropdown, () => {
 
 onMounted(() => {
   useVisitStore().clearStore()
-  PatientService.getPatients({}).then((res) => {
-    usePatientStore().clearStore()
-    usePatientStore().setPatients(res?.data)
-  })
 })
 
 const navigationGuard = (access) => {
@@ -138,7 +134,7 @@ onMounted(() => {
           <div v-if="useModalStore().isOpenFilterBy" class="absolute bg-white shadow rounded-xl p-3 z-20 top-12 right-0 space-y-3">
             <div>
               <p>{{ $t('selectPatient') }}</p>
-              <SelectOptionPatient :options="patients" />
+              <SelectOptionPatient />
             </div>
             <div>
               <p>{{ $t('selectPaymentStatus') }}</p>
