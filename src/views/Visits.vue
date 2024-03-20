@@ -7,6 +7,7 @@ import VisitsReportItem from '../components/Items/VisitsReportItem.vue'
 import { parseJwt } from '../mixins/utils.js'
 import { useModalStore } from '../store/modal.store'
 import { useVisitStore } from '../store/visit.store'
+import { useServicesStore } from '../store/services.store'
 import { useDropStore } from '../store/drop.store'
 import { usePatientStore } from '../store/patient.store'
 import { onClickOutside } from '@vueuse/core'
@@ -15,7 +16,63 @@ import SelectOptionPatient from '../components/Inputs/SelectOptionPatient.vue'
 import SelectOptionPaymentStatus from '../components/Inputs/SelectOptionPaymentStatus.vue'
 import PatientService from '../services/patient.service'
 import VisitService from '../services/visit.service'
+import ServicesService from '../services/services.service'
 import LoadingIcon from '../assets/icons/LoadingIcon.vue'
+
+const serviceTypes = computed(() => {
+  return useServicesStore().serviceTypes
+})
+
+const getServiceTypes = () => {
+  ServicesService.getAllServiceTypes().then((res) => {
+    useServicesStore().setServiceTypes(res)
+  })
+}
+
+onMounted(() => {
+  getServiceTypes()
+})
+
+const isAllServiceSelected = ref(false)
+
+const serviceTypesFilter = ref([])
+
+const changeServiceTypesFilter = (serviceId) => {
+
+  if (serviceTypesFilter.value.includes(serviceId)) {
+    const index = serviceTypesFilter.value.indexOf(serviceId);
+    serviceTypesFilter.value.splice(index, 1);
+  } else {
+    serviceTypesFilter.value.push(serviceId)
+  }
+
+  if (serviceTypesFilter.value.length == serviceTypes.value.length) {
+    isAllServiceSelected.value = true
+  } else {
+     isAllServiceSelected.value = false
+  }
+
+  submitFilterData()
+}
+
+const changeAllServiceSelected = () => {
+  isAllServiceSelected.value = !isAllServiceSelected.value
+  if (isAllServiceSelected.value) {
+    for (let item of serviceTypes.value) {
+      if (serviceTypesFilter.value.indexOf(item.id) == -1) {
+          serviceTypesFilter.value.push(item.id)
+      }
+    }
+  } else {
+    serviceTypesFilter.value = []
+  }
+  submitFilterData()
+}
+
+const selectedStyle = {
+  backgroundColor: '#a3e635',
+  color: '#000000'
+}
 
 const isLoading = ref(false)
 
@@ -101,6 +158,7 @@ const submitFilterData = () => {
       endDate: filterData.endDate,
       page: 1,
       limit: 30,
+      serviceTypeIds: serviceTypesFilter.value.length > 0 ? serviceTypesFilter.value : null
     })
   ).then((res) => {
     useVisitStore().clearStore()
@@ -122,7 +180,7 @@ onMounted(() => {
 </script>
 
 <template>
-  <div class="bg-white rounded-lg w-full p-5">
+  <div class="bg-white rounded-lg w-full flex flex-col space-y-5 p-5">
     <div class="flex items-center justify-between">
       <p class="text-3xl font-bold">{{ $t('visitsReport') }}</p>
       <div class="flex items-center space-x-3">
@@ -165,6 +223,12 @@ onMounted(() => {
         </div>
       </div>
     </div>
+    <div class="bg-gray-900 rounded-t-lg text-white flex items-left">
+      <button class="rounded-tl-lg py-2 px-4 text-left text-lg font-medium" @click="changeAllServiceSelected" :style="isAllServiceSelected && selectedStyle">All services</button>
+      <div class=" text-lg font-medium" v-for="(serviceType, idx) in serviceTypes" :key="idx">
+        <button class="border-l-gray-900 border-l-[2px] border-l-solid py-2 px-4 text-left" @click="changeServiceTypesFilter(serviceType.id)" :style="serviceTypesFilter.includes(serviceType.id) && selectedStyle">{{ serviceType?.name }}</button>
+      </div>
+    </div>
     <div class="max-h-[77vh] overflow-auto xxl:overflow-x-hidden mt-3 patients-wrapper">
       <table class="min-w-max w-full table-auto">
         <thead class="sticky z-10 top-0 bg-white shadow">
@@ -186,4 +250,5 @@ onMounted(() => {
   </div>
 </template>
 
-<style scoped></style>
+<style scoped>
+</style>
