@@ -27,11 +27,6 @@ onClickOutside(dropdown, () => {
   useDropStore().closePatientDropDown()
 })
 
-const optionClicked = (data) => {
-  useDropStore().setSelectPatientOption(data)
-  useDropStore().closePatientDropDown()
-}
-
 const searchPatient = ref('')
 const patients = ref([])
 const total = ref(1)
