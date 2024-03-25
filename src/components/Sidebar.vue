@@ -7,6 +7,7 @@ import { useAuthStore } from '../store/auth.store'
 import { computed, onMounted } from '@vue/runtime-core'
 import { ref } from '@vue/reactivity'
 import { useRouter } from 'vue-router'
+import MedicalDoctorIcon from '../assets/icons/MedicalDoctorIcon.vue'
 import VisitsIcon from '../assets/icons/VisitsIcon.vue'
 import UserPlusIcon from '../assets/icons/UserPlusIcon.vue'
 import AuthService from '../services/auth.service'
@@ -92,6 +93,14 @@ onMounted(() => {
         <div class="flex items-center space-x-2">
           <UsersIcon class="w-7 h-7" />
           <p v-if="isOpen">{{ $t('patients') }}</p>
+        </div>
+      </router-link>
+      <router-link to="/recommenders" v-if="navigationGuard(['admin', 'super_manager', 'tech_admin', 'admin'])"
+        class="flex items-center justify-between hover:bg-gray-800 hover:text-gray-100 p-3 rounded-lg cursor-pointer"
+        :class="useSidebarStore().isOpenSidebar && router?.currentRoute?.value?.path === '/recommenders' ? 'justify-between bg-gray-800 text-gray-100' : !useSidebarStore().isOpenSidebar && router?.currentRoute?.value?.path === '/recommenders' ? 'bg-gray-800 text-gray-100 justify-center' : ''">
+        <div class="flex items-center space-x-2">
+          <MedicalDoctorIcon class="w-7 h-7" />
+          <p v-if="isOpen">{{ $t('recommenders') }}</p>
         </div>
       </router-link>
       <router-link to="/operations" v-if="navigationGuard(['super_manager', 'tech_admin', 'cashier'])"

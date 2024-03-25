@@ -275,5 +275,19 @@
   "plsEnterYourPhone": "Iltimos, telefoningizni kiriting!",
   "userNotFoundWithThisPhoneNumber": "Ushbu telefon raqamiga ega foydalanuvchi ma'lumotlar bazasida mavjud emas!",
   "passwordEdited":"Parol muvaffaqiyatli tahrirlandi!",
-  "errorEditingPassword": "Parolni tahrirlashda xatolik yuz berdi!"
+  "errorEditingPassword": "Parolni tahrirlashda xatolik yuz berdi!",
+  "recommender": "Hamkor shifokor",
+  "recommenders": "Hamkor shifokorlar",
+  "recommenderShare": "Hamkor shifokor ulushi",
+  "recommenderSharesHistory": "Hamkor shifokorlar ulushlari tarixi",
+  "createRecommender": "Hamkor shifokor yaratish",
+  "createdRecommender": "Hamkor shifokor muvaffaqiyatli yaratildi!",
+  "creatingRecommender": "Hamkor shifokor yaratilmoqda",
+  "deletedRecommender": "Hamkor shifokor muvaffaqiyatli o'chirildi!",
+  "errorCreatingRecommender": "Hamkor shifokor yaratishda xatolik yuz berdi!",
+  "errorDeletingRecommender": "Hamkor shifokor o'chirishda xatolik yuz berdi!",
+  "plsEnterRecommenderFirstname": "Iltimos, hamkor shifokor ismini kiriting!",
+  "plsEnterRecommenderLastname": "Iltimos, hamkor shifokor ismini kiriting!",
+  "plsEnterRecommenderPhone": "Iltimos, hamkor shifokor familiyasini kiriting!",
+  "plsEnterRecommenderShare": "Iltimos, hamkor shifokor telefonini kiriting!"
 }

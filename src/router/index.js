@@ -141,6 +141,19 @@ const routes = [
     beforeEnter: navigationGuards(['cashier', 'super_manager', 'tech_admin']),
   },
   {
+    path: '/recommenders',
+    name: 'Recommenders',
+    meta: { layout: 'dashboard' },
+    children: [
+      {
+        path: '',
+        name: 'Recommenders',
+        component: () => import('../components/RecommendersTabs/Recommenders.vue'),
+      }
+    ],
+    beforeEnter: navigationGuards(['cashier', 'super_manager', 'tech_admin', 'admin']),
+  },
+  {
     path: '/notfound',
     name: 'Not-Found',
     component: () => import('../components/NotFound.vue'),

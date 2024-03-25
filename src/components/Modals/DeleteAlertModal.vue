@@ -18,7 +18,9 @@ import CheckupExpenseService from '../../services/checkupExpenses.service'
 import OperationExpensesService from '../../services/operationExpenses.service'
 import { useExpenseStore } from '../../store/expense.store'
 import { usePatientStore } from '../../store/patient.store'
+import { useRecommendersStore } from '../../store/recommenders.store'
 import { cleanObjectEmptyFields } from '../../mixins/utils'
+import recommendersService from '../../services/recommenders.service'
 
 const { t } = useI18n()
 
@@ -28,6 +30,7 @@ const closeModal = () => {
   useUserStore().setSelectedUser({})
   usePatientStore().setSelectedPatient({})
   useCheckupExpenseStore().setSelectedDoctorShare({})
+  useRecommendersStore().setSelectedRecommender({})
   useModalStore().closeDeleteAlertModal()
 }
 
@@ -148,6 +151,25 @@ const deleteOperationService = (id) => {
     })
 }
 
+const deleteRecommender = (id) => {
+  recommendersService.deleteRecommender(id)
+    .then(() => {
+      notify.success({
+        message: t('deletedRecommender'),
+      })
+      recommendersService.getAllRecommenders().then((res) => {
+        useRecommendersStore().clearStore()
+        useRecommendersStore().setRecommenders(res?.data)
+      })
+      closeModal()
+    })
+    .catch(() => {
+      notify.warning({
+        message: t('errorDeletingOperationService'),
+      })
+    })
+}
+
 const selectedService = computed(() => {
   return useServicesStore().selectedService
 })
@@ -170,6 +192,10 @@ const selectedDoctorShare = computed(() => {
 
 const selectedPatient = computed(() => {
   return usePatientStore().selectedPatient
+})
+
+const selectedRecommender = computed(() => {
+  return useRecommendersStore().selectedRecommender
 })
 </script>
 
@@ -383,6 +409,27 @@ const selectedPatient = computed(() => {
             {{ $t('doYouDelete') }}
           </h3>
           <button @click="deleteServiceType(selectedServiceType?.id)" type="button"
+            class="text-white bg-red-600 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 font-medium rounded-lg text-sm inline-flex items-center px-5 py-2.5 text-center mr-2">
+            {{ $t('yesImSure') }}
+          </button>
+          <button @click="closeModal()" type="button"
+            class="text-gray-500 bg-white hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-gray-200 rounded-lg border border-gray-200 text-sm font-medium px-5 py-2.5 hover:text-gray-900 focus:z-10 dark:bg-gray-700 dark:text-gray-300 dark:border-gray-500 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-600">
+            {{ $t('noCancel') }}
+          </button>
+        </div>
+
+        <!-- Recommenders Section -->
+        <div v-if="selectedRecommender?.id" class="py-4 px-6 text-center space-y-6">
+          <div class="flex items-center space-x-2">
+            <div class="text-base text-gray-500">{{ $t('serviceTypeName') }}:</div>
+            <div class="text-lg text-gray-700">{{ selectedRecommender?.firstname }} {{ selectedRecommender?.lastname }}</div>
+          </div>
+          <h3
+            class="flex items-center justify-center mb-5 text-lg font-normal text-red-500 dark:text-gray-400 text-center">
+            <WarningCircleIcon class="w-7 h-7 mr-2" />
+            {{ $t('doYouDelete') }}
+          </h3>
+          <button @click="deleteRecommender(selectedRecommender?.id)" type="button"
             class="text-white bg-red-600 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 font-medium rounded-lg text-sm inline-flex items-center px-5 py-2.5 text-center mr-2">
             {{ $t('yesImSure') }}
           </button>

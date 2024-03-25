@@ -274,5 +274,18 @@
   "plsEnterYourPhone": "Пожалуйста, введите свой телефон!",
   "userNotFoundWithThisPhoneNumber": "Пользователь с таким номером телефона не существует в базе данных!",
   "passwordEdited":"Пароль успешно изменен!",
-  "errorEditingPassword": "Ошибка при редактировании пароля!"
+  "errorEditingPassword": "Ошибка при редактировании пароля!",
+  "recommender": "Рекомендатель",
+  "recommenders": "Рекомендатели",
+  "recommenderShare": "Рекомендатор Поделиться",
+  "recommenderSharesHistory": "История акций рекомендателей",
+  "createRecommender": "Создать рекомендателя",
+  "creatingRecommender": "Создание рекомендателя",
+  "deletedRecommender": "Рекомендатор успешно удален!",
+  "errorCreatingRecommender": "Ошибка при создании платежа!",
+  "errorDeletingRecommender": "Ошибка при удалении рекомендательной публикации!",
+  "plsEnterRecommenderFirstname": "Пожалуйста, введите имя рекомендателя!",
+  "plsEnterRecommenderLastname": "Пожалуйста, введите фамилию рекомендателя!",
+  "plsEnterRecommenderPhone": "Пожалуйста, укажите телефон рекомендателя!",
+  "plsEnterRecommenderShare": "Пожалуйста, введите рекомендательную долю!"
 }

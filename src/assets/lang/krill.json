@@ -275,5 +275,19 @@
   "plsEnterYourPhone": "Илтимос, телефонингизни киритинг!",
   "userNotFoundWithThisPhoneNumber": "Ушбу телефон рақамига ега фойдаланувчи маълумотлар базасида мавжуд емас!",
   "passwordEdited":"Парол муваффақиятли таҳрирланди!",
-  "errorEditingPassword": "Паролни таҳрирлашда хатолик юз берди!"
+  "errorEditingPassword": "Паролни таҳрирлашда хатолик юз берди!",
+  "recommender": "Ҳамкор шифокор",
+  "recommenders": "Ҳамкор шифокорлар",
+  "recommenderShare": "Ҳамкор шифокор улуши",
+  "recommenderSharesHistory": "Ҳамкор шифокорлар улушлари тарихи",
+  "createRecommender": "Ҳамкор шифокор яратиш",
+  "createdRecommender": "Ҳамкор шифокор муваффақиятли яратилди!",
+  "creatingRecommender": "Ҳамкор шифокор яратилмоқда",
+  "deletedRecommender": "Ҳамкор шифокор муваффақиятли ўчирилди!",
+  "errorCreatingRecommender": "Ҳамкор шифокор яратишда хатолик юз берди!",
+  "errorDeletingRecommender": "Ҳамкор шифокор ўчиришда хатолик юз берди!",
+  "plsEnterRecommenderFirstname": "Илтимос, ҳамкор шифокор исмини киритинг!",
+  "plsEnterRecommenderLastname": "Илтимос, ҳамкор шифокор исмини киритинг!",
+  "plsEnterRecommenderPhone": "Илтимос, ҳамкор шифокор фамилиясини киритинг!",
+  "plsEnterRecommenderShare": "Илтимос, ҳамкор шифокор телефонини киритинг!"
 }
