@@ -275,5 +275,18 @@
   "plsEnterYourPhone": "Please enter your phone!",
   "userNotFoundWithThisPhoneNumber": "The user with this phone number does not exist in the database!",
   "passwordEdited":"Password edited successfully!",
-  "errorEditingPassword": "Error while editing password!"
+  "errorEditingPassword": "Error while editing password!",
+  "recommender": "Recommender",
+  "recommenders": "Recommenders",
+  "recommenderShare": "Recommender Share",
+  "recommenderSharesHistory": "Recommender Shares History",
+  "createRecommender": "Create Recommender",
+  "creatingRecommender": "Creating Recommender",
+  "deletedRecommender": "Recommender successfully deleted!",
+  "errorCreatingRecommender": "Error while creating payment!",
+  "errorDeletingRecommender": "Error while deleting recommender share!",
+  "plsEnterRecommenderFirstname": "Please enter recommender firstname!",
+  "plsEnterRecommenderLastname": "Please enter recommender lastname!",
+  "plsEnterRecommenderPhone": "Please enter recommender phone!",
+  "plsEnterRecommenderShare": "Please enter recommender share!"
 }

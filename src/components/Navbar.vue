@@ -55,6 +55,8 @@ const currentLabel = computed(() => {
     return t('doctorShares')
   } else if (router.currentRoute?.value?.path === '/sms-messages') {
     return t('smsMessagesManagment')
+  } else if (router.currentRoute?.value?.path === '/recommenders') {
+    return t('recommenders')
   }
 })
 
