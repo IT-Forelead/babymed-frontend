@@ -6,7 +6,6 @@ import { usePatientStore } from '../../store/patient.store'
 import { useServicesStore } from '../../store/services.store'
 import { useDropStore } from '../../store/drop.store'
 import ServicesService from '../../services/services.service'
-import PatientService from '../../services/patient.service'
 import VisitService from '../../services/visit.service'
 import SelectOptionServiceType from '../Inputs/SelectOptionServiceType.vue'
 import SelectOptionPatient from '../Inputs/SelectOptionPatient.vue'
@@ -22,6 +21,12 @@ import TimesIcon from '../../assets/icons/TimesIcon.vue'
 import PlusIcon from '../../assets/icons/PlusIcon.vue'
 import ChevronRightIcon from '../../assets/icons/ChevronRightIcon.vue'
 import LoadingIcon from '../../assets/icons/LoadingIcon.vue'
+import SelectOptionDoctor from '../Inputs/SelectOptionDoctor.vue'
+import { useUserStore } from '../../store/user.store.js'
+import UserService from '../../services/user.service.js'
+import SelectOptionPartnerDoctor from '../Inputs/SelectOptionPartnerDoctor.vue'
+import { useRecommendersStore } from '../../store/recommenders.store.js'
+import RecommendersService from '../../services/recommenders.service.js'
 
 const { t } = useI18n()
 
@@ -43,6 +48,14 @@ const serviceTypes = computed(() => {
   return useServicesStore().serviceTypes
 })
 
+const doctors = computed(() => {
+  return useUserStore().doctors
+})
+
+const partnerDoctors = computed(() => {
+  return useRecommendersStore().recommenders
+})
+
 const services = computed(() => {
   return useServicesStore().services
 })
@@ -51,6 +64,12 @@ onMounted(() => {
   useMultiSelectStore().clearStore()
   ServicesService.getAllServiceTypes().then((res) => {
     useServicesStore().setServiceTypes(res)
+  })
+  UserService.getAllDoctors({role: 'doctor'}).then((res) => {
+    useUserStore().setDoctors(res?.data)
+  })
+  RecommendersService.getAllRecommenders().then((res) => {
+    useUserStore().setPartnerDoctors(res)
   })
 })
 
@@ -62,6 +81,13 @@ const selectedServiceType = computed(() => {
   return useDropStore().selectServiceTypeOption
 })
 
+const selectedDoctor = computed(() => {
+  return useDropStore().selectDoctorOption
+})
+
+const selectedPartnerDoctor = computed(() => {
+  return useDropStore().selectPartnerDoctorOption
+})
 watch(
   () => selectedServiceType.value,
   (data) => {
@@ -76,6 +102,7 @@ watch(
 const displayItems = ref([])
 const serviceIds = ref([])
 const itemCount = ref(1)
+const partnerDoctorId = ref('')
 
 const addItems = () => {
   if (!selectedServiceType.value?.id) {
@@ -92,20 +119,29 @@ const addItems = () => {
         displayItems.value.push({
           serviceType: selectedServiceType?.value?.name,
           services: useMultiSelectStore().selectedServices,
+          doctor: selectedDoctor.value
         })
-        serviceIds.value.push(...useMultiSelectStore().selectedServices.map(s => s?.id))
+        serviceIds.value.push({serviceId: useMultiSelectStore().selectedServices.map(s => s?.id), doctorId:selectedDoctor.value?.id})
+        partnerDoctorId.value = selectedPartnerDoctor.value?.id
       }
       clearMultiSelectData()
       useDropStore().setSelectServiceTypeOption('')
+      useDropStore().setSelectDoctorOption('')
+      useDropStore().setSelectPartnerDoctorOption('')
       itemCount.value = 1
     } else {
       displayItems.value.push({
         serviceType: selectedServiceType?.value?.name,
         services: useMultiSelectStore().selectedServices,
+        doctor: selectedDoctor.value
       })
-      serviceIds.value.push(...useMultiSelectStore().selectedServices.map(s => s?.id))
+      serviceIds.value.push({serviceIds: useMultiSelectStore().selectedServices.map(s => s?.id), doctorId:selectedDoctor.value?.id})
+      partnerDoctorId.value = selectedPartnerDoctor.value?.id
+      console.log(serviceIds.value)
       clearMultiSelectData()
       useDropStore().setSelectServiceTypeOption('')
+      useDropStore().setSelectDoctorOption('')
+      useDropStore().setSelectPartnerDoctorOption('')
       itemCount.value = 1
     }
   }
@@ -130,7 +166,8 @@ const submitVisitData = () => {
     VisitService.createVisit(
       cleanObjectEmptyFields({
         patientId: selectedPatient.value?.patient?.id,
-        serviceIds: serviceIds.value,
+        services: serviceIds.value,
+        recommenderId: partnerDoctorId.value
       })
     )
       .then(() => {
@@ -189,6 +226,10 @@ const submitVisitData = () => {
       </label>
       <MultiSelect v-if="useDropStore().isOpenServiceDropDown" :id="'services'" :options="services" />
     </div>
+    <div>
+      <p>{{ $t('selectDoctor') }}</p>
+      <SelectOptionDoctor :options="doctors" />
+    </div>
     <div v-if="!(useMultiSelectStore().selectedServices.length > 1)">
       <p>Count</p>
       <money3 v-model="itemCount" v-bind="countConf" class="border-none text-left text-gray-500 bg-gray-100 rounded-lg w-full text-lg"></money3>
@@ -199,11 +240,13 @@ const submitVisitData = () => {
         <PlusIcon />
       </div>
     </div>
+    {{selectedPartnerDoctor}}
     <table v-if="displayItems?.length !== 0" class="w-full bg-gray-100">
       <tr>
         <th>{{ $t('n') }}</th>
         <th>{{ $t('serviceType') }}</th>
         <th>{{ $t('services') }}</th>
+        <th>{{ $t('doctor') }}</th>
       </tr>
       <tr class="text-center divide-y py-5" v-for="(item, idx) in displayItems" :key="idx">
         <td>{{ idx + 1 }}</td>
@@ -213,8 +256,17 @@ const submitVisitData = () => {
             {{ s.name }}
           </div>
         </td>
+        <td>
+          <div>
+            {{ item?.doctor?.firstname }} {{item?.doctor?.lastname}}
+          </div>
+        </td>
       </tr>
     </table>
+    <div>
+      <p>{{ $t('selectPartnerDoctor') }}</p>
+      <SelectOptionPartnerDoctor :options="partnerDoctors" />
+    </div>
     <div v-if="isLoading" class="w-full bg-gray-600 py-3 select-none text-white rounded-lg flex items-center justify-center">
       <LoadingIcon class="mr-2 w-5 h-5 text-gray-200 animate-spin dark:text-gray-600 fill-gray-600 dark:fill-gray-300" />
       <span>{{ $t('creatingVisit') }}</span>

@@ -288,5 +288,6 @@
   "plsEnterRecommenderFirstname": "Please enter recommender firstname!",
   "plsEnterRecommenderLastname": "Please enter recommender lastname!",
   "plsEnterRecommenderPhone": "Please enter recommender phone!",
-  "plsEnterRecommenderShare": "Please enter recommender share!"
+  "plsEnterRecommenderShare": "Please enter recommender share!",
+  "selectPartnerDoctor": "Select partner doctor"
 }

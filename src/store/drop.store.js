@@ -4,6 +4,7 @@ export const useDropStore = defineStore('drop', {
   state: () => ({
     selectPatientOption: '',
     selectDoctorOption: '',
+    selectPartnerDoctorOption: '',
     selectServiceTypeOption: '',
     selectServiceOption: '',
     selectPdfTypeOption: '',
@@ -13,6 +14,7 @@ export const useDropStore = defineStore('drop', {
     selectSmsMessageTypeOption: '',
     selectedExpense: {},
     selectedExpenseItems: [],
+    isOpenPartnerDoctorDropDown: false,
     isOpenPatientDropDown: false,
     isOpenDoctorDropDown: false,
     isOpenServiceTypeDropDown: false,
@@ -27,6 +29,9 @@ export const useDropStore = defineStore('drop', {
   actions: {
     setSelectPatientOption(data) {
       this.selectPatientOption = data
+    },
+    setSelectPartnerDoctorOption(data) {
+      this.selectPartnerDoctorOption = data
     },
     setSelectedCheque(data) {
       this.selectedCheque = data
@@ -72,6 +77,12 @@ export const useDropStore = defineStore('drop', {
     },
     closeDoctorDropDown() {
       this.isOpenDoctorDropDown = false
+    },
+    openPartnerDoctorDropDown() {
+      this.isOpenPartnerDoctorDropDown = true
+    },
+    closePartnerDoctorDropDown() {
+      this.isOpenPartnerDoctorDropDown = false
     },
     openServiceTypeDropDown() {
       this.isOpenServiceTypeDropDown = true

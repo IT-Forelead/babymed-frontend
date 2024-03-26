@@ -287,5 +287,6 @@
   "plsEnterRecommenderFirstname": "Пожалуйста, введите имя рекомендателя!",
   "plsEnterRecommenderLastname": "Пожалуйста, введите фамилию рекомендателя!",
   "plsEnterRecommenderPhone": "Пожалуйста, укажите телефон рекомендателя!",
-  "plsEnterRecommenderShare": "Пожалуйста, введите рекомендательную долю!"
+  "plsEnterRecommenderShare": "Пожалуйста, введите рекомендательную долю!",
+  "selectPartnerDoctor": "Выберите партнерского доктора"
 }
