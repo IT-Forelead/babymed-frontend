@@ -289,5 +289,12 @@
   "plsEnterRecommenderFirstname": "Iltimos, hamkor shifokor ismini kiriting!",
   "plsEnterRecommenderLastname": "Iltimos, hamkor shifokor ismini kiriting!",
   "plsEnterRecommenderPhone": "Iltimos, hamkor shifokor familiyasini kiriting!",
-  "plsEnterRecommenderShare": "Iltimos, hamkor shifokor telefonini kiriting!"
+  "plsEnterRecommenderShare": "Iltimos, hamkor shifokor telefonini kiriting!",
+  "rolesReport": "Rollar hisoboti",
+  "createRole": "Rol yaratish",
+  "roleName": "Rol nomi",
+  "enterRoleName": "Rol nomini kiriting",
+  "roleFeatures": "Rol xususiyatlari",
+  "create": "Yaratish",
+  "creating": "Yaratilmoqda"
 }

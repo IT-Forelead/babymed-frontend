@@ -7,6 +7,7 @@ export const useModalStore = defineStore('modal', {
     isOpenAddUserModal: false,
     isOpenAddVisitModal: false,
     isOpenAddServiceModal: false,
+    isOpenAddRoleModal: false,
     isOpenEditServiceModal: false,
     isOpenDeleteAlertModal: false,
     isOpenFilterBy: false,
@@ -50,6 +51,12 @@ export const useModalStore = defineStore('modal', {
     },
     closeAddServiceModal() {
       this.isOpenAddServiceModal = false
+    },
+    openAddRoleModal() {
+      this.isOpenAddRoleModal = true
+    },
+    closeAddRoleModal() {
+      this.isOpenAddRoleModal = false
     },
     openEditServiceModal() {
       this.isOpenEditServiceModal = true

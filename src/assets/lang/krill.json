@@ -289,5 +289,12 @@
   "plsEnterRecommenderFirstname": "Илтимос, ҳамкор шифокор исмини киритинг!",
   "plsEnterRecommenderLastname": "Илтимос, ҳамкор шифокор исмини киритинг!",
   "plsEnterRecommenderPhone": "Илтимос, ҳамкор шифокор фамилиясини киритинг!",
-  "plsEnterRecommenderShare": "Илтимос, ҳамкор шифокор телефонини киритинг!"
+  "plsEnterRecommenderShare": "Илтимос, ҳамкор шифокор телефонини киритинг!",
+  "rolesReport": "Роллар ҳисоботи",
+  "createRole": "Роль яратиш",
+  "roleName": "Роль номи",
+  "enterRoleName": "Роль номини киритинг",
+  "roleFeatures": "Роль хусусиятлари",
+  "create": "Яратиш",
+  "creating": "Яратилмоқда"
 }

@@ -63,6 +63,13 @@ const routes = [
     beforeEnter: navigationGuards(['super_manager', 'tech_admin']),
   },
   {
+    path: '/roles',
+    name: 'Roles',
+    component: () => import('../views/Roles.vue'),
+    meta: { layout: 'dashboard' },
+    beforeEnter: navigationGuards(['super_manager', 'tech_admin']),
+  },
+  {
     path: '/sms-messages',
     name: 'SMS messages',
     component: () => import('../views/SmsMessages.vue'),

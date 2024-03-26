@@ -16,6 +16,7 @@ import PrintPdfModal from './Modals/PrintPdfModal.vue'
 import AddServiceModal from './Modals/AddServiceModal.vue'
 import EditServiceModal from './Modals/EditServiceModal.vue'
 import DeleteAlertModal from './Modals/DeleteAlertModal.vue'
+import AddRoleModal from './Modals/AddRoleModal.vue'
 
 const { t } = useI18n()
 
@@ -93,6 +94,7 @@ onMounted(() => {
     <AddPatientModal />
     <!-- Add User Modal -->
     <AddUserModal />
+    <AddRoleModal />
     <!-- Payment Status Changer Modal -->
     <ChangePaymentStatus />
     <!-- Delete Alert -->

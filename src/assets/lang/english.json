@@ -288,5 +288,12 @@
   "plsEnterRecommenderFirstname": "Please enter recommender firstname!",
   "plsEnterRecommenderLastname": "Please enter recommender lastname!",
   "plsEnterRecommenderPhone": "Please enter recommender phone!",
-  "plsEnterRecommenderShare": "Please enter recommender share!"
+  "plsEnterRecommenderShare": "Please enter recommender share!",
+  "rolesReport": "Roles report",
+  "createRole": "Create role",
+  "roleName": "Role name",
+  "enterRoleName": "Enter a role name",
+  "roleFeatures": "Role features",
+  "create": "Create",
+  "creating": "Creating"
 }
