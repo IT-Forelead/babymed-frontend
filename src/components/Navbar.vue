@@ -16,6 +16,7 @@ import PrintPdfModal from './Modals/PrintPdfModal.vue'
 import AddServiceModal from './Modals/AddServiceModal.vue'
 import EditServiceModal from './Modals/EditServiceModal.vue'
 import DeleteAlertModal from './Modals/DeleteAlertModal.vue'
+import AddRoleModal from './Modals/AddRoleModal.vue'
 
 const { t } = useI18n()
 
@@ -57,6 +58,8 @@ const currentLabel = computed(() => {
     return t('smsMessagesManagment')
   } else if (router.currentRoute?.value?.path === '/recommenders') {
     return t('recommenders')
+  } else if (router.currentRoute?.value?.path === '/roles') {
+    return t('rolesManagment')
   }
 })
 
@@ -93,6 +96,7 @@ onMounted(() => {
     <AddPatientModal />
     <!-- Add User Modal -->
     <AddUserModal />
+    <AddRoleModal />
     <!-- Payment Status Changer Modal -->
     <ChangePaymentStatus />
     <!-- Delete Alert -->

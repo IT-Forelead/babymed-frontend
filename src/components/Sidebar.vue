@@ -95,14 +95,6 @@ onMounted(() => {
           <p v-if="isOpen">{{ $t('patients') }}</p>
         </div>
       </router-link>
-      <router-link to="/recommenders" v-if="navigationGuard(['admin', 'super_manager', 'tech_admin', 'admin'])"
-        class="flex items-center justify-between hover:bg-gray-800 hover:text-gray-100 p-3 rounded-lg cursor-pointer"
-        :class="useSidebarStore().isOpenSidebar && router?.currentRoute?.value?.path === '/recommenders' ? 'justify-between bg-gray-800 text-gray-100' : !useSidebarStore().isOpenSidebar && router?.currentRoute?.value?.path === '/recommenders' ? 'bg-gray-800 text-gray-100 justify-center' : ''">
-        <div class="flex items-center space-x-2">
-          <MedicalDoctorIcon class="w-7 h-7" />
-          <p v-if="isOpen">{{ $t('recommenders') }}</p>
-        </div>
-      </router-link>
       <router-link to="/operations" v-if="navigationGuard(['super_manager', 'tech_admin', 'cashier'])"
         class="flex items-center justify-between hover:bg-gray-800 hover:text-gray-100 p-3 rounded-lg cursor-pointer"
         :class="useSidebarStore().isOpenSidebar && router?.currentRoute?.value?.path === '/operations' ? 'justify-between bg-gray-800 text-gray-100' : !useSidebarStore().isOpenSidebar && router?.currentRoute?.value?.path === '/operations' ? 'bg-gray-800 text-gray-100 justify-center' : ''">
@@ -138,6 +130,14 @@ onMounted(() => {
           <div :class="isOpen ? 'pl-6' : 'pl-1'" class="flex items-center space-x-2">
             <p>-</p>
             <p v-text="isOpen ? t('checkupExpenses') : 'CE'"></p>
+          </div>
+        </router-link>
+        <router-link to="/recommenders"
+          class="flex items-center justify-between hover:text-gray-100 p-3 rounded-lg cursor-pointer"
+          :class="{ 'text-gray-100': useSidebarStore().isOpenSidebar && router?.currentRoute?.value?.path === '/recommenders' }">
+          <div :class="isOpen ? 'pl-6' : 'pl-1'" class="flex items-center space-x-2">
+            <p>-</p>
+            <p v-text="isOpen ? t('recommenders') : 'PD'"></p>
           </div>
         </router-link>
       </div>
@@ -178,6 +178,14 @@ onMounted(() => {
           <p v-if="isOpen">{{ $t('users') }}</p>
         </div>
       </router-link>
+      <router-link to="/roles" v-if="navigationGuard(['super_manager', 'tech_admin'])"
+        class="flex items-center justify-between hover:bg-gray-800 hover:text-gray-100 p-3 rounded-lg cursor-pointer"
+        :class="useSidebarStore().isOpenSidebar && router?.currentRoute?.value?.path === '/roles' ? 'justify-between bg-gray-800 text-gray-100' : !useSidebarStore().isOpenSidebar && router?.currentRoute?.value?.path === '/roles' ? 'bg-gray-800 text-gray-100 justify-center' : ''">
+        <div class="flex items-center space-x-2">
+          <UserPlusIcon class="w-7 h-7" />
+          <p v-if="isOpen">{{ $t('roles') }}</p>
+        </div>
+      </router-link>
       <!-- Menus for admin panel -->
       <router-link to="/sms-messages" v-if="navigationGuard(['super_manager'])"
         class="flex items-center justify-between hover:bg-gray-800 hover:text-gray-100 p-3 rounded-lg cursor-pointer"
@@ -193,11 +201,12 @@ onMounted(() => {
         <UserIcon class="w-10 h-10 text-gray-300" />
       </div>
       <div v-if="isOpen">
-        <p class="text-lg font-bold text-gray-400 text-center">{{
-          useAuthStore().user?.firstname + ' ' +
-            useAuthStore().user?.lastname
-        }}</p>
-        <p class="text-gray-600 text-center">{{ useAuthStore().user?.phone }}</p>
+        <p class="text-lg font-bold text-gray-400 text-center">
+          {{ useAuthStore().user?.firstname + ' ' + useAuthStore().user?.lastname }}
+        </p>
+        <p class="text-gray-600 text-center">
+          {{ useAuthStore().user?.phone }}
+        </p>
       </div>
       <div :class="{ 'flex-col space-x-0 space-y-3': !isOpen }" class="flex items-center justify-center space-x-5">
         <div @click="toggleLangDrop()"

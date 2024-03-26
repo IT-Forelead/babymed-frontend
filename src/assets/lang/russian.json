@@ -288,5 +288,14 @@
   "plsEnterRecommenderLastname": "Пожалуйста, введите фамилию рекомендателя!",
   "plsEnterRecommenderPhone": "Пожалуйста, укажите телефон рекомендателя!",
   "plsEnterRecommenderShare": "Пожалуйста, введите рекомендательную долю!",
-  "selectPartnerDoctor": "Выберите партнерского доктора"
+  "selectPartnerDoctor": "Выберите партнерского доктора",
+  "rolesReport": "Отчет о ролях",
+  "rolesManagment":"Управление ролями",
+  "roles": "Роли",
+  "createRole": "Создать роль",
+  "roleName": "Имя роли",
+  "enterRoleName": "Введите имя роли",
+  "roleFeatures": "Функции роли",
+  "создать": "Создать",
+  "создание": "Создание"
 }

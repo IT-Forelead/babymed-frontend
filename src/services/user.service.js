@@ -9,7 +9,7 @@ class UserService {
     return AxiosService.post('/user/report', filter, { headers: authHeader() })
   }
   async getSubRoles() {
-    return AxiosService.get('/user/sub-roles', { headers: authHeader() })
+    return AxiosService.get('/role/sub-roles', { headers: authHeader() })
   }
   async getAllDoctors(data) {
     return AxiosService.post('/user/report?page=1&limit=1000', data, { headers: authHeader() })

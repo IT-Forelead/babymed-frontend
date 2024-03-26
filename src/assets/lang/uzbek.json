@@ -290,5 +290,14 @@
   "plsEnterRecommenderLastname": "Iltimos, hamkor shifokor ismini kiriting!",
   "plsEnterRecommenderPhone": "Iltimos, hamkor shifokor familiyasini kiriting!",
   "plsEnterRecommenderShare": "Iltimos, hamkor shifokor telefonini kiriting!",
-  "selectPartnerDoctor": "Hamkor shifokorni tanlash"
+  "selectPartnerDoctor": "Hamkor shifokorni tanlash",
+  "rolesReport": "Rollar hisoboti",
+  "rolesManagment":"Rollarni boshqarish",
+  "roles": "Rollar",
+  "createRole": "Rol yaratish",
+  "roleName": "Rol nomi",
+  "enterRoleName": "Rol nomini kiriting",
+  "roleFeatures": "Rol xususiyatlari",
+  "create": "Yaratish",
+  "creating": "Yaratilmoqda"
 }

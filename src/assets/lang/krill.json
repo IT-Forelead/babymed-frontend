@@ -290,5 +290,14 @@
   "plsEnterRecommenderLastname": "Илтимос, ҳамкор шифокор исмини киритинг!",
   "plsEnterRecommenderPhone": "Илтимос, ҳамкор шифокор фамилиясини киритинг!",
   "plsEnterRecommenderShare": "Илтимос, ҳамкор шифокор телефонини киритинг!",
-  "selectPartnerDoctor": "Ҳамкор шифокорни танлаш"
+  "selectPartnerDoctor": "Ҳамкор шифокорни танлаш",
+  "rolesReport": "Роллар ҳисоботи",
+  "rolesManagment":"Ролларни бошқариш",
+  "roles": "Роллар",
+  "createRole": "Роль яратиш",
+  "roleName": "Роль номи",
+  "enterRoleName": "Роль номини киритинг",
+  "roleFeatures": "Роль хусусиятлари",
+  "create": "Яратиш",
+  "creating": "Яратилмоқда"
 }

@@ -289,5 +289,14 @@
   "plsEnterRecommenderLastname": "Please enter recommender lastname!",
   "plsEnterRecommenderPhone": "Please enter recommender phone!",
   "plsEnterRecommenderShare": "Please enter recommender share!",
+  "rolesReport": "Roles report",
+  "rolesManagment":"Role managment",
+  "roles": "Roles",
+  "createRole": "Create role",
+  "roleName": "Role name",
+  "enterRoleName": "Enter a role name",
+  "roleFeatures": "Role features",
+  "create": "Create",
+  "creating": "Creating"
   "selectPartnerDoctor": "Select partner doctor"
 }
