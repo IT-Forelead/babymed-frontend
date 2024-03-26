@@ -69,7 +69,7 @@ onMounted(() => {
     useUserStore().setDoctors(res?.data)
   })
   RecommendersService.getAllRecommenders().then((res) => {
-    useUserStore().setPartnerDoctors(res)
+    useRecommendersStore().setRecommenders(res?.data)
   })
 })
 
@@ -86,7 +86,7 @@ const selectedDoctor = computed(() => {
 })
 
 const selectedPartnerDoctor = computed(() => {
-  return useDropStore().selectPartnerDoctorOption
+  return useRecommendersStore().selectedRecommender
 })
 watch(
   () => selectedServiceType.value,
@@ -240,7 +240,6 @@ const submitVisitData = () => {
         <PlusIcon />
       </div>
     </div>
-    {{selectedPartnerDoctor}}
     <table v-if="displayItems?.length !== 0" class="w-full bg-gray-100">
       <tr>
         <th>{{ $t('n') }}</th>
