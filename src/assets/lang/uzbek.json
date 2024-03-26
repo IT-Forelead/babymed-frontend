@@ -291,6 +291,8 @@
   "plsEnterRecommenderPhone": "Iltimos, hamkor shifokor familiyasini kiriting!",
   "plsEnterRecommenderShare": "Iltimos, hamkor shifokor telefonini kiriting!",
   "rolesReport": "Rollar hisoboti",
+  "rolesManagment":"Rollarni boshqarish",
+  "roles": "Rollar",
   "createRole": "Rol yaratish",
   "roleName": "Rol nomi",
   "enterRoleName": "Rol nomini kiriting",

@@ -178,6 +178,14 @@ onMounted(() => {
           <p v-if="isOpen">{{ $t('users') }}</p>
         </div>
       </router-link>
+      <router-link to="/roles" v-if="navigationGuard(['super_manager', 'tech_admin'])"
+        class="flex items-center justify-between hover:bg-gray-800 hover:text-gray-100 p-3 rounded-lg cursor-pointer"
+        :class="useSidebarStore().isOpenSidebar && router?.currentRoute?.value?.path === '/roles' ? 'justify-between bg-gray-800 text-gray-100' : !useSidebarStore().isOpenSidebar && router?.currentRoute?.value?.path === '/roles' ? 'bg-gray-800 text-gray-100 justify-center' : ''">
+        <div class="flex items-center space-x-2">
+          <UserPlusIcon class="w-7 h-7" />
+          <p v-if="isOpen">{{ $t('roles') }}</p>
+        </div>
+      </router-link>
       <!-- Menus for admin panel -->
       <router-link to="/sms-messages" v-if="navigationGuard(['super_manager'])"
         class="flex items-center justify-between hover:bg-gray-800 hover:text-gray-100 p-3 rounded-lg cursor-pointer"

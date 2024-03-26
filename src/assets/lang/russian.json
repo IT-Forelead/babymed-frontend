@@ -289,6 +289,8 @@
   "plsEnterRecommenderPhone": "Пожалуйста, укажите телефон рекомендателя!",
   "plsEnterRecommenderShare": "Пожалуйста, введите рекомендательную долю!",
   "rolesReport": "Отчет о ролях",
+  "rolesManagment":"Управление ролями",
+  "roles": "Роли",
   "createRole": "Создать роль",
   "roleName": "Имя роли",
   "enterRoleName": "Введите имя роли",

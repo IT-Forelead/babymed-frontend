@@ -291,6 +291,8 @@
   "plsEnterRecommenderPhone": "Илтимос, ҳамкор шифокор фамилиясини киритинг!",
   "plsEnterRecommenderShare": "Илтимос, ҳамкор шифокор телефонини киритинг!",
   "rolesReport": "Роллар ҳисоботи",
+  "rolesManagment":"Ролларни бошқариш",
+  "roles": "Роллар",
   "createRole": "Роль яратиш",
   "roleName": "Роль номи",
   "enterRoleName": "Роль номини киритинг",
