@@ -14,6 +14,7 @@ export const useModalStore = defineStore('modal', {
     isOpenOperationExpenseInfo: false,
     isOpenPrintModal: false,
     isOpenPrintPdfModal: false,
+    isOpenVisitInfoModal: false,
   }),
   actions: {
     openModal() {
@@ -87,6 +88,12 @@ export const useModalStore = defineStore('modal', {
     },
     closePrintPdfModal() {
       this.isOpenPrintPdfModal = false
+    },
+    openVisitInfoModal() {
+      this.isOpenVisitInfoModal = true
+    },
+    closeVisitInfoModal() {
+      this.isOpenVisitInfoModal = false
     },
     toggleFilterBy() {
       this.isOpenFilterBy = !this.isOpenFilterBy

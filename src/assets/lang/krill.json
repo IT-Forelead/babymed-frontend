@@ -299,5 +299,6 @@
   "enterRoleName": "Роль номини киритинг",
   "roleFeatures": "Роль хусусиятлари",
   "create": "Яратиш",
-  "creating": "Яратилмоқда"
+  "creating": "Яратилмоқда",
+  "visitPatientInfo": "Бемор ташрифи ҳақида маълумот"
 }

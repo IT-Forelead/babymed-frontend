@@ -2,22 +2,27 @@
 import { ref } from '@vue/reactivity'
 import { onMounted } from 'vue'
 import RoleService from '../../services/role.service'
-import notify from 'izitoast'
-import 'izitoast/dist/css/iziToast.min.css'
 import { useI18n } from 'vue-i18n'
 import LoadingIcon from '../../assets/icons/LoadingIcon.vue'
+import TreeView from '../../components/common/TreeView.vue'
 
 const { t } = useI18n()
 
+const isPending = ref(false)
 const isLoading = ref(false)
 const defaultRole = ref([])
 
-onMounted(() => {
+const getDefaultRoles = () => {
+    isPending.value = true
     RoleService.getDefaultRoles()
         .then((res) => {
             defaultRole.value = res
+        }).finally(() => {
+            isPending.value = false
         })
-})
+}
+
+getDefaultRoles()
 </script>
 
 <template>
@@ -33,7 +38,13 @@ onMounted(() => {
             <label>
                 {{ $t('roleFeatures') }}
             </label>
-            <div v-for="(dr, idx) in defaultRole" :key="idx" class="py-1">
+            <div v-if="isPending" class="flex items-center justify-center h-20">
+                <LoadingIcon class="w-6 h-6 text-gray-500 animate-spin" />
+            </div>
+            <div v-else class="py-1">
+                <TreeView :items="defaultRole" />
+            </div>
+            <!-- <div v-for="(dr, idx) in defaultRole" :key="idx" class="py-1">
                 <div class="relative flex space-x-2">
                     <div class="flex h-6 items-center">
                         <input :id="dr?.parent?.id" name="comments" type="checkbox"
@@ -43,9 +54,9 @@ onMounted(() => {
                         <label :for="dr?.parent?.id" class="font-medium text-gray-900">
                             {{ dr?.parent?.name }}
                         </label>
-                        <!-- <p class="text-gray-500">
+                        <p class="text-gray-500">
                             {{ dr?.parent?.privileges }}                            
-                        </p> -->
+                        </p>
                     </div>
                 </div>
                 <div v-for="(cr, idx) in dr?.children" :key="idx" class="ml-8 py-1">
@@ -59,7 +70,7 @@ onMounted(() => {
                         </label>
                     </div>
                 </div>
-            </div>
+            </div> -->
         </div>
         <div v-if="isLoading"
             class="w-full bg-gray-600 py-3 select-none text-white rounded-lg flex items-center justify-center">
