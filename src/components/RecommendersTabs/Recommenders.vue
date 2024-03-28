@@ -25,7 +25,6 @@ onClickOutside(dropdown, () => {
 onMounted(() => {
   useRecommendersStore().clearStore()
   RecommendersService.getAllRecommenders().then((res) => {
-    console.log('recommenders', res)
     useRecommendersStore().setRecommenders(res?.data)
   })
 })
@@ -34,7 +33,7 @@ onMounted(() => {
 <template>
   <div class="bg-white rounded-lg w-full p-5">
     <div class="flex items-center space-x-3">
-      <router-link to="" class="bg-gray-200 hover:bg-gray-400 cursor-pointer transition-all duration-300 hover:scale-105 rounded-lg p-1.5 px-3 flex items-center">
+      <router-link to="/recommenders/history" class="bg-gray-200 hover:bg-gray-400 cursor-pointer transition-all duration-300 hover:scale-105 rounded-lg p-1.5 px-3 flex items-center">
         <MoneyBagIcon class="w-6 h-6 mr-1" />
         {{ $t('recommenderSharesHistory') }}
       </router-link>

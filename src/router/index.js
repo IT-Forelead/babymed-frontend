@@ -156,7 +156,12 @@ const routes = [
         path: '',
         name: 'Recommenders',
         component: () => import('../components/RecommendersTabs/Recommenders.vue'),
-      }
+      },
+      {
+        path: 'history',
+        name: 'Recommenders Shares',
+        component: () => import('../components/RecommendersTabs/RecommendersShares.vue'),
+      },
     ],
     beforeEnter: navigationGuards(['cashier', 'super_manager', 'tech_admin', 'admin']),
   },

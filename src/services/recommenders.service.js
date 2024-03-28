@@ -17,6 +17,10 @@ class RecommenderService {
   async updateRecommender(data) {
     return AxiosService.post('/recommender/update', data, { headers: authHeader() })
   }
+
+  async getRecommendersShares(data) {
+    return AxiosService.post('/recommender/shares', data ?? {}, { headers: authHeader() })
+  }
 }
 
 export default new RecommenderService()
