@@ -280,6 +280,7 @@
   "recommenderShare": "Рекомендатор Поделиться",
   "recommenderSharesHistory": "История акций рекомендателей",
   "createRecommender": "Создать рекомендателя",
+  "createdRecommender": "Рекомендатор успешно создан!",
   "creatingRecommender": "Создание рекомендателя",
   "deletedRecommender": "Рекомендатор успешно удален!",
   "errorCreatingRecommender": "Ошибка при создании платежа!",

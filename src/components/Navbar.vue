@@ -59,6 +59,8 @@ const currentLabel = computed(() => {
     return t('smsMessagesManagment')
   } else if (router.currentRoute?.value?.path === '/recommenders') {
     return t('recommenders')
+  } else if (router.currentRoute?.value?.path === '/recommenders/history') {
+    return t('recommenderSharesHistory')
   } else if (router.currentRoute?.value?.path === '/roles') {
     return t('rolesManagment')
   }

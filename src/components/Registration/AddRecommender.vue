@@ -1,6 +1,6 @@
 <script setup>
 import { reactive, ref } from '@vue/reactivity'
-import { useCheckupExpenseStore } from '../../store/checkupExpense.store'
+import { useRecommendersStore } from '../../store/recommenders.store'
 import { useDropStore } from '../../store/drop.store'
 import RecommenderService from '../../services/recommenders.service'
 import notify from 'izitoast'
@@ -64,11 +64,11 @@ const submitRecommenderData = () => {
       .then(() => {
         clearForm();
         notify.success({
-          message: t('recommenderCreated'),
+          message: t('createdRecommender'),
         })
         RecommenderService.getAllRecommenders().then((res) => {
-          useCheckupExpenseStore().clearStore()
-          useCheckupExpenseStore().setRecommender(res.data)
+          useRecommendersStore().clearStore()
+          useRecommendersStore().setRecommenders(res.data)
         })
         useDropStore().clearStore()
         isLoading.value = false

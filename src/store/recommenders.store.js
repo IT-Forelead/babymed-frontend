@@ -4,6 +4,7 @@ export const useRecommendersStore = defineStore('recommenders', {
   state: () => ({
     recommenders: [],
     selectedRecommender: {},
+    recommendersShares: [],
   }),
   actions: {
     setRecommenders(data) {
@@ -12,6 +13,10 @@ export const useRecommendersStore = defineStore('recommenders', {
 
     setSelectedRecommender(data) {
       this.selectedRecommender = data
+    },
+
+    setRecommendersShares(data) {
+      this.recommendersShares = data
     },
 
     clearStore() {

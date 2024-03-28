@@ -281,6 +281,7 @@
   "recommenderShare": "Recommender Share",
   "recommenderSharesHistory": "Recommender Shares History",
   "createRecommender": "Create Recommender",
+  "createdRecommender": "Recommender successfully created!",
   "creatingRecommender": "Creating Recommender",
   "deletedRecommender": "Recommender successfully deleted!",
   "errorCreatingRecommender": "Error while creating payment!",
