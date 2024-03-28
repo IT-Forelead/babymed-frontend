@@ -64,7 +64,7 @@ const submitRecommenderData = () => {
       .then(() => {
         clearForm();
         notify.success({
-          message: t('recommenderCreated'),
+          message: t('createdRecommender'),
         })
         RecommenderService.getAllRecommenders().then((res) => {
           useCheckupExpenseStore().clearStore()
