@@ -298,5 +298,6 @@
   "roleFeatures": "Role features",
   "create": "Create",
   "creating": "Creating",
-  "selectPartnerDoctor": "Select partner doctor"
+  "selectPartnerDoctor": "Select partner doctor",
+  "visitPatientInfo": "Visit patient information"
 }

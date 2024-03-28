@@ -17,6 +17,7 @@ import AddServiceModal from './Modals/AddServiceModal.vue'
 import EditServiceModal from './Modals/EditServiceModal.vue'
 import DeleteAlertModal from './Modals/DeleteAlertModal.vue'
 import AddRoleModal from './Modals/AddRoleModal.vue'
+import VisitInfoModal from './Modals/VisitInfoModal.vue'
 
 const { t } = useI18n()
 
@@ -108,6 +109,7 @@ onMounted(() => {
     <OperationInfoModal />
     <Cheque />
     <PrintPdfModal />
+    <VisitInfoModal/>
   </div>
 </template>
 

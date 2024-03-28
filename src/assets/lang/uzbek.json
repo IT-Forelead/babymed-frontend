@@ -299,5 +299,6 @@
   "enterRoleName": "Rol nomini kiriting",
   "roleFeatures": "Rol xususiyatlari",
   "create": "Yaratish",
-  "creating": "Yaratilmoqda"
+  "creating": "Yaratilmoqda",
+  "visitPatientInfo": "Bemor tashrifi haqida ma'lumot"
 }
